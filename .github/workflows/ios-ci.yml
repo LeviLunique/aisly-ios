@@ -1,0 +1,61 @@
+name: iOS CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ios-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PROJECT_PATH: Aisly.xcodeproj
+  SCHEME: Aisly
+  SIMULATOR_DESTINATION: platform=iOS Simulator,name=iPhone 16,OS=latest
+  DERIVED_DATA_PATH: build/DerivedData
+  RESULT_BUNDLE_PATH: build/TestResults/AislyTests.xcresult
+
+jobs:
+  unit-tests:
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Build for testing
+        run: |
+          rm -rf "$DERIVED_DATA_PATH" "$(dirname "$RESULT_BUNDLE_PATH")"
+          xcodebuild \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -destination "$SIMULATOR_DESTINATION" \
+            -derivedDataPath "$DERIVED_DATA_PATH" \
+            -only-testing:AislyTests \
+            build-for-testing
+
+      - name: Run unit tests
+        run: |
+          xcodebuild \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -destination "$SIMULATOR_DESTINATION" \
+            -derivedDataPath "$DERIVED_DATA_PATH" \
+            -resultBundlePath "$RESULT_BUNDLE_PATH" \
+            -only-testing:AislyTests \
+            test-without-building
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aisly-unit-test-results
+          path: build/TestResults
+          if-no-files-found: warn
+          retention-days: 7
