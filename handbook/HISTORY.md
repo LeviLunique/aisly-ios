@@ -5,6 +5,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 ## Stage Status
 
 - Stage 0: completed
+- Stage 0B: completed
 - Stage 1: pending
 - Stage 2: pending
 - Stage 3: pending
@@ -27,6 +28,14 @@ Delivered:
 - Xcode project scaffold
 - app, test, and UI-test targets
 - public handbook baseline
+
+### Stage 0B
+
+Delivered:
+
+- GitHub Actions CI for the shared scheme
+- a 5-test unit-test baseline for project and scheme integrity
+- GitHub Actions CD that uploads an unsigned release archive artifact
 
 ## Planned Next Work
 
