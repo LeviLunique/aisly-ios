@@ -20,10 +20,19 @@ xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform
 xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform=iOS Simulator' test
 ```
 
-## Before Starting Work
+## Current Development Rule
 
-Read:
+The app is offline-first for now.
 
-- [TECHNICAL_OVERVIEW.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/TECHNICAL_OVERVIEW.md)
-- [PRODUCT_STRATEGY.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/PRODUCT_STRATEGY.md)
-- [FEATURES.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/FEATURES.md)
+That means current development should focus on:
+
+- local persistence
+- local list behavior
+- budget calculations
+- shopping interaction quality
+
+Not on:
+
+- backend integration
+- purchases
+- cloud support workflows

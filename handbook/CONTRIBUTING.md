@@ -18,6 +18,7 @@ Aisly uses:
 - SwiftUI
 - MVVM
 - dependency injection
+- local-first persistence
 - clean code fundamentals
 
 Core engineering rules:
@@ -29,6 +30,16 @@ Core engineering rules:
 - add tests with each meaningful feature
 - update docs after meaningful slices
 
+## Product Rules
+
+Before implementing a feature, ask:
+
+1. Does this strengthen recurring shopping speed?
+2. Does this improve budget clarity?
+3. Is this necessary before backend and premium work?
+
+If the answer is no, it is probably not the right next slice.
+
 ## Validation Expectations
 
 Minimum validation flow:
@@ -37,13 +48,3 @@ Minimum validation flow:
 xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform=iOS Simulator' build
 xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform=iOS Simulator' test
 ```
-
-## Documentation Expectations
-
-Update the handbook when you change:
-
-- contributor workflow
-- feature behavior
-- architecture understanding
-- local validation steps
-- product positioning

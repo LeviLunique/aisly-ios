@@ -13,11 +13,15 @@ Aisly uses a pragmatic feature-first MVVM architecture in SwiftUI.
 - views render and forward intent
 - view models own presentation logic
 - services hold reusable business rules
-- repositories encapsulate persistence and external boundaries
+- repositories encapsulate persistence and future remote boundaries
 - dependencies are assembled explicitly
 
-## What To Avoid
+## Additional Rule
 
-- giant framework-coupled view models
-- architecture added only for ceremony
-- generic repositories with no domain value
+The app is local-first now and backend-ready later.
+
+That means:
+
+- local persistence comes first
+- repository boundaries are required from the start
+- backend infrastructure is deferred until the local product is strong

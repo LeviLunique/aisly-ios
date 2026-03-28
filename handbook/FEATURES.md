@@ -1,73 +1,93 @@
 # Features and Roadmap Status
 
-This document summarizes the current state of Aisly.
+This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-Only the repository scaffold is complete.
+Only the repository scaffold and handbook baseline are complete.
 
-The main product features are still ahead.
+The real product work still starts now.
 
-## Planned Feature Areas
+## What Should Be Built First
 
-### Shopping List Core
+### Offline Foundation
 
 Planned:
 
-- item creation
-- item editing
-- quantity handling
+- app container
+- repository boundaries
+- local persistence
+- test baseline
+
+### Multiple Local Lists
+
+Planned:
+
+- create list
+- edit list
+- archive list
+- manage more than one active list
+
+### Local Items and Categories
+
+Planned:
+
+- item CRUD
+- quantity support
 - categories
-- totals
+- ordering
 
-### Fast Entry and History
-
-Planned:
-
-- quick add
-- remembered items
-- reusable recent entries
-
-### Budget Intelligence
+### Budget Core
 
 Planned:
 
 - planned total
 - actual total
-- visible price impact per item
+- delta visibility
 
-### Recurring Shopping
+### Recurring Shopping Convenience
 
 Planned:
 
+- quick entry from history
 - templates
-- recurring lists
-- routine regeneration
+- recurring list regeneration
 
-### Store and Price Memory
-
-Planned:
-
-- remembered price per item
-- remembered price by store
-- comparisons over time
-
-### Shared Lists
+### Price Memory
 
 Planned:
 
-- household collaboration
-- shared edits
-- attribution and conflict-safe updates
+- store model
+- last price memory
+- store-specific price records
 
-### Apple-First Integrations
+### Shopping Mode
+
+Planned:
+
+- in-store optimized interaction
+- check-off flow
+- actual-price-first editing
+
+### Apple-First Convenience
 
 Planned:
 
 - widgets
 - App Intents
 - Siri shortcuts
-- Apple Watch support where useful
+
+## What Should Wait
+
+Explicitly deferred:
+
+- backend
+- shared cloud lists
+- purchases
+- barcode scanning
+- OCR
+- recipes
+- advanced support tooling
 
 ## Detailed Slice History
 

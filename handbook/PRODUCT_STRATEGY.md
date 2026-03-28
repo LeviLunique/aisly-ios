@@ -1,6 +1,6 @@
 # Product Strategy
 
-This document explains what should make Aisly sell.
+This document explains what should actually make Aisly viable.
 
 ## Core Bet
 
@@ -8,44 +8,57 @@ Aisly should not compete as a generic shopping-list app.
 
 Its first real bet is:
 
-- shared shopping plus budget intelligence
+- free offline-first utility
+- recurring shopping speed
+- budget intelligence
 
-## Why This Bet Exists
+## What the Benchmark Says
 
-The category is already saturated with:
+The market already has strong players in:
 
-- generic list apps
-- basic sharing
-- checklists with clean UI
+- list sharing
+- recurring suggestions
+- polished UI
+- cross-device convenience
 
-Aisly needs a reason to be chosen and reused.
+The benchmark also shows that users punish:
 
-## Strongest Early Differentiators
+- confusing pricing
+- poor support response
+- weak trust around purchases
 
-The most important planned capabilities are:
+That matters, but it is not a moat.
 
-- planned total
-- actual total
-- recurring items
-- reusable templates
+## What We Agree With
+
+- the local offline core should be free
+- the app should be architected for future online features
+
+## What We Do Not Agree With
+
+- subscriptions should not be an early roadmap priority
+- support tooling is not a day-one differentiator
+- passing cloud costs directly to users is bad pricing design
+- `R$ 1,50/month` is not a credible long-term pricing foundation for a maintained premium product
+
+## Correct Near-Term Strategy
+
+Build first:
+
+- multiple local lists
+- totals
+- shopping mode
+- templates
+- recurrence
 - price memory
-- store-aware shopping
 
-## Market Focus
+Sell later:
 
-Initial market priority:
+- cloud sync
+- shared households
+- backup and restore
+- continuity across devices
 
-- Brazil
+## Final Product Rule
 
-Brand direction:
-
-- globally usable app name
-- localized App Store subtitle and keywords
-
-## Product Rule
-
-When prioritizing features, prefer the one that most improves:
-
-- shopping speed
-- spending clarity
-- household usefulness
+The app should earn the right to monetize by first being genuinely useful offline.

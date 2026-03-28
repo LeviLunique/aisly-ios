@@ -12,10 +12,10 @@ Aisly uses dependency injection at real boundaries.
 
 - view models receive repositories and services
 - tests can inject fakes
-- previews can inject lightweight sample dependencies
+- future backend and billing clients can be added without rewriting feature code
 
 ## What To Avoid
 
 - hidden global mutable state
-- singletons as the default composition model
+- singletons as the main composition strategy
 - protocols with no real substitution value

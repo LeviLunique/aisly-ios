@@ -2,12 +2,12 @@
 
 This handbook is the shared developer-facing documentation surface for Aisly.
 
-It summarizes:
+It explains:
 
-- what the product is trying to become
+- what product Aisly is actually trying to become
 - how the app should be structured
-- which feature areas matter most
-- how contributors should work in the codebase
+- which feature areas matter first
+- how contributors should reason about changes
 
 ## Start Here
 

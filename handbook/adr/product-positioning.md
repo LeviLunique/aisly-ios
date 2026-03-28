@@ -6,19 +6,21 @@ Accepted
 
 ## Decision
 
-Aisly will compete first as a shared shopping and budget-intelligence app.
+Aisly will compete first as a free offline-first shopping app with strong recurring-shopping and budget-intelligence behavior.
 
 ## What This Means
 
 Priority features should strengthen:
 
-- shopping speed
+- multiple local lists
+- planned versus actual totals
 - recurring shopping reuse
-- spending clarity
-- household collaboration
+- price memory
+- in-store shopping speed
 
 ## What To Avoid
 
-- generic list-app positioning
-- AI-first gimmick positioning
-- broad feature sprawl before the core wedge is strong
+- premium before online value exists
+- cloud-cost pass-through pricing
+- backend-first roadmap decisions
+- feature sprawl before the local product is strong

@@ -26,12 +26,18 @@ Delivered:
 - public repository scaffold
 - Xcode project scaffold
 - app, test, and UI-test targets
+- public handbook baseline
 
-## Main Follow-Up Work
+## Planned Next Work
 
-The most important next work is:
+The next correct work is:
 
-- app foundation with MVVM and DI
-- shopping list core
-- budget baseline
-- recurring shopping and templates
+- offline architecture foundation
+- multiple local lists
+- budget core
+
+Not:
+
+- backend
+- subscriptions
+- paid support tooling
