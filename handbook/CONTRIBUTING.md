@@ -46,5 +46,10 @@ Minimum validation flow:
 
 ```bash
 xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform=iOS Simulator' build
-xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform=iOS Simulator' test
+xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:AislyTests test
 ```
+
+Repository automation now mirrors that flow:
+
+- pull requests and pushes to `main` run the shared unit-test workflow in [ios-ci.yml](/Users/levilunique/Workspace/Swift/Aisly/.github/workflows/ios-ci.yml)
+- pushes to `main` and manual dispatches create an unsigned release archive in [ios-cd.yml](/Users/levilunique/Workspace/Swift/Aisly/.github/workflows/ios-cd.yml)

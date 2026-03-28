@@ -4,7 +4,7 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-Only the repository scaffold and handbook baseline are complete.
+The repository scaffold, handbook baseline, and GitHub Actions delivery automation are complete.
 
 The real product work still starts now.
 
