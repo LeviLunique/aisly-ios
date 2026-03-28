@@ -1,0 +1,525 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48D7026D51566F741D97648F /* AislyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4011FB882D39B8BFD56DB /* AislyTests.swift */; };
+		4F3B5D20D5484365F9900C0E /* AislyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */; };
+		B1CA1B2B68C0F563198F4F0F /* AislyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E2C385A4C2FD2B40248BB /* AislyApp.swift */; };
+		C3959705FF237985EA14FB83 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951BBDB9EA6975C8298B495 /* ContentView.swift */; };
+		D928AC4CAC58025ED4C2CFC9 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BFA9C764E54D23BF6885B /* Contents.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		817A0C3487359D45EF450D5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5504015074269ED991A90942 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 765D1586C9E49227280ACA9F;
+			remoteInfo = Aisly;
+		};
+		9A114EF23C3733795A71C7A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5504015074269ED991A90942 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 765D1586C9E49227280ACA9F;
+			remoteInfo = Aisly;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A7E2C385A4C2FD2B40248BB /* AislyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyApp.swift; sourceTree = "<group>"; };
+		20D9BCD4B6D4016928D895F9 /* AislyTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AislyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		22F4011FB882D39B8BFD56DB /* AislyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyTests.swift; sourceTree = "<group>"; };
+		246F8D3242734FA8147255AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		88B846B34BC8CBB88BA0AB4D /* AislyUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AislyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8951BBDB9EA6975C8298B495 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		950BFA9C764E54D23BF6885B /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyUITests.swift; sourceTree = "<group>"; };
+		B638FF31FAD20CFE4C173445 /* Aisly.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Aisly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1718BEBCCC9F5CBE6241F2BB /* Aisly */ = {
+			isa = PBXGroup;
+			children = (
+				0A7E2C385A4C2FD2B40248BB /* AislyApp.swift */,
+				8951BBDB9EA6975C8298B495 /* ContentView.swift */,
+				246F8D3242734FA8147255AD /* Info.plist */,
+				E661549C9854317A685D5C89 /* Resources */,
+			);
+			path = Aisly;
+			sourceTree = "<group>";
+		};
+		95152DDB5335A9C2E1C3B8FC /* AislyTests */ = {
+			isa = PBXGroup;
+			children = (
+				22F4011FB882D39B8BFD56DB /* AislyTests.swift */,
+			);
+			path = AislyTests;
+			sourceTree = "<group>";
+		};
+		9F211DB9466AB504139EE28E /* AislyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */,
+			);
+			path = AislyUITests;
+			sourceTree = "<group>";
+		};
+		DFD933725EEE58C9B8C87402 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B638FF31FAD20CFE4C173445 /* Aisly.app */,
+				20D9BCD4B6D4016928D895F9 /* AislyTests.xctest */,
+				88B846B34BC8CBB88BA0AB4D /* AislyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E661549C9854317A685D5C89 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				950BFA9C764E54D23BF6885B /* Contents.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E91A67B1AEC7333C07527EB9 = {
+			isa = PBXGroup;
+			children = (
+				1718BEBCCC9F5CBE6241F2BB /* Aisly */,
+				95152DDB5335A9C2E1C3B8FC /* AislyTests */,
+				9F211DB9466AB504139EE28E /* AislyUITests */,
+				DFD933725EEE58C9B8C87402 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		31562DEEB6C5CBCB89F1E15E /* AislyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFB1527980540014D41470F5 /* Build configuration list for PBXNativeTarget "AislyUITests" */;
+			buildPhases = (
+				12E8056BFB929114E373CA1D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B631B3265DA918B6D0E4D6E2 /* PBXTargetDependency */,
+			);
+			name = AislyUITests;
+			packageProductDependencies = (
+			);
+			productName = AislyUITests;
+			productReference = 88B846B34BC8CBB88BA0AB4D /* AislyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		71BC2D9A8BF777EBDC9DC57E /* AislyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB173C144B09BD3059DFE5B9 /* Build configuration list for PBXNativeTarget "AislyTests" */;
+			buildPhases = (
+				C862FC6FF848AB5FE53B5C53 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB32F4DDAEFEBF74F17BADC1 /* PBXTargetDependency */,
+			);
+			name = AislyTests;
+			packageProductDependencies = (
+			);
+			productName = AislyTests;
+			productReference = 20D9BCD4B6D4016928D895F9 /* AislyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		765D1586C9E49227280ACA9F /* Aisly */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A775391653E3B1491F630C5 /* Build configuration list for PBXNativeTarget "Aisly" */;
+			buildPhases = (
+				287E248F3BA8743286CEE22D /* Sources */,
+				646CEF05B290C7D7C3BE365C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Aisly;
+			packageProductDependencies = (
+			);
+			productName = Aisly;
+			productReference = B638FF31FAD20CFE4C173445 /* Aisly.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5504015074269ED991A90942 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					31562DEEB6C5CBCB89F1E15E = {
+						TestTargetID = 765D1586C9E49227280ACA9F;
+					};
+					765D1586C9E49227280ACA9F = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 35D01B0BF48B879BD4D6F592 /* Build configuration list for PBXProject "Aisly" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = E91A67B1AEC7333C07527EB9;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = DFD933725EEE58C9B8C87402 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				765D1586C9E49227280ACA9F /* Aisly */,
+				71BC2D9A8BF777EBDC9DC57E /* AislyTests */,
+				31562DEEB6C5CBCB89F1E15E /* AislyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		646CEF05B290C7D7C3BE365C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D928AC4CAC58025ED4C2CFC9 /* Contents.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12E8056BFB929114E373CA1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F3B5D20D5484365F9900C0E /* AislyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		287E248F3BA8743286CEE22D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1CA1B2B68C0F563198F4F0F /* AislyApp.swift in Sources */,
+				C3959705FF237985EA14FB83 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C862FC6FF848AB5FE53B5C53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48D7026D51566F741D97648F /* AislyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B631B3265DA918B6D0E4D6E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 765D1586C9E49227280ACA9F /* Aisly */;
+			targetProxy = 817A0C3487359D45EF450D5E /* PBXContainerItemProxy */;
+		};
+		DB32F4DDAEFEBF74F17BADC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 765D1586C9E49227280ACA9F /* Aisly */;
+			targetProxy = 9A114EF23C3733795A71C7A4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1409E27F1C32AF59D87E2524 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.levilunique.aislyTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aisly.app/Aisly";
+			};
+			name = Release;
+		};
+		4ABD4CA7C2AF516319F1A010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Aisly/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levilunique.aisly;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		788FBE05D472B2268D972983 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.levilunique.aislyUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Aisly;
+			};
+			name = Debug;
+		};
+		870579F70124EEC98224F87D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9776B46E9882B35189CEB2DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A165643E4C7C0A032F3C6D92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.levilunique.aislyUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Aisly;
+			};
+			name = Release;
+		};
+		EB9C3B455B7792C99DF5E201 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Aisly/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levilunique.aisly;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FFAC1A5B997B21A2F7CA95A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.levilunique.aislyTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aisly.app/Aisly";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		35D01B0BF48B879BD4D6F592 /* Build configuration list for PBXProject "Aisly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				870579F70124EEC98224F87D /* Debug */,
+				9776B46E9882B35189CEB2DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8A775391653E3B1491F630C5 /* Build configuration list for PBXNativeTarget "Aisly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9C3B455B7792C99DF5E201 /* Debug */,
+				4ABD4CA7C2AF516319F1A010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CB173C144B09BD3059DFE5B9 /* Build configuration list for PBXNativeTarget "AislyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFAC1A5B997B21A2F7CA95A2 /* Debug */,
+				1409E27F1C32AF59D87E2524 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FFB1527980540014D41470F5 /* Build configuration list for PBXNativeTarget "AislyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				788FBE05D472B2268D972983 /* Debug */,
+				A165643E4C7C0A032F3C6D92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5504015074269ED991A90942 /* Project object */;
+}
