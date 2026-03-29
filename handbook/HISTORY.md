@@ -7,7 +7,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 - Stage 0: completed
 - Stage 0B: completed
 - Stage 1: completed
-- Stage 2: pending
+- Stage 2: completed
 - Stage 3: pending
 - Stage 4: pending
 - Stage 5: pending
@@ -50,11 +50,21 @@ Delivered:
 - locale-aware previews and UI launch checks for the root screen without hardcoded translated expectations or duplicated raw keys
 - 17 tests covering repository persistence, storage compliance, localization compliance, centralized text management, shared key governance, and view-model state transitions
 
+### Stage 2
+
+Delivered:
+
+- multiple active and archived local shopping lists on the root screen
+- localized create-list, rename-list, and archive-list flows
+- sheet-based list-name editing with trimmed-name validation
+- persisted local list mutations through the existing repository boundary
+- 25 tests covering storage compliance, localization compliance, multiple-list view-model behavior, and locale UI launch checks
+
 ## Planned Next Work
 
 The next correct work is:
 
-- multiple local lists
+- local items and categories
 - budget core
 
 Not:
