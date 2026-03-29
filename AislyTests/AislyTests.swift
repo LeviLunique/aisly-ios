@@ -243,6 +243,20 @@ final class AislyTests: XCTestCase {
         XCTAssertTrue(homeViewContents.contains("AislyEmptyState"))
     }
 
+    func testListDetailViewUsesSharedDesignSystemComponents() throws {
+        let detailViewContents = try String(
+            contentsOf: appFileURL("Aisly/Features/ListDetail/ListDetailView.swift"),
+            encoding: .utf8
+        )
+
+        XCTAssertTrue(detailViewContents.contains("AislyLoadingState"))
+        XCTAssertTrue(detailViewContents.contains("AislyEmptyState"))
+        XCTAssertTrue(detailViewContents.contains("AislyItemRow"))
+        XCTAssertTrue(detailViewContents.contains("AislyBadge"))
+        XCTAssertTrue(detailViewContents.contains("AislyInputField"))
+        XCTAssertTrue(detailViewContents.contains("AislyPrimaryButtonStyle"))
+    }
+
     func testAppTextKeysExistInLocalizationCatalog() throws {
         let catalog = try makeLocalizationCatalog()
         let appTextKeysContents = try String(
@@ -361,6 +375,30 @@ final class AislyTests: XCTestCase {
         } catch {
             XCTAssertTrue(error is DecodingError)
         }
+    }
+
+    func testLocalRepositoryLoadsStageTwoPersistenceWithoutItems() async throws {
+        let fileURL = try makeTemporaryFileURL(testName: #function)
+        let repository = LocalShoppingListRepository(store: ShoppingListFileStore(fileURL: fileURL))
+        let legacyPayload = """
+        [
+          {
+            "createdAt" : "1970-01-01T00:16:40Z",
+            "id" : "11111111-2222-3333-4444-555555555555",
+            "isArchived" : false,
+            "name" : "Weekly Groceries",
+            "updatedAt" : "1970-01-01T00:33:20Z"
+          }
+        ]
+        """
+
+        try Data(legacyPayload.utf8).write(to: fileURL, options: .atomic)
+
+        let lists = try await repository.fetchLists()
+
+        XCTAssertEqual(lists.count, 1)
+        XCTAssertEqual(lists.first?.name, "Weekly Groceries")
+        XCTAssertEqual(lists.first?.items, [])
     }
 
     @MainActor
@@ -616,6 +654,276 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(viewModel.editorMode, .create)
     }
 
+    @MainActor
+    func testListDetailViewModelLoadsItemsSortedByOrder() async {
+        let listID = UUID()
+        let itemOneID = UUID()
+        let itemTwoID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            id: itemTwoID,
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            sortOrder: 1
+                        ),
+                        makeShoppingItem(
+                            id: itemOneID,
+                            name: "Apples",
+                            quantity: 6,
+                            category: .produce,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+
+        XCTAssertEqual(
+            viewModel.state,
+            .loaded(
+                .init(
+                    listID: listID,
+                    listName: "Weekly Groceries",
+                    items: [
+                        .init(
+                            id: itemOneID,
+                            name: "Apples",
+                            quantity: 6,
+                            category: .produce,
+                            updatedAt: Date(timeIntervalSince1970: 2_000)
+                        ),
+                        .init(
+                            id: itemTwoID,
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            updatedAt: Date(timeIntervalSince1970: 2_000)
+                        )
+                    ]
+                )
+            )
+        )
+    }
+
+    @MainActor
+    func testListDetailViewModelPresentCreateItemStartsWithDefaultDraft() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [makeShoppingList(id: listID, name: "Weekly Groceries")]
+        )
+        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+
+        XCTAssertEqual(viewModel.editorMode, .create)
+        XCTAssertEqual(viewModel.draftName, "")
+        XCTAssertEqual(viewModel.draftQuantity, 1)
+        XCTAssertEqual(viewModel.draftCategory, .produce)
+        XCTAssertTrue(viewModel.isDraftSubmissionDisabled)
+    }
+
+    @MainActor
+    func testListDetailViewModelPresentEditItemPrefillsDraft() async {
+        let listID = UUID()
+        let itemID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            id: itemID,
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+        viewModel.presentEditItem(id: itemID)
+
+        XCTAssertEqual(viewModel.editorMode, .edit(itemID))
+        XCTAssertEqual(viewModel.draftName, "Milk")
+        XCTAssertEqual(viewModel.draftQuantity, 2)
+        XCTAssertEqual(viewModel.draftCategory, .dairy)
+    }
+
+    @MainActor
+    func testListDetailViewModelSaveDraftAddsItemToList() async {
+        let listID = UUID()
+        let itemID = UUID()
+        let timestamp = Date(timeIntervalSince1970: 3_000)
+        let repository = InMemoryShoppingListRepository(
+            lists: [makeShoppingList(id: listID, name: "Weekly Groceries")]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            now: { timestamp },
+            makeUUID: { itemID }
+        )
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+        viewModel.updateDraftName("  Apples  ")
+        viewModel.updateDraftQuantity(3)
+        viewModel.updateDraftCategory(.produce)
+        await viewModel.saveDraft()
+
+        let persistedLists = await repository.persistedLists()
+        XCTAssertEqual(persistedLists.first?.items.count, 1)
+        XCTAssertEqual(
+            persistedLists.first?.items.first,
+            ShoppingItem(
+                id: itemID,
+                name: "Apples",
+                quantity: 3,
+                category: .produce,
+                createdAt: timestamp,
+                updatedAt: timestamp,
+                sortOrder: 0
+            )
+        )
+    }
+
+    @MainActor
+    func testListDetailViewModelSaveDraftEditsExistingItem() async {
+        let listID = UUID()
+        let itemID = UUID()
+        let timestamp = Date(timeIntervalSince1970: 4_000)
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            id: itemID,
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            now: { timestamp }
+        )
+
+        await viewModel.load()
+        viewModel.presentEditItem(id: itemID)
+        viewModel.updateDraftName("Greek Yogurt")
+        viewModel.updateDraftQuantity(3)
+        viewModel.updateDraftCategory(.dairy)
+        await viewModel.saveDraft()
+
+        let persistedLists = await repository.persistedLists()
+        XCTAssertEqual(persistedLists.first?.items.first?.name, "Greek Yogurt")
+        XCTAssertEqual(persistedLists.first?.items.first?.quantity, 3)
+        XCTAssertEqual(persistedLists.first?.items.first?.updatedAt, timestamp)
+    }
+
+    @MainActor
+    func testListDetailViewModelDeleteItemRemovesItFromList() async {
+        let listID = UUID()
+        let itemID = UUID()
+        let timestamp = Date(timeIntervalSince1970: 5_000)
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            id: itemID,
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            now: { timestamp }
+        )
+
+        await viewModel.load()
+        await viewModel.deleteItem(id: itemID)
+
+        let persistedLists = await repository.persistedLists()
+        XCTAssertEqual(persistedLists.first?.items, [])
+        XCTAssertEqual(persistedLists.first?.updatedAt, timestamp)
+    }
+
+    @MainActor
+    func testListDetailViewModelMoveItemsPersistsUpdatedOrder() async {
+        let listID = UUID()
+        let firstID = UUID()
+        let secondID = UUID()
+        let timestamp = Date(timeIntervalSince1970: 6_000)
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            id: firstID,
+                            name: "Apples",
+                            quantity: 2,
+                            category: .produce,
+                            sortOrder: 0
+                        ),
+                        makeShoppingItem(
+                            id: secondID,
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            sortOrder: 1
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            now: { timestamp }
+        )
+
+        await viewModel.load()
+        await viewModel.moveItems(fromOffsets: IndexSet(integer: 0), toOffset: 2)
+
+        let persistedItems = await repository.persistedLists().first?.items ?? []
+        XCTAssertEqual(persistedItems.map(\.id), [secondID, firstID])
+        XCTAssertEqual(persistedItems.map(\.sortOrder), [0, 1])
+        XCTAssertEqual(persistedItems.map(\.updatedAt), [timestamp, timestamp])
+    }
+
     private func makeRepository(testName: String) -> LocalShoppingListRepository {
         let fileURL = try! makeTemporaryFileURL(testName: testName)
         return LocalShoppingListRepository(store: ShoppingListFileStore(fileURL: fileURL))
@@ -671,14 +979,36 @@ final class AislyTests: XCTestCase {
         name: String,
         createdAt: Date = Date(timeIntervalSince1970: 1_000),
         updatedAt: Date = Date(timeIntervalSince1970: 2_000),
-        isArchived: Bool = false
+        isArchived: Bool = false,
+        items: [ShoppingItem] = []
     ) -> ShoppingList {
         ShoppingList(
             id: id,
             name: name,
             createdAt: createdAt,
             updatedAt: updatedAt,
-            isArchived: isArchived
+            isArchived: isArchived,
+            items: items
+        )
+    }
+
+    private func makeShoppingItem(
+        id: UUID = UUID(),
+        name: String,
+        quantity: Int,
+        category: ShoppingItem.Category,
+        sortOrder: Int,
+        createdAt: Date = Date(timeIntervalSince1970: 1_000),
+        updatedAt: Date = Date(timeIntervalSince1970: 2_000)
+    ) -> ShoppingItem {
+        ShoppingItem(
+            id: id,
+            name: name,
+            quantity: quantity,
+            category: category,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+            sortOrder: sortOrder
         )
     }
 }

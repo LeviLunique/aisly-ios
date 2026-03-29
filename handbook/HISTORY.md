@@ -8,7 +8,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 - Stage 0B: completed
 - Stage 1: completed
 - Stage 2: completed
-- Stage 3: pending
+- Stage 3: completed locally
 - Stage 4: pending
 - Stage 5: pending
 - Stage 6: pending
@@ -61,6 +61,18 @@ Delivered:
 - a shared SwiftUI design-system foundation for colors, typography, spacing, motion, reusable state views, form controls, summary surfaces, and reusable list-screen components
 - expanded regression coverage for storage compliance, localization compliance, design-system guardrails, multiple-list view-model behavior, and locale UI launch checks
 
+### Stage 3
+
+Delivered locally:
+
+- active lists now open a dedicated local detail screen
+- shopping lists now persist local shopping items with quantity, category, timestamps, and explicit local order
+- the detail feature supports item create, edit, delete, and reorder flows through MVVM
+- the file-backed persistence layer stays backward-compatible with Stage 2 JSON that does not yet contain items
+- the new detail UI stays localized through the shared String Catalog and semantic text boundary
+- the detail workflow reuses the shared design-system layer for state views, inputs, item rows, badges, and actions
+- regression coverage now includes Stage 2 persistence compatibility plus list-detail item behavior
+
 ### Supporting Remote Branch Work
 
 The remote repository also contains additional implemented work that is not yet part of the numbered product-stage history on `main`.
@@ -78,7 +90,6 @@ Delivered on remote branch `feat/swiftui-design-system`:
 
 The next correct work is:
 
-- local items and categories
 - budget core
 
 Not:
