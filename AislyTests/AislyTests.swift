@@ -282,11 +282,29 @@ final class AislyTests: XCTestCase {
     }
 
     @MainActor
-    func testHomeViewModelLoadsSnapshotCounts() async {
+    func testHomeViewModelLoadsActiveAndArchivedListsSortedByUpdatedDate() async {
+        let activeID = UUID()
+        let archivedID = UUID()
+        let olderActiveID = UUID()
         let lists = [
-            makeShoppingList(name: "Weekly Groceries", isArchived: false),
-            makeShoppingList(name: "Holiday Shopping", isArchived: true),
-            makeShoppingList(name: "Bakery", isArchived: false)
+            makeShoppingList(
+                id: olderActiveID,
+                name: "Bakery",
+                updatedAt: Date(timeIntervalSince1970: 100),
+                isArchived: false
+            ),
+            makeShoppingList(
+                id: archivedID,
+                name: "Holiday Shopping",
+                updatedAt: Date(timeIntervalSince1970: 300),
+                isArchived: true
+            ),
+            makeShoppingList(
+                id: activeID,
+                name: "Weekly Groceries",
+                updatedAt: Date(timeIntervalSince1970: 500),
+                isArchived: false
+            )
         ]
         let viewModel = HomeViewModel(repository: StubShoppingListRepository(result: .success(lists)))
 
@@ -294,7 +312,29 @@ final class AislyTests: XCTestCase {
 
         XCTAssertEqual(
             viewModel.state,
-            .loaded(.init(activeCount: 2, archivedCount: 1))
+            .loaded(
+                .init(
+                    activeLists: [
+                        .init(
+                            id: activeID,
+                            name: "Weekly Groceries",
+                            updatedAt: Date(timeIntervalSince1970: 500)
+                        ),
+                        .init(
+                            id: olderActiveID,
+                            name: "Bakery",
+                            updatedAt: Date(timeIntervalSince1970: 100)
+                        )
+                    ],
+                    archivedLists: [
+                        .init(
+                            id: archivedID,
+                            name: "Holiday Shopping",
+                            updatedAt: Date(timeIntervalSince1970: 300)
+                        )
+                    ]
+                )
+            )
         )
     }
 
@@ -318,6 +358,173 @@ final class AislyTests: XCTestCase {
         let fetchCallCount = await repository.recordedFetchCallCount()
 
         XCTAssertEqual(fetchCallCount, 1)
+    }
+
+    @MainActor
+    func testHomeViewModelPresentCreateListStartsEmptyDraft() {
+        let viewModel = HomeViewModel(repository: StubShoppingListRepository(result: .success([])))
+
+        viewModel.presentCreateList()
+
+        XCTAssertEqual(viewModel.editorMode, .create)
+        XCTAssertEqual(viewModel.draftName, "")
+        XCTAssertTrue(viewModel.isDraftSubmissionDisabled)
+    }
+
+    @MainActor
+    func testHomeViewModelPresentRenameListPrefillsDraftName() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [makeShoppingList(id: listID, name: "Weekly Groceries")]
+        )
+        let viewModel = HomeViewModel(repository: repository)
+
+        await viewModel.load()
+        viewModel.presentRenameList(id: listID)
+
+        XCTAssertEqual(viewModel.editorMode, .rename(listID))
+        XCTAssertEqual(viewModel.draftName, "Weekly Groceries")
+        XCTAssertTrue(viewModel.isDraftSubmissionDisabled)
+    }
+
+    @MainActor
+    func testHomeViewModelSaveDraftCreatesListAndUpdatesState() async {
+        let createdAt = Date(timeIntervalSince1970: 700)
+        let createdID = UUID()
+        let repository = InMemoryShoppingListRepository(lists: [])
+        let viewModel = HomeViewModel(
+            repository: repository,
+            now: { createdAt },
+            makeUUID: { createdID }
+        )
+
+        await viewModel.load()
+        viewModel.presentCreateList()
+        viewModel.updateDraftName("  Weekend Market  ")
+        await viewModel.saveDraft()
+
+        let persistedLists = await repository.persistedLists()
+
+        XCTAssertEqual(
+            persistedLists,
+            [
+                ShoppingList(
+                    id: createdID,
+                    name: "Weekend Market",
+                    createdAt: createdAt,
+                    updatedAt: createdAt,
+                    isArchived: false
+                )
+            ]
+        )
+        XCTAssertEqual(
+            viewModel.state,
+            .loaded(
+                .init(
+                    activeLists: [
+                        .init(
+                            id: createdID,
+                            name: "Weekend Market",
+                            updatedAt: createdAt
+                        )
+                    ],
+                    archivedLists: []
+                )
+            )
+        )
+        XCTAssertNil(viewModel.editorMode)
+        XCTAssertEqual(viewModel.draftName, "")
+    }
+
+    @MainActor
+    func testHomeViewModelSaveDraftRenamesListAndUpdatesTimestamp() async {
+        let listID = UUID()
+        let initialList = makeShoppingList(
+            id: listID,
+            name: "Weekly Groceries",
+            updatedAt: Date(timeIntervalSince1970: 100)
+        )
+        let renamedAt = Date(timeIntervalSince1970: 900)
+        let repository = InMemoryShoppingListRepository(lists: [initialList])
+        let viewModel = HomeViewModel(
+            repository: repository,
+            now: { renamedAt }
+        )
+
+        await viewModel.load()
+        viewModel.presentRenameList(id: listID)
+        viewModel.updateDraftName("Weekend Groceries")
+        await viewModel.saveDraft()
+
+        let persistedLists = await repository.persistedLists()
+
+        XCTAssertEqual(
+            persistedLists,
+            [
+                ShoppingList(
+                    id: listID,
+                    name: "Weekend Groceries",
+                    createdAt: initialList.createdAt,
+                    updatedAt: renamedAt,
+                    isArchived: false
+                )
+            ]
+        )
+    }
+
+    @MainActor
+    func testHomeViewModelArchiveListMovesItIntoArchivedSection() async {
+        let listID = UUID()
+        let archivedAt = Date(timeIntervalSince1970: 1_200)
+        let repository = InMemoryShoppingListRepository(
+            lists: [makeShoppingList(id: listID, name: "Party Supplies")]
+        )
+        let viewModel = HomeViewModel(
+            repository: repository,
+            now: { archivedAt }
+        )
+
+        await viewModel.load()
+        await viewModel.archiveList(id: listID)
+
+        let persistedLists = await repository.persistedLists()
+
+        XCTAssertEqual(persistedLists.first?.isArchived, true)
+        XCTAssertEqual(persistedLists.first?.updatedAt, archivedAt)
+        XCTAssertEqual(
+            viewModel.state,
+            .loaded(
+                .init(
+                    activeLists: [],
+                    archivedLists: [
+                        .init(
+                            id: listID,
+                            name: "Party Supplies",
+                            updatedAt: archivedAt
+                        )
+                    ]
+                )
+            )
+        )
+    }
+
+    @MainActor
+    func testHomeViewModelSaveDraftIgnoresBlankNames() async {
+        let repository = InMemoryShoppingListRepository(lists: [])
+        let viewModel = HomeViewModel(repository: repository)
+
+        await viewModel.load()
+        viewModel.presentCreateList()
+        viewModel.updateDraftName("   ")
+        await viewModel.saveDraft()
+        let persistedLists = await repository.persistedLists()
+
+        XCTAssertEqual(persistedLists, [])
+        XCTAssertEqual(
+            viewModel.state,
+            .loaded(.init(activeLists: [], archivedLists: []))
+        )
+        XCTAssertEqual(viewModel.editorMode, .create)
     }
 
     private func makeRepository(testName: String) -> LocalShoppingListRepository {
@@ -371,13 +578,14 @@ final class AislyTests: XCTestCase {
     }
 
     private func makeShoppingList(
+        id: UUID = UUID(),
         name: String,
         createdAt: Date = Date(timeIntervalSince1970: 1_000),
         updatedAt: Date = Date(timeIntervalSince1970: 2_000),
         isArchived: Bool = false
     ) -> ShoppingList {
         ShoppingList(
-            id: UUID(),
+            id: id,
             name: name,
             createdAt: createdAt,
             updatedAt: updatedAt,
@@ -416,6 +624,26 @@ private actor CountingShoppingListRepository: ShoppingListRepository {
     }
 
     func saveLists(_ lists: [ShoppingList]) async throws {
+    }
+}
+
+private actor InMemoryShoppingListRepository: ShoppingListRepository {
+    private var lists: [ShoppingList]
+
+    init(lists: [ShoppingList]) {
+        self.lists = lists
+    }
+
+    func fetchLists() async throws -> [ShoppingList] {
+        lists
+    }
+
+    func saveLists(_ lists: [ShoppingList]) async throws {
+        self.lists = lists
+    }
+
+    func persistedLists() -> [ShoppingList] {
+        lists
     }
 }
 

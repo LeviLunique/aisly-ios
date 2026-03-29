@@ -11,10 +11,15 @@ final class AislyUITests: XCTestCase {
             forKey: AppTextKeys.Home.navigationTitle,
             locale: "en"
         )
+        let expectedCreateButton = try localizedString(
+            forKey: AppTextKeys.Home.createFirstListButtonTitle,
+            locale: "en"
+        )
 
         app.launch()
 
         XCTAssertTrue(app.staticTexts[expectedTitle].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons[expectedCreateButton].waitForExistence(timeout: 5))
     }
 
     func testHomeScreenUsesBrazilianPortugueseWhenAppLanguageIsBrazilianPortuguese() throws {
@@ -23,10 +28,15 @@ final class AislyUITests: XCTestCase {
             forKey: AppTextKeys.Home.navigationTitle,
             locale: "pt-BR"
         )
+        let expectedCreateButton = try localizedString(
+            forKey: AppTextKeys.Home.createFirstListButtonTitle,
+            locale: "pt-BR"
+        )
 
         app.launch()
 
         XCTAssertTrue(app.staticTexts[expectedTitle].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons[expectedCreateButton].waitForExistence(timeout: 5))
     }
 
     private func makeApp(language: String, locale: String) -> XCUIApplication {

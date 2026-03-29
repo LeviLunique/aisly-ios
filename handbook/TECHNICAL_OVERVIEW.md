@@ -43,11 +43,12 @@ The current app base now includes:
 - a `ShoppingListRepository` boundary for shopping-list persistence
 - a file-backed local persistence adapter for offline storage
 - a centralized `Application Support` path for persistent shopping-list data
-- a root `HomeViewModel` that loads local state before richer feature flows exist
+- a root `HomeViewModel` that now loads and mutates multiple local lists
+- localized create, rename, and archive flows for the root local-list screen
 - English and Brazilian Portuguese resources for the shipped root-screen copy
 
 This is intentionally narrow.
-It provides the minimum clean base for later list, item, and budget slices without introducing backend or sync machinery early.
+It provides the minimum useful local-list product before item, category, and budget slices expand the domain further, without introducing backend or sync machinery early.
 
 ## Pattern Posture
 
@@ -99,7 +100,6 @@ That means:
 
 The architecture should make these easy to evolve:
 
-- multiple local lists
 - totals and deltas
 - shopping-mode interaction
 - recurrence and templates
