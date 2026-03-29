@@ -51,7 +51,15 @@ final class AislyTests: XCTestCase {
             "Aisly/DesignSystem/Components/AislyBudgetSummaryCard.swift",
             "Aisly/DesignSystem/Components/AislyItemRow.swift",
             "Aisly/DesignSystem/Components/AislyListSummaryCard.swift",
-            "Aisly/DesignSystem/Tokens/AislyMotion.swift"
+            "Aisly/DesignSystem/Tokens/AislyMotion.swift",
+            "Aisly/AppleSurfaces/OpenListsIntent.swift",
+            "Aisly/AppleSurfaces/OpenShoppingModeIntent.swift",
+            "Shared/AppleSurfaces/AppRoute.swift",
+            "Shared/AppleSurfaces/AppleSurfaceListStore.swift",
+            "Shared/AppleSurfaces/AppleSurfaceRouteRequestStore.swift",
+            "Shared/AppleSurfaces/ShoppingListAppEntity.swift",
+            "AislyWidgets/ActiveListWidget.swift",
+            "AislyWidgets/AislyWidgetsBundle.swift"
         ]
 
         for relativePath in expectedFiles {
@@ -111,9 +119,16 @@ final class AislyTests: XCTestCase {
 
         let violations = try swiftFileURLs.flatMap { fileURL -> [String] in
             let contents = try String(contentsOf: fileURL, encoding: .utf8)
+            let allowedPatterns = fileURL.lastPathComponent == "AppleSurfaceRouteRequestStore.swift"
+                ? Set([#"UserDefaults"#])
+                : []
 
             return forbiddenPatterns.compactMap { pattern in
-                contents.range(of: pattern, options: .regularExpression).map { _ in
+                guard allowedPatterns.contains(pattern) == false else {
+                    return nil
+                }
+
+                return contents.range(of: pattern, options: .regularExpression).map { _ in
                     "\(fileURL.lastPathComponent): \(pattern)"
                 }
             }
@@ -160,8 +175,17 @@ final class AislyTests: XCTestCase {
             $0.lastPathComponent != "AppTextKeys.swift"
         }
         let localizationKeyPattern = #""[a-z0-9]+(?:\.[A-Za-z0-9-]+){2,}""#
+        let allowedMetadataFiles = Set([
+            "OpenListsIntent.swift",
+            "OpenShoppingModeIntent.swift",
+            "ShoppingListAppEntity.swift"
+        ])
 
         let violations = try swiftFileURLs.flatMap { fileURL -> [String] in
+            guard allowedMetadataFiles.contains(fileURL.lastPathComponent) == false else {
+                return []
+            }
+
             let contents = try String(contentsOf: fileURL, encoding: .utf8)
 
             return contents.range(
@@ -294,6 +318,17 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(Set(localizations), Set(["en", "pt-BR"]))
     }
 
+    func testInfoPlistDeclaresAislyURLScheme() throws {
+        let infoPlistURL = appFileURL("Aisly/Info.plist")
+        let infoPlist = try XCTUnwrap(NSDictionary(contentsOf: infoPlistURL) as? [String: Any])
+        let urlTypes = try XCTUnwrap(infoPlist["CFBundleURLTypes"] as? [[String: Any]])
+        let schemes = urlTypes
+            .compactMap { $0["CFBundleURLSchemes"] as? [String] }
+            .flatMap { $0 }
+
+        XCTAssertTrue(schemes.contains("aisly"))
+    }
+
     func testCurrentAppSourceDoesNotUseUnexpectedStorageFrameworks() throws {
         let sourceFileURLs = try FileManager.default.contentsOfDirectory(
             at: appFileURL("Aisly"),
@@ -332,6 +367,56 @@ final class AislyTests: XCTestCase {
             .appendingPathComponent("shopping-lists.json", isDirectory: false)
 
         XCTAssertEqual(AppStoragePaths.shoppingListsFileURL(), expectedURL)
+    }
+
+    func testAppStoragePathsUseSharedContainerWhenProvided() {
+        let sharedContainerURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent("SharedContainer", isDirectory: true)
+        let expectedURL = sharedContainerURL
+            .appendingPathComponent("Application Support", isDirectory: true)
+            .appendingPathComponent("Aisly", isDirectory: true)
+            .appendingPathComponent("shopping-lists.json", isDirectory: false)
+
+        XCTAssertEqual(
+            AppStoragePaths.shoppingListsFileURL(sharedContainerURL: sharedContainerURL),
+            expectedURL
+        )
+    }
+
+    func testAppRouteParsesListDetailURL() throws {
+        let listID = UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE")!
+        let route = try XCTUnwrap(AppRoute(url: URL(string: "aisly://list?listID=\(listID.uuidString)")!))
+
+        XCTAssertEqual(route, .listDetail(listID))
+    }
+
+    func testAppRouteParsesShoppingModeURL() throws {
+        let listID = UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE")!
+        let route = try XCTUnwrap(AppRoute(url: URL(string: "aisly://shopping-mode?listID=\(listID.uuidString)")!))
+
+        XCTAssertEqual(route, .shoppingMode(listID))
+    }
+
+    func testAppRouteBuildsShoppingModeURL() {
+        let listID = UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE")!
+
+        XCTAssertEqual(
+            AppRoute.shoppingMode(listID).url.absoluteString,
+            "aisly://shopping-mode?listID=\(listID.uuidString)"
+        )
+    }
+
+    func testAppleSurfaceRouteRequestStoreSavesAndConsumesPendingRoute() throws {
+        let userDefaults = try makeUserDefaultsSuite(testName: #function)
+        let route = AppRoute.shoppingMode(UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE")!)
+
+        AppleSurfaceRouteRequestStore.savePendingRoute(route, userDefaults: userDefaults)
+
+        XCTAssertEqual(
+            AppleSurfaceRouteRequestStore.consumePendingRoute(userDefaults: userDefaults),
+            route
+        )
+        XCTAssertNil(AppleSurfaceRouteRequestStore.consumePendingRoute(userDefaults: userDefaults))
     }
 
     func testLocalRepositoryReturnsEmptyListsWhenStorageIsMissing() async throws {
@@ -1833,6 +1918,17 @@ final class AislyTests: XCTestCase {
         }
 
         return directoryURL.appendingPathComponent("shopping-lists.json")
+    }
+
+    private func makeUserDefaultsSuite(testName: String) throws -> UserDefaults {
+        let suiteName = "AislyTests.\(testName).\(UUID().uuidString)"
+        let userDefaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+
+        addTeardownBlock {
+            userDefaults.removePersistentDomain(forName: suiteName)
+        }
+
+        return userDefaults
     }
 
     private func makeShoppingList(

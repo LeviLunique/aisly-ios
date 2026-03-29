@@ -8,7 +8,7 @@ The local workspace now includes the repository scaffold, GitHub Actions workflo
 
 The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared Aisly-native SwiftUI visual layer with broader tokens, controls, summary surfaces, and logo assets for future UI slices.
 
-The next real product work is now Apple-first convenience.
+The current local workspace now also includes Apple-first convenience.
 
 ## What Should Be Built First
 
@@ -102,11 +102,12 @@ Completed locally:
 
 ### Apple-First Convenience
 
-Planned:
+Completed locally:
 
-- widgets
-- App Intents
-- Siri shortcuts
+- one active-list home-screen widget
+- App Intents for opening lists and jumping into shopping mode
+- Siri Shortcuts compatibility through those intents
+- deep-link routing for Apple-native entry points
 
 ## What Should Wait
 
@@ -131,3 +132,4 @@ For the stage-by-stage status, see:
 - [templates-and-recurrence.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/templates-and-recurrence.md)
 - [store-price-memory.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/store-price-memory.md)
 - [shopping-mode.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/shopping-mode.md)
+- [apple-surface.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/apple-surface.md)

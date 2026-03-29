@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @StateObject private var viewModel: HomeViewModel
+    @State private var navigationPath: [AppRoute] = []
     private let makeListDetailViewModel: @MainActor (UUID) -> ListDetailViewModel
     private let makeShoppingModeViewModel: @MainActor (UUID) -> ShoppingModeViewModel
     @FocusState private var isEditorNameFieldFocused: Bool
@@ -18,15 +20,12 @@ struct HomeView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPath) {
             content
                 .background(AislyColor.backgroundPrimary.ignoresSafeArea())
                 .navigationTitle(Text(AppStrings.Home.navigationTitle))
-                .navigationDestination(for: UUID.self) { listID in
-                    ListDetailView(
-                        viewModel: makeListDetailViewModel(listID),
-                        makeShoppingModeViewModel: makeShoppingModeViewModel
-                    )
+                .navigationDestination(for: AppRoute.self) { route in
+                    destination(for: route)
                 }
                 .toolbar {
                     if viewModel.canCreateList {
@@ -45,8 +44,17 @@ struct HomeView: View {
                     }
                 }
         }
+        .onOpenURL(perform: handleOpenURL)
         .task {
             await viewModel.loadIfNeeded()
+            applyPendingAppleSurfaceRouteIfNeeded()
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            guard newPhase == .active else {
+                return
+            }
+
+            applyPendingAppleSurfaceRouteIfNeeded()
         }
         .sheet(item: editorModeBinding, onDismiss: handleEditorDismissal) { editorMode in
             editorSheet(editorMode)
@@ -147,7 +155,7 @@ struct HomeView: View {
 
         let navigationWrappedRow = Group {
             if allowsArchiveActions {
-                NavigationLink(value: list.id) {
+                NavigationLink(value: AppRoute.listDetail(list.id)) {
                     rowCard
                 }
             } else {
@@ -195,6 +203,58 @@ struct HomeView: View {
                     .tint(AislyColor.primary)
                 }
             }
+    }
+
+    @ViewBuilder
+    private func destination(for route: AppRoute) -> some View {
+        switch route {
+        case .home:
+            Color.clear
+
+        case .listDetail(let listID):
+            ListDetailView(
+                viewModel: makeListDetailViewModel(listID)
+            )
+
+        case .shoppingMode(let listID):
+            ShoppingModeView(
+                viewModel: makeShoppingModeViewModel(listID)
+            )
+        }
+    }
+
+    private func handleOpenURL(_ url: URL) {
+        guard let route = AppRoute(url: url) else {
+            return
+        }
+
+        navigate(to: route)
+    }
+
+    private func applyPendingAppleSurfaceRouteIfNeeded() {
+        guard let route = AppleSurfaceRouteRequestStore.consumePendingRoute() else {
+            return
+        }
+
+        navigate(to: route)
+    }
+
+    private func navigate(to route: AppRoute) {
+        viewModel.dismissEditor()
+
+        switch route {
+        case .home:
+            navigationPath = []
+
+        case .listDetail:
+            navigationPath = [route]
+
+        case .shoppingMode(let listID):
+            navigationPath = [
+                .listDetail(listID),
+                .shoppingMode(listID)
+            ]
+        }
     }
 
     private func templateListRow(_ list: HomeViewModel.ListRow) -> some View {

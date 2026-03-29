@@ -156,6 +156,21 @@ enum AppStrings {
         static let retryButtonTitle = AppTextKeys.ShoppingMode.retryButtonTitle.localizedResource
     }
 
+    enum AppleSurface {
+        static let listEntityTypeTitle = AppTextKeys.AppleSurface.listEntityTypeTitle.localizedResource
+        static let listParameterTitle = AppTextKeys.AppleSurface.listParameterTitle.localizedResource
+        static let openListsIntentTitle = AppTextKeys.AppleSurface.openListsIntentTitle.localizedResource
+        static let openListsIntentDescription = AppTextKeys.AppleSurface.openListsIntentDescription.localizedResource
+        static let openShoppingModeIntentTitle = AppTextKeys.AppleSurface.openShoppingModeIntentTitle.localizedResource
+        static let openShoppingModeIntentDescription = AppTextKeys.AppleSurface.openShoppingModeIntentDescription.localizedResource
+        static let widgetConfigurationTitle = AppTextKeys.AppleSurface.widgetConfigurationTitle.localizedResource
+        static let widgetConfigurationDescription = AppTextKeys.AppleSurface.widgetConfigurationDescription.localizedResource
+        static let activeListWidgetTitle = AppTextKeys.AppleSurface.activeListWidgetTitle.localizedString
+        static let activeListWidgetDescription = AppTextKeys.AppleSurface.activeListWidgetDescription.localizedString
+        static let emptyWidgetTitle = AppTextKeys.AppleSurface.widgetEmptyTitle.localizedResource
+        static let emptyWidgetDescription = AppTextKeys.AppleSurface.widgetEmptyDescription.localizedResource
+    }
+
     enum Mock {
         enum ShoppingList {
             static func weeklyGroceriesName(locale: Locale = .autoupdatingCurrent) -> String {

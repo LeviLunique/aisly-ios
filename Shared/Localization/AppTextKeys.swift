@@ -118,6 +118,21 @@ enum AppTextKeys {
         static let retryButtonTitle = AppTextKey(value: "shoppingMode.error.retry.action")
     }
 
+    enum AppleSurface {
+        static let listEntityTypeTitle = AppTextKey(value: "appleSurface.listEntity.type.title")
+        static let listParameterTitle = AppTextKey(value: "appleSurface.list.parameter.title")
+        static let openListsIntentTitle = AppTextKey(value: "appleSurface.intent.openLists.title")
+        static let openListsIntentDescription = AppTextKey(value: "appleSurface.intent.openLists.description")
+        static let openShoppingModeIntentTitle = AppTextKey(value: "appleSurface.intent.openShoppingMode.title")
+        static let openShoppingModeIntentDescription = AppTextKey(value: "appleSurface.intent.openShoppingMode.description")
+        static let widgetConfigurationTitle = AppTextKey(value: "appleSurface.widget.configuration.title")
+        static let widgetConfigurationDescription = AppTextKey(value: "appleSurface.widget.configuration.description")
+        static let activeListWidgetTitle = AppTextKey(value: "appleSurface.widget.activeList.title")
+        static let activeListWidgetDescription = AppTextKey(value: "appleSurface.widget.activeList.description")
+        static let widgetEmptyTitle = AppTextKey(value: "appleSurface.widget.empty.title")
+        static let widgetEmptyDescription = AppTextKey(value: "appleSurface.widget.empty.description")
+    }
+
     enum Mock {
         enum ShoppingList {
             static let weeklyGroceriesName = AppTextKey(value: "mock.shoppingList.weeklyGroceries.name")
