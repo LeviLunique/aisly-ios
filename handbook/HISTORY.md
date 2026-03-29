@@ -6,7 +6,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 
 - Stage 0: completed
 - Stage 0B: completed
-- Stage 1: pending
+- Stage 1: completed
 - Stage 2: pending
 - Stage 3: pending
 - Stage 4: pending
@@ -37,11 +37,23 @@ Delivered:
 - a 5-test unit-test baseline for project and scheme integrity
 - GitHub Actions CD that uploads an unsigned release archive artifact
 
+### Stage 1
+
+Delivered:
+
+- `AppContainer` dependency assembly for the root feature
+- `ShoppingList` domain model plus `ShoppingListRepository`
+- file-backed local persistence through `ShoppingListFileStore` and `LocalShoppingListRepository`
+- centralized `Application Support` path selection through `AppStoragePaths`
+- a root home feature that loads local state through MVVM
+- localized root-screen copy through a String Catalog, shared localization keys, and centralized `AppStrings` access for English and Brazilian Portuguese
+- locale-aware previews and UI launch checks for the root screen without hardcoded translated expectations or duplicated raw keys
+- 17 tests covering repository persistence, storage compliance, localization compliance, centralized text management, shared key governance, and view-model state transitions
+
 ## Planned Next Work
 
 The next correct work is:
 
-- offline architecture foundation
 - multiple local lists
 - budget core
 

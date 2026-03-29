@@ -4,20 +4,25 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-The repository scaffold, handbook baseline, and GitHub Actions delivery automation are complete.
+The repository scaffold, GitHub Actions workflow baseline, and offline architecture foundation are complete.
 
-The real product work still starts now.
+The next real product work is now the multiple-local-lists slice.
 
 ## What Should Be Built First
 
 ### Offline Foundation
 
-Planned:
+Completed:
 
 - app container
 - repository boundaries
 - local persistence
-- test baseline
+- centralized persistent storage-path policy for app-managed files
+- core shopping-list domain model
+- root MVVM loading flow
+- localized root-screen copy in a String Catalog for English and Brazilian Portuguese
+- locale smoke coverage in UI tests
+- direct persistence, storage-audit, and view-model tests
 
 ### Multiple Local Lists
 

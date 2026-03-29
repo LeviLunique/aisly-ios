@@ -1,0 +1,276 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "home.empty.description" : {
+      "comment" : "Description shown when there are no local shopping lists yet.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aisly is ready to store your shopping lists locally on this device."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Aisly está pronto para armazenar suas listas de compras localmente neste dispositivo."
+          }
+        }
+      }
+    },
+    "home.empty.title" : {
+      "comment" : "Title shown when there are no local shopping lists yet.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Lists Yet"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhuma Lista Ainda"
+          }
+        }
+      }
+    },
+    "home.error.description" : {
+      "comment" : "Description shown when local shopping data cannot be loaded.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aisly couldn't load the local shopping data on this device."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Aisly não conseguiu carregar os dados locais de compras neste dispositivo."
+          }
+        }
+      }
+    },
+    "home.error.retry.action" : {
+      "comment" : "Button title used to retry loading local shopping data.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try Again"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentar Novamente"
+          }
+        }
+      }
+    },
+    "home.error.title" : {
+      "comment" : "Title shown when local shopping data cannot be loaded.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local Data Unavailable"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dados Locais Indisponíveis"
+          }
+        }
+      }
+    },
+    "home.foundationStatus.localPersistence.message" : {
+      "comment" : "Status line describing local-first persistence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Persistence is local-first and file-backed."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A persistência é local-first e baseada em arquivo."
+          }
+        }
+      }
+    },
+    "home.foundationStatus.repositoryBoundary.message" : {
+      "comment" : "Status line describing repository-based data loading.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data is loaded through a repository boundary."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os dados são carregados por meio de uma fronteira de repositório."
+          }
+        }
+      }
+    },
+    "home.foundationStatus.section.title" : {
+      "comment" : "Section title for foundation status details on the home screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foundation Status"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status da Fundação"
+          }
+        }
+      }
+    },
+    "home.screen.loading.title" : {
+      "comment" : "Loading title shown while local shopping lists are being loaded.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading local lists..."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando listas locais..."
+          }
+        }
+      }
+    },
+    "home.screen.navigation.title" : {
+      "comment" : "Navigation title for the home screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Lists"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suas Listas"
+          }
+        }
+      }
+    },
+    "home.summary.activeLists.label" : {
+      "comment" : "Label for the active shopping list count on the home screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Lists"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listas Ativas"
+          }
+        }
+      }
+    },
+    "home.summary.archivedLists.label" : {
+      "comment" : "Label for the archived shopping list count on the home screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archived Lists"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listas Arquivadas"
+          }
+        }
+      }
+    },
+    "home.summary.section.title" : {
+      "comment" : "Section title for the local shopping list summary.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local Summary"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumo Local"
+          }
+        }
+      }
+    },
+    "mock.shoppingList.partySupplies.name" : {
+      "comment" : "Preview and mock shopping list name for party supplies.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Party Supplies"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Itens para Festa"
+          }
+        }
+      }
+    },
+    "mock.shoppingList.weeklyGroceries.name" : {
+      "comment" : "Preview and mock shopping list name for weekly groceries.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weekly Groceries"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compras da Semana"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
