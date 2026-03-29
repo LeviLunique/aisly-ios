@@ -37,6 +37,24 @@
         }
       }
     },
+    "common.value.optional" : {
+      "comment" : "Placeholder value used for optional text-entry fields.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optional"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opcional"
+          }
+        }
+      }
+    },
     "home.empty.description" : {
       "comment" : "Description shown when there are no local shopping lists yet.",
       "extractionState" : "manual",
@@ -757,6 +775,150 @@
         }
       }
     },
+    "listDetail.budget.actualTotal.title" : {
+      "comment" : "Label for the actual total value in the list-detail budget summary.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actual"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Real"
+          }
+        }
+      }
+    },
+    "listDetail.budget.awaitingActualPrices.description" : {
+      "comment" : "Supporting text shown when a list does not have actual prices yet.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add actual prices during shopping to compare the real spend."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicione preços reais durante a compra para comparar o gasto final."
+          }
+        }
+      }
+    },
+    "listDetail.budget.awaitingActualPrices.title" : {
+      "comment" : "Status title shown when a list does not have actual prices yet.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Actual Prices Yet"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ainda Sem Preços Reais"
+          }
+        }
+      }
+    },
+    "listDetail.budget.onBudget.title" : {
+      "comment" : "Status title shown when the actual total matches the planned total.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On Budget"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dentro do Orçamento"
+          }
+        }
+      }
+    },
+    "listDetail.budget.overBudget.title" : {
+      "comment" : "Status title shown when the actual total is over the planned total.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Over Budget"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acima do Orçamento"
+          }
+        }
+      }
+    },
+    "listDetail.budget.plannedTotal.title" : {
+      "comment" : "Label for the planned total value in the list-detail budget summary.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planned"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planejado"
+          }
+        }
+      }
+    },
+    "listDetail.budget.summary.title" : {
+      "comment" : "Title for the list-detail budget summary card.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orçamento"
+          }
+        }
+      }
+    },
+    "listDetail.budget.underBudget.title" : {
+      "comment" : "Status title shown when the actual total is under the planned total.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Under Budget"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abaixo do Orçamento"
+          }
+        }
+      }
+    },
     "listDetail.error.description" : {
       "comment" : "Description shown when a shopping list detail cannot be loaded.",
       "extractionState" : "manual",
@@ -807,6 +969,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lista Indisponível"
+          }
+        }
+      }
+    },
+    "listDetail.editor.actualPrice.field.title" : {
+      "comment" : "Title shown for the actual price field in the item editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actual Price"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preço Real"
+          }
+        }
+      }
+    },
+    "listDetail.editor.plannedPrice.field.title" : {
+      "comment" : "Title shown for the planned price field in the item editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planned Price"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preço Planejado"
           }
         }
       }

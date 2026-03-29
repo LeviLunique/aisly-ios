@@ -103,6 +103,8 @@ struct StoredShoppingItem: Codable, Equatable {
     let name: String
     let quantity: Int
     let category: ShoppingItem.Category
+    let plannedPrice: Decimal?
+    let actualPrice: Decimal?
     let createdAt: Date
     let updatedAt: Date
     let sortOrder: Int
@@ -112,9 +114,24 @@ struct StoredShoppingItem: Codable, Equatable {
         name = item.name
         quantity = item.quantity
         category = item.category
+        plannedPrice = item.plannedPrice
+        actualPrice = item.actualPrice
         createdAt = item.createdAt
         updatedAt = item.updatedAt
         sortOrder = item.sortOrder
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        quantity = try container.decode(Int.self, forKey: .quantity)
+        category = try container.decode(ShoppingItem.Category.self, forKey: .category)
+        plannedPrice = try container.decodeIfPresent(Decimal.self, forKey: .plannedPrice)
+        actualPrice = try container.decodeIfPresent(Decimal.self, forKey: .actualPrice)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+        sortOrder = try container.decode(Int.self, forKey: .sortOrder)
     }
 
     var model: ShoppingItem {
@@ -123,6 +140,8 @@ struct StoredShoppingItem: Codable, Equatable {
             name: name,
             quantity: quantity,
             category: category,
+            plannedPrice: plannedPrice,
+            actualPrice: actualPrice,
             createdAt: createdAt,
             updatedAt: updatedAt,
             sortOrder: sortOrder

@@ -254,6 +254,7 @@ final class AislyTests: XCTestCase {
         XCTAssertTrue(detailViewContents.contains("AislyItemRow"))
         XCTAssertTrue(detailViewContents.contains("AislyBadge"))
         XCTAssertTrue(detailViewContents.contains("AislyInputField"))
+        XCTAssertTrue(detailViewContents.contains("AislyBudgetSummaryCard"))
         XCTAssertTrue(detailViewContents.contains("AislyPrimaryButtonStyle"))
     }
 
@@ -399,6 +400,42 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(lists.count, 1)
         XCTAssertEqual(lists.first?.name, "Weekly Groceries")
         XCTAssertEqual(lists.first?.items, [])
+    }
+
+    func testLocalRepositoryLoadsStageThreePersistenceWithoutBudgetFields() async throws {
+        let fileURL = try makeTemporaryFileURL(testName: #function)
+        let repository = LocalShoppingListRepository(store: ShoppingListFileStore(fileURL: fileURL))
+        let legacyPayload = """
+        [
+          {
+            "createdAt" : "1970-01-01T00:16:40Z",
+            "id" : "11111111-2222-3333-4444-555555555555",
+            "isArchived" : false,
+            "items" : [
+              {
+                "category" : "dairy",
+                "createdAt" : "1970-01-01T00:16:40Z",
+                "id" : "99999999-8888-7777-6666-555555555555",
+                "name" : "Milk",
+                "quantity" : 2,
+                "sortOrder" : 0,
+                "updatedAt" : "1970-01-01T00:33:20Z"
+              }
+            ],
+            "name" : "Weekly Groceries",
+            "updatedAt" : "1970-01-01T00:33:20Z"
+          }
+        ]
+        """
+
+        try Data(legacyPayload.utf8).write(to: fileURL, options: .atomic)
+
+        let lists = try await repository.fetchLists()
+
+        XCTAssertEqual(lists.count, 1)
+        XCTAssertEqual(lists.first?.items.count, 1)
+        XCTAssertNil(lists.first?.items.first?.plannedPrice)
+        XCTAssertNil(lists.first?.items.first?.actualPrice)
     }
 
     @MainActor
@@ -693,12 +730,18 @@ final class AislyTests: XCTestCase {
                 .init(
                     listID: listID,
                     listName: "Weekly Groceries",
+                    plannedTotal: .zero,
+                    actualTotal: .zero,
+                    budgetDelta: nil,
+                    actualPricedItemCount: 0,
                     items: [
                         .init(
                             id: itemOneID,
                             name: "Apples",
                             quantity: 6,
                             category: .produce,
+                            plannedTotal: nil,
+                            actualTotal: nil,
                             updatedAt: Date(timeIntervalSince1970: 2_000)
                         ),
                         .init(
@@ -706,6 +749,8 @@ final class AislyTests: XCTestCase {
                             name: "Milk",
                             quantity: 2,
                             category: .dairy,
+                            plannedTotal: nil,
+                            actualTotal: nil,
                             updatedAt: Date(timeIntervalSince1970: 2_000)
                         )
                     ]
@@ -729,6 +774,8 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(viewModel.draftName, "")
         XCTAssertEqual(viewModel.draftQuantity, 1)
         XCTAssertEqual(viewModel.draftCategory, .produce)
+        XCTAssertEqual(viewModel.draftPlannedPrice, "")
+        XCTAssertEqual(viewModel.draftActualPrice, "")
         XCTAssertTrue(viewModel.isDraftSubmissionDisabled)
     }
 
@@ -747,13 +794,19 @@ final class AislyTests: XCTestCase {
                             name: "Milk",
                             quantity: 2,
                             category: .dairy,
+                            plannedPrice: 4.5,
+                            actualPrice: 4.75,
                             sortOrder: 0
                         )
                     ]
                 )
             ]
         )
-        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            locale: Locale(identifier: "en_US_POSIX")
+        )
 
         await viewModel.load()
         viewModel.presentEditItem(id: itemID)
@@ -762,6 +815,8 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(viewModel.draftName, "Milk")
         XCTAssertEqual(viewModel.draftQuantity, 2)
         XCTAssertEqual(viewModel.draftCategory, .dairy)
+        XCTAssertEqual(viewModel.draftPlannedPrice, "4.5")
+        XCTAssertEqual(viewModel.draftActualPrice, "4.75")
     }
 
     @MainActor
@@ -776,7 +831,8 @@ final class AislyTests: XCTestCase {
             listID: listID,
             repository: repository,
             now: { timestamp },
-            makeUUID: { itemID }
+            makeUUID: { itemID },
+            locale: Locale(identifier: "en_US_POSIX")
         )
 
         await viewModel.load()
@@ -784,6 +840,8 @@ final class AislyTests: XCTestCase {
         viewModel.updateDraftName("  Apples  ")
         viewModel.updateDraftQuantity(3)
         viewModel.updateDraftCategory(.produce)
+        viewModel.updateDraftPlannedPrice("1.25")
+        viewModel.updateDraftActualPrice("1.40")
         await viewModel.saveDraft()
 
         let persistedLists = await repository.persistedLists()
@@ -795,6 +853,8 @@ final class AislyTests: XCTestCase {
                 name: "Apples",
                 quantity: 3,
                 category: .produce,
+                plannedPrice: 1.25,
+                actualPrice: 1.40,
                 createdAt: timestamp,
                 updatedAt: timestamp,
                 sortOrder: 0
@@ -818,6 +878,8 @@ final class AislyTests: XCTestCase {
                             name: "Milk",
                             quantity: 2,
                             category: .dairy,
+                            plannedPrice: 4.5,
+                            actualPrice: 4.75,
                             sortOrder: 0
                         )
                     ]
@@ -827,7 +889,8 @@ final class AislyTests: XCTestCase {
         let viewModel = ListDetailViewModel(
             listID: listID,
             repository: repository,
-            now: { timestamp }
+            now: { timestamp },
+            locale: Locale(identifier: "en_US_POSIX")
         )
 
         await viewModel.load()
@@ -835,12 +898,79 @@ final class AislyTests: XCTestCase {
         viewModel.updateDraftName("Greek Yogurt")
         viewModel.updateDraftQuantity(3)
         viewModel.updateDraftCategory(.dairy)
+        viewModel.updateDraftPlannedPrice("5.25")
+        viewModel.updateDraftActualPrice("5.50")
         await viewModel.saveDraft()
 
         let persistedLists = await repository.persistedLists()
         XCTAssertEqual(persistedLists.first?.items.first?.name, "Greek Yogurt")
         XCTAssertEqual(persistedLists.first?.items.first?.quantity, 3)
+        XCTAssertEqual(persistedLists.first?.items.first?.plannedPrice, 5.25)
+        XCTAssertEqual(persistedLists.first?.items.first?.actualPrice, 5.50)
         XCTAssertEqual(persistedLists.first?.items.first?.updatedAt, timestamp)
+    }
+
+    @MainActor
+    func testListDetailViewModelBudgetSnapshotIncludesPlannedAndActualTotals() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            plannedPrice: 4.5,
+                            actualPrice: 4.75,
+                            sortOrder: 0
+                        ),
+                        makeShoppingItem(
+                            name: "Apples",
+                            quantity: 6,
+                            category: .produce,
+                            plannedPrice: 0.8,
+                            actualPrice: nil,
+                            sortOrder: 1
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+
+        guard case .loaded(let snapshot) = viewModel.state else {
+            return XCTFail("Expected loaded state")
+        }
+
+        XCTAssertEqual(snapshot.plannedTotal, 13.8)
+        XCTAssertEqual(snapshot.actualTotal, 9.5)
+        XCTAssertEqual(snapshot.budgetDelta, -4.3)
+        XCTAssertEqual(snapshot.actualPricedItemCount, 1)
+    }
+
+    @MainActor
+    func testListDetailViewModelInvalidPriceDraftDisablesSubmission() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [makeShoppingList(id: listID, name: "Weekly Groceries")]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            locale: Locale(identifier: "en_US_POSIX")
+        )
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+        viewModel.updateDraftName("Apples")
+        viewModel.updateDraftPlannedPrice("abc")
+
+        XCTAssertTrue(viewModel.isDraftSubmissionDisabled)
     }
 
     @MainActor
@@ -997,6 +1127,8 @@ final class AislyTests: XCTestCase {
         name: String,
         quantity: Int,
         category: ShoppingItem.Category,
+        plannedPrice: Decimal? = nil,
+        actualPrice: Decimal? = nil,
         sortOrder: Int,
         createdAt: Date = Date(timeIntervalSince1970: 1_000),
         updatedAt: Date = Date(timeIntervalSince1970: 2_000)
@@ -1006,6 +1138,8 @@ final class AislyTests: XCTestCase {
             name: name,
             quantity: quantity,
             category: category,
+            plannedPrice: plannedPrice,
+            actualPrice: actualPrice,
             createdAt: createdAt,
             updatedAt: updatedAt,
             sortOrder: sortOrder

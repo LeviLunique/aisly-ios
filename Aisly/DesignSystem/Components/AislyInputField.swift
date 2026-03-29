@@ -5,6 +5,8 @@ struct AislyInputField<Accessory: View>: View {
     private let title: Text?
     private let prompt: Text?
     private let error: Text?
+    private let keyboardType: UIKeyboardType
+    private let textInputAutocapitalization: TextInputAutocapitalization?
     private let accessory: Accessory
 
     init(
@@ -12,12 +14,16 @@ struct AislyInputField<Accessory: View>: View {
         title: Text? = nil,
         prompt: Text? = nil,
         error: Text? = nil,
+        keyboardType: UIKeyboardType = .default,
+        textInputAutocapitalization: TextInputAutocapitalization? = .sentences,
         @ViewBuilder accessory: () -> Accessory
     ) {
         _text = text
         self.title = title
         self.prompt = prompt
         self.error = error
+        self.keyboardType = keyboardType
+        self.textInputAutocapitalization = textInputAutocapitalization
         self.accessory = accessory()
     }
 
@@ -33,7 +39,8 @@ struct AislyInputField<Accessory: View>: View {
                 TextField(text: $text, prompt: prompt) {
                     EmptyView()
                 }
-                .textInputAutocapitalization(.sentences)
+                .keyboardType(keyboardType)
+                .textInputAutocapitalization(textInputAutocapitalization)
                 .foregroundStyle(AislyColor.textPrimary)
                 .font(AislyTypography.body)
 
@@ -64,13 +71,17 @@ extension AislyInputField where Accessory == EmptyView {
         text: Binding<String>,
         title: Text? = nil,
         prompt: Text? = nil,
-        error: Text? = nil
+        error: Text? = nil,
+        keyboardType: UIKeyboardType = .default,
+        textInputAutocapitalization: TextInputAutocapitalization? = .sentences
     ) {
         self.init(
             text: text,
             title: title,
             prompt: prompt,
             error: error,
+            keyboardType: keyboardType,
+            textInputAutocapitalization: textInputAutocapitalization,
             accessory: { EmptyView() }
         )
     }
