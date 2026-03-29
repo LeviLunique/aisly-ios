@@ -11,6 +11,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             content
+                .background(AislyColor.backgroundPrimary.ignoresSafeArea())
                 .navigationTitle(Text(AppStrings.Home.navigationTitle))
                 .toolbar {
                     if viewModel.canCreateList {
@@ -24,6 +25,7 @@ struct HomeView: View {
                                     Image(systemName: "plus")
                                 }
                             }
+                            .tint(AislyColor.primary)
                         }
                     }
                 }
@@ -40,26 +42,20 @@ struct HomeView: View {
     private var content: some View {
         switch viewModel.state {
         case .idle, .loading:
-            ProgressView {
-                Text(AppStrings.Home.loadingTitle)
-            }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            AislyLoadingState(message: AppStrings.Home.loadingTitle)
 
         case .loaded(let snapshot) where snapshot.activeLists.isEmpty && snapshot.archivedLists.isEmpty:
-            ContentUnavailableView {
-                Label {
-                    Text(AppStrings.Home.emptyTitle)
-                } icon: {
-                    Image(systemName: "cart")
-                }
-            } description: {
-                Text(AppStrings.Home.emptyDescription)
-            } actions: {
+            AislyEmptyState(
+                icon: AislyMark(size: .large),
+                title: AppStrings.Home.emptyTitle,
+                description: AppStrings.Home.emptyDescription
+            ) {
                 Button {
                     viewModel.presentCreateList()
                 } label: {
                     Text(AppStrings.Home.createFirstListButtonTitle)
                 }
+                .buttonStyle(AislyPrimaryButtonStyle())
             }
 
         case .loaded(let snapshot):
@@ -70,7 +66,7 @@ struct HomeView: View {
                             shoppingListRow(list, allowsArchiveActions: true)
                         }
                     } header: {
-                        Text(AppStrings.Home.activeListsSectionTitle)
+                        AislySectionHeader(AppStrings.Home.activeListsSectionTitle)
                     }
                 }
 
@@ -80,22 +76,22 @@ struct HomeView: View {
                             shoppingListRow(list, allowsArchiveActions: false)
                         }
                     } header: {
-                        Text(AppStrings.Home.archivedListsSectionTitle)
+                        AislySectionHeader(AppStrings.Home.archivedListsSectionTitle)
                     }
                 }
             }
             .listStyle(.insetGrouped)
+            .scrollContentBackground(.hidden)
+            .background(AislyColor.backgroundPrimary)
 
         case .failed:
-            ContentUnavailableView {
-                Label {
-                    Text(AppStrings.Home.failureTitle)
-                } icon: {
+            AislyEmptyState(
+                icon:
                     Image(systemName: "exclamationmark.triangle")
-                }
-            } description: {
-                Text(AppStrings.Home.failureDescription)
-            } actions: {
+                        .foregroundStyle(AislyColor.error),
+                title: AppStrings.Home.failureTitle,
+                description: AppStrings.Home.failureDescription
+            ) {
                 Button {
                     Task {
                         await viewModel.load()
@@ -103,6 +99,7 @@ struct HomeView: View {
                 } label: {
                     Text(AppStrings.Home.retryButtonTitle)
                 }
+                .buttonStyle(AislyPrimaryButtonStyle())
             }
         }
     }
@@ -111,12 +108,24 @@ struct HomeView: View {
         _ list: HomeViewModel.ListRow,
         allowsArchiveActions: Bool
     ) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(list.name)
-            Text(list.updatedAt, format: .dateTime.month(.abbreviated).day().year().hour().minute())
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
+        AislyListRowCard(
+            title: list.name,
+            subtitle: Text(
+                list.updatedAt,
+                format: .dateTime.month(.abbreviated).day().year().hour().minute()
+            ),
+            tone: allowsArchiveActions ? .active : .archived
+        )
+        .listRowInsets(
+            EdgeInsets(
+                top: AislySpacing.small,
+                leading: AislySpacing.large,
+                bottom: AislySpacing.small,
+                trailing: AislySpacing.large
+            )
+        )
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
             if allowsArchiveActions {
                 Button {
@@ -126,7 +135,7 @@ struct HomeView: View {
                 } label: {
                     Text(AppStrings.Home.archiveListActionTitle)
                 }
-                .tint(.orange)
+                .tint(AislyColor.warning)
             }
         }
         .swipeActions(edge: .leading, allowsFullSwipe: false) {
@@ -136,7 +145,7 @@ struct HomeView: View {
                 } label: {
                     Text(AppStrings.Home.renameListActionTitle)
                 }
-                .tint(.blue)
+                .tint(AislyColor.primary)
             }
         }
     }
@@ -171,6 +180,8 @@ struct HomeView: View {
                 }
                 .focused($isEditorNameFieldFocused)
             }
+            .scrollContentBackground(.hidden)
+            .background(AislyColor.backgroundSecondary)
             .navigationTitle(Text(editorTitle(for: editorMode)))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -191,6 +202,7 @@ struct HomeView: View {
                         Text(editorActionTitle(for: editorMode))
                     }
                     .disabled(viewModel.isDraftSubmissionDisabled)
+                    .tint(AislyColor.primary)
                 }
             }
         }
