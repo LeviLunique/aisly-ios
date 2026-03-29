@@ -4,11 +4,11 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, budget-core, and quick-entry-history.
+The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, budget-core, quick-entry-history, and templates-and-recurrence.
 
 The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared Aisly-native SwiftUI visual layer with broader tokens, controls, summary surfaces, and logo assets for future UI slices.
 
-The next real product work is now templates and recurrence.
+The next real product work is now store and price memory.
 
 ## What Should Be Built First
 
@@ -76,10 +76,11 @@ Completed locally:
 
 ### Recurring Shopping Convenience
 
-Planned:
+Completed locally:
 
-- templates
-- recurring list regeneration
+- reusable templates derived from active local lists
+- recurrence metadata for weekly, biweekly, and monthly reuse
+- one-tap list generation from a template inside the home workflow
 
 ### Price Memory
 
@@ -125,3 +126,4 @@ For the stage-by-stage status, see:
 - [local-lists.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/local-lists.md)
 - [budget-core.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/budget-core.md)
 - [quick-entry-history.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/quick-entry-history.md)
+- [templates-and-recurrence.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/templates-and-recurrence.md)

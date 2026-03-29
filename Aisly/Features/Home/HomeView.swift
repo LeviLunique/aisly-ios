@@ -4,6 +4,7 @@ struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
     private let makeListDetailViewModel: @MainActor (UUID) -> ListDetailViewModel
     @FocusState private var isEditorNameFieldFocused: Bool
+    @FocusState private var isTemplateNameFieldFocused: Bool
 
     init(
         viewModel: HomeViewModel,
@@ -44,6 +45,9 @@ struct HomeView: View {
         .sheet(item: editorModeBinding, onDismiss: handleEditorDismissal) { editorMode in
             editorSheet(editorMode)
         }
+        .sheet(item: templateEditorStateBinding, onDismiss: handleTemplateEditorDismissal) { _ in
+            templateEditorSheet
+        }
     }
 
     @ViewBuilder
@@ -52,7 +56,7 @@ struct HomeView: View {
         case .idle, .loading:
             AislyLoadingState(message: AppStrings.Home.loadingTitle)
 
-        case .loaded(let snapshot) where snapshot.activeLists.isEmpty && snapshot.archivedLists.isEmpty:
+        case .loaded(let snapshot) where snapshot.activeLists.isEmpty && snapshot.templateLists.isEmpty && snapshot.archivedLists.isEmpty:
             AislyEmptyState(
                 icon: AislyMark(size: .large),
                 title: AppStrings.Home.emptyTitle,
@@ -75,6 +79,16 @@ struct HomeView: View {
                         }
                     } header: {
                         AislySectionHeader(AppStrings.Home.activeListsSectionTitle)
+                    }
+                }
+
+                if snapshot.templateLists.isEmpty == false {
+                    Section {
+                        ForEach(snapshot.templateLists) { list in
+                            templateListRow(list)
+                        }
+                    } header: {
+                        AislySectionHeader(AppStrings.Home.templatesSectionTitle)
                     }
                 }
 
@@ -156,6 +170,13 @@ struct HomeView: View {
                         Text(AppStrings.Home.archiveListActionTitle)
                     }
                     .tint(AislyColor.warning)
+
+                    Button {
+                        viewModel.presentCreateTemplate(fromListID: list.id)
+                    } label: {
+                        Text(AppStrings.Home.saveTemplateActionTitle)
+                    }
+                    .tint(AislyColor.primary)
                 }
             }
             .swipeActions(edge: .leading, allowsFullSwipe: false) {
@@ -168,6 +189,41 @@ struct HomeView: View {
                     .tint(AislyColor.primary)
                 }
             }
+    }
+
+    private func templateListRow(_ list: HomeViewModel.ListRow) -> some View {
+        Button {
+            Task {
+                await viewModel.generateList(fromTemplateID: list.id)
+            }
+        } label: {
+            AislyListRowCard(
+                title: list.name,
+                subtitle: Text(templateSubtitle(for: list)),
+                tone: .active
+            )
+        }
+        .buttonStyle(.plain)
+        .listRowInsets(
+            EdgeInsets(
+                top: AislySpacing.small,
+                leading: AislySpacing.large,
+                bottom: AislySpacing.small,
+                trailing: AislySpacing.large
+            )
+        )
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
+        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            Button {
+                Task {
+                    await viewModel.generateList(fromTemplateID: list.id)
+                }
+            } label: {
+                Text(AppStrings.Home.generateTemplateActionTitle)
+            }
+            .tint(AislyColor.success)
+        }
     }
 
     private var editorModeBinding: Binding<HomeViewModel.EditorMode?> {
@@ -185,6 +241,31 @@ struct HomeView: View {
         Binding(
             get: { viewModel.draftName },
             set: { viewModel.updateDraftName($0) }
+        )
+    }
+
+    private var templateEditorStateBinding: Binding<HomeViewModel.TemplateEditorState?> {
+        Binding(
+            get: { viewModel.templateEditorState },
+            set: { updatedValue in
+                if updatedValue == nil {
+                    viewModel.dismissTemplateEditor()
+                }
+            }
+        )
+    }
+
+    private var templateDraftNameBinding: Binding<String> {
+        Binding(
+            get: { viewModel.templateDraftName },
+            set: { viewModel.updateTemplateDraftName($0) }
+        )
+    }
+
+    private var templateDraftRecurrenceBinding: Binding<ShoppingList.TemplateRecurrence> {
+        Binding(
+            get: { viewModel.templateDraftRecurrence },
+            set: { viewModel.updateTemplateDraftRecurrence($0) }
         )
     }
 
@@ -237,6 +318,62 @@ struct HomeView: View {
         isEditorNameFieldFocused = false
     }
 
+    private func handleTemplateEditorDismissal() {
+        isTemplateNameFieldFocused = false
+    }
+
+    private var templateEditorSheet: some View {
+        NavigationStack {
+            Form {
+                TextField(
+                    text: templateDraftNameBinding,
+                    prompt: Text(AppStrings.Home.templateNamePlaceholder)
+                ) {
+                    Text(AppStrings.Home.templateNameFieldTitle)
+                }
+                .focused($isTemplateNameFieldFocused)
+
+                Picker(selection: templateDraftRecurrenceBinding) {
+                    ForEach(ShoppingList.TemplateRecurrence.allCases) { recurrence in
+                        Text(AppStrings.Home.templateRecurrenceTitle(for: recurrence)).tag(recurrence)
+                    }
+                } label: {
+                    Text(AppStrings.Home.templateRecurrenceFieldTitle)
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .background(AislyColor.backgroundSecondary)
+            .navigationTitle(Text(AppStrings.Home.saveTemplateSheetTitle))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        viewModel.dismissTemplateEditor()
+                    } label: {
+                        Text(AppStrings.Common.cancelButtonTitle)
+                    }
+                }
+
+                ToolbarItem(placement: .confirmationAction) {
+                    Button {
+                        Task {
+                            await viewModel.saveTemplateDraft()
+                        }
+                    } label: {
+                        Text(AppStrings.Home.saveTemplateConfirmButtonTitle)
+                    }
+                    .disabled(viewModel.isTemplateDraftSubmissionDisabled)
+                    .tint(AislyColor.primary)
+                }
+            }
+        }
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
+        .task {
+            isTemplateNameFieldFocused = true
+        }
+    }
+
     private func editorTitle(for editorMode: HomeViewModel.EditorMode) -> LocalizedStringResource {
         switch editorMode {
         case .create:
@@ -253,6 +390,14 @@ struct HomeView: View {
         case .rename:
             return AppStrings.Home.renameListConfirmButtonTitle
         }
+    }
+
+    private func templateSubtitle(for list: HomeViewModel.ListRow) -> LocalizedStringResource {
+        guard let recurrence = list.templateRecurrence else {
+            return AppStrings.Home.templateRecurrenceTitle(for: .weekly)
+        }
+
+        return AppStrings.Home.templateRecurrenceTitle(for: recurrence)
     }
 }
 
@@ -315,7 +460,8 @@ private func makePreviewShoppingLists(locale: Locale) -> [ShoppingList] {
             name: AppStrings.Mock.ShoppingList.weeklyGroceriesName(locale: locale),
             createdAt: .now,
             updatedAt: .now,
-            isArchived: false
+            isArchived: false,
+            templateConfiguration: .init(recurrence: .weekly)
         ),
         ShoppingList(
             id: UUID(),

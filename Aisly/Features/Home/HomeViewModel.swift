@@ -7,11 +7,35 @@ final class HomeViewModel: ObservableObject {
         let id: UUID
         let name: String
         let updatedAt: Date
+        let templateRecurrence: ShoppingList.TemplateRecurrence?
+
+        init(
+            id: UUID,
+            name: String,
+            updatedAt: Date,
+            templateRecurrence: ShoppingList.TemplateRecurrence? = nil
+        ) {
+            self.id = id
+            self.name = name
+            self.updatedAt = updatedAt
+            self.templateRecurrence = templateRecurrence
+        }
     }
 
     struct ListSnapshot: Equatable {
         let activeLists: [ListRow]
+        let templateLists: [ListRow]
         let archivedLists: [ListRow]
+
+        init(
+            activeLists: [ListRow],
+            templateLists: [ListRow] = [],
+            archivedLists: [ListRow]
+        ) {
+            self.activeLists = activeLists
+            self.templateLists = templateLists
+            self.archivedLists = archivedLists
+        }
     }
 
     enum EditorMode: Equatable, Identifiable {
@@ -35,9 +59,20 @@ final class HomeViewModel: ObservableObject {
         case failed
     }
 
+    struct TemplateEditorState: Equatable, Identifiable {
+        let sourceListID: UUID
+
+        var id: UUID {
+            sourceListID
+        }
+    }
+
     @Published private(set) var state: ViewState = .idle
     @Published private(set) var editorMode: EditorMode?
+    @Published private(set) var templateEditorState: TemplateEditorState?
     @Published private(set) var draftName = ""
+    @Published private(set) var templateDraftName = ""
+    @Published private(set) var templateDraftRecurrence: ShoppingList.TemplateRecurrence = .weekly
 
     private let repository: any ShoppingListRepository
     private let now: @Sendable () -> Date
@@ -93,8 +128,32 @@ final class HomeViewModel: ObservableObject {
         draftName = ""
     }
 
+    func presentCreateTemplate(fromListID id: UUID) {
+        guard let list = lists.first(where: { $0.id == id && $0.isArchived == false && $0.isTemplate == false }) else {
+            return
+        }
+
+        templateDraftName = list.name
+        templateDraftRecurrence = .weekly
+        templateEditorState = .init(sourceListID: id)
+    }
+
+    func dismissTemplateEditor() {
+        templateEditorState = nil
+        templateDraftName = ""
+        templateDraftRecurrence = .weekly
+    }
+
     func updateDraftName(_ draftName: String) {
         self.draftName = draftName
+    }
+
+    func updateTemplateDraftName(_ draftName: String) {
+        templateDraftName = draftName
+    }
+
+    func updateTemplateDraftRecurrence(_ recurrence: ShoppingList.TemplateRecurrence) {
+        templateDraftRecurrence = recurrence
     }
 
     func saveDraft() async {
@@ -144,6 +203,57 @@ final class HomeViewModel: ObservableObject {
         }
     }
 
+    func saveTemplateDraft() async {
+        guard
+            let templateEditorState,
+            let normalizedTemplateDraftName,
+            let sourceList = lists.first(where: { $0.id == templateEditorState.sourceListID && $0.isTemplate == false })
+        else {
+            return
+        }
+
+        do {
+            let templateList = sourceList.makingTemplate(
+                id: makeUUID(),
+                name: normalizedTemplateDraftName,
+                recurrence: templateDraftRecurrence,
+                makeItemID: makeUUID,
+                updatedAt: now()
+            )
+            let updatedLists = [templateList] + lists
+
+            try await repository.saveLists(updatedLists)
+            lists = updatedLists
+            state = .loaded(makeSnapshot(from: updatedLists))
+            dismissTemplateEditor()
+        } catch {
+            dismissTemplateEditor()
+            state = .failed
+        }
+    }
+
+    func generateList(fromTemplateID id: UUID) async {
+        guard let templateList = lists.first(where: { $0.id == id && $0.isTemplate }) else {
+            return
+        }
+
+        do {
+            let generatedList = templateList.generatingListFromTemplate(
+                id: makeUUID(),
+                makeItemID: makeUUID,
+                updatedAt: now()
+            )
+            let updatedLists = [generatedList] + lists
+
+            try await repository.saveLists(updatedLists)
+            lists = updatedLists
+            state = .loaded(makeSnapshot(from: updatedLists))
+        } catch {
+            dismissTemplateEditor()
+            state = .failed
+        }
+    }
+
     var isDraftSubmissionDisabled: Bool {
         guard let normalizedDraftName else {
             return true
@@ -171,24 +281,43 @@ final class HomeViewModel: ObservableObject {
         return false
     }
 
+    var isTemplateDraftSubmissionDisabled: Bool {
+        guard normalizedTemplateDraftName != nil else {
+            return true
+        }
+
+        return templateEditorState == nil
+    }
+
     private func makeSnapshot(from lists: [ShoppingList]) -> ListSnapshot {
         let activeLists = lists
-            .filter { !$0.isArchived }
+            .filter { !$0.isArchived && !$0.isTemplate }
+            .sorted(by: listSortComparator)
+            .map(ListRow.init)
+        let templateLists = lists
+            .filter(\.isTemplate)
             .sorted(by: listSortComparator)
             .map(ListRow.init)
         let archivedLists = lists
-            .filter(\.isArchived)
+            .filter { $0.isArchived && !$0.isTemplate }
             .sorted(by: listSortComparator)
             .map(ListRow.init)
 
         return ListSnapshot(
             activeLists: activeLists,
+            templateLists: templateLists,
             archivedLists: archivedLists
         )
     }
 
     private var normalizedDraftName: String? {
         let trimmedName = draftName.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        return trimmedName.isEmpty ? nil : trimmedName
+    }
+
+    private var normalizedTemplateDraftName: String? {
+        let trimmedName = templateDraftName.trimmingCharacters(in: .whitespacesAndNewlines)
 
         return trimmedName.isEmpty ? nil : trimmedName
     }
@@ -237,6 +366,7 @@ private extension HomeViewModel.ListRow {
         id = list.id
         name = list.name
         updatedAt = list.updatedAt
+        templateRecurrence = list.templateRecurrence
     }
 }
 
