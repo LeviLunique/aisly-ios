@@ -1,30 +1,31 @@
-# App Architecture ADR
+# ADR: Arquitetura do Aplicativo
 
 ## Status
 
-Accepted
+Aceita
 
-## Decision
+## Decisão
 
-Aisly uses a pragmatic feature-first MVVM architecture in SwiftUI.
+O Aisly adota SwiftUI com arquitetura MVVM.
 
-## What This Means
+## Implicações
 
-- views render and forward intent
-- view models own presentation logic
-- services hold reusable business rules
-- repositories encapsulate persistence and future remote boundaries
-- dependencies are assembled explicitly
-- design patterns are applied only when the current slice needs them
+- views cuidam de layout e interação
+- view models concentram estado de apresentação
+- repositórios isolam persistência
+- dependências são montadas explicitamente
+- padrões são usados apenas quando o problema pede
 
-## Additional Rule
+## Regra adicional
 
-The app is local-first now and backend-ready later.
+O produto é local-first agora e preparado para backend depois.
 
-That means:
+Isso significa:
 
-- local persistence comes first
-- repository boundaries are required from the start
-- backend infrastructure is deferred until the local product is strong
+- persistência local vem primeiro
+- fronteiras de repositório são obrigatórias desde o início
+- infraestrutura online é adicionada depois, sem reescrever a base
 
-For the project-specific pattern rules, see [design-pattern-adoption.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/design-pattern-adoption.md).
+## Leitura complementar
+
+- [Padrões de projeto](design-pattern-adoption.md)

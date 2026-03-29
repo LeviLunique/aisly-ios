@@ -1,135 +1,108 @@
-# Features and Roadmap Status
+# Recursos e Roadmap
 
-This document summarizes the current direction of Aisly.
+Este documento resume o que já existe no Aisly e o que ainda deve vir.
 
-## Current Status
+## Situação atual
 
-The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, budget-core, quick-entry-history, templates-and-recurrence, store-price-memory, and shopping-mode.
+O projeto já possui:
 
-The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared Aisly-native SwiftUI visual layer with broader tokens, controls, summary surfaces, and logo assets for future UI slices.
+- base offline com arquitetura MVVM
+- múltiplas listas locais
+- itens e categorias
+- orçamento por lista
+- entrada rápida baseada em histórico
+- templates e recorrência
+- memória de loja e preço
+- modo de compra
+- conveniência nativa do ecossistema Apple
 
-The current local workspace now also includes Apple-first convenience.
+Também existe uma branch dedicada para evolução do design system:
 
-## What Should Be Built First
+- `feat/swiftui-design-system`
 
-### Offline Foundation
+## Recursos já implementados
 
-Completed:
+### Fundamentos offline
 
-- app container
-- repository boundaries
-- local persistence
-- centralized persistent storage-path policy for app-managed files
-- core shopping-list domain model
-- root MVVM loading flow
-- localized root-screen copy in a String Catalog for English and Brazilian Portuguese
-- locale smoke coverage in UI tests
-- direct persistence, storage-audit, and view-model tests
+- container de dependências
+- repositório para listas
+- persistência local em arquivo
+- tela inicial com carregamento de estado local
 
-### Multiple Local Lists
+### Múltiplas listas locais
 
-Completed:
+- criar lista
+- renomear lista
+- arquivar lista
+- separar listas ativas e arquivadas
 
-- create list
-- edit list
-- archive list
-- manage more than one active list
-- initial shared SwiftUI design-system tokens, motion, and reusable root-screen components for the local-lists flow
+### Itens e categorias
 
-### SwiftUI Design System Foundation
+- criar item
+- editar item
+- excluir item
+- reordenar itens
+- categorias e quantidade
 
-Implemented on remote feature branch:
+### Núcleo de orçamento
 
-- expanded shared colors, spacing, typography, radii, and motion tokens
-- added reusable SwiftUI components for buttons, inputs, toggles, progress, state views, cards, list rows, summary surfaces, and page headers
-- added shared Aisly logo and mark assets for branded app surfaces
-- aligned the local-lists screen with the broader shared visual system
+- preço planejado por item
+- preço real por item
+- total planejado
+- total real
+- diferença de orçamento
 
-### Local Items and Categories
+### Entrada rápida e histórico
 
-Completed locally:
+- sugestões de itens recorrentes
+- preenchimento automático de nome, categoria, quantidade e preço planejado
 
-- item CRUD
-- quantity support
-- categories
-- ordering
-- list detail navigation from the root list workflow
+### Templates e recorrência
 
-### Budget Core
+- salvar lista como template
+- definir recorrência
+- gerar nova lista a partir de template
 
-Completed locally:
+### Memória de loja e preço
 
-- planned price per item
-- actual price per item
-- planned total
-- actual total
-- delta visibility
+- associar item a uma loja
+- sugerir lojas recentes
+- recuperar último preço conhecido por loja
 
-### Quick Entry and History
+### Modo de compra
 
-Completed locally:
+- marcar itens como concluídos
+- editar preço real durante a compra
+- acompanhar progresso e totais
 
-- item-history aggregation across local lists
-- quick-entry suggestions inside the existing add-item flow
-- ranking by frequency and recency
-- one-tap draft prefilling for repeated items
+### Conveniência Apple
 
-### Recurring Shopping Convenience
+- widget
+- App Intents
+- atalhos via Siri e Shortcuts
+- deep links internos
 
-Completed locally:
+## O que ainda deve esperar
 
-- reusable templates derived from active local lists
-- recurrence metadata for weekly, biweekly, and monthly reuse
-- one-tap list generation from a template inside the home workflow
-
-### Price Memory
-
-Completed locally:
-
-- optional store name per item
-- recent-store suggestions in the existing item editor
-- last known local price memory for the same item at the same store
-- one-tap planned-price prefilling from remembered store-specific prices
-
-### Shopping Mode
-
-Completed locally:
-
-- dedicated in-store shopping-mode screen from list detail
-- fast check-off flow for active list items
-- actual-price editing inside the shopping trip workflow
-- session-friendly progress and totals on the shopping screen
-
-### Apple-First Convenience
-
-Completed locally:
-
-- one active-list home-screen widget
-- App Intents for opening lists and jumping into shopping mode
-- Siri Shortcuts compatibility through those intents
-- deep-link routing for Apple-native entry points
-
-## What Should Wait
-
-Explicitly deferred:
+Itens adiados de propósito:
 
 - backend
-- shared cloud lists
-- purchases
-- barcode scanning
+- sincronização em nuvem
+- listas compartilhadas
+- compras dentro do app
 - OCR
-- recipes
-- advanced support tooling
+- leitura de código de barras
+- suporte avançado
 
-## Detailed Slice History
+## Leitura complementar
 
-For the stage-by-stage status, see:
-
-- [HISTORY.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/HISTORY.md)
-- [local-lists.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/local-lists.md)
-- [budget-core.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/budget-core.md)
-- [quick-entry-history.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/quick-entry-history.md)
-- [templates-and-recurrence.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/templates-and-recurrence.md)
-- [store-price-memory.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/store-price-memory.md)
-- [shopping-mode.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/shopping-mode.md)
-- [apple-surface.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/apple-surface.md)
+- [Histórico](HISTORY.md)
+- [Fundação offline](features/offline-foundation.md)
+- [Listas locais](features/local-lists.md)
+- [Itens e categorias](features/items-and-categories.md)
+- [Orçamento](features/budget-core.md)
+- [Entrada rápida](features/quick-entry-history.md)
+- [Templates](features/templates-and-recurrence.md)
+- [Memória de preço](features/store-price-memory.md)
+- [Modo de compra](features/shopping-mode.md)
+- [Conveniência Apple](features/apple-surface.md)

@@ -1,15 +1,9 @@
-# Feature Handbook Pages
+# Páginas de Recursos
 
-This directory stores the human-friendly summary pages for meaningful Aisly features.
+Esta pasta reúne páginas curtas e objetivas sobre recursos importantes do Aisly.
 
-When a meaningful feature ships, create:
+Cada página deve responder:
 
-- `handbook/features/<feature>.md`
-
-That page should summarize:
-
-- what the feature does
-- why it matters
-- how to verify it at a high level
-
-It should remain shorter and more onboarding-oriented than deeper implementation docs.
+- o que o recurso faz
+- por que ele importa
+- como validar rapidamente

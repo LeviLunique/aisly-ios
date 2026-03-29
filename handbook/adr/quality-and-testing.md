@@ -1,20 +1,17 @@
-# Quality and Testing ADR
+# ADR: Qualidade e Testes
 
 ## Status
 
-Accepted
+Aceita
 
-## Decision
+## Decisão
 
-Aisly keeps a minimum baseline of 5 unit tests, localizes user-facing copy, and updates shared docs for meaningful slices.
+O Aisly mantém uma base mínima de 5 testes unitários e amplia essa cobertura em etapas relevantes.
 
-## What This Means
+## O que isso significa
 
-- meaningful slices add direct tests
-- user-facing text belongs in `Localizable.xcstrings`, not Swift source
-- raw localization keys stay centralized instead of being scattered through feature files and tests
-- visible locale-sensitive values should use platform formatting APIs
-- storage choices should be tested when a slice introduces or changes persistence
-- newly introduced patterns must stay justified and testable
-- public handbook pages stay aligned with shipped behavior
-- delivery history remains explicit instead of tribal knowledge
+- recursos relevantes devem incluir testes
+- mudanças em persistência devem ser validadas
+- regras de localização devem ser protegidas por testes
+- documentação pública deve acompanhar mudanças importantes
+- regressões devem ser evitadas com cobertura direta do comportamento novo
