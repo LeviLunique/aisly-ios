@@ -30,6 +30,24 @@ Core engineering rules:
 - add tests with each meaningful feature
 - update docs after meaningful slices
 
+## Branch Naming
+
+Use short, intent-based branch names with the conventional prefix that matches the change:
+
+- `feat/<slice-name>` for user-visible features or meaningful product slices
+- `fix/<issue-name>` for bug fixes
+- `chore/<task-name>` for maintenance, tooling, or documentation-only work
+- `refactor/<scope-name>` for internal code restructuring without behavior changes
+- `test/<scope-name>` for test-only work
+
+Keep branch names lowercase and hyphenated.
+
+Examples:
+
+- `feat/offline-architecture-foundation`
+- `fix/home-loading-state`
+- `chore/github-actions-ci`
+
 ## Product Rules
 
 Before implementing a feature, ask:
