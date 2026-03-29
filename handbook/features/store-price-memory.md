@@ -1,36 +1,21 @@
-# Store and Price Memory
+# Memória de Loja e Preço
 
-This page summarizes the Stage 7 slice that starts remembering where items were bought and what they last cost there.
+Esta etapa começou a lembrar onde os itens foram comprados e quanto custaram.
 
-## What It Does
+## O que foi entregue
 
-The app now lets users:
+- nome opcional da loja por item
+- sugestão de lojas recentes
+- memória do último preço conhecido por loja
+- reaproveitamento desse preço no preenchimento
 
-- store an optional store name for each item
-- see recent-store suggestions while editing an item
-- reuse the last local price remembered for the same item at the same store
-- keep all of that store and price-memory data local and persistent across launches
+## Por que isso importa
 
-## Why It Matters
+O app passa a refletir melhor o comportamento real de compras recorrentes, sem depender de backend.
 
-This slice deepens Aisly's real product promise.
+## Como validar
 
-The app is no longer only organizing what to buy and what it cost in one list.
-It is starting to remember:
-
-- where the user usually buys something
-- what that item last cost at that store
-- how to make repeated shopping faster without cloud infrastructure
-
-That gives later stages a cleaner base for shopping mode and stronger local budget intelligence.
-
-## How To Verify
-
-1. Run `jq empty Aisly/Localizable.xcstrings`.
-2. Run `xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform=iOS Simulator' build`.
-3. Launch the app and open an active list.
-4. Add an item with a store name and planned price.
-5. Add another item with the same name and confirm recent-store suggestions appear.
-6. Select the same store and confirm a remembered price suggestion appears.
-7. Tap that suggestion and confirm it prefills the planned price.
-8. Relaunch the app and confirm the store name persists.
+1. Cadastre um item com nome da loja e preço.
+2. Cadastre novamente um item com o mesmo nome.
+3. Escolha a mesma loja.
+4. Confirme a sugestão de preço lembrado.

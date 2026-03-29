@@ -1,73 +1,61 @@
-# Contributing
+# Contribuindo com o Aisly
 
-This guide explains how to make safe changes to Aisly.
+Este guia explica como fazer alterações seguras no projeto.
 
-## Recommended Reading Order
+## Leitura recomendada antes de alterar código
 
-Before changing code, read:
+1. [Visão técnica](TECHNICAL_OVERVIEW.md)
+2. [Estratégia de produto](PRODUCT_STRATEGY.md)
+3. [ADRs](adr/README.md)
+4. [Recursos e roadmap](FEATURES.md)
 
-1. [TECHNICAL_OVERVIEW.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/TECHNICAL_OVERVIEW.md)
-2. [PRODUCT_STRATEGY.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/PRODUCT_STRATEGY.md)
-3. [adr/README.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/README.md)
-4. [FEATURES.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/FEATURES.md)
+## Princípios do projeto
 
-## Project Rules
-
-Aisly uses:
+O Aisly usa:
 
 - SwiftUI
 - MVVM
-- dependency injection
-- local-first persistence
-- clean code fundamentals
+- injeção de dependência
+- persistência local
+- foco em código legível e testável
 
-Core engineering rules:
+## Regras de engenharia
 
-- keep views thin
-- keep view models focused
-- use repositories for persistence boundaries
-- use services for reusable business rules
-- add tests with each meaningful feature
-- update docs after meaningful slices
+- mantenha as views leves
+- concentre a lógica de apresentação nas view models
+- use repositórios para isolar persistência
+- adicione testes em mudanças relevantes
+- prefira mudanças pequenas e coesas
+- atualize o handbook quando um recurso mudar de forma relevante
 
-## Branch Naming
+## Convenção de branches
 
-Use short, intent-based branch names with the conventional prefix that matches the change:
+Use nomes curtos, em minúsculas e com hífens:
 
-- `feat/<slice-name>` for user-visible features or meaningful product slices
-- `fix/<issue-name>` for bug fixes
-- `chore/<task-name>` for maintenance, tooling, or documentation-only work
-- `refactor/<scope-name>` for internal code restructuring without behavior changes
-- `test/<scope-name>` for test-only work
+- `feat/<nome-do-recurso>`
+- `fix/<nome-do-problema>`
+- `chore/<nome-da-tarefa>`
+- `refactor/<escopo>`
+- `test/<escopo>`
 
-Keep branch names lowercase and hyphenated.
+Exemplos:
 
-Examples:
-
-- `feat/offline-architecture-foundation`
+- `feat/local-lists`
 - `fix/home-loading-state`
-- `chore/github-actions-ci`
+- `chore/update-handbook`
 
-## Product Rules
+## Como validar mudanças
 
-Before implementing a feature, ask:
-
-1. Does this strengthen recurring shopping speed?
-2. Does this improve budget clarity?
-3. Is this necessary before backend and premium work?
-
-If the answer is no, it is probably not the right next slice.
-
-## Validation Expectations
-
-Minimum validation flow:
+Fluxo mínimo recomendado:
 
 ```bash
 xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform=iOS Simulator' build
 xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:AislyTests test
 ```
 
-Repository automation now mirrors that flow:
+## Fluxos automatizados
 
-- pull requests and pushes to `main` run the shared unit-test workflow in [ios-ci.yml](/Users/levilunique/Workspace/Swift/Aisly/.github/workflows/ios-ci.yml)
-- pushes to `main` and manual dispatches create an unsigned release archive in [ios-cd.yml](/Users/levilunique/Workspace/Swift/Aisly/.github/workflows/ios-cd.yml)
+Os workflows públicos do repositório ficam em:
+
+- [CI iOS](../.github/workflows/ios-ci.yml)
+- [CD iOS](../.github/workflows/ios-cd.yml)

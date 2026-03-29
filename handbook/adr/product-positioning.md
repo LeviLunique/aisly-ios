@@ -1,26 +1,25 @@
-# Product Positioning ADR
+# ADR: Posicionamento do Produto
 
 ## Status
 
-Accepted
+Aceita
 
-## Decision
+## Decisão
 
-Aisly will compete first as a free offline-first shopping app with strong recurring-shopping and budget-intelligence behavior.
+O Aisly compete primeiro como um aplicativo offline-first de compras com foco em recorrência e orçamento.
 
-## What This Means
+## O que isso significa
 
-Priority features should strengthen:
+As prioridades devem fortalecer:
 
-- multiple local lists
-- planned versus actual totals
-- recurring shopping reuse
-- price memory
-- in-store shopping speed
+- listas locais
+- comparação entre planejado e real
+- reutilização de compras recorrentes
+- memória de preço
+- velocidade de uso durante a compra
 
-## What To Avoid
+## O que evitar
 
-- premium before online value exists
-- cloud-cost pass-through pricing
-- backend-first roadmap decisions
-- feature sprawl before the local product is strong
+- monetização antes de valor real
+- roadmap guiado por backend
+- expansão de escopo sem ganho prático

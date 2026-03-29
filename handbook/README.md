@@ -1,31 +1,29 @@
-# Aisly Handbook
+# Handbook do Aisly
 
-This handbook is the shared developer-facing documentation surface for Aisly.
+Este handbook reúne a documentação principal do projeto.
 
-It explains:
+Aqui você encontra:
 
-- what product Aisly is actually trying to become
-- how the app should be structured
-- which feature areas matter first
-- how contributors should reason about changes
+- visão geral do produto
+- decisões técnicas
+- regras de contribuição
+- histórico das entregas
+- resumo dos recursos implementados
 
-## Start Here
+## Ordem recomendada de leitura
 
-If you are new to the project, read in this order:
+1. [Desenvolvimento local](LOCAL_DEVELOPMENT.md)
+2. [Visão técnica](TECHNICAL_OVERVIEW.md)
+3. [Estratégia de produto](PRODUCT_STRATEGY.md)
+4. [Contribuição](CONTRIBUTING.md)
+5. [Recursos e roadmap](FEATURES.md)
 
-1. [LOCAL_DEVELOPMENT.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/LOCAL_DEVELOPMENT.md)
-2. [TECHNICAL_OVERVIEW.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/TECHNICAL_OVERVIEW.md)
-3. [PRODUCT_STRATEGY.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/PRODUCT_STRATEGY.md)
-4. [CONTRIBUTING.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/CONTRIBUTING.md)
-5. [FEATURES.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/FEATURES.md)
+## Mapa da documentação
 
-## Documentation Map
-
-- [LOCAL_DEVELOPMENT.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/LOCAL_DEVELOPMENT.md)
-- [TECHNICAL_OVERVIEW.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/TECHNICAL_OVERVIEW.md)
-- [PRODUCT_STRATEGY.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/PRODUCT_STRATEGY.md)
-- [CONTRIBUTING.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/CONTRIBUTING.md)
-- [adr/README.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/README.md)
-- [features/README.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/README.md)
-- [FEATURES.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/FEATURES.md)
-- [HISTORY.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/HISTORY.md)
+- [Desenvolvimento local](LOCAL_DEVELOPMENT.md)
+- [Visão técnica](TECHNICAL_OVERVIEW.md)
+- [Estratégia de produto](PRODUCT_STRATEGY.md)
+- [Contribuição](CONTRIBUTING.md)
+- [ADRs](adr/README.md)
+- [Recursos](features/README.md)
+- [Histórico](HISTORY.md)
