@@ -53,6 +53,7 @@ enum AppTextKeys {
         static let itemsSectionTitle = AppTextKey(value: "listDetail.items.section.title")
         static let itemNameFieldTitle = AppTextKey(value: "listDetail.editor.name.field.title")
         static let itemNamePlaceholder = AppTextKey(value: "listDetail.editor.name.field.placeholder")
+        static let quickEntrySectionTitle = AppTextKey(value: "listDetail.editor.quickEntry.section.title")
         static let quantityFieldTitle = AppTextKey(value: "listDetail.editor.quantity.field.title")
         static let categoryFieldTitle = AppTextKey(value: "listDetail.editor.category.field.title")
         static let plannedPriceFieldTitle = AppTextKey(value: "listDetail.editor.plannedPrice.field.title")

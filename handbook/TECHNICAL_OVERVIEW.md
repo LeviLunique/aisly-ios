@@ -48,6 +48,7 @@ The current remote `main` app base now includes:
 - a `ListDetailViewModel` that now loads and mutates local items inside a selected list
 - local shopping items with quantity, category, explicit local order, and optional planned and actual prices stored inside the file-backed list model
 - derived list planned total, actual total, actual-price coverage, and budget delta inside the local shopping-list model
+- quick-entry suggestion derivation from local item history inside the existing add-item flow
 - English and Brazilian Portuguese resources for the shipped root-screen copy
 
 This is intentionally narrow.
@@ -119,6 +120,7 @@ That means:
 The architecture should make these easy to evolve:
 
 - totals and deltas
+- repeated-item entry from local history
 - shopping-mode interaction
 - recurrence and templates
 - price memory by store
