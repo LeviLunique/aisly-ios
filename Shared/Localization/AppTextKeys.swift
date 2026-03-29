@@ -56,6 +56,7 @@ enum AppTextKeys {
         static let emptyDescription = AppTextKey(value: "listDetail.empty.description")
         static let createFirstItemButtonTitle = AppTextKey(value: "listDetail.empty.createFirstItem.action")
         static let addItemToolbarTitle = AppTextKey(value: "listDetail.toolbar.addItem.action")
+        static let shoppingModeToolbarTitle = AppTextKey(value: "listDetail.toolbar.shoppingMode.action")
         static let budgetSummaryTitle = AppTextKey(value: "listDetail.budget.summary.title")
         static let plannedTotalTitle = AppTextKey(value: "listDetail.budget.plannedTotal.title")
         static let actualTotalTitle = AppTextKey(value: "listDetail.budget.actualTotal.title")
@@ -98,6 +99,23 @@ enum AppTextKeys {
             static let lastActualPriceTitle = AppTextKey(value: "listDetail.priceMemory.lastActual.title")
             static let lastPlannedPriceTitle = AppTextKey(value: "listDetail.priceMemory.lastPlanned.title")
         }
+    }
+
+    enum ShoppingMode {
+        static let navigationTitle = AppTextKey(value: "shoppingMode.screen.navigation.title")
+        static let loadingTitle = AppTextKey(value: "shoppingMode.screen.loading.title")
+        static let emptyTitle = AppTextKey(value: "shoppingMode.empty.title")
+        static let emptyDescription = AppTextKey(value: "shoppingMode.empty.description")
+        static let progressTitle = AppTextKey(value: "shoppingMode.progress.title")
+        static let remainingItemsSectionTitle = AppTextKey(value: "shoppingMode.items.remaining.section.title")
+        static let completedItemsSectionTitle = AppTextKey(value: "shoppingMode.items.completed.section.title")
+        static let actualPriceSheetTitle = AppTextKey(value: "shoppingMode.priceEditor.title")
+        static let actualPriceFieldTitle = AppTextKey(value: "shoppingMode.priceEditor.actualPrice.field.title")
+        static let usePlannedPriceButtonTitle = AppTextKey(value: "shoppingMode.priceEditor.usePlannedPrice.action")
+        static let saveActualPriceButtonTitle = AppTextKey(value: "shoppingMode.priceEditor.save.action")
+        static let failureTitle = AppTextKey(value: "shoppingMode.error.title")
+        static let failureDescription = AppTextKey(value: "shoppingMode.error.description")
+        static let retryButtonTitle = AppTextKey(value: "shoppingMode.error.retry.action")
     }
 
     enum Mock {

@@ -112,6 +112,7 @@ struct StoredShoppingItem: Codable, Equatable {
     let storeName: String?
     let plannedPrice: Decimal?
     let actualPrice: Decimal?
+    let isCompleted: Bool
     let createdAt: Date
     let updatedAt: Date
     let sortOrder: Int
@@ -124,6 +125,7 @@ struct StoredShoppingItem: Codable, Equatable {
         storeName = item.storeName
         plannedPrice = item.plannedPrice
         actualPrice = item.actualPrice
+        isCompleted = item.isCompleted
         createdAt = item.createdAt
         updatedAt = item.updatedAt
         sortOrder = item.sortOrder
@@ -138,6 +140,7 @@ struct StoredShoppingItem: Codable, Equatable {
         storeName = try container.decodeIfPresent(String.self, forKey: .storeName)
         plannedPrice = try container.decodeIfPresent(Decimal.self, forKey: .plannedPrice)
         actualPrice = try container.decodeIfPresent(Decimal.self, forKey: .actualPrice)
+        isCompleted = try container.decodeIfPresent(Bool.self, forKey: .isCompleted) ?? false
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         sortOrder = try container.decode(Int.self, forKey: .sortOrder)
@@ -152,6 +155,7 @@ struct StoredShoppingItem: Codable, Equatable {
             storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
+            isCompleted: isCompleted,
             createdAt: createdAt,
             updatedAt: updatedAt,
             sortOrder: sortOrder

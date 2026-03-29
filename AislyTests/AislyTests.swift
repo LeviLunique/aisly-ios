@@ -258,6 +258,22 @@ final class AislyTests: XCTestCase {
         XCTAssertTrue(detailViewContents.contains("AislyPrimaryButtonStyle"))
     }
 
+    func testShoppingModeViewUsesSharedDesignSystemComponents() throws {
+        let shoppingModeContents = try String(
+            contentsOf: appFileURL("Aisly/Features/ShoppingMode/ShoppingModeView.swift"),
+            encoding: .utf8
+        )
+
+        XCTAssertTrue(shoppingModeContents.contains("AislyLoadingState"))
+        XCTAssertTrue(shoppingModeContents.contains("AislyEmptyState"))
+        XCTAssertTrue(shoppingModeContents.contains("AislySurfaceCard"))
+        XCTAssertTrue(shoppingModeContents.contains("AislyCheckbox"))
+        XCTAssertTrue(shoppingModeContents.contains("AislyBadge"))
+        XCTAssertTrue(shoppingModeContents.contains("AislyBudgetSummaryCard"))
+        XCTAssertTrue(shoppingModeContents.contains("AislyProgressBar"))
+        XCTAssertTrue(shoppingModeContents.contains("AislyInputField"))
+    }
+
     func testAppTextKeysExistInLocalizationCatalog() throws {
         let catalog = try makeLocalizationCatalog()
         let appTextKeysContents = try String(
@@ -937,6 +953,7 @@ final class AislyTests: XCTestCase {
                             storeName: nil,
                             plannedTotal: nil,
                             actualTotal: nil,
+                            isCompleted: false,
                             updatedAt: Date(timeIntervalSince1970: 2_000)
                         ),
                         .init(
@@ -947,6 +964,7 @@ final class AislyTests: XCTestCase {
                             storeName: nil,
                             plannedTotal: nil,
                             actualTotal: nil,
+                            isCompleted: false,
                             updatedAt: Date(timeIntervalSince1970: 2_000)
                         )
                     ]
@@ -1340,6 +1358,7 @@ final class AislyTests: XCTestCase {
                 storeName: "Fresh Mart",
                 plannedPrice: 1.25,
                 actualPrice: 1.40,
+                isCompleted: false,
                 createdAt: timestamp,
                 updatedAt: timestamp,
                 sortOrder: 0
@@ -1542,6 +1561,230 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(persistedItems.map(\.updatedAt), [timestamp, timestamp])
     }
 
+    func testStoredShoppingItemDecodesMissingCompletionStateAsFalse() throws {
+        let data = Data(
+            """
+            {
+              "id" : "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE",
+              "name" : "Milk",
+              "quantity" : 2,
+              "category" : "dairy",
+              "storeName" : "Fresh Mart",
+              "plannedPrice" : 4.50,
+              "actualPrice" : 4.75,
+              "createdAt" : "2025-01-01T12:00:00Z",
+              "updatedAt" : "2025-01-01T12:00:00Z",
+              "sortOrder" : 0
+            }
+            """.utf8
+        )
+
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+
+        let storedItem = try decoder.decode(StoredShoppingItem.self, from: data)
+
+        XCTAssertFalse(storedItem.model.isCompleted)
+    }
+
+    @MainActor
+    func testShoppingModeViewModelLoadsRemainingAndCompletedItems() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            plannedPrice: 4.5,
+                            actualPrice: 4.75,
+                            isCompleted: true,
+                            sortOrder: 0
+                        ),
+                        makeShoppingItem(
+                            name: "Apples",
+                            quantity: 6,
+                            category: .produce,
+                            plannedPrice: 0.8,
+                            isCompleted: false,
+                            sortOrder: 1
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ShoppingModeViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+
+        guard case .loaded(let snapshot) = viewModel.state else {
+            return XCTFail("Expected loaded state")
+        }
+
+        XCTAssertEqual(snapshot.itemCount, 2)
+        XCTAssertEqual(snapshot.completedItemCount, 1)
+        XCTAssertEqual(snapshot.remainingItems.map(\.name), ["Apples"])
+        XCTAssertEqual(snapshot.completedItems.map(\.name), ["Milk"])
+        XCTAssertEqual(snapshot.actualPricedItemCount, 1)
+    }
+
+    @MainActor
+    func testShoppingModeViewModelToggleCompletionPersistsItemState() async {
+        let listID = UUID()
+        let itemID = UUID()
+        let timestamp = Date(timeIntervalSince1970: 7_000)
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            id: itemID,
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            isCompleted: false,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ShoppingModeViewModel(
+            listID: listID,
+            repository: repository,
+            now: { timestamp }
+        )
+
+        await viewModel.load()
+        await viewModel.toggleCompletion(id: itemID)
+
+        let persistedItem = await repository.persistedLists().first?.items.first
+        XCTAssertEqual(persistedItem?.isCompleted, true)
+        XCTAssertEqual(persistedItem?.updatedAt, timestamp)
+    }
+
+    @MainActor
+    func testShoppingModeViewModelPresentActualPriceEditorPrefillsDraft() async {
+        let listID = UUID()
+        let itemID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            id: itemID,
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            plannedPrice: 4.5,
+                            actualPrice: 4.75,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ShoppingModeViewModel(
+            listID: listID,
+            repository: repository,
+            locale: Locale(identifier: "en_US_POSIX")
+        )
+
+        await viewModel.load()
+        viewModel.presentActualPriceEditor(id: itemID)
+
+        XCTAssertEqual(viewModel.priceEditorState, .actualPrice(itemID))
+        XCTAssertEqual(viewModel.currentEditingItemName, "Milk")
+        XCTAssertEqual(viewModel.draftActualPrice, "4.75")
+        XCTAssertEqual(viewModel.plannedPriceSuggestion, 4.5)
+    }
+
+    @MainActor
+    func testShoppingModeViewModelApplyPlannedPriceSuggestionPrefillsDraft() async {
+        let listID = UUID()
+        let itemID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            id: itemID,
+                            name: "Apples",
+                            quantity: 2,
+                            category: .produce,
+                            plannedPrice: 1.25,
+                            actualPrice: nil,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ShoppingModeViewModel(
+            listID: listID,
+            repository: repository,
+            locale: Locale(identifier: "en_US_POSIX")
+        )
+
+        await viewModel.load()
+        viewModel.presentActualPriceEditor(id: itemID)
+        viewModel.applyPlannedPriceSuggestion()
+
+        XCTAssertEqual(viewModel.draftActualPrice, "1.25")
+    }
+
+    @MainActor
+    func testShoppingModeViewModelSaveActualPriceDraftPersistsItemPrice() async {
+        let listID = UUID()
+        let itemID = UUID()
+        let timestamp = Date(timeIntervalSince1970: 8_000)
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            id: itemID,
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            plannedPrice: 4.5,
+                            actualPrice: nil,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ShoppingModeViewModel(
+            listID: listID,
+            repository: repository,
+            now: { timestamp },
+            locale: Locale(identifier: "en_US_POSIX")
+        )
+
+        await viewModel.load()
+        viewModel.presentActualPriceEditor(id: itemID)
+        viewModel.updateDraftActualPrice("4.80")
+        await viewModel.saveActualPriceDraft()
+
+        let persistedItem = await repository.persistedLists().first?.items.first
+        XCTAssertEqual(persistedItem?.actualPrice, 4.8)
+        XCTAssertEqual(persistedItem?.updatedAt, timestamp)
+        XCTAssertNil(viewModel.priceEditorState)
+    }
+
     private func makeRepository(testName: String) -> LocalShoppingListRepository {
         let fileURL = try! makeTemporaryFileURL(testName: testName)
         return LocalShoppingListRepository(store: ShoppingListFileStore(fileURL: fileURL))
@@ -1620,6 +1863,7 @@ final class AislyTests: XCTestCase {
         storeName: String? = nil,
         plannedPrice: Decimal? = nil,
         actualPrice: Decimal? = nil,
+        isCompleted: Bool = false,
         sortOrder: Int,
         createdAt: Date = Date(timeIntervalSince1970: 1_000),
         updatedAt: Date = Date(timeIntervalSince1970: 2_000)
@@ -1632,6 +1876,7 @@ final class AislyTests: XCTestCase {
             storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
+            isCompleted: isCompleted,
             createdAt: createdAt,
             updatedAt: updatedAt,
             sortOrder: sortOrder

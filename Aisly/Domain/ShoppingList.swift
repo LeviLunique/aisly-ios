@@ -49,6 +49,14 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
         }
     }
 
+    var completedItemCount: Int {
+        items.reduce(into: 0) { count, item in
+            if item.isCompleted {
+                count += 1
+            }
+        }
+    }
+
     var budgetDelta: Decimal? {
         guard actualPricedItemCount > 0 else {
             return nil
@@ -176,6 +184,7 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
                 storeName: storeName,
                 plannedPrice: plannedPrice,
                 actualPrice: actualPrice,
+                isCompleted: false,
                 sortOrder: nextSortOrder,
                 now: updatedAt
             )
@@ -206,6 +215,43 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
             storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
+            isCompleted: updatedItems[index].isCompleted,
+            updatedAt: updatedAt
+        )
+
+        return replacingItems(updatedItems, updatedAt: updatedAt)
+    }
+
+    func updatingItemCompletion(
+        id: UUID,
+        isCompleted: Bool,
+        updatedAt: Date
+    ) throws -> ShoppingList {
+        guard let index = items.firstIndex(where: { $0.id == id }) else {
+            throw ShoppingListMutationError.itemNotFound
+        }
+
+        var updatedItems = items
+        updatedItems[index] = updatedItems[index].updatingCompletion(
+            isCompleted: isCompleted,
+            updatedAt: updatedAt
+        )
+
+        return replacingItems(updatedItems, updatedAt: updatedAt)
+    }
+
+    func updatingItemActualPrice(
+        id: UUID,
+        actualPrice: Decimal?,
+        updatedAt: Date
+    ) throws -> ShoppingList {
+        guard let index = items.firstIndex(where: { $0.id == id }) else {
+            throw ShoppingListMutationError.itemNotFound
+        }
+
+        var updatedItems = items
+        updatedItems[index] = updatedItems[index].updatingActualPrice(
+            actualPrice,
             updatedAt: updatedAt
         )
 

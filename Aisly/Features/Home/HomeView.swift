@@ -3,15 +3,18 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
     private let makeListDetailViewModel: @MainActor (UUID) -> ListDetailViewModel
+    private let makeShoppingModeViewModel: @MainActor (UUID) -> ShoppingModeViewModel
     @FocusState private var isEditorNameFieldFocused: Bool
     @FocusState private var isTemplateNameFieldFocused: Bool
 
     init(
         viewModel: HomeViewModel,
-        makeListDetailViewModel: @escaping @MainActor (UUID) -> ListDetailViewModel
+        makeListDetailViewModel: @escaping @MainActor (UUID) -> ListDetailViewModel,
+        makeShoppingModeViewModel: @escaping @MainActor (UUID) -> ShoppingModeViewModel
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.makeListDetailViewModel = makeListDetailViewModel
+        self.makeShoppingModeViewModel = makeShoppingModeViewModel
     }
 
     var body: some View {
@@ -20,7 +23,10 @@ struct HomeView: View {
                 .background(AislyColor.backgroundPrimary.ignoresSafeArea())
                 .navigationTitle(Text(AppStrings.Home.navigationTitle))
                 .navigationDestination(for: UUID.self) { listID in
-                    ListDetailView(viewModel: makeListDetailViewModel(listID))
+                    ListDetailView(
+                        viewModel: makeListDetailViewModel(listID),
+                        makeShoppingModeViewModel: makeShoppingModeViewModel
+                    )
                 }
                 .toolbar {
                     if viewModel.canCreateList {
@@ -406,6 +412,9 @@ struct HomeView: View {
         viewModel: HomeViewModel(repository: PreviewShoppingListRepository(lists: [])),
         makeListDetailViewModel: { listID in
             ListDetailViewModel(listID: listID, repository: PreviewShoppingListRepository(lists: []))
+        },
+        makeShoppingModeViewModel: { listID in
+            ShoppingModeViewModel(listID: listID, repository: PreviewShoppingListRepository(lists: []))
         }
     )
 }
@@ -415,6 +424,9 @@ struct HomeView: View {
         viewModel: HomeViewModel(repository: PreviewShoppingListRepository(lists: [])),
         makeListDetailViewModel: { listID in
             ListDetailViewModel(listID: listID, repository: PreviewShoppingListRepository(lists: []))
+        },
+        makeShoppingModeViewModel: { listID in
+            ShoppingModeViewModel(listID: listID, repository: PreviewShoppingListRepository(lists: []))
         }
     )
         .environment(\.locale, Locale(identifier: "pt_BR"))
@@ -432,6 +444,14 @@ struct HomeView: View {
                     lists: makePreviewShoppingLists(locale: Locale(identifier: "en"))
                 )
             )
+        },
+        makeShoppingModeViewModel: { listID in
+            ShoppingModeViewModel(
+                listID: listID,
+                repository: PreviewShoppingListRepository(
+                    lists: makePreviewShoppingLists(locale: Locale(identifier: "en"))
+                )
+            )
         }
     )
 }
@@ -443,6 +463,14 @@ struct HomeView: View {
         )),
         makeListDetailViewModel: { listID in
             ListDetailViewModel(
+                listID: listID,
+                repository: PreviewShoppingListRepository(
+                    lists: makePreviewShoppingLists(locale: Locale(identifier: "pt_BR"))
+                )
+            )
+        },
+        makeShoppingModeViewModel: { listID in
+            ShoppingModeViewModel(
                 listID: listID,
                 repository: PreviewShoppingListRepository(
                     lists: makePreviewShoppingLists(locale: Locale(identifier: "pt_BR"))
