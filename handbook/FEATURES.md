@@ -4,9 +4,9 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-The repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, and multiple-local-lists slice are complete.
+The remote `main` branch now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, and multiple-local-lists slice.
 
-The current shipped UI also now sits on an Aisly-native SwiftUI design-system foundation for colors, typography, spacing, motion, reusable state views and controls, reusable list-screen components, and shared logo assets.
+The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared Aisly-native SwiftUI visual layer with broader tokens, controls, summary surfaces, and logo assets for future UI slices.
 
 The next real product work is now the local items and categories slice.
 
@@ -34,7 +34,16 @@ Completed:
 - edit list
 - archive list
 - manage more than one active list
-- shared SwiftUI design-system tokens, motion, and reusable root-screen components for the local-lists flow
+- initial shared SwiftUI design-system tokens, motion, and reusable root-screen components for the local-lists flow
+
+### SwiftUI Design System Foundation
+
+Implemented on remote feature branch:
+
+- expanded shared colors, spacing, typography, radii, and motion tokens
+- added reusable SwiftUI components for buttons, inputs, toggles, progress, state views, cards, list rows, summary surfaces, and page headers
+- added shared Aisly logo and mark assets for branded app surfaces
+- aligned the local-lists screen with the broader shared visual system
 
 ### Local Items and Categories
 

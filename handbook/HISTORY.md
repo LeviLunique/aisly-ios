@@ -59,8 +59,20 @@ Delivered:
 - sheet-based list-name editing with trimmed-name validation
 - persisted local list mutations through the existing repository boundary
 - a shared SwiftUI design-system foundation for colors, typography, spacing, motion, reusable state views, form controls, summary surfaces, and reusable list-screen components
-- shared Aisly logo assets inside the design system, including the compact mark used by the root empty state
-- expanded regression coverage for storage compliance, localization compliance, design-system guardrails, logo component coverage, shared motion/component availability, multiple-list view-model behavior, and locale UI launch checks
+- expanded regression coverage for storage compliance, localization compliance, design-system guardrails, multiple-list view-model behavior, and locale UI launch checks
+
+### Supporting Remote Branch Work
+
+The remote repository also contains additional implemented work that is not yet part of the numbered product-stage history on `main`.
+
+#### SwiftUI Design System Foundation
+
+Delivered on remote branch `feat/swiftui-design-system`:
+
+- expanded the shared token layer with semantic colors, radii, and a broader component-ready motion posture
+- added reusable SwiftUI components for badges, inputs, toggles, progress, page headers, list summary cards, budget summary cards, and item rows
+- added shared Aisly logo and mark assets to the design system
+- aligned the root local-lists UI with the broader shared design-system layer
 
 ## Planned Next Work
 

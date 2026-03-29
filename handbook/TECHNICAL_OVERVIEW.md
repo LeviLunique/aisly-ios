@@ -37,7 +37,7 @@ That means:
 
 ## Current Foundation
 
-The current app base now includes:
+The current remote `main` app base now includes:
 
 - an `AppContainer` that assembles live dependencies
 - a `ShoppingListRepository` boundary for shopping-list persistence
@@ -49,6 +49,8 @@ The current app base now includes:
 
 This is intentionally narrow.
 It provides the minimum useful local-list product before item, category, and budget slices expand the domain further, without introducing backend or sync machinery early.
+
+The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared native visual layer with broader tokens, reusable controls, summary components, and logo assets. That branch deepens the visual foundation without changing the product roadmap order.
 
 ## Pattern Posture
 
