@@ -17,6 +17,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
     var name: String
     var quantity: Int
     var category: Category
+    var storeName: String?
     var plannedPrice: Decimal?
     var actualPrice: Decimal?
     let createdAt: Date
@@ -36,6 +37,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
         name: String,
         quantity: Int,
         category: Category,
+        storeName: String?,
         plannedPrice: Decimal?,
         actualPrice: Decimal?,
         sortOrder: Int,
@@ -46,6 +48,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             name: name,
             quantity: quantity,
             category: category,
+            storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
             createdAt: now,
@@ -58,6 +61,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
         name: String,
         quantity: Int,
         category: Category,
+        storeName: String?,
         plannedPrice: Decimal?,
         actualPrice: Decimal?,
         updatedAt: Date
@@ -67,6 +71,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             name: name,
             quantity: quantity,
             category: category,
+            storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
             createdAt: createdAt,
@@ -81,6 +86,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             name: name,
             quantity: quantity,
             category: category,
+            storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
             createdAt: createdAt,
@@ -99,6 +105,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             name: name,
             quantity: quantity,
             category: category,
+            storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: nil,
             createdAt: updatedAt,

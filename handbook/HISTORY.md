@@ -12,7 +12,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 - Stage 4: completed locally
 - Stage 5: completed locally
 - Stage 6: completed locally
-- Stage 7: pending
+- Stage 7: completed locally
 - Stage 8: pending
 - Stage 9: pending
 - Stage 10: pending
@@ -107,6 +107,17 @@ Delivered locally:
 - the file-backed persistence layer stays backward-compatible with Stage 5 JSON that does not yet contain template metadata
 - regression coverage now includes persistence compatibility, template snapshot separation, template draft prefilling, and generated-list reset behavior
 
+### Stage 7
+
+Delivered locally:
+
+- shopping items now persist an optional store name
+- the item editor now suggests recent stores from existing non-template local history
+- the detail workflow now shows a remembered last price for the same item at the same store
+- remembered prices can prefill planned price with one tap inside the existing editor
+- the file-backed persistence layer stays backward-compatible with older JSON that does not yet contain store names
+- regression coverage now includes store suggestion ranking, store-specific price memory, editor prefills, and persistence compatibility
+
 ### Supporting Remote Branch Work
 
 The remote repository also contains additional implemented work that is not yet part of the numbered product-stage history on `main`.
@@ -124,7 +135,7 @@ Delivered on remote branch `feat/swiftui-design-system`:
 
 The next correct work is:
 
-- store and price memory
+- shopping mode
 
 Not:
 

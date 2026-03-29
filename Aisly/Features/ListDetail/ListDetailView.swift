@@ -114,6 +114,7 @@ struct ListDetailView: View {
         AislyItemRow(
             title: item.name,
             detail: Text(item.updatedAt, format: .dateTime.month(.abbreviated).day().hour().minute()),
+            note: item.storeName.map { Text(verbatim: $0) },
             primaryPrice: rowPrimaryPrice(for: item),
             secondaryPrice: rowSecondaryPrice(for: item),
             tapAction: {
@@ -179,6 +180,13 @@ struct ListDetailView: View {
         )
     }
 
+    private var draftStoreNameBinding: Binding<String> {
+        Binding(
+            get: { viewModel.draftStoreName },
+            set: { viewModel.updateDraftStoreName($0) }
+        )
+    }
+
     private var draftPlannedPriceBinding: Binding<String> {
         Binding(
             get: { viewModel.draftPlannedPrice },
@@ -219,6 +227,22 @@ struct ListDetailView: View {
                 )
                 .listRowBackground(Color.clear)
 
+                AislyInputField(
+                    text: draftStoreNameBinding,
+                    title: Text(AppStrings.ListDetail.storeFieldTitle),
+                    prompt: Text(AppStrings.ListDetail.storeFieldPlaceholder),
+                    textInputAutocapitalization: .words
+                )
+                .listRowInsets(
+                    EdgeInsets(
+                        top: AislySpacing.small,
+                        leading: AislySpacing.large,
+                        bottom: AislySpacing.small,
+                        trailing: AislySpacing.large
+                    )
+                )
+                .listRowBackground(Color.clear)
+
                 if case .create = editorMode, viewModel.quickEntrySuggestions.isEmpty == false {
                     Section {
                         ForEach(viewModel.quickEntrySuggestions) { suggestion in
@@ -226,6 +250,24 @@ struct ListDetailView: View {
                         }
                     } header: {
                         AislySectionHeader(AppStrings.ListDetail.quickEntrySectionTitle)
+                    }
+                }
+
+                if viewModel.storeSuggestions.isEmpty == false {
+                    Section {
+                        ForEach(viewModel.storeSuggestions) { suggestion in
+                            storeSuggestionRow(suggestion)
+                        }
+                    } header: {
+                        AislySectionHeader(AppStrings.ListDetail.storeSuggestionsSectionTitle)
+                    }
+                }
+
+                if let priceMemorySuggestion = viewModel.priceMemorySuggestion {
+                    Section {
+                        priceMemoryRow(priceMemorySuggestion)
+                    } header: {
+                        AislySectionHeader(AppStrings.ListDetail.priceMemorySectionTitle)
                     }
                 }
 
@@ -322,6 +364,7 @@ struct ListDetailView: View {
     private func quickEntryRow(_ suggestion: ListDetailViewModel.QuickEntrySuggestion) -> some View {
         AislyItemRow(
             title: suggestion.name,
+            note: suggestion.storeName.map { Text(verbatim: $0) },
             primaryPrice: suggestion.plannedPrice.map(currencyText),
             tapAction: {
                 viewModel.applyQuickEntrySuggestion(id: suggestion.id)
@@ -340,6 +383,54 @@ struct ListDetailView: View {
                 )
             }
         }
+        .listRowInsets(
+            EdgeInsets(
+                top: AislySpacing.small,
+                leading: AislySpacing.large,
+                bottom: AislySpacing.small,
+                trailing: AislySpacing.large
+            )
+        )
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
+    }
+
+    private func storeSuggestionRow(_ suggestion: ListDetailViewModel.StoreSuggestion) -> some View {
+        AislyItemRow(
+            title: suggestion.name,
+            detail: Text(suggestion.lastUsedAt, format: .dateTime.month(.abbreviated).day().hour().minute()),
+            tapAction: {
+                viewModel.applyStoreSuggestion(id: suggestion.id)
+            }
+        ) {
+            AislyBadge(
+                Text(suggestion.usageCount, format: .number),
+                tone: .neutral,
+                size: .small
+            )
+        }
+        .listRowInsets(
+            EdgeInsets(
+                top: AislySpacing.small,
+                leading: AislySpacing.large,
+                bottom: AislySpacing.small,
+                trailing: AislySpacing.large
+            )
+        )
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
+    }
+
+    private func priceMemoryRow(_ suggestion: ListDetailViewModel.PriceMemorySuggestion) -> some View {
+        AislyItemRow(
+            title: String(localized: priceMemoryTitle(for: suggestion.kind)),
+            detail: Text(suggestion.lastUsedAt, format: .dateTime.month(.abbreviated).day().hour().minute()),
+            note: Text(verbatim: suggestion.storeName),
+            primaryPrice: currencyText(suggestion.price),
+            tapAction: {
+                viewModel.applyPriceMemorySuggestion()
+            }
+        )
         .listRowInsets(
             EdgeInsets(
                 top: AislySpacing.small,
@@ -447,6 +538,15 @@ struct ListDetailView: View {
         Text(value, format: .currency(code: currencyCode))
     }
 
+    private func priceMemoryTitle(for kind: ListDetailViewModel.PriceMemorySuggestion.Kind) -> LocalizedStringResource {
+        switch kind {
+        case .actual:
+            return AppStrings.ListDetail.lastActualPriceMemoryTitle
+        case .planned:
+            return AppStrings.ListDetail.lastPlannedPriceMemoryTitle
+        }
+    }
+
     private var currencyCode: String {
         Locale.autoupdatingCurrent.currency?.identifier ?? "USD"
     }
@@ -498,6 +598,7 @@ private func makePreviewItems(locale: Locale) -> [ShoppingItem] {
             name: AppStrings.Mock.ShoppingItem.milkName(locale: locale),
             quantity: 2,
             category: .dairy,
+            storeName: AppStrings.Mock.Store.freshMartName(locale: locale),
             plannedPrice: 4.50,
             actualPrice: 4.75,
             createdAt: .now,
@@ -509,6 +610,7 @@ private func makePreviewItems(locale: Locale) -> [ShoppingItem] {
             name: AppStrings.Mock.ShoppingItem.applesName(locale: locale),
             quantity: 6,
             category: .produce,
+            storeName: AppStrings.Mock.Store.cityMarketName(locale: locale),
             plannedPrice: 0.80,
             actualPrice: nil,
             createdAt: .now,

@@ -78,7 +78,13 @@ enum AppStrings {
         static let itemsSectionTitle = AppTextKeys.ListDetail.itemsSectionTitle.localizedResource
         static let itemNameFieldTitle = AppTextKeys.ListDetail.itemNameFieldTitle.localizedResource
         static let itemNamePlaceholder = AppTextKeys.ListDetail.itemNamePlaceholder.localizedResource
+        static let storeFieldTitle = AppTextKeys.ListDetail.storeFieldTitle.localizedResource
+        static let storeFieldPlaceholder = AppTextKeys.ListDetail.storeFieldPlaceholder.localizedResource
         static let quickEntrySectionTitle = AppTextKeys.ListDetail.quickEntrySectionTitle.localizedResource
+        static let storeSuggestionsSectionTitle = AppTextKeys.ListDetail.storeSuggestionsSectionTitle.localizedResource
+        static let priceMemorySectionTitle = AppTextKeys.ListDetail.priceMemorySectionTitle.localizedResource
+        static let lastActualPriceMemoryTitle = AppTextKeys.ListDetail.PriceMemory.lastActualPriceTitle.localizedResource
+        static let lastPlannedPriceMemoryTitle = AppTextKeys.ListDetail.PriceMemory.lastPlannedPriceTitle.localizedResource
         static let quantityFieldTitle = AppTextKeys.ListDetail.quantityFieldTitle.localizedResource
         static let categoryFieldTitle = AppTextKeys.ListDetail.categoryFieldTitle.localizedResource
         static let plannedPriceFieldTitle = AppTextKeys.ListDetail.plannedPriceFieldTitle.localizedResource
@@ -150,6 +156,16 @@ enum AppStrings {
 
             static func applesName(locale: Locale = .autoupdatingCurrent) -> String {
                 AppTextKeys.Mock.ShoppingItem.applesName.localizedString(locale: locale)
+            }
+        }
+
+        enum Store {
+            static func freshMartName(locale: Locale = .autoupdatingCurrent) -> String {
+                AppTextKeys.Mock.Store.freshMartName.localizedString(locale: locale)
+            }
+
+            static func cityMarketName(locale: Locale = .autoupdatingCurrent) -> String {
+                AppTextKeys.Mock.Store.cityMarketName.localizedString(locale: locale)
             }
         }
     }

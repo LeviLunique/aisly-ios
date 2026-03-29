@@ -901,6 +901,24 @@
         }
       }
     },
+    "listDetail.editor.priceMemory.section.title" : {
+      "comment" : "Section title for local price-memory suggestions in the item editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Price Memory"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memória de Preço"
+          }
+        }
+      }
+    },
     "listDetail.editor.quickEntry.section.title" : {
       "comment" : "Section title for quick-entry suggestions based on local item history.",
       "extractionState" : "manual",
@@ -915,6 +933,60 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entrada Rápida"
+          }
+        }
+      }
+    },
+    "listDetail.editor.store.field.placeholder" : {
+      "comment" : "Placeholder shown in the item store field.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Store name"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome da loja"
+          }
+        }
+      }
+    },
+    "listDetail.editor.store.field.title" : {
+      "comment" : "Title shown for the item store field.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Store"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loja"
+          }
+        }
+      }
+    },
+    "listDetail.editor.storeSuggestions.section.title" : {
+      "comment" : "Section title for local store suggestions in the item editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recent Stores"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lojas Recentes"
           }
         }
       }
@@ -1243,6 +1315,42 @@
         }
       }
     },
+    "listDetail.priceMemory.lastActual.title" : {
+      "comment" : "Title shown when a local price-memory suggestion comes from the last actual price.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Paid Price"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Último Preço Pago"
+          }
+        }
+      }
+    },
+    "listDetail.priceMemory.lastPlanned.title" : {
+      "comment" : "Title shown when a local price-memory suggestion comes from the last planned price.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Planned Price"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Último Preço Planejado"
+          }
+        }
+      }
+    },
     "listDetail.screen.loading.title" : {
       "comment" : "Loading message shown while a shopping list detail loads.",
       "extractionState" : "manual",
@@ -1329,6 +1437,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Resumo Local"
+          }
+        }
+      }
+    },
+    "mock.store.cityMarket.name" : {
+      "comment" : "Preview and mock store name for a city market.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "City Market"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mercado da Cidade"
+          }
+        }
+      }
+    },
+    "mock.store.freshMart.name" : {
+      "comment" : "Preview and mock store name for a fresh market.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fresh Mart"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mercado Fresco"
           }
         }
       }

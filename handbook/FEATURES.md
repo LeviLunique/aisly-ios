@@ -4,11 +4,11 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, budget-core, quick-entry-history, and templates-and-recurrence.
+The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, budget-core, quick-entry-history, templates-and-recurrence, and store-price-memory.
 
 The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared Aisly-native SwiftUI visual layer with broader tokens, controls, summary surfaces, and logo assets for future UI slices.
 
-The next real product work is now store and price memory.
+The next real product work is now shopping mode.
 
 ## What Should Be Built First
 
@@ -84,11 +84,12 @@ Completed locally:
 
 ### Price Memory
 
-Planned:
+Completed locally:
 
-- store model
-- last price memory
-- store-specific price records
+- optional store name per item
+- recent-store suggestions in the existing item editor
+- last known local price memory for the same item at the same store
+- one-tap planned-price prefilling from remembered store-specific prices
 
 ### Shopping Mode
 
@@ -127,3 +128,4 @@ For the stage-by-stage status, see:
 - [budget-core.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/budget-core.md)
 - [quick-entry-history.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/quick-entry-history.md)
 - [templates-and-recurrence.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/templates-and-recurrence.md)
+- [store-price-memory.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/store-price-memory.md)

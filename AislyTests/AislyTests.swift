@@ -473,6 +473,7 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(lists.count, 1)
         XCTAssertNil(lists.first?.templateConfiguration)
         XCTAssertEqual(lists.first?.items.first?.actualPrice, 4.75)
+        XCTAssertNil(lists.first?.items.first?.storeName)
     }
 
     @MainActor
@@ -785,6 +786,7 @@ final class AislyTests: XCTestCase {
                             name: "Milk",
                             quantity: 2,
                             category: .dairy,
+                            storeName: "Fresh Mart",
                             plannedPrice: 4.5,
                             actualPrice: 4.75,
                             sortOrder: 0
@@ -813,6 +815,7 @@ final class AislyTests: XCTestCase {
         XCTAssertFalse(templateList.isArchived)
         XCTAssertEqual(templateList.updatedAt, savedAt)
         XCTAssertEqual(templateList.items.count, 1)
+        XCTAssertEqual(templateList.items.first?.storeName, "Fresh Mart")
         XCTAssertEqual(templateList.items.first?.plannedPrice, 4.5)
         XCTAssertNil(templateList.items.first?.actualPrice)
     }
@@ -858,6 +861,7 @@ final class AislyTests: XCTestCase {
         XCTAssertFalse(generatedList.isArchived)
         XCTAssertEqual(generatedList.updatedAt, generatedAt)
         XCTAssertEqual(generatedList.items.count, 1)
+        XCTAssertNil(generatedList.items.first?.storeName)
         XCTAssertEqual(generatedList.items.first?.plannedPrice, 4.5)
         XCTAssertNil(generatedList.items.first?.actualPrice)
     }
@@ -930,6 +934,7 @@ final class AislyTests: XCTestCase {
                             name: "Apples",
                             quantity: 6,
                             category: .produce,
+                            storeName: nil,
                             plannedTotal: nil,
                             actualTotal: nil,
                             updatedAt: Date(timeIntervalSince1970: 2_000)
@@ -939,6 +944,7 @@ final class AislyTests: XCTestCase {
                             name: "Milk",
                             quantity: 2,
                             category: .dairy,
+                            storeName: nil,
                             plannedTotal: nil,
                             actualTotal: nil,
                             updatedAt: Date(timeIntervalSince1970: 2_000)
@@ -964,9 +970,12 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(viewModel.draftName, "")
         XCTAssertEqual(viewModel.draftQuantity, 1)
         XCTAssertEqual(viewModel.draftCategory, .produce)
+        XCTAssertEqual(viewModel.draftStoreName, "")
         XCTAssertEqual(viewModel.draftPlannedPrice, "")
         XCTAssertEqual(viewModel.draftActualPrice, "")
         XCTAssertEqual(viewModel.quickEntrySuggestions, [])
+        XCTAssertEqual(viewModel.storeSuggestions, [])
+        XCTAssertNil(viewModel.priceMemorySuggestion)
         XCTAssertTrue(viewModel.isDraftSubmissionDisabled)
     }
 
@@ -986,6 +995,7 @@ final class AislyTests: XCTestCase {
                             name: "Milk",
                             quantity: 1,
                             category: .dairy,
+                            storeName: "Fresh Mart",
                             plannedPrice: 4.75,
                             sortOrder: 0,
                             updatedAt: newerMilkDate
@@ -1028,6 +1038,7 @@ final class AislyTests: XCTestCase {
                     name: "Milk",
                     quantity: 1,
                     category: .dairy,
+                    storeName: "Fresh Mart",
                     plannedPrice: 4.75,
                     usageCount: 2,
                     lastUsedAt: newerMilkDate
@@ -1037,6 +1048,7 @@ final class AislyTests: XCTestCase {
                     name: "Apples",
                     quantity: 6,
                     category: .produce,
+                    storeName: nil,
                     plannedPrice: 0.8,
                     usageCount: 1,
                     lastUsedAt: applesDate
@@ -1094,6 +1106,7 @@ final class AislyTests: XCTestCase {
                             name: "Milk",
                             quantity: 2,
                             category: .dairy,
+                            storeName: "Fresh Mart",
                             plannedPrice: 4.5,
                             actualPrice: 4.75,
                             sortOrder: 0
@@ -1115,8 +1128,135 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(viewModel.draftName, "Milk")
         XCTAssertEqual(viewModel.draftQuantity, 2)
         XCTAssertEqual(viewModel.draftCategory, .dairy)
+        XCTAssertEqual(viewModel.draftStoreName, "Fresh Mart")
         XCTAssertEqual(viewModel.draftPlannedPrice, "4.5")
         XCTAssertEqual(viewModel.draftActualPrice, "")
+    }
+
+    @MainActor
+    func testListDetailViewModelStoreSuggestionsFilterByDraftStoreName() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(id: listID, name: "Weekly Groceries"),
+                makeShoppingList(
+                    name: "Party Supplies",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            storeName: "Fresh Mart",
+                            plannedPrice: 4.75,
+                            sortOrder: 0
+                        ),
+                        makeShoppingItem(
+                            name: "Apples",
+                            quantity: 6,
+                            category: .produce,
+                            storeName: "City Market",
+                            plannedPrice: 0.8,
+                            sortOrder: 1
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+        viewModel.updateDraftStoreName("fresh")
+
+        XCTAssertEqual(viewModel.storeSuggestions.map(\.name), ["Fresh Mart"])
+    }
+
+    @MainActor
+    func testListDetailViewModelPriceMemoryUsesLastActualPriceForMatchingStore() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(id: listID, name: "Weekly Groceries"),
+                makeShoppingList(
+                    name: "Party Supplies",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            storeName: "Fresh Mart",
+                            plannedPrice: 4.5,
+                            actualPrice: 4.75,
+                            sortOrder: 0,
+                            updatedAt: Date(timeIntervalSince1970: 1_900)
+                        ),
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            storeName: "Fresh Mart",
+                            plannedPrice: 4.25,
+                            actualPrice: nil,
+                            sortOrder: 1,
+                            updatedAt: Date(timeIntervalSince1970: 1_800)
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+        viewModel.updateDraftName("Milk")
+        viewModel.updateDraftStoreName("Fresh Mart")
+
+        XCTAssertEqual(
+            viewModel.priceMemorySuggestion,
+            .init(
+                storeName: "Fresh Mart",
+                price: 4.75,
+                kind: .actual,
+                lastUsedAt: Date(timeIntervalSince1970: 1_900)
+            )
+        )
+    }
+
+    @MainActor
+    func testListDetailViewModelApplyPriceMemorySuggestionPrefillsPlannedPrice() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(id: listID, name: "Weekly Groceries"),
+                makeShoppingList(
+                    name: "Party Supplies",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            storeName: "Fresh Mart",
+                            plannedPrice: 4.5,
+                            actualPrice: 4.75,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            locale: Locale(identifier: "en_US_POSIX")
+        )
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+        viewModel.updateDraftName("Milk")
+        viewModel.updateDraftStoreName("Fresh Mart")
+        viewModel.applyPriceMemorySuggestion()
+
+        XCTAssertEqual(viewModel.draftPlannedPrice, "4.75")
     }
 
     @MainActor
@@ -1134,6 +1274,7 @@ final class AislyTests: XCTestCase {
                             name: "Milk",
                             quantity: 2,
                             category: .dairy,
+                            storeName: "Fresh Mart",
                             plannedPrice: 4.5,
                             actualPrice: 4.75,
                             sortOrder: 0
@@ -1155,6 +1296,7 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(viewModel.draftName, "Milk")
         XCTAssertEqual(viewModel.draftQuantity, 2)
         XCTAssertEqual(viewModel.draftCategory, .dairy)
+        XCTAssertEqual(viewModel.draftStoreName, "Fresh Mart")
         XCTAssertEqual(viewModel.draftPlannedPrice, "4.5")
         XCTAssertEqual(viewModel.draftActualPrice, "4.75")
         XCTAssertEqual(viewModel.quickEntrySuggestions, [])
@@ -1181,6 +1323,7 @@ final class AislyTests: XCTestCase {
         viewModel.updateDraftName("  Apples  ")
         viewModel.updateDraftQuantity(3)
         viewModel.updateDraftCategory(.produce)
+        viewModel.updateDraftStoreName("Fresh Mart")
         viewModel.updateDraftPlannedPrice("1.25")
         viewModel.updateDraftActualPrice("1.40")
         await viewModel.saveDraft()
@@ -1194,6 +1337,7 @@ final class AislyTests: XCTestCase {
                 name: "Apples",
                 quantity: 3,
                 category: .produce,
+                storeName: "Fresh Mart",
                 plannedPrice: 1.25,
                 actualPrice: 1.40,
                 createdAt: timestamp,
@@ -1219,6 +1363,7 @@ final class AislyTests: XCTestCase {
                             name: "Milk",
                             quantity: 2,
                             category: .dairy,
+                            storeName: "Fresh Mart",
                             plannedPrice: 4.5,
                             actualPrice: 4.75,
                             sortOrder: 0
@@ -1239,6 +1384,7 @@ final class AislyTests: XCTestCase {
         viewModel.updateDraftName("Greek Yogurt")
         viewModel.updateDraftQuantity(3)
         viewModel.updateDraftCategory(.dairy)
+        viewModel.updateDraftStoreName("City Market")
         viewModel.updateDraftPlannedPrice("5.25")
         viewModel.updateDraftActualPrice("5.50")
         await viewModel.saveDraft()
@@ -1246,6 +1392,7 @@ final class AislyTests: XCTestCase {
         let persistedLists = await repository.persistedLists()
         XCTAssertEqual(persistedLists.first?.items.first?.name, "Greek Yogurt")
         XCTAssertEqual(persistedLists.first?.items.first?.quantity, 3)
+        XCTAssertEqual(persistedLists.first?.items.first?.storeName, "City Market")
         XCTAssertEqual(persistedLists.first?.items.first?.plannedPrice, 5.25)
         XCTAssertEqual(persistedLists.first?.items.first?.actualPrice, 5.50)
         XCTAssertEqual(persistedLists.first?.items.first?.updatedAt, timestamp)
@@ -1470,6 +1617,7 @@ final class AislyTests: XCTestCase {
         name: String,
         quantity: Int,
         category: ShoppingItem.Category,
+        storeName: String? = nil,
         plannedPrice: Decimal? = nil,
         actualPrice: Decimal? = nil,
         sortOrder: Int,
@@ -1481,6 +1629,7 @@ final class AislyTests: XCTestCase {
             name: name,
             quantity: quantity,
             category: category,
+            storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
             createdAt: createdAt,
