@@ -58,7 +58,9 @@ Delivered:
 - localized create-list, rename-list, and archive-list flows
 - sheet-based list-name editing with trimmed-name validation
 - persisted local list mutations through the existing repository boundary
-- 25 tests covering storage compliance, localization compliance, multiple-list view-model behavior, and locale UI launch checks
+- a shared SwiftUI design-system foundation for colors, typography, spacing, motion, reusable state views, form controls, summary surfaces, and reusable list-screen components
+- shared Aisly logo assets inside the design system, including the compact mark used by the root empty state
+- expanded regression coverage for storage compliance, localization compliance, design-system guardrails, logo component coverage, shared motion/component availability, multiple-list view-model behavior, and locale UI launch checks
 
 ## Planned Next Work
 

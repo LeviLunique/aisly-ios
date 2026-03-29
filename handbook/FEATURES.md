@@ -6,6 +6,8 @@ This document summarizes the current direction of Aisly.
 
 The repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, and multiple-local-lists slice are complete.
 
+The current shipped UI also now sits on an Aisly-native SwiftUI design-system foundation for colors, typography, spacing, motion, reusable state views and controls, reusable list-screen components, and shared logo assets.
+
 The next real product work is now the local items and categories slice.
 
 ## What Should Be Built First
@@ -32,6 +34,7 @@ Completed:
 - edit list
 - archive list
 - manage more than one active list
+- shared SwiftUI design-system tokens, motion, and reusable root-screen components for the local-lists flow
 
 ### Local Items and Categories
 

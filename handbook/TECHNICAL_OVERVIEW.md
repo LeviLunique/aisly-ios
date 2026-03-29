@@ -85,6 +85,19 @@ That means:
 - view models expose semantic state instead of raw UI copy
 - previews and UI tests should not depend on hardcoded translated display strings
 
+## Design System Posture
+
+Aisly styles SwiftUI screens through a shared native design system.
+
+That means:
+
+- semantic tokens define app colors, spacing, typography, and reusable radii
+- shared motion constants define the native-feeling interaction posture for press feedback, progress animation, sheet presentation, and lightweight state transitions
+- repeated UI patterns should prefer shared SwiftUI components or styles
+- branded app surfaces should prefer shared logo or mark components from the design system
+- reference designs must be adapted to native iOS behavior instead of copied from web implementations
+- screens should avoid inline styling when the shared design system already covers the need
+
 ## Storage Posture
 
 Aisly chooses storage by data classification.
@@ -119,6 +132,7 @@ For the reasoning behind this overview, see:
 - [app-architecture.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/app-architecture.md)
 - [dependency-injection.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/dependency-injection.md)
 - [design-pattern-adoption.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/design-pattern-adoption.md)
+- [design-system-standards.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/design-system-standards.md)
 - [localization-standards.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/localization-standards.md)
 - [quality-and-testing.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/quality-and-testing.md)
 - [product-positioning.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/product-positioning.md)

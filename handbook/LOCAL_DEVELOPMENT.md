@@ -73,6 +73,10 @@ Localization is also mandatory by default.
 
 Storage classification is also mandatory by default.
 
+Shared design-system tokens and components are also mandatory by default when a feature changes UI.
+
+Shared motion tokens and native-feeling design-system animation patterns are also mandatory by default when a feature changes interaction styling.
+
 That means current development should use:
 
 - `Localizable.xcstrings`
@@ -80,6 +84,8 @@ That means current development should use:
 - locale-aware formatting APIs
 - locale previews and UI checks when a screen changes
 - catalog-backed expectations in UI tests instead of hardcoded translated copy
+- semantic UI styling through `Aisly/DesignSystem` when the tokens or components already fit the screen
+- shared motion styling through `Aisly/DesignSystem` when the app already has a matching animation posture for the interaction
 - `Application Support` for persistent app-managed files
 - Keychain only for future sensitive data
 - `UserDefaults` or `@AppStorage` only for lightweight non-sensitive settings

@@ -7,21 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00D43D816E4592476D744836 /* AislyInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E95826E377C2869AEDE6EC /* AislyInputField.swift */; };
 		041CA412B956B7AC52A2D8CE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD2BAE96ED9AF84C06D49A /* HomeView.swift */; };
+		068A1E1541AEC915CFF1210A /* AislySurfaceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD7E2392FE4E80E4F91C793 /* AislySurfaceCard.swift */; };
+		0E1C3A1276F516FA8673AFBA /* AislyBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF5A0B48C042553E127B444 /* AislyBadge.swift */; };
 		0EA6BF635E9BEE5B5A976BCB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BBCF6DFB3F7D44DC0729E2D1 /* Localizable.xcstrings */; };
+		21F5E33E189714C8D5388303 /* AislySectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C6CC9DF01FE2299A68CFB /* AislySectionHeader.swift */; };
 		231C9584EC9AACCAF63A4DA4 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1DF7D650CEAC783B075FD /* AppContainer.swift */; };
+		31DBCA381191B02D61216E0C /* AislyListSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28024B84712A536BABBAA0EA /* AislyListSummaryCard.swift */; };
+		37C5F09150C0C35C39E356B1 /* AislyProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402ABCFA550DE0A5B6B0D4A8 /* AislyProgressBar.swift */; };
+		391D4D93E022C38F2AC345B1 /* AislyBudgetSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E206BDC5BB2D1888978635 /* AislyBudgetSummaryCard.swift */; };
+		44AD314E48AB5F7C10E895C0 /* AislyCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100A5984614A5AE0A1C5310 /* AislyCheckbox.swift */; };
 		44B79978CD67D675D3A2679F /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544053116C22920E91741B85 /* ShoppingList.swift */; };
+		46B0248C348CD7C2B33E5E63 /* AislyLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696ACD0FA17A65964311AD1 /* AislyLogo.swift */; };
 		48D7026D51566F741D97648F /* AislyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4011FB882D39B8BFD56DB /* AislyTests.swift */; };
 		4F3B5D20D5484365F9900C0E /* AislyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */; };
+		6074C96FAF5ED5C2E9A33BE1 /* AislySheetContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91424505754B3EEDF3A6CEE8 /* AislySheetContainer.swift */; };
 		6851DDE3C7CFB9BB7E59EE0F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F719DE59A982D57F9C9A6 /* HomeViewModel.swift */; };
+		8302D47C9AEA779204BAFE00 /* AislyMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499DA4579BA91E6D88771CB6 /* AislyMotion.swift */; };
+		843A34D05BD3D7A5B0C7BCB9 /* AislyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237CCF289F1B2E6F15897B2C /* AislyButtonStyle.swift */; };
 		8A8470C83E23B3EB210A4465 /* AppTextKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002E399265EEF4CADED7EEB8 /* AppTextKeys.swift */; };
 		995C51A1AD03E8204EDD6DF7 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20367EB7EEC5DF3A232346E /* AppStrings.swift */; };
 		9C5CA57513A2C4F4EE33C8C7 /* LocalShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BAE913B5891B9E7DB3995D /* LocalShoppingListRepository.swift */; };
+		A0801B43C8A723D9043F3525 /* AislyStateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25627C6A721B14F7D333D730 /* AislyStateViews.swift */; };
+		A8B38FDDC6D523A6D1BF8FA9 /* AislyListRowCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23A730E18D6423F31A18A2 /* AislyListRowCard.swift */; };
 		B1CA1B2B68C0F563198F4F0F /* AislyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E2C385A4C2FD2B40248BB /* AislyApp.swift */; };
+		B37533DA2F9123F53F69B4E7 /* AislyPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE98040CC8C699A64030B /* AislyPageHeader.swift */; };
+		BC5D26BE9FDDAC20D00998A0 /* AislyTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C778A4B272951F346E2476 /* AislyTypography.swift */; };
+		BFE659D2F27462AA4D1C9025 /* AislySpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79873ED6041DE2B851DC3A5 /* AislySpacing.swift */; };
+		C804085C366AE3DF8655F69E /* AislyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BE87A200692D40E76714F6 /* AislyColor.swift */; };
 		C95A1FEDF7FA1D9F19FB4104 /* ShoppingListFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ADF5ABF4F1AB04EB46CC7 /* ShoppingListFileStore.swift */; };
 		C998D23B80C45D7C71DC93FB /* ShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B25B17E40AB62B86F6B1D4 /* ShoppingListRepository.swift */; };
 		CB4824F1CCBB59A7A5201AF5 /* AppStoragePaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD622C9DA62C2FA97A32FD8 /* AppStoragePaths.swift */; };
+		D374120CB35F5173826C92C8 /* AislyCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC4F01225B79E33F2C36F2 /* AislyCornerRadius.swift */; };
 		D928AC4CAC58025ED4C2CFC9 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BFA9C764E54D23BF6885B /* Contents.json */; };
+		DC3E3B304C59BF28A3CE201E /* AislyPrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF609D04375E0757B36EB1A4 /* AislyPrimaryButtonStyle.swift */; };
+		DDB13B3C034E21D7E348A8CA /* AislyItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76584E547C87A7C8B04039B6 /* AislyItemRow.swift */; };
+		E229F7BD03BAA1D7BA86A3EF /* AislySwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BAD73E8B2320D4D0BA1EDD /* AislySwitch.swift */; };
 		FF3FEDC4C0D526E3F504399E /* AppTextKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002E399265EEF4CADED7EEB8 /* AppTextKeys.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,26 +67,72 @@
 /* Begin PBXFileReference section */
 		002E399265EEF4CADED7EEB8 /* AppTextKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextKeys.swift; sourceTree = "<group>"; };
 		0A7E2C385A4C2FD2B40248BB /* AislyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyApp.swift; sourceTree = "<group>"; };
+		1100A5984614A5AE0A1C5310 /* AislyCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyCheckbox.swift; sourceTree = "<group>"; };
 		132ADF5ABF4F1AB04EB46CC7 /* ShoppingListFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListFileStore.swift; sourceTree = "<group>"; };
+		18E95826E377C2869AEDE6EC /* AislyInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyInputField.swift; sourceTree = "<group>"; };
 		20D9BCD4B6D4016928D895F9 /* AislyTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AislyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F4011FB882D39B8BFD56DB /* AislyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyTests.swift; sourceTree = "<group>"; };
+		237CCF289F1B2E6F15897B2C /* AislyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyButtonStyle.swift; sourceTree = "<group>"; };
 		246F8D3242734FA8147255AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		25627C6A721B14F7D333D730 /* AislyStateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyStateViews.swift; sourceTree = "<group>"; };
+		28024B84712A536BABBAA0EA /* AislyListSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyListSummaryCard.swift; sourceTree = "<group>"; };
+		31E206BDC5BB2D1888978635 /* AislyBudgetSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyBudgetSummaryCard.swift; sourceTree = "<group>"; };
 		32B25B17E40AB62B86F6B1D4 /* ShoppingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListRepository.swift; sourceTree = "<group>"; };
+		34C778A4B272951F346E2476 /* AislyTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyTypography.swift; sourceTree = "<group>"; };
+		3696ACD0FA17A65964311AD1 /* AislyLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyLogo.swift; sourceTree = "<group>"; };
 		3EAD2BAE96ED9AF84C06D49A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		402ABCFA550DE0A5B6B0D4A8 /* AislyProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyProgressBar.swift; sourceTree = "<group>"; };
+		499DA4579BA91E6D88771CB6 /* AislyMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyMotion.swift; sourceTree = "<group>"; };
 		544053116C22920E91741B85 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		69BAE913B5891B9E7DB3995D /* LocalShoppingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalShoppingListRepository.swift; sourceTree = "<group>"; };
+		76584E547C87A7C8B04039B6 /* AislyItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyItemRow.swift; sourceTree = "<group>"; };
 		88B846B34BC8CBB88BA0AB4D /* AislyUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AislyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A8EE98040CC8C699A64030B /* AislyPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyPageHeader.swift; sourceTree = "<group>"; };
 		8CD1DF7D650CEAC783B075FD /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		91424505754B3EEDF3A6CEE8 /* AislySheetContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySheetContainer.swift; sourceTree = "<group>"; };
 		950BFA9C764E54D23BF6885B /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		9FD622C9DA62C2FA97A32FD8 /* AppStoragePaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoragePaths.swift; sourceTree = "<group>"; };
 		A18F719DE59A982D57F9C9A6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		A20367EB7EEC5DF3A232346E /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
+		AB2C6CC9DF01FE2299A68CFB /* AislySectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySectionHeader.swift; sourceTree = "<group>"; };
 		B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyUITests.swift; sourceTree = "<group>"; };
 		B638FF31FAD20CFE4C173445 /* Aisly.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Aisly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBCF6DFB3F7D44DC0729E2D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BFD7E2392FE4E80E4F91C793 /* AislySurfaceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySurfaceCard.swift; sourceTree = "<group>"; };
+		C1BAD73E8B2320D4D0BA1EDD /* AislySwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySwitch.swift; sourceTree = "<group>"; };
+		CBF5A0B48C042553E127B444 /* AislyBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyBadge.swift; sourceTree = "<group>"; };
+		CC23A730E18D6423F31A18A2 /* AislyListRowCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyListRowCard.swift; sourceTree = "<group>"; };
+		CF609D04375E0757B36EB1A4 /* AislyPrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyPrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		E9EC4F01225B79E33F2C36F2 /* AislyCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyCornerRadius.swift; sourceTree = "<group>"; };
+		F1BE87A200692D40E76714F6 /* AislyColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyColor.swift; sourceTree = "<group>"; };
+		F79873ED6041DE2B851DC3A5 /* AislySpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySpacing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0E9E28E3A699352B26123B38 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CBF5A0B48C042553E127B444 /* AislyBadge.swift */,
+				31E206BDC5BB2D1888978635 /* AislyBudgetSummaryCard.swift */,
+				237CCF289F1B2E6F15897B2C /* AislyButtonStyle.swift */,
+				1100A5984614A5AE0A1C5310 /* AislyCheckbox.swift */,
+				18E95826E377C2869AEDE6EC /* AislyInputField.swift */,
+				76584E547C87A7C8B04039B6 /* AislyItemRow.swift */,
+				CC23A730E18D6423F31A18A2 /* AislyListRowCard.swift */,
+				28024B84712A536BABBAA0EA /* AislyListSummaryCard.swift */,
+				3696ACD0FA17A65964311AD1 /* AislyLogo.swift */,
+				8A8EE98040CC8C699A64030B /* AislyPageHeader.swift */,
+				CF609D04375E0757B36EB1A4 /* AislyPrimaryButtonStyle.swift */,
+				402ABCFA550DE0A5B6B0D4A8 /* AislyProgressBar.swift */,
+				AB2C6CC9DF01FE2299A68CFB /* AislySectionHeader.swift */,
+				91424505754B3EEDF3A6CEE8 /* AislySheetContainer.swift */,
+				25627C6A721B14F7D333D730 /* AislyStateViews.swift */,
+				BFD7E2392FE4E80E4F91C793 /* AislySurfaceCard.swift */,
+				C1BAD73E8B2320D4D0BA1EDD /* AislySwitch.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		1128F4F05EA0F5108FC65230 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,12 +150,22 @@
 				246F8D3242734FA8147255AD /* Info.plist */,
 				BBCF6DFB3F7D44DC0729E2D1 /* Localizable.xcstrings */,
 				562163F5C2FD9F7FE537FE87 /* App */,
+				484AE9A02FA71DA11792F315 /* DesignSystem */,
 				D48E2158AFBEF1343BFA705D /* Domain */,
 				F91237CD45B8D2EEE9C0F162 /* Features */,
 				B8DF8765D3F64E33154F7683 /* Infrastructure */,
 				E661549C9854317A685D5C89 /* Resources */,
 			);
 			path = Aisly;
+			sourceTree = "<group>";
+		};
+		484AE9A02FA71DA11792F315 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				0E9E28E3A699352B26123B38 /* Components */,
+				A51744E271D4023961A85777 /* Tokens */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 		562163F5C2FD9F7FE537FE87 /* App */ = {
@@ -130,6 +208,18 @@
 				B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */,
 			);
 			path = AislyUITests;
+			sourceTree = "<group>";
+		};
+		A51744E271D4023961A85777 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				F1BE87A200692D40E76714F6 /* AislyColor.swift */,
+				E9EC4F01225B79E33F2C36F2 /* AislyCornerRadius.swift */,
+				499DA4579BA91E6D88771CB6 /* AislyMotion.swift */,
+				F79873ED6041DE2B851DC3A5 /* AislySpacing.swift */,
+				34C778A4B272951F346E2476 /* AislyTypography.swift */,
+			);
+			path = Tokens;
 			sourceTree = "<group>";
 		};
 		B192E76A3BD9AF3819DD4488 /* Shared */ = {
@@ -325,6 +415,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1CA1B2B68C0F563198F4F0F /* AislyApp.swift in Sources */,
+				0E1C3A1276F516FA8673AFBA /* AislyBadge.swift in Sources */,
+				391D4D93E022C38F2AC345B1 /* AislyBudgetSummaryCard.swift in Sources */,
+				843A34D05BD3D7A5B0C7BCB9 /* AislyButtonStyle.swift in Sources */,
+				44AD314E48AB5F7C10E895C0 /* AislyCheckbox.swift in Sources */,
+				C804085C366AE3DF8655F69E /* AislyColor.swift in Sources */,
+				D374120CB35F5173826C92C8 /* AislyCornerRadius.swift in Sources */,
+				00D43D816E4592476D744836 /* AislyInputField.swift in Sources */,
+				DDB13B3C034E21D7E348A8CA /* AislyItemRow.swift in Sources */,
+				A8B38FDDC6D523A6D1BF8FA9 /* AislyListRowCard.swift in Sources */,
+				31DBCA381191B02D61216E0C /* AislyListSummaryCard.swift in Sources */,
+				46B0248C348CD7C2B33E5E63 /* AislyLogo.swift in Sources */,
+				8302D47C9AEA779204BAFE00 /* AislyMotion.swift in Sources */,
+				B37533DA2F9123F53F69B4E7 /* AislyPageHeader.swift in Sources */,
+				DC3E3B304C59BF28A3CE201E /* AislyPrimaryButtonStyle.swift in Sources */,
+				37C5F09150C0C35C39E356B1 /* AislyProgressBar.swift in Sources */,
+				21F5E33E189714C8D5388303 /* AislySectionHeader.swift in Sources */,
+				6074C96FAF5ED5C2E9A33BE1 /* AislySheetContainer.swift in Sources */,
+				BFE659D2F27462AA4D1C9025 /* AislySpacing.swift in Sources */,
+				A0801B43C8A723D9043F3525 /* AislyStateViews.swift in Sources */,
+				068A1E1541AEC915CFF1210A /* AislySurfaceCard.swift in Sources */,
+				E229F7BD03BAA1D7BA86A3EF /* AislySwitch.swift in Sources */,
+				BC5D26BE9FDDAC20D00998A0 /* AislyTypography.swift in Sources */,
 				231C9584EC9AACCAF63A4DA4 /* AppContainer.swift in Sources */,
 				CB4824F1CCBB59A7A5201AF5 /* AppStoragePaths.swift in Sources */,
 				995C51A1AD03E8204EDD6DF7 /* AppStrings.swift in Sources */,
