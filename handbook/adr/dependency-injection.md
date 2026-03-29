@@ -1,21 +1,21 @@
-# Dependency Injection ADR
+# ADR: Injeção de Dependência
 
 ## Status
 
-Accepted
+Aceita
 
-## Decision
+## Decisão
 
-Aisly uses dependency injection at real boundaries.
+O Aisly usa injeção de dependência em fronteiras reais.
 
-## What This Means
+## O que isso significa
 
-- view models receive repositories and services
-- tests can inject fakes
-- future backend and billing clients can be added without rewriting feature code
+- view models recebem repositórios e serviços
+- testes podem usar doubles e implementações falsas
+- novas integrações podem ser adicionadas sem acoplar a interface a detalhes concretos
 
-## What To Avoid
+## O que evitar
 
-- hidden global mutable state
-- singletons as the main composition strategy
-- protocols with no real substitution value
+- estado global mutável
+- singletons como composição principal
+- protocolos sem valor real de substituição

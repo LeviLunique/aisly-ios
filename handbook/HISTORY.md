@@ -1,168 +1,114 @@
-# Delivery History
+# Histórico de Entregas
 
-This document summarizes the roadmap progress already completed for Aisly.
+Este documento resume a evolução do Aisly por etapas.
 
-## Stage Status
+## Status das etapas
 
-- Stage 0: completed
-- Stage 0B: completed
-- Stage 1: completed
-- Stage 2: completed
-- Stage 3: completed locally
-- Stage 4: completed locally
-- Stage 5: completed locally
-- Stage 6: completed locally
-- Stage 7: completed locally
-- Stage 8: completed locally
-- Stage 9: completed locally
-- Stage 10: pending
-- Stage 11: pending
+- Stage 0: concluída
+- Stage 0B: concluída
+- Stage 1: concluída
+- Stage 2: concluída
+- Stage 3: concluída
+- Stage 4: concluída
+- Stage 5: concluída
+- Stage 6: concluída
+- Stage 7: concluída
+- Stage 8: concluída
+- Stage 9: concluída
+- Stage 10: pendente
+- Stage 11: pendente
 
-## Completed Slices
+## Entregas concluídas
 
 ### Stage 0
 
-Delivered:
-
-- public repository scaffold
-- Xcode project scaffold
-- app, test, and UI-test targets
-- public handbook baseline
+- estrutura inicial do repositório
+- projeto Xcode
+- targets do app e de testes
 
 ### Stage 0B
 
-Delivered:
+- workflow de CI
+- workflow de CD com archive sem assinatura
+- baseline inicial de testes
 
-- GitHub Actions CI for the shared scheme
-- a 5-test unit-test baseline for project and scheme integrity
-- GitHub Actions CD that uploads an unsigned release archive artifact
+### Stage 1. Offline Architecture Foundation
 
-### Stage 1
+- `AppContainer`
+- `ShoppingList`
+- `ShoppingListRepository`
+- persistência local em arquivo
+- tela inicial em MVVM
+- suporte a inglês e português do Brasil
 
-Delivered:
+### Stage 2. Multiple Local Lists
 
-- `AppContainer` dependency assembly for the root feature
-- `ShoppingList` domain model plus `ShoppingListRepository`
-- file-backed local persistence through `ShoppingListFileStore` and `LocalShoppingListRepository`
-- centralized `Application Support` path selection through `AppStoragePaths`
-- a root home feature that loads local state through MVVM
-- localized root-screen copy through a String Catalog, shared localization keys, and centralized `AppStrings` access for English and Brazilian Portuguese
-- locale-aware previews and UI launch checks for the root screen without hardcoded translated expectations or duplicated raw keys
-- 17 tests covering repository persistence, storage compliance, localization compliance, centralized text management, shared key governance, and view-model state transitions
+- múltiplas listas
+- renomear e arquivar listas
+- separação entre listas ativas e arquivadas
+- primeira base compartilhada do design system
 
-### Stage 2
+### Stage 3. Local Items and Categories
 
-Delivered:
+- detalhe da lista
+- CRUD de itens
+- quantidade
+- categorias
+- ordenação local
 
-- multiple active and archived local shopping lists on the root screen
-- localized create-list, rename-list, and archive-list flows
-- sheet-based list-name editing with trimmed-name validation
-- persisted local list mutations through the existing repository boundary
-- a shared SwiftUI design-system foundation for colors, typography, spacing, motion, reusable state views, form controls, summary surfaces, and reusable list-screen components
-- expanded regression coverage for storage compliance, localization compliance, design-system guardrails, multiple-list view-model behavior, and locale UI launch checks
+### Stage 4. Budget Core
 
-### Stage 3
+- preço planejado
+- preço real
+- totais da lista
+- diferença de orçamento
 
-Delivered locally:
+### Stage 5. Quick Entry and History
 
-- active lists now open a dedicated local detail screen
-- shopping lists now persist local shopping items with quantity, category, timestamps, and explicit local order
-- the detail feature supports item create, edit, delete, and reorder flows through MVVM
-- the file-backed persistence layer stays backward-compatible with Stage 2 JSON that does not yet contain items
-- the new detail UI stays localized through the shared String Catalog and semantic text boundary
-- the detail workflow reuses the shared design-system layer for state views, inputs, item rows, badges, and actions
-- regression coverage now includes Stage 2 persistence compatibility plus list-detail item behavior
+- histórico de itens
+- sugestões rápidas
+- preenchimento automático do rascunho de item
 
-### Stage 4
+### Stage 6. Templates and Recurrence
 
-Delivered locally:
+- templates locais
+- recorrência semanal, quinzenal e mensal
+- geração de listas a partir de templates
 
-- shopping items now persist optional planned and actual prices
-- the list-detail feature now derives planned total, actual total, actual-price coverage, and budget delta locally
-- the detail screen now shows a shared budget summary card above the item list
-- the item editor now supports optional planned and actual price entry
-- the file-backed persistence layer stays backward-compatible with Stage 3 item payloads that do not yet contain budget fields
-- regression coverage now includes Stage 3 persistence compatibility plus budget totals and price-draft validation
+### Stage 7. Store and Price Memory
 
-### Stage 5
+- nome da loja por item
+- sugestões de lojas recentes
+- memória de último preço por loja
 
-Delivered locally:
+### Stage 8. Shopping Mode
 
-- add-item flow now derives quick-entry suggestions from local item history across lists
-- repeated items are grouped by normalized name and ranked by draft match, usage frequency, and recency
-- tapping a suggestion pre-fills the create-item draft with name, quantity, category, and planned price
-- the quick-entry UI stays inside the existing list-detail editor instead of introducing a new screen or persistence layer
-- the new section title stays localized through the shared String Catalog and semantic text boundary
-- regression coverage now includes history aggregation, live filtering, prefilling behavior, and detail-screen source-audit compliance
+- tela dedicada para a compra
+- conclusão de itens
+- edição de preço real durante a compra
+- progresso e totais da sessão
 
-### Stage 6
+### Stage 9. Apple-First Convenience
 
-Delivered locally:
+- widget
+- App Intents
+- atalhos de entrada rápida no app
+- deep links para fluxos internos
 
-- active lists can now be saved as reusable local templates
-- templates persist recurrence metadata for weekly, biweekly, and monthly reuse
-- the home screen now renders templates separately from active and archived lists
-- tapping a template generates a fresh active list through the existing repository boundary
-- generated lists preserve reusable item data while clearing actual prices
-- the file-backed persistence layer stays backward-compatible with Stage 5 JSON that does not yet contain template metadata
-- regression coverage now includes persistence compatibility, template snapshot separation, template draft prefilling, and generated-list reset behavior
+## Trabalho complementar
 
-### Stage 7
+Além das etapas principais, existe uma branch remota dedicada ao design system:
 
-Delivered locally:
+- `feat/swiftui-design-system`
 
-- shopping items now persist an optional store name
-- the item editor now suggests recent stores from existing non-template local history
-- the detail workflow now shows a remembered last price for the same item at the same store
-- remembered prices can prefill planned price with one tap inside the existing editor
-- the file-backed persistence layer stays backward-compatible with older JSON that does not yet contain store names
-- regression coverage now includes store suggestion ranking, store-specific price memory, editor prefills, and persistence compatibility
+Ela expande:
 
-### Stage 8
+- tokens visuais
+- componentes reutilizáveis
+- identidade visual da marca
 
-Delivered locally:
+## Próxima prioridade
 
-- added a dedicated shopping-mode screen reachable from list detail
-- added persistent local completion state for shopping items
-- added fast check-off interactions during the shopping session
-- added actual-price editing inside the shopping flow
-- surfaced shopping-session progress and running totals with the shared design-system layer
-- kept the file-backed persistence layer backward-compatible with older JSON that does not yet contain completion state
-- regression coverage now includes session loading, completion persistence, actual-price editing, and backward-compatible item decoding
-
-### Stage 9
-
-Delivered locally:
-
-- added one active-list widget backed by the same offline local data as the app
-- added App Intents to open the home lists screen or jump directly into shopping mode
-- added custom `aisly://` deep-link routing for Apple-native entry points
-- added an app-group-backed storage path so the app and widget share the same local JSON data safely
-- kept Apple-surface integration inside the existing repository and MVVM boundaries
-- documented the one App Intents metadata exception where metadata declarations require direct localization-key literals
-- regression coverage now includes shared storage-path selection, deep-link parsing, route handoff, URL-scheme declaration, and Apple-surface source-audit rules
-
-### Supporting Remote Branch Work
-
-The remote repository also contains additional implemented work that is not yet part of the numbered product-stage history on `main`.
-
-#### SwiftUI Design System Foundation
-
-Delivered on remote branch `feat/swiftui-design-system`:
-
-- expanded the shared token layer with semantic colors, radii, and a broader component-ready motion posture
-- added reusable SwiftUI components for badges, inputs, toggles, progress, page headers, list summary cards, budget summary cards, and item rows
-- added shared Aisly logo and mark assets to the design system
-- aligned the root local-lists UI with the broader shared design-system layer
-
-## Planned Next Work
-
-The next correct work is:
+A próxima etapa correta é:
 
 - online readiness
-
-Not:
-
-- backend
-- subscriptions
-- paid support tooling

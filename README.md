@@ -1,33 +1,39 @@
 # Aisly
 
-Aisly is an iOS app focused on shared shopping, recurring purchase flows, and budget-aware planning.
+O Aisly é um aplicativo iOS para listas de compras, compras recorrentes e acompanhamento de orçamento.
 
-The repository is still in the early foundation stage.
-For project context, architecture, and contribution guidance, start with the handbook.
-
-## Start Here
-
-- [Handbook Home](/Users/levilunique/Workspace/Swift/Aisly/handbook/README.md)
-- [Local Development](/Users/levilunique/Workspace/Swift/Aisly/handbook/LOCAL_DEVELOPMENT.md)
-- [Technical Overview](/Users/levilunique/Workspace/Swift/Aisly/handbook/TECHNICAL_OVERVIEW.md)
-- [Product Strategy](/Users/levilunique/Workspace/Swift/Aisly/handbook/PRODUCT_STRATEGY.md)
-- [Contributing](/Users/levilunique/Workspace/Swift/Aisly/handbook/CONTRIBUTING.md)
-- [Features and Roadmap](/Users/levilunique/Workspace/Swift/Aisly/handbook/FEATURES.md)
-
-## Project Structure
-
-- [Aisly.xcodeproj](/Users/levilunique/Workspace/Swift/Aisly/Aisly.xcodeproj) contains the Xcode project
-- [Aisly](/Users/levilunique/Workspace/Swift/Aisly/Aisly) contains the app target
-- [AislyTests](/Users/levilunique/Workspace/Swift/Aisly/AislyTests) contains unit tests
-- [AislyUITests](/Users/levilunique/Workspace/Swift/Aisly/AislyUITests) contains UI tests
-- [handbook](/Users/levilunique/Workspace/Swift/Aisly/handbook) contains the shared developer documentation
-
-## Current Direction
-
-The app is being shaped around:
+O projeto é desenvolvido com:
 
 - SwiftUI
 - MVVM
-- dependency injection
-- clean code fundamentals
-- a product wedge centered on shared shopping plus budget intelligence
+- injeção de dependência
+- persistência local
+- foco em uma experiência simples e útil no dia a dia
+
+## Comece por aqui
+
+- [Handbook](handbook/README.md)
+- [Desenvolvimento local](handbook/LOCAL_DEVELOPMENT.md)
+- [Visão técnica](handbook/TECHNICAL_OVERVIEW.md)
+- [Estratégia de produto](handbook/PRODUCT_STRATEGY.md)
+- [Contribuição](handbook/CONTRIBUTING.md)
+- [Recursos e roadmap](handbook/FEATURES.md)
+
+## Estrutura do projeto
+
+- `Aisly.xcodeproj`: projeto Xcode
+- `Aisly/`: alvo principal do aplicativo
+- `AislyTests/`: testes unitários
+- `AislyUITests/`: testes de interface
+- `handbook/`: documentação pública do projeto
+
+## Direção atual
+
+O Aisly está sendo construído em torno de:
+
+- listas locais
+- itens e categorias
+- orçamento planejado e real
+- reutilização de listas recorrentes
+- apoio durante a compra
+- integrações nativas do ecossistema Apple

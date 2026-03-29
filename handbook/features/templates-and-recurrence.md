@@ -1,27 +1,21 @@
-# Templates and Recurrence
+# Templates e Recorrência
 
-This page summarizes the Stage 6 slice that makes repeated shopping lists reusable.
+Esta etapa adicionou reutilização de listas recorrentes.
 
-## What It Does
+## O que foi entregue
 
-The app now lets users:
+- salvar lista como template
+- definir recorrência
+- gerar nova lista a partir de template
+- manter templates separados das listas ativas
 
-- save an active shopping list as a reusable template
-- choose a recurrence cadence for that template
-- see templates in their own home-screen section
-- generate a fresh active list from a saved template
+## Por que isso importa
 
-## Why It Matters
+O recurso reduz retrabalho e aproxima o produto do uso doméstico recorrente.
 
-This slice moves Aisly further toward recurring household-shopping utility instead of one-off list editing.
+## Como validar
 
-It reduces repeated setup work, keeps routines easy to restart, and creates the right base for later store memory and shopping-mode improvements.
-
-## How To Verify
-
-1. Run `xcodegen generate`.
-2. Run `xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform=iOS Simulator' build`.
-3. Save one active list as a template from the home screen.
-4. Confirm the templates section appears.
-5. Generate a list from that template.
-6. Open the new list and confirm reusable item data copied across while actual prices were reset.
+1. Abra uma lista ativa.
+2. Salve a lista como template.
+3. Gere uma nova lista a partir desse template.
+4. Confirme que os itens reutilizáveis foram copiados.

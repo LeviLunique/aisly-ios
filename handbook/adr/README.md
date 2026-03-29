@@ -1,11 +1,14 @@
-# Architecture Decision Records
+# ADRs
 
-These handbook ADRs summarize the core project decisions for Aisly.
+Esta pasta reúne as principais decisões arquiteturais do projeto.
 
-Read in this order:
+## Ordem recomendada
 
-1. [app-architecture.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/app-architecture.md)
-2. [dependency-injection.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/dependency-injection.md)
-3. [quality-and-testing.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/quality-and-testing.md)
-4. [product-positioning.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/product-positioning.md)
-5. [storage-standards.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/storage-standards.md)
+1. [Arquitetura](app-architecture.md)
+2. [Injeção de dependência](dependency-injection.md)
+3. [Qualidade e testes](quality-and-testing.md)
+4. [Posicionamento de produto](product-positioning.md)
+5. [Armazenamento](storage-standards.md)
+6. [Padrões de projeto](design-pattern-adoption.md)
+7. [Design system](design-system-standards.md)
+8. [Localização](localization-standards.md)

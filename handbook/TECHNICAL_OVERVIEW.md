@@ -1,155 +1,92 @@
-# Technical Overview
+# Visão Técnica
 
-This document explains how Aisly should be structured and why.
+Este documento explica como o Aisly está estruturado.
 
-## Product Context
+## Contexto do produto
 
-Aisly is an offline-first shopping app.
+O Aisly é um aplicativo offline-first para listas de compras.
 
-Its first strong product promise is not "make a list".
-It is:
+Sua proposta principal é:
 
-- make recurring shopping faster
-- help users see expected versus actual spend
+- acelerar compras recorrentes
+- mostrar a diferença entre valor planejado e valor real
 
-## Architectural Style
+## Estilo de arquitetura
 
-The app uses a pragmatic feature-first MVVM architecture.
+O projeto usa uma arquitetura pragmática baseada em:
 
-That means:
+- SwiftUI
+- MVVM
+- injeção de dependência
+- repositórios para persistência
 
-- views render state
-- view models own presentation logic
-- services hold reusable business rules
-- repositories hide persistence and future remote boundaries
-- dependencies are assembled explicitly
-- user-facing copy comes from `Localizable.xcstrings`, not Swift source literals
+Na prática:
 
-## Core Product Implication
+- as views renderizam estado e eventos
+- as view models concentram lógica de apresentação
+- os repositórios isolam acesso aos dados
+- a montagem de dependências acontece de forma explícita
 
-The app is local-first now and backend-ready later.
+## Estado atual da base
 
-That means:
+Hoje o app já inclui:
 
-- the first implementation stores data locally on device
-- repository boundaries must exist from the start
-- a future backend should be additive, not a rewrite
+- `AppContainer` para composição das dependências
+- `ShoppingListRepository` como fronteira de persistência
+- persistência local em arquivo
+- múltiplas listas
+- itens, categorias e ordenação
+- orçamento planejado e real
+- histórico de itens
+- templates e recorrência
+- memória de loja e preço
+- modo de compra
+- widget e App Intents
+- suporte a inglês e português do Brasil
 
-## Current Foundation
+## Postura arquitetural
 
-The current remote `main` app base now includes:
+O projeto evita:
 
-- an `AppContainer` that assembles live dependencies
-- a `ShoppingListRepository` boundary for shopping-list persistence
-- a file-backed local persistence adapter for offline storage
-- a centralized `Application Support` path for persistent shopping-list data
-- a root `HomeViewModel` that now loads and mutates multiple local lists
-- localized create, rename, and archive flows for the root local-list screen
-- a `ListDetailViewModel` that now loads and mutates local items inside a selected list
-- local shopping items with quantity, category, explicit local order, and optional planned and actual prices stored inside the file-backed list model
-- derived list planned total, actual total, actual-price coverage, and budget delta inside the local shopping-list model
-- quick-entry suggestion derivation from local item history inside the existing add-item flow
-- reusable local templates plus recurrence metadata and template-based list generation inside the home workflow
-- optional per-item store names plus local recent-store and store-specific last-price suggestions inside the existing item editor
-- a dedicated shopping-mode flow with persistent item completion, in-trip actual-price entry, and session progress derived from the same local list model
-- an Apple-first convenience layer with an app-group-backed widget, App Intents, and deep-link routing over the same offline repository path
-- English and Brazilian Portuguese resources for the shipped root-screen copy
+- singletons como estratégia principal
+- persistência dentro das views
+- acoplamento direto entre interface e armazenamento
+- complexidade sem necessidade imediata
 
-This is intentionally narrow.
-It provides the minimum useful local-list product before item, category, and budget slices expand the domain further, without introducing backend or sync machinery early.
+## Localização
 
-The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared native visual layer with broader tokens, reusable controls, summary components, and logo assets. That branch deepens the visual foundation without changing the product roadmap order.
+Todo texto visível para o usuário deve:
 
-## Pattern Posture
+- sair de `Localizable.xcstrings`
+- usar chaves semânticas centralizadas
+- respeitar formatação por localidade para datas, números e moeda
 
-Aisly does not adopt patterns by habit.
+## Design system
 
-The preferred pattern set is:
+O app usa um design system compartilhado para:
 
-- repositories for persistence boundaries
-- adapters for Apple or infrastructure APIs
-- factory functions in the app container or feature factories
-- strategies when domain rules genuinely vary
-- scoped observation for state propagation
+- cores
+- tipografia
+- espaçamento
+- componentes reutilizáveis
+- identidade visual da marca
 
-The app uses these only when the slice proves the need:
+## Persistência
 
-- facades
-- decorators
-- builders
-- delegates
+As decisões de armazenamento seguem a classificação dos dados:
 
-The app avoids custom singletons and keeps app-lifetime state inside explicit dependency assembly.
+- preferências simples: `UserDefaults` ou `@AppStorage`
+- dados sensíveis: Keychain
+- dados persistentes do app: sistema de arquivos
+- dados estruturados mais complexos: possibilidade futura de `SwiftData`
 
-## Localization Posture
+## Leituras relacionadas
 
-Aisly localizes user-facing copy by default.
-
-That means:
-
-- String Catalog resources, not legacy `.strings`, are the default
-- English and Brazilian Portuguese ship together
-- raw localization keys stay centralized in one shared semantic key registry
-- app-facing localized resources stay centralized in semantic helpers such as `AppStrings`
-- locale-aware formatting is mandatory for visible values
-- view models expose semantic state instead of raw UI copy
-- previews and UI tests should not depend on hardcoded translated display strings
-- App Intents metadata files may use direct localization-key literals only when Apple metadata extraction rejects the normal centralized `AppStrings` indirection
-
-## Design System Posture
-
-Aisly styles SwiftUI screens through a shared native design system.
-
-That means:
-
-- semantic tokens define app colors, spacing, typography, and reusable radii
-- shared motion constants define the native-feeling interaction posture for press feedback, progress animation, sheet presentation, and lightweight state transitions
-- repeated UI patterns should prefer shared SwiftUI components or styles
-- branded app surfaces should prefer shared logo or mark components from the design system
-- reference designs must be adapted to native iOS behavior instead of copied from web implementations
-- screens should avoid inline styling when the shared design system already covers the need
-
-## Storage Posture
-
-Aisly chooses storage by data classification.
-
-That means:
-
-- lightweight non-sensitive preferences belong in `UserDefaults` or `@AppStorage` only when a slice actually needs them
-- sensitive data belongs in Keychain only
-- persistent app-managed files belong under `Application Support`
-- app-group-backed persistent files are allowed when Apple extensions must read the same offline data
-- future structured relational persistence should prefer `SwiftData` when simple file-backed JSON stops being sufficient
-
-## Core Technical Priorities
-
-The architecture should make these easy to evolve:
-
-- totals and deltas
-- repeated-item entry from local history
-- shopping-mode interaction
-- Apple-first entry points using the same offline list data
-- recurrence and templates
-- price memory by store
-- shopping-mode execution using remembered store and price context
-- shopping-session progress using locally persisted checked-item state
-
-## What the Architecture Should Avoid
-
-- iCloud-only lock-in as the long-term collaboration story
-- payment infrastructure before premium value exists
-- feature sprawl before the local product is strong
-- view models coupled directly to persistence frameworks everywhere
-
-## Reference Decisions
-
-For the reasoning behind this overview, see:
-
-- [app-architecture.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/app-architecture.md)
-- [dependency-injection.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/dependency-injection.md)
-- [design-pattern-adoption.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/design-pattern-adoption.md)
-- [design-system-standards.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/design-system-standards.md)
-- [localization-standards.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/localization-standards.md)
-- [quality-and-testing.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/quality-and-testing.md)
-- [product-positioning.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/product-positioning.md)
-- [storage-standards.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/storage-standards.md)
+- [Arquitetura](adr/app-architecture.md)
+- [Injeção de dependência](adr/dependency-injection.md)
+- [Padrões de projeto](adr/design-pattern-adoption.md)
+- [Design system](adr/design-system-standards.md)
+- [Localização](adr/localization-standards.md)
+- [Qualidade e testes](adr/quality-and-testing.md)
+- [Posicionamento de produto](adr/product-positioning.md)
+- [Armazenamento](adr/storage-standards.md)

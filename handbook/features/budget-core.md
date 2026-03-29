@@ -1,36 +1,22 @@
-# Budget Core
+# Núcleo de Orçamento
 
-This page summarizes the Stage 4 slice that adds the first real spend signal to Aisly.
+Esta etapa adicionou o primeiro sinal real de gasto dentro do app.
 
-## What It Does
+## O que foi entregue
 
-The app now lets users:
+- preço planejado por item
+- preço real por item
+- total planejado por lista
+- total real por lista
+- diferença de orçamento
 
-- store a planned price for each item
-- store an actual price for each item
-- see planned and actual totals for one list
-- see when the list is under, over, or still waiting for actual prices
-- keep all of that pricing data local and persistent across launches
+## Por que isso importa
 
-## Why It Matters
+Essa é a base da promessa principal do produto: não só listar o que comprar, mas acompanhar quanto se planejava gastar e quanto realmente foi gasto.
 
-This is the first slice that starts delivering on Aisly’s real product promise.
+## Como validar
 
-The app is no longer only organizing what to buy.
-It is starting to show:
-
-- what the shopping trip was expected to cost
-- what it is actually costing
-- whether the user is staying on budget
-
-That gives later stages a clean base for price memory, shopping mode, and recurring budget-aware routines.
-
-## How To Verify
-
-1. Run `xcodegen generate`.
-2. Run `xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform=iOS Simulator' build`.
-3. Launch the app and open an active list.
-4. Add an item with a planned price and confirm the budget card updates.
-5. Edit that item and add an actual price.
-6. Confirm the actual total and delta state update.
-7. Relaunch the app and confirm the prices and totals persist.
+1. Abra uma lista ativa.
+2. Adicione um item com preço planejado.
+3. Edite o item com preço real.
+4. Confirme a atualização dos totais e da diferença no resumo.

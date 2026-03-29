@@ -1,41 +1,35 @@
-# Design Pattern Adoption ADR
+# ADR: Adoção de Padrões de Projeto
 
 ## Status
 
-Accepted
+Aceita
 
-## Decision
+## Decisão
 
-Aisly uses design patterns only when they solve a concrete problem in the current slice.
+O Aisly utiliza padrões de projeto apenas quando eles resolvem um problema concreto da etapa atual.
 
-The project prefers Swift-friendly, composition-based implementations over textbook inheritance-heavy versions.
+## Primeiras escolhas aprovadas
 
-## Approved First Choices
+- Repository para persistência e fronteiras externas
+- Adapter para APIs da Apple e infraestrutura
+- funções de fábrica no container
+- Strategy quando regras de domínio realmente variam
+- observação de estado compatível com SwiftUI
 
-- repositories for persistence and external boundaries
-- adapters for Apple and infrastructure APIs
-- factory functions through the app container or feature factories
-- strategies when the domain truly needs interchangeable rules
-- scoped observation through SwiftUI-friendly state propagation
+## Padrões condicionais
 
-## Conditional Patterns
+Use apenas quando necessário:
 
-Use only when the slice clearly needs them:
+- Facade
+- Decorator
+- Builder
+- Delegate
 
-- facades for simplifying multi-step subsystems
-- decorators for logging, caching, metrics, retry, or fallback around a stable contract
-- builders for genuinely complex configuration assembly
-- delegates for UIKit or system API integration
+## O que evitar por padrão
 
-## Avoid By Default
+- singletons personalizados
+- hierarquias complexas sem ganho prático
 
-- custom singletons
+## Observação
 
-Use the app container for app-lifetime dependencies instead of global mutable objects.
-
-## Pattern Notes
-
-- `Factory Method` is expressed in Aisly as factory functions or factory structs, not subclass hierarchies.
-- `Observer` should stay scoped. Do not turn `NotificationCenter` into a global feature-event bus.
-- `Delegate` belongs mostly at framework edges because Aisly is SwiftUI-first.
-- `Strategy` is a strong fit for recurrence, totals, sorting, price suggestion, and future merge policies.
+O projeto prefere composição e soluções idiomáticas de Swift em vez de versões excessivamente acadêmicas dos padrões.

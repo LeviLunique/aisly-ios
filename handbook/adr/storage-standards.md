@@ -1,18 +1,18 @@
-# Storage Standards ADR
+# ADR: Padrões de Armazenamento
 
 ## Status
 
-Accepted
+Aceita
 
-## Decision
+## Decisão
 
-Aisly classifies data before choosing a local storage mechanism.
+O Aisly classifica os dados antes de escolher onde armazená-los.
 
-## What This Means
+## O que isso significa
 
-- use `UserDefaults` or `@AppStorage` only for lightweight non-sensitive preferences
-- use Keychain for tokens, passwords, credentials, and any sensitive data
-- use the file system for large or serialized payloads, with `Application Support` for persistent app-managed data and `Caches` for discardable data
-- prefer `SwiftData` for future structured relational persistence on iOS 17+, and use `Core Data` only with a clear compatibility or capability reason
-- keep storage APIs behind repositories or services instead of touching them from views
-- add tests when persistence rules or storage classifications change
+- `UserDefaults` ou `@AppStorage` apenas para preferências simples e não sensíveis
+- Keychain para dados sensíveis
+- sistema de arquivos para payloads serializados e persistentes do app
+- `SwiftData` pode ser adotado no futuro para dados relacionais mais complexos
+- views não devem acessar persistência diretamente
+- mudanças de persistência devem vir acompanhadas de testes
