@@ -2,6 +2,80 @@ import XCTest
 @testable import Aisly
 
 final class AislyTests: XCTestCase {
+    func testAislySpacingMatchesReferenceScale() {
+        XCTAssertEqual(AislySpacing.xSmall, 4)
+        XCTAssertEqual(AislySpacing.small, 8)
+        XCTAssertEqual(AislySpacing.medium, 12)
+        XCTAssertEqual(AislySpacing.large, 16)
+        XCTAssertEqual(AislySpacing.xLarge, 20)
+        XCTAssertEqual(AislySpacing.xxLarge, 24)
+        XCTAssertEqual(AislySpacing.xxxLarge, 32)
+        XCTAssertEqual(AislySpacing.giant, 40)
+    }
+
+    func testAislyCornerRadiusScaleSupportsNativeCardSurfaces() {
+        XCTAssertLessThan(AislyCornerRadius.xSmall, AislyCornerRadius.small)
+        XCTAssertLessThan(AislyCornerRadius.small, AislyCornerRadius.medium)
+        XCTAssertLessThan(AislyCornerRadius.small, AislyCornerRadius.standard)
+        XCTAssertLessThan(AislyCornerRadius.standard, AislyCornerRadius.medium)
+        XCTAssertLessThan(AislyCornerRadius.medium, AislyCornerRadius.large)
+        XCTAssertLessThan(AislyCornerRadius.large, AislyCornerRadius.xLarge)
+        XCTAssertLessThan(AislyCornerRadius.xLarge, AislyCornerRadius.xxLarge)
+        XCTAssertGreaterThan(AislyCornerRadius.full, AislyCornerRadius.xxLarge)
+    }
+
+    func testAislyMotionMatchesReferenceInteractionPosture() {
+        XCTAssertEqual(AislyMotion.pressScale, 0.98, accuracy: 0.0001)
+    }
+
+    func testExpandedDesignSystemVariantsRemainAvailable() {
+        XCTAssertEqual(Set(AislyButtonStyle.Variant.allCases), Set([.primary, .secondary, .success, .destructive, .ghost]))
+        XCTAssertEqual(Set(AislyButtonStyle.Size.allCases), Set([.small, .medium, .large]))
+        XCTAssertEqual(Set(AislyBadge.Tone.allCases), Set([.neutral, .primary, .success, .warning, .error, .archive]))
+        XCTAssertEqual(Set(AislyBadge.Size.allCases), Set([.small, .medium]))
+        XCTAssertEqual(Set(AislyProgressBar.Tone.allCases), Set([.primary, .success, .warning, .error]))
+        XCTAssertEqual(Set(AislyBudgetSummaryCard.DeltaTone.allCases), Set([.neutral, .underBudget, .overBudget]))
+    }
+
+    func testExpandedDesignSystemComponentFilesExist() {
+        let expectedFiles = [
+            "Aisly/DesignSystem/Components/AislyButtonStyle.swift",
+            "Aisly/DesignSystem/Components/AislyBadge.swift",
+            "Aisly/DesignSystem/Components/AislyInputField.swift",
+            "Aisly/DesignSystem/Components/AislyCheckbox.swift",
+            "Aisly/DesignSystem/Components/AislySwitch.swift",
+            "Aisly/DesignSystem/Components/AislyProgressBar.swift",
+            "Aisly/DesignSystem/Components/AislyStateViews.swift",
+            "Aisly/DesignSystem/Components/AislySheetContainer.swift",
+            "Aisly/DesignSystem/Components/AislyPageHeader.swift",
+            "Aisly/DesignSystem/Components/AislyBudgetSummaryCard.swift",
+            "Aisly/DesignSystem/Components/AislyItemRow.swift",
+            "Aisly/DesignSystem/Components/AislyListSummaryCard.swift",
+            "Aisly/DesignSystem/Tokens/AislyMotion.swift"
+        ]
+
+        for relativePath in expectedFiles {
+            XCTAssertTrue(FileManager.default.fileExists(atPath: appFileURL(relativePath).path), relativePath)
+        }
+    }
+
+    func testAislyLogoSizeScaleMatchesReferenceDimensions() {
+        XCTAssertEqual(AislyLogo.Size.small.dimension, 40)
+        XCTAssertEqual(AislyLogo.Size.medium.dimension, 64)
+        XCTAssertEqual(AislyLogo.Size.large.dimension, 96)
+        XCTAssertEqual(AislyLogo.Size.xLarge.dimension, 128)
+        XCTAssertEqual(AislyMark.Size.small.dimension, 24)
+        XCTAssertEqual(AislyMark.Size.medium.dimension, 32)
+        XCTAssertEqual(AislyMark.Size.large.dimension, 48)
+    }
+
+    func testAislyLogoSupportsAllSharedVariants() {
+        XCTAssertEqual(
+            Set(AislyLogo.Variant.allCases),
+            Set([.default, .monochrome, .light, .dark])
+        )
+    }
+
     func testLocalizationCatalogExistsWithEnglishAndBrazilianPortugueseTranslations() throws {
         let catalog = try makeLocalizationCatalog()
         let expectedLocales = Set(["en", "pt-BR"])
@@ -152,6 +226,21 @@ final class AislyTests: XCTestCase {
         }
 
         XCTAssertEqual(violations, [])
+    }
+
+    func testHomeViewUsesSharedDesignSystemComponents() throws {
+        let homeViewContents = try String(
+            contentsOf: appFileURL("Aisly/Features/Home/HomeView.swift"),
+            encoding: .utf8
+        )
+
+        XCTAssertTrue(homeViewContents.contains("AislySectionHeader"))
+        XCTAssertTrue(homeViewContents.contains("AislyListRowCard"))
+        XCTAssertTrue(homeViewContents.contains("AislyPrimaryButtonStyle"))
+        XCTAssertTrue(homeViewContents.contains("AislyColor.primary"))
+        XCTAssertTrue(homeViewContents.contains("AislyMark"))
+        XCTAssertTrue(homeViewContents.contains("AislyLoadingState"))
+        XCTAssertTrue(homeViewContents.contains("AislyEmptyState"))
     }
 
     func testAppTextKeysExistInLocalizationCatalog() throws {

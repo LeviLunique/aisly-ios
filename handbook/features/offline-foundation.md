@@ -2,6 +2,8 @@
 
 This page summarizes the first real architecture slice shipped in Aisly.
 
+The offline-foundation slice is now present on the remote `main` branch.
+
 ## What It Does
 
 The app now starts with:
