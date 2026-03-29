@@ -2,9 +2,11 @@ import SwiftUI
 
 @main
 struct AislyApp: App {
+    private let container = AppContainer()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            container.makeHomeView()
         }
     }
 }

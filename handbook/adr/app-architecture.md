@@ -15,6 +15,7 @@ Aisly uses a pragmatic feature-first MVVM architecture in SwiftUI.
 - services hold reusable business rules
 - repositories encapsulate persistence and future remote boundaries
 - dependencies are assembled explicitly
+- design patterns are applied only when the current slice needs them
 
 ## Additional Rule
 
@@ -25,3 +26,5 @@ That means:
 - local persistence comes first
 - repository boundaries are required from the start
 - backend infrastructure is deferred until the local product is strong
+
+For the project-specific pattern rules, see [design-pattern-adoption.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/adr/design-pattern-adoption.md).
