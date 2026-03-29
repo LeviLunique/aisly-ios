@@ -11,7 +11,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 - Stage 3: completed locally
 - Stage 4: completed locally
 - Stage 5: completed locally
-- Stage 6: pending
+- Stage 6: completed locally
 - Stage 7: pending
 - Stage 8: pending
 - Stage 9: pending
@@ -95,6 +95,18 @@ Delivered locally:
 - the new section title stays localized through the shared String Catalog and semantic text boundary
 - regression coverage now includes history aggregation, live filtering, prefilling behavior, and detail-screen source-audit compliance
 
+### Stage 6
+
+Delivered locally:
+
+- active lists can now be saved as reusable local templates
+- templates persist recurrence metadata for weekly, biweekly, and monthly reuse
+- the home screen now renders templates separately from active and archived lists
+- tapping a template generates a fresh active list through the existing repository boundary
+- generated lists preserve reusable item data while clearing actual prices
+- the file-backed persistence layer stays backward-compatible with Stage 5 JSON that does not yet contain template metadata
+- regression coverage now includes persistence compatibility, template snapshot separation, template draft prefilling, and generated-list reset behavior
+
 ### Supporting Remote Branch Work
 
 The remote repository also contains additional implemented work that is not yet part of the numbered product-stage history on `main`.
@@ -112,7 +124,7 @@ Delivered on remote branch `feat/swiftui-design-system`:
 
 The next correct work is:
 
-- templates and recurrence
+- store and price memory
 
 Not:
 

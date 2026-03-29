@@ -1,12 +1,33 @@
 import Foundation
 
 struct ShoppingList: Identifiable, Equatable, Sendable {
+    enum TemplateRecurrence: String, CaseIterable, Codable, Identifiable, Sendable {
+        case weekly
+        case biweekly
+        case monthly
+
+        var id: String { rawValue }
+    }
+
+    struct TemplateConfiguration: Equatable, Codable, Sendable {
+        let recurrence: TemplateRecurrence
+    }
+
     let id: UUID
     var name: String
     let createdAt: Date
     var updatedAt: Date
     var isArchived: Bool
     var items: [ShoppingItem] = []
+    var templateConfiguration: TemplateConfiguration? = nil
+
+    var isTemplate: Bool {
+        templateConfiguration != nil
+    }
+
+    var templateRecurrence: TemplateRecurrence? {
+        templateConfiguration?.recurrence
+    }
 
     var plannedTotal: Decimal {
         items.reduce(into: Decimal.zero) { total, item in
@@ -39,7 +60,9 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
     static func make(
         id: UUID,
         name: String,
-        now: Date
+        now: Date,
+        templateConfiguration: TemplateConfiguration? = nil,
+        items: [ShoppingItem] = []
     ) -> ShoppingList {
         ShoppingList(
             id: id,
@@ -47,7 +70,8 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
             createdAt: now,
             updatedAt: now,
             isArchived: false,
-            items: []
+            items: items,
+            templateConfiguration: templateConfiguration
         )
     }
 
@@ -58,7 +82,8 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
             createdAt: createdAt,
             updatedAt: updatedAt,
             isArchived: isArchived,
-            items: items
+            items: items,
+            templateConfiguration: templateConfiguration
         )
     }
 
@@ -69,7 +94,64 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
             createdAt: createdAt,
             updatedAt: updatedAt,
             isArchived: true,
-            items: items
+            items: items,
+            templateConfiguration: templateConfiguration
+        )
+    }
+
+    func makingTemplate(
+        id: UUID,
+        name: String,
+        recurrence: TemplateRecurrence,
+        makeItemID: () -> UUID,
+        updatedAt: Date
+    ) -> ShoppingList {
+        let templateItems = items
+            .sorted(by: ShoppingList.itemSortComparator)
+            .enumerated()
+            .map { index, item in
+                item.copiedForTemplateReuse(
+                    id: makeItemID(),
+                    updatedAt: updatedAt,
+                    sortOrder: index
+                )
+            }
+
+        return ShoppingList(
+            id: id,
+            name: name,
+            createdAt: updatedAt,
+            updatedAt: updatedAt,
+            isArchived: false,
+            items: templateItems,
+            templateConfiguration: .init(recurrence: recurrence)
+        )
+    }
+
+    func generatingListFromTemplate(
+        id: UUID,
+        makeItemID: () -> UUID,
+        updatedAt: Date
+    ) -> ShoppingList {
+        let generatedItems = items
+            .sorted(by: ShoppingList.itemSortComparator)
+            .enumerated()
+            .map { index, item in
+                item.copiedForTemplateReuse(
+                    id: makeItemID(),
+                    updatedAt: updatedAt,
+                    sortOrder: index
+                )
+            }
+
+        return ShoppingList(
+            id: id,
+            name: name,
+            createdAt: updatedAt,
+            updatedAt: updatedAt,
+            isArchived: false,
+            items: generatedItems,
+            templateConfiguration: nil
         )
     }
 
@@ -147,13 +229,24 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
             createdAt: createdAt,
             updatedAt: updatedAt,
             isArchived: isArchived,
-            items: items
+            items: items,
+            templateConfiguration: templateConfiguration
         )
     }
 
     static func reindexedItems(_ items: [ShoppingItem], updatedAt: Date) -> [ShoppingItem] {
         items.enumerated().map { index, item in
             item.reordered(sortOrder: index, updatedAt: updatedAt)
+        }
+    }
+
+    private static var itemSortComparator: (ShoppingItem, ShoppingItem) -> Bool {
+        { lhs, rhs in
+            if lhs.sortOrder == rhs.sortOrder {
+                return lhs.createdAt < rhs.createdAt
+            }
+
+            return lhs.sortOrder < rhs.sortOrder
         }
     }
 }

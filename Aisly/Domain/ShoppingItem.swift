@@ -88,4 +88,22 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             sortOrder: sortOrder
         )
     }
+
+    func copiedForTemplateReuse(
+        id: UUID,
+        updatedAt: Date,
+        sortOrder: Int
+    ) -> ShoppingItem {
+        ShoppingItem(
+            id: id,
+            name: name,
+            quantity: quantity,
+            category: category,
+            plannedPrice: plannedPrice,
+            actualPrice: nil,
+            createdAt: updatedAt,
+            updatedAt: updatedAt,
+            sortOrder: sortOrder
+        )
+    }
 }
