@@ -10,6 +10,10 @@ O projeto é desenvolvido com:
 - persistência local
 - foco em uma experiência simples e útil no dia a dia
 
+## Apresentação
+
+- [Vídeo de apresentação no YouTube](https://youtu.be/JoIbvAGzmqY)
+
 ## Comece por aqui
 
 - [Handbook](handbook/README.md)
