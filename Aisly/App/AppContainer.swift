@@ -18,6 +18,12 @@ struct AppContainer {
                     listID: listID,
                     repository: shoppingListRepository
                 )
+            },
+            makeShoppingModeViewModel: { listID in
+                ShoppingModeViewModel(
+                    listID: listID,
+                    repository: shoppingListRepository
+                )
             }
         )
     }

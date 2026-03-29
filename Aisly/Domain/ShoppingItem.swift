@@ -20,6 +20,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
     var storeName: String?
     var plannedPrice: Decimal?
     var actualPrice: Decimal?
+    var isCompleted: Bool
     let createdAt: Date
     var updatedAt: Date
     var sortOrder: Int
@@ -40,6 +41,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
         storeName: String?,
         plannedPrice: Decimal?,
         actualPrice: Decimal?,
+        isCompleted: Bool = false,
         sortOrder: Int,
         now: Date
     ) -> ShoppingItem {
@@ -51,6 +53,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
+            isCompleted: isCompleted,
             createdAt: now,
             updatedAt: now,
             sortOrder: sortOrder
@@ -64,6 +67,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
         storeName: String?,
         plannedPrice: Decimal?,
         actualPrice: Decimal?,
+        isCompleted: Bool,
         updatedAt: Date
     ) -> ShoppingItem {
         ShoppingItem(
@@ -74,6 +78,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
+            isCompleted: isCompleted,
             createdAt: createdAt,
             updatedAt: updatedAt,
             sortOrder: sortOrder
@@ -89,6 +94,45 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
+            isCompleted: isCompleted,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+            sortOrder: sortOrder
+        )
+    }
+
+    func updatingCompletion(
+        isCompleted: Bool,
+        updatedAt: Date
+    ) -> ShoppingItem {
+        ShoppingItem(
+            id: id,
+            name: name,
+            quantity: quantity,
+            category: category,
+            storeName: storeName,
+            plannedPrice: plannedPrice,
+            actualPrice: actualPrice,
+            isCompleted: isCompleted,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+            sortOrder: sortOrder
+        )
+    }
+
+    func updatingActualPrice(
+        _ actualPrice: Decimal?,
+        updatedAt: Date
+    ) -> ShoppingItem {
+        ShoppingItem(
+            id: id,
+            name: name,
+            quantity: quantity,
+            category: category,
+            storeName: storeName,
+            plannedPrice: plannedPrice,
+            actualPrice: actualPrice,
+            isCompleted: isCompleted,
             createdAt: createdAt,
             updatedAt: updatedAt,
             sortOrder: sortOrder
@@ -108,6 +152,7 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: nil,
+            isCompleted: false,
             createdAt: updatedAt,
             updatedAt: updatedAt,
             sortOrder: sortOrder

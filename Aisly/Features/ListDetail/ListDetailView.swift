@@ -2,10 +2,15 @@ import SwiftUI
 
 struct ListDetailView: View {
     @StateObject private var viewModel: ListDetailViewModel
+    private let makeShoppingModeViewModel: @MainActor (UUID) -> ShoppingModeViewModel
     private let emptyStateSymbolName = ["list", "bullet", "clipboard"].joined(separator: ".")
 
-    init(viewModel: ListDetailViewModel) {
+    init(
+        viewModel: ListDetailViewModel,
+        makeShoppingModeViewModel: @escaping @MainActor (UUID) -> ShoppingModeViewModel
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.makeShoppingModeViewModel = makeShoppingModeViewModel
     }
 
     var body: some View {
@@ -95,6 +100,23 @@ struct ListDetailView: View {
         }
 
         if viewModel.canCreateItem {
+            if viewModel.canEnterShoppingMode {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        ShoppingModeView(
+                            viewModel: makeShoppingModeViewModel(viewModel.listID)
+                        )
+                    } label: {
+                        Label {
+                            Text(AppStrings.ListDetail.shoppingModeToolbarTitle)
+                        } icon: {
+                            Image(systemName: "cart")
+                        }
+                    }
+                    .tint(AislyColor.primary)
+                }
+            }
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     viewModel.presentCreateItem()
@@ -115,6 +137,7 @@ struct ListDetailView: View {
             title: item.name,
             detail: Text(item.updatedAt, format: .dateTime.month(.abbreviated).day().hour().minute()),
             note: item.storeName.map { Text(verbatim: $0) },
+            isChecked: item.isCompleted,
             primaryPrice: rowPrimaryPrice(for: item),
             secondaryPrice: rowSecondaryPrice(for: item),
             tapAction: {
@@ -566,7 +589,13 @@ struct ListDetailView: View {
                         isArchived: false
                     )
                 ])
-            )
+            ),
+            makeShoppingModeViewModel: { listID in
+                ShoppingModeViewModel(
+                    listID: listID,
+                    repository: PreviewListDetailRepository(lists: [])
+                )
+            }
         )
     }
 }
@@ -586,7 +615,22 @@ struct ListDetailView: View {
                         items: makePreviewItems(locale: Locale(identifier: "en"))
                     )
                 ])
-            )
+            ),
+            makeShoppingModeViewModel: { listID in
+                ShoppingModeViewModel(
+                    listID: listID,
+                    repository: PreviewListDetailRepository(lists: [
+                        ShoppingList(
+                            id: UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE")!,
+                            name: AppStrings.Mock.ShoppingList.weeklyGroceriesName(locale: Locale(identifier: "en")),
+                            createdAt: .now,
+                            updatedAt: .now,
+                            isArchived: false,
+                            items: makePreviewItems(locale: Locale(identifier: "en"))
+                        )
+                    ])
+                )
+            }
         )
     }
 }
@@ -601,6 +645,7 @@ private func makePreviewItems(locale: Locale) -> [ShoppingItem] {
             storeName: AppStrings.Mock.Store.freshMartName(locale: locale),
             plannedPrice: 4.50,
             actualPrice: 4.75,
+            isCompleted: true,
             createdAt: .now,
             updatedAt: .now,
             sortOrder: 0
@@ -613,6 +658,7 @@ private func makePreviewItems(locale: Locale) -> [ShoppingItem] {
             storeName: AppStrings.Mock.Store.cityMarketName(locale: locale),
             plannedPrice: 0.80,
             actualPrice: nil,
+            isCompleted: false,
             createdAt: .now,
             updatedAt: .now,
             sortOrder: 1

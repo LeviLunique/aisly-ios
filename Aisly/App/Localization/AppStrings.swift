@@ -72,6 +72,7 @@ enum AppStrings {
         static let emptyDescription = AppTextKeys.ListDetail.emptyDescription.localizedResource
         static let createFirstItemButtonTitle = AppTextKeys.ListDetail.createFirstItemButtonTitle.localizedResource
         static let addItemToolbarTitle = AppTextKeys.ListDetail.addItemToolbarTitle.localizedResource
+        static let shoppingModeToolbarTitle = AppTextKeys.ListDetail.shoppingModeToolbarTitle.localizedResource
         static let budgetSummaryTitle = AppTextKeys.ListDetail.budgetSummaryTitle.localizedResource
         static let plannedTotalTitle = AppTextKeys.ListDetail.plannedTotalTitle.localizedResource
         static let actualTotalTitle = AppTextKeys.ListDetail.actualTotalTitle.localizedResource
@@ -136,6 +137,23 @@ enum AppStrings {
                 return AppTextKeys.ListDetail.Category.other
             }
         }
+    }
+
+    enum ShoppingMode {
+        static let navigationTitle = AppTextKeys.ShoppingMode.navigationTitle.localizedResource
+        static let loadingTitle = AppTextKeys.ShoppingMode.loadingTitle.localizedResource
+        static let emptyTitle = AppTextKeys.ShoppingMode.emptyTitle.localizedResource
+        static let emptyDescription = AppTextKeys.ShoppingMode.emptyDescription.localizedResource
+        static let progressTitle = AppTextKeys.ShoppingMode.progressTitle.localizedResource
+        static let remainingItemsSectionTitle = AppTextKeys.ShoppingMode.remainingItemsSectionTitle.localizedResource
+        static let completedItemsSectionTitle = AppTextKeys.ShoppingMode.completedItemsSectionTitle.localizedResource
+        static let actualPriceSheetTitle = AppTextKeys.ShoppingMode.actualPriceSheetTitle.localizedResource
+        static let actualPriceFieldTitle = AppTextKeys.ShoppingMode.actualPriceFieldTitle.localizedResource
+        static let usePlannedPriceButtonTitle = AppTextKeys.ShoppingMode.usePlannedPriceButtonTitle.localizedResource
+        static let saveActualPriceButtonTitle = AppTextKeys.ShoppingMode.saveActualPriceButtonTitle.localizedResource
+        static let failureTitle = AppTextKeys.ShoppingMode.failureTitle.localizedResource
+        static let failureDescription = AppTextKeys.ShoppingMode.failureDescription.localizedResource
+        static let retryButtonTitle = AppTextKeys.ShoppingMode.retryButtonTitle.localizedResource
     }
 
     enum Mock {

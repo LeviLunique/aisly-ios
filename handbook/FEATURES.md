@@ -4,11 +4,11 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, budget-core, quick-entry-history, templates-and-recurrence, and store-price-memory.
+The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, budget-core, quick-entry-history, templates-and-recurrence, store-price-memory, and shopping-mode.
 
 The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared Aisly-native SwiftUI visual layer with broader tokens, controls, summary surfaces, and logo assets for future UI slices.
 
-The next real product work is now shopping mode.
+The next real product work is now Apple-first convenience.
 
 ## What Should Be Built First
 
@@ -93,11 +93,12 @@ Completed locally:
 
 ### Shopping Mode
 
-Planned:
+Completed locally:
 
-- in-store optimized interaction
-- check-off flow
-- actual-price-first editing
+- dedicated in-store shopping-mode screen from list detail
+- fast check-off flow for active list items
+- actual-price editing inside the shopping trip workflow
+- session-friendly progress and totals on the shopping screen
 
 ### Apple-First Convenience
 
@@ -129,3 +130,4 @@ For the stage-by-stage status, see:
 - [quick-entry-history.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/quick-entry-history.md)
 - [templates-and-recurrence.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/templates-and-recurrence.md)
 - [store-price-memory.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/store-price-memory.md)
+- [shopping-mode.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/shopping-mode.md)
