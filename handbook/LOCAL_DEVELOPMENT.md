@@ -16,6 +16,18 @@ Then open the project:
 open Aisly.xcodeproj
 ```
 
+## Branch Naming
+
+Use the standard conventional branch prefixes:
+
+- `feat/` for feature slices
+- `fix/` for bugs
+- `chore/` for maintenance or documentation
+- `refactor/` for non-behavioral code cleanup
+- `test/` for test-only changes
+
+Prefer lowercase, hyphenated names such as `feat/offline-architecture-foundation`.
+
 ## Build from the Command Line
 
 ```bash
