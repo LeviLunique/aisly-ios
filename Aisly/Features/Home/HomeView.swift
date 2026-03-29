@@ -2,10 +2,15 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
+    private let makeListDetailViewModel: @MainActor (UUID) -> ListDetailViewModel
     @FocusState private var isEditorNameFieldFocused: Bool
 
-    init(viewModel: HomeViewModel) {
+    init(
+        viewModel: HomeViewModel,
+        makeListDetailViewModel: @escaping @MainActor (UUID) -> ListDetailViewModel
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.makeListDetailViewModel = makeListDetailViewModel
     }
 
     var body: some View {
@@ -13,6 +18,9 @@ struct HomeView: View {
             content
                 .background(AislyColor.backgroundPrimary.ignoresSafeArea())
                 .navigationTitle(Text(AppStrings.Home.navigationTitle))
+                .navigationDestination(for: UUID.self) { listID in
+                    ListDetailView(viewModel: makeListDetailViewModel(listID))
+                }
                 .toolbar {
                     if viewModel.canCreateList {
                         ToolbarItem(placement: .topBarTrailing) {
@@ -108,7 +116,7 @@ struct HomeView: View {
         _ list: HomeViewModel.ListRow,
         allowsArchiveActions: Bool
     ) -> some View {
-        AislyListRowCard(
+        let rowCard = AislyListRowCard(
             title: list.name,
             subtitle: Text(
                 list.updatedAt,
@@ -116,38 +124,50 @@ struct HomeView: View {
             ),
             tone: allowsArchiveActions ? .active : .archived
         )
-        .listRowInsets(
+
+        let navigationWrappedRow = Group {
+            if allowsArchiveActions {
+                NavigationLink(value: list.id) {
+                    rowCard
+                }
+            } else {
+                rowCard
+            }
+        }
+
+        return navigationWrappedRow
+            .listRowInsets(
             EdgeInsets(
                 top: AislySpacing.small,
                 leading: AislySpacing.large,
                 bottom: AislySpacing.small,
                 trailing: AislySpacing.large
             )
-        )
-        .listRowSeparator(.hidden)
-        .listRowBackground(Color.clear)
-        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-            if allowsArchiveActions {
-                Button {
-                    Task {
-                        await viewModel.archiveList(id: list.id)
+            )
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
+            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                if allowsArchiveActions {
+                    Button {
+                        Task {
+                            await viewModel.archiveList(id: list.id)
+                        }
+                    } label: {
+                        Text(AppStrings.Home.archiveListActionTitle)
                     }
-                } label: {
-                    Text(AppStrings.Home.archiveListActionTitle)
+                    .tint(AislyColor.warning)
                 }
-                .tint(AislyColor.warning)
             }
-        }
-        .swipeActions(edge: .leading, allowsFullSwipe: false) {
-            if allowsArchiveActions {
-                Button {
-                    viewModel.presentRenameList(id: list.id)
-                } label: {
-                    Text(AppStrings.Home.renameListActionTitle)
+            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                if allowsArchiveActions {
+                    Button {
+                        viewModel.presentRenameList(id: list.id)
+                    } label: {
+                        Text(AppStrings.Home.renameListActionTitle)
+                    }
+                    .tint(AislyColor.primary)
                 }
-                .tint(AislyColor.primary)
             }
-        }
     }
 
     private var editorModeBinding: Binding<HomeViewModel.EditorMode?> {
@@ -237,24 +257,54 @@ struct HomeView: View {
 }
 
 #Preview("Empty State") {
-    HomeView(viewModel: HomeViewModel(repository: PreviewShoppingListRepository(lists: [])))
+    HomeView(
+        viewModel: HomeViewModel(repository: PreviewShoppingListRepository(lists: [])),
+        makeListDetailViewModel: { listID in
+            ListDetailViewModel(listID: listID, repository: PreviewShoppingListRepository(lists: []))
+        }
+    )
 }
 
 #Preview("Estado Vazio") {
-    HomeView(viewModel: HomeViewModel(repository: PreviewShoppingListRepository(lists: [])))
+    HomeView(
+        viewModel: HomeViewModel(repository: PreviewShoppingListRepository(lists: [])),
+        makeListDetailViewModel: { listID in
+            ListDetailViewModel(listID: listID, repository: PreviewShoppingListRepository(lists: []))
+        }
+    )
         .environment(\.locale, Locale(identifier: "pt_BR"))
 }
 
 #Preview("Loaded State") {
-    HomeView(viewModel: HomeViewModel(repository: PreviewShoppingListRepository(
-        lists: makePreviewShoppingLists(locale: Locale(identifier: "en"))
-    )))
+    HomeView(
+        viewModel: HomeViewModel(repository: PreviewShoppingListRepository(
+            lists: makePreviewShoppingLists(locale: Locale(identifier: "en"))
+        )),
+        makeListDetailViewModel: { listID in
+            ListDetailViewModel(
+                listID: listID,
+                repository: PreviewShoppingListRepository(
+                    lists: makePreviewShoppingLists(locale: Locale(identifier: "en"))
+                )
+            )
+        }
+    )
 }
 
 #Preview("Estado Carregado") {
-    HomeView(viewModel: HomeViewModel(repository: PreviewShoppingListRepository(
-        lists: makePreviewShoppingLists(locale: Locale(identifier: "pt_BR"))
-    )))
+    HomeView(
+        viewModel: HomeViewModel(repository: PreviewShoppingListRepository(
+            lists: makePreviewShoppingLists(locale: Locale(identifier: "pt_BR"))
+        )),
+        makeListDetailViewModel: { listID in
+            ListDetailViewModel(
+                listID: listID,
+                repository: PreviewShoppingListRepository(
+                    lists: makePreviewShoppingLists(locale: Locale(identifier: "pt_BR"))
+                )
+            )
+        }
+    )
     .environment(\.locale, Locale(identifier: "pt_BR"))
 }
 

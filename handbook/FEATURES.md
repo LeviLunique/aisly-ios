@@ -4,11 +4,11 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-The remote `main` branch now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, and multiple-local-lists slice.
+The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, and the local items-and-categories slice.
 
 The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared Aisly-native SwiftUI visual layer with broader tokens, controls, summary surfaces, and logo assets for future UI slices.
 
-The next real product work is now the local items and categories slice.
+The next real product work is now the budget core slice.
 
 ## What Should Be Built First
 
@@ -47,12 +47,13 @@ Implemented on remote feature branch:
 
 ### Local Items and Categories
 
-Planned:
+Completed locally:
 
 - item CRUD
 - quantity support
 - categories
 - ordering
+- list detail navigation from the root list workflow
 
 ### Budget Core
 

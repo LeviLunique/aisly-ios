@@ -49,6 +49,23 @@ struct StoredShoppingList: Codable, Equatable {
     let createdAt: Date
     let updatedAt: Date
     let isArchived: Bool
+    let items: [StoredShoppingItem]
+
+    init(
+        id: UUID,
+        name: String,
+        createdAt: Date,
+        updatedAt: Date,
+        isArchived: Bool,
+        items: [StoredShoppingItem]
+    ) {
+        self.id = id
+        self.name = name
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.isArchived = isArchived
+        self.items = items
+    }
 
     init(list: ShoppingList) {
         id = list.id
@@ -56,6 +73,17 @@ struct StoredShoppingList: Codable, Equatable {
         createdAt = list.createdAt
         updatedAt = list.updatedAt
         isArchived = list.isArchived
+        items = list.items.map(StoredShoppingItem.init(item:))
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+        isArchived = try container.decode(Bool.self, forKey: .isArchived)
+        items = try container.decodeIfPresent([StoredShoppingItem].self, forKey: .items) ?? []
     }
 
     var model: ShoppingList {
@@ -64,7 +92,40 @@ struct StoredShoppingList: Codable, Equatable {
             name: name,
             createdAt: createdAt,
             updatedAt: updatedAt,
-            isArchived: isArchived
+            isArchived: isArchived,
+            items: items.map(\.model)
+        )
+    }
+}
+
+struct StoredShoppingItem: Codable, Equatable {
+    let id: UUID
+    let name: String
+    let quantity: Int
+    let category: ShoppingItem.Category
+    let createdAt: Date
+    let updatedAt: Date
+    let sortOrder: Int
+
+    init(item: ShoppingItem) {
+        id = item.id
+        name = item.name
+        quantity = item.quantity
+        category = item.category
+        createdAt = item.createdAt
+        updatedAt = item.updatedAt
+        sortOrder = item.sortOrder
+    }
+
+    var model: ShoppingItem {
+        ShoppingItem(
+            id: id,
+            name: name,
+            quantity: quantity,
+            category: category,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+            sortOrder: sortOrder
         )
     }
 }
