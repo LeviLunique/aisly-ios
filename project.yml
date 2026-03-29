@@ -5,6 +5,7 @@ settings:
   base:
     SWIFT_VERSION: 5.0
     IPHONEOS_DEPLOYMENT_TARGET: 17.0
+    DEVELOPMENT_LANGUAGE: en
 targets:
   Aisly:
     type: application
@@ -12,6 +13,7 @@ targets:
     deploymentTarget: "17.0"
     sources:
       - path: Aisly
+      - path: Shared
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.levilunique.aisly
@@ -42,6 +44,7 @@ targets:
     deploymentTarget: "17.0"
     sources:
       - path: AislyUITests
+      - path: Shared
     dependencies:
       - target: Aisly
     settings:

@@ -4,6 +4,14 @@ This guide explains how to work on Aisly locally.
 
 ## Open the Project
 
+If you added or moved source files, regenerate the project first:
+
+```bash
+xcodegen generate
+```
+
+Then open the project:
+
 ```bash
 open Aisly.xcodeproj
 ```
@@ -18,6 +26,12 @@ xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'generic/platform
 
 ```bash
 xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:AislyTests test
+```
+
+## Run the Locale UI-Test Lane
+
+```bash
+xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:AislyUITests test
 ```
 
 ## Create the CD Archive Locally
@@ -42,6 +56,21 @@ xcodebuild -scheme Aisly -project Aisly.xcodeproj -destination 'platform=iOS Sim
 ## Current Development Rule
 
 The app is offline-first for now.
+
+Localization is also mandatory by default.
+
+Storage classification is also mandatory by default.
+
+That means current development should use:
+
+- `Localizable.xcstrings`
+- semantic string access through `AppStrings` or an equally explicit text boundary
+- locale-aware formatting APIs
+- locale previews and UI checks when a screen changes
+- catalog-backed expectations in UI tests instead of hardcoded translated copy
+- `Application Support` for persistent app-managed files
+- Keychain only for future sensitive data
+- `UserDefaults` or `@AppStorage` only for lightweight non-sensitive settings
 
 That means current development should focus on:
 
