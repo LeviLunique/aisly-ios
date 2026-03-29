@@ -12,29 +12,49 @@
 		068A1E1541AEC915CFF1210A /* AislySurfaceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD7E2392FE4E80E4F91C793 /* AislySurfaceCard.swift */; };
 		0E1C3A1276F516FA8673AFBA /* AislyBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF5A0B48C042553E127B444 /* AislyBadge.swift */; };
 		0EA6BF635E9BEE5B5A976BCB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BBCF6DFB3F7D44DC0729E2D1 /* Localizable.xcstrings */; };
+		0F6DC358BD6D50B48FB0DD61 /* AppleSurfaceRouteRequestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BFAF7583BBD42EB638730D /* AppleSurfaceRouteRequestStore.swift */; };
+		2081203263BE25321894EEBF /* ShoppingListAppEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13D31FF7C17887B8627257B /* ShoppingListAppEntity.swift */; };
+		20B88392981A517CC0C9B5E5 /* OpenShoppingModeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E007DB9BB164A3A311FAB9 /* OpenShoppingModeIntent.swift */; };
+		21546A1FF809F13903C04820 /* AppleSurfaceRouteRequestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BFAF7583BBD42EB638730D /* AppleSurfaceRouteRequestStore.swift */; };
 		21F5E33E189714C8D5388303 /* AislySectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C6CC9DF01FE2299A68CFB /* AislySectionHeader.swift */; };
 		231C9584EC9AACCAF63A4DA4 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1DF7D650CEAC783B075FD /* AppContainer.swift */; };
+		31B93DB4302CF045AFFBB7B8 /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD66FA6D037B283B84405BE /* ShoppingItem.swift */; };
 		31DBCA381191B02D61216E0C /* AislyListSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28024B84712A536BABBAA0EA /* AislyListSummaryCard.swift */; };
 		37C5F09150C0C35C39E356B1 /* AislyProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402ABCFA550DE0A5B6B0D4A8 /* AislyProgressBar.swift */; };
 		391D4D93E022C38F2AC345B1 /* AislyBudgetSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E206BDC5BB2D1888978635 /* AislyBudgetSummaryCard.swift */; };
 		3BC315A16D50B797D0DB309A /* ListDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F00E5BE8BC5F8EACDD795C /* ListDetailViewModel.swift */; };
+		404A26738AF48B3623745A5B /* AppStoragePaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD622C9DA62C2FA97A32FD8 /* AppStoragePaths.swift */; };
+		42053D4B30E4C958EFB150F8 /* OpenListsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00843B9F571B9099F04FCD1C /* OpenListsIntent.swift */; };
 		44AD314E48AB5F7C10E895C0 /* AislyCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100A5984614A5AE0A1C5310 /* AislyCheckbox.swift */; };
 		44B79978CD67D675D3A2679F /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544053116C22920E91741B85 /* ShoppingList.swift */; };
 		46B0248C348CD7C2B33E5E63 /* AislyLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696ACD0FA17A65964311AD1 /* AislyLogo.swift */; };
 		48D7026D51566F741D97648F /* AislyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4011FB882D39B8BFD56DB /* AislyTests.swift */; };
+		4D13AD5A09170E27D4236BED /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8870259C28215372714004C /* AppRoute.swift */; };
 		4F3B5D20D5484365F9900C0E /* AislyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */; };
+		55991E753355BC52F0507946 /* AppleSurfaceListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3864F0BD0345E1B533BE /* AppleSurfaceListStore.swift */; };
 		6074C96FAF5ED5C2E9A33BE1 /* AislySheetContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91424505754B3EEDF3A6CEE8 /* AislySheetContainer.swift */; };
 		6851DDE3C7CFB9BB7E59EE0F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F719DE59A982D57F9C9A6 /* HomeViewModel.swift */; };
+		6AC76DBCA87A8F29BB5F545E /* AislyTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C778A4B272951F346E2476 /* AislyTypography.swift */; };
+		6C8B9D5E2EBA6698249D6B30 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544053116C22920E91741B85 /* ShoppingList.swift */; };
+		74B670266C5E67383072BF40 /* LocalShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BAE913B5891B9E7DB3995D /* LocalShoppingListRepository.swift */; };
+		7C73324FD4CA1907EBC92C32 /* AislyWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729C33F973D6EFC88B6BB07E /* AislyWidgetsBundle.swift */; };
 		8302D47C9AEA779204BAFE00 /* AislyMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499DA4579BA91E6D88771CB6 /* AislyMotion.swift */; };
 		843A34D05BD3D7A5B0C7BCB9 /* AislyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237CCF289F1B2E6F15897B2C /* AislyButtonStyle.swift */; };
+		88DBE9CEE4762CD93BDB3CBE /* AislyWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E8525945DF128438BEF536A /* AislyWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8A8470C83E23B3EB210A4465 /* AppTextKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002E399265EEF4CADED7EEB8 /* AppTextKeys.swift */; };
+		8DF5A625E0BD6E4108FFBE5C /* AppTextKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002E399265EEF4CADED7EEB8 /* AppTextKeys.swift */; };
+		8F96FA2C5CA7D115217691F4 /* AppleSurfaceListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3864F0BD0345E1B533BE /* AppleSurfaceListStore.swift */; };
 		995C51A1AD03E8204EDD6DF7 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20367EB7EEC5DF3A232346E /* AppStrings.swift */; };
 		9C5CA57513A2C4F4EE33C8C7 /* LocalShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BAE913B5891B9E7DB3995D /* LocalShoppingListRepository.swift */; };
 		A0801B43C8A723D9043F3525 /* AislyStateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25627C6A721B14F7D333D730 /* AislyStateViews.swift */; };
 		A8B38FDDC6D523A6D1BF8FA9 /* AislyListRowCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23A730E18D6423F31A18A2 /* AislyListRowCard.swift */; };
+		AD6CEABEB49F42CC16E91909 /* ShoppingListFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ADF5ABF4F1AB04EB46CC7 /* ShoppingListFileStore.swift */; };
+		AEC3F124C05C30B1FAEE8A4A /* ShoppingListAppEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13D31FF7C17887B8627257B /* ShoppingListAppEntity.swift */; };
 		B070D56A723CB6BAEB7122B1 /* ShoppingModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6F66C405A09352E3500E5 /* ShoppingModeViewModel.swift */; };
 		B1CA1B2B68C0F563198F4F0F /* AislyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E2C385A4C2FD2B40248BB /* AislyApp.swift */; };
 		B37533DA2F9123F53F69B4E7 /* AislyPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE98040CC8C699A64030B /* AislyPageHeader.swift */; };
+		B4A33CAE815C305802BC9811 /* AislyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BE87A200692D40E76714F6 /* AislyColor.swift */; };
+		B9F92A92AC0D5C3318336F79 /* AislyMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499DA4579BA91E6D88771CB6 /* AislyMotion.swift */; };
 		BC5D26BE9FDDAC20D00998A0 /* AislyTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C778A4B272951F346E2476 /* AislyTypography.swift */; };
 		BFE659D2F27462AA4D1C9025 /* AislySpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79873ED6041DE2B851DC3A5 /* AislySpacing.swift */; };
 		C671EF94048B6F5AF7B234C4 /* ShoppingModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D930AB1F5E4BD94A882EB20 /* ShoppingModeView.swift */; };
@@ -42,17 +62,30 @@
 		C95A1FEDF7FA1D9F19FB4104 /* ShoppingListFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ADF5ABF4F1AB04EB46CC7 /* ShoppingListFileStore.swift */; };
 		C998D23B80C45D7C71DC93FB /* ShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B25B17E40AB62B86F6B1D4 /* ShoppingListRepository.swift */; };
 		CB4824F1CCBB59A7A5201AF5 /* AppStoragePaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD622C9DA62C2FA97A32FD8 /* AppStoragePaths.swift */; };
+		CF8DA08456E5E83BC7757295 /* AislySpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79873ED6041DE2B851DC3A5 /* AislySpacing.swift */; };
 		D29304ACD7D2F19356A6D25B /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099FE71040CC9E1175ADFB66 /* ListDetailView.swift */; };
+		D332557C656EA2697D8B0ABB /* AislyCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC4F01225B79E33F2C36F2 /* AislyCornerRadius.swift */; };
 		D374120CB35F5173826C92C8 /* AislyCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC4F01225B79E33F2C36F2 /* AislyCornerRadius.swift */; };
 		D928AC4CAC58025ED4C2CFC9 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BFA9C764E54D23BF6885B /* Contents.json */; };
 		DC3E3B304C59BF28A3CE201E /* AislyPrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF609D04375E0757B36EB1A4 /* AislyPrimaryButtonStyle.swift */; };
+		DDAC8240D2A23974072C5B69 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20367EB7EEC5DF3A232346E /* AppStrings.swift */; };
 		DDB13B3C034E21D7E348A8CA /* AislyItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76584E547C87A7C8B04039B6 /* AislyItemRow.swift */; };
 		E14E3DE3489AEC4DE53BBF6F /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD66FA6D037B283B84405BE /* ShoppingItem.swift */; };
 		E229F7BD03BAA1D7BA86A3EF /* AislySwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BAD73E8B2320D4D0BA1EDD /* AislySwitch.swift */; };
+		E74D9E50F1032B50CC61883C /* ActiveListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63084B5E35069DEFC86ACB67 /* ActiveListWidget.swift */; };
+		E9628FA430CEC575FE12725F /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8870259C28215372714004C /* AppRoute.swift */; };
+		ED42AE0B7EB57E7205ACB28A /* ShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B25B17E40AB62B86F6B1D4 /* ShoppingListRepository.swift */; };
 		FF3FEDC4C0D526E3F504399E /* AppTextKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002E399265EEF4CADED7EEB8 /* AppTextKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7D829BC6DD64824E3F7AA4C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5504015074269ED991A90942 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD3432A4F512E819BDF80F9E;
+			remoteInfo = AislyWidgets;
+		};
 		817A0C3487359D45EF450D5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5504015074269ED991A90942 /* Project object */;
@@ -69,16 +102,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9B29EC5912BC8DAB3A9C8ADE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				88DBE9CEE4762CD93BDB3CBE /* AislyWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		002E399265EEF4CADED7EEB8 /* AppTextKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextKeys.swift; sourceTree = "<group>"; };
+		00843B9F571B9099F04FCD1C /* OpenListsIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenListsIntent.swift; sourceTree = "<group>"; };
 		03F00E5BE8BC5F8EACDD795C /* ListDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewModel.swift; sourceTree = "<group>"; };
 		099FE71040CC9E1175ADFB66 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
 		0A7E2C385A4C2FD2B40248BB /* AislyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyApp.swift; sourceTree = "<group>"; };
 		1100A5984614A5AE0A1C5310 /* AislyCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyCheckbox.swift; sourceTree = "<group>"; };
 		132ADF5ABF4F1AB04EB46CC7 /* ShoppingListFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListFileStore.swift; sourceTree = "<group>"; };
+		132BCD1DEA67D19FDFB170D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		18E95826E377C2869AEDE6EC /* AislyInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyInputField.swift; sourceTree = "<group>"; };
 		1DA6F66C405A09352E3500E5 /* ShoppingModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingModeViewModel.swift; sourceTree = "<group>"; };
 		20D9BCD4B6D4016928D895F9 /* AislyTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AislyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2231C834D8E3CB91CB285C60 /* AislyWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AislyWidgets.entitlements; sourceTree = "<group>"; };
 		22F4011FB882D39B8BFD56DB /* AislyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyTests.swift; sourceTree = "<group>"; };
 		237CCF289F1B2E6F15897B2C /* AislyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyButtonStyle.swift; sourceTree = "<group>"; };
 		246F8D3242734FA8147255AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -88,31 +138,40 @@
 		32B25B17E40AB62B86F6B1D4 /* ShoppingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListRepository.swift; sourceTree = "<group>"; };
 		34C778A4B272951F346E2476 /* AislyTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyTypography.swift; sourceTree = "<group>"; };
 		3696ACD0FA17A65964311AD1 /* AislyLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyLogo.swift; sourceTree = "<group>"; };
+		3E8525945DF128438BEF536A /* AislyWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AislyWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EAD2BAE96ED9AF84C06D49A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		402ABCFA550DE0A5B6B0D4A8 /* AislyProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyProgressBar.swift; sourceTree = "<group>"; };
 		499DA4579BA91E6D88771CB6 /* AislyMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyMotion.swift; sourceTree = "<group>"; };
 		544053116C22920E91741B85 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		5D930AB1F5E4BD94A882EB20 /* ShoppingModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingModeView.swift; sourceTree = "<group>"; };
+		63084B5E35069DEFC86ACB67 /* ActiveListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveListWidget.swift; sourceTree = "<group>"; };
 		69BAE913B5891B9E7DB3995D /* LocalShoppingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalShoppingListRepository.swift; sourceTree = "<group>"; };
 		6FD66FA6D037B283B84405BE /* ShoppingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
+		729C33F973D6EFC88B6BB07E /* AislyWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyWidgetsBundle.swift; sourceTree = "<group>"; };
 		76584E547C87A7C8B04039B6 /* AislyItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyItemRow.swift; sourceTree = "<group>"; };
+		82BFAF7583BBD42EB638730D /* AppleSurfaceRouteRequestStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSurfaceRouteRequestStore.swift; sourceTree = "<group>"; };
 		88B846B34BC8CBB88BA0AB4D /* AislyUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AislyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A8EE98040CC8C699A64030B /* AislyPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyPageHeader.swift; sourceTree = "<group>"; };
+		8C5CFD0372BD7ACAA2EC2D17 /* Aisly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aisly.entitlements; sourceTree = "<group>"; };
 		8CD1DF7D650CEAC783B075FD /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		91424505754B3EEDF3A6CEE8 /* AislySheetContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySheetContainer.swift; sourceTree = "<group>"; };
 		950BFA9C764E54D23BF6885B /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		9FD622C9DA62C2FA97A32FD8 /* AppStoragePaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoragePaths.swift; sourceTree = "<group>"; };
 		A18F719DE59A982D57F9C9A6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		A20367EB7EEC5DF3A232346E /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
+		A8870259C28215372714004C /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
+		A93B3864F0BD0345E1B533BE /* AppleSurfaceListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSurfaceListStore.swift; sourceTree = "<group>"; };
 		AB2C6CC9DF01FE2299A68CFB /* AislySectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySectionHeader.swift; sourceTree = "<group>"; };
 		B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyUITests.swift; sourceTree = "<group>"; };
 		B638FF31FAD20CFE4C173445 /* Aisly.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Aisly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBCF6DFB3F7D44DC0729E2D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BFD7E2392FE4E80E4F91C793 /* AislySurfaceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySurfaceCard.swift; sourceTree = "<group>"; };
 		C1BAD73E8B2320D4D0BA1EDD /* AislySwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySwitch.swift; sourceTree = "<group>"; };
+		C7E007DB9BB164A3A311FAB9 /* OpenShoppingModeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenShoppingModeIntent.swift; sourceTree = "<group>"; };
 		CBF5A0B48C042553E127B444 /* AislyBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyBadge.swift; sourceTree = "<group>"; };
 		CC23A730E18D6423F31A18A2 /* AislyListRowCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyListRowCard.swift; sourceTree = "<group>"; };
 		CF609D04375E0757B36EB1A4 /* AislyPrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyPrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		E13D31FF7C17887B8627257B /* ShoppingListAppEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListAppEntity.swift; sourceTree = "<group>"; };
 		E9EC4F01225B79E33F2C36F2 /* AislyCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyCornerRadius.swift; sourceTree = "<group>"; };
 		F1BE87A200692D40E76714F6 /* AislyColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyColor.swift; sourceTree = "<group>"; };
 		F79873ED6041DE2B851DC3A5 /* AislySpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySpacing.swift; sourceTree = "<group>"; };
@@ -156,10 +215,12 @@
 		1718BEBCCC9F5CBE6241F2BB /* Aisly */ = {
 			isa = PBXGroup;
 			children = (
+				8C5CFD0372BD7ACAA2EC2D17 /* Aisly.entitlements */,
 				0A7E2C385A4C2FD2B40248BB /* AislyApp.swift */,
 				246F8D3242734FA8147255AD /* Info.plist */,
 				BBCF6DFB3F7D44DC0729E2D1 /* Localizable.xcstrings */,
 				562163F5C2FD9F7FE537FE87 /* App */,
+				AEBCCC73B5185A92E09DA520 /* AppleSurfaces */,
 				484AE9A02FA71DA11792F315 /* DesignSystem */,
 				D48E2158AFBEF1343BFA705D /* Domain */,
 				F91237CD45B8D2EEE9C0F162 /* Features */,
@@ -167,6 +228,17 @@
 				E661549C9854317A685D5C89 /* Resources */,
 			);
 			path = Aisly;
+			sourceTree = "<group>";
+		};
+		35C64DB7F5E436A016B75AC5 /* AppleSurfaces */ = {
+			isa = PBXGroup;
+			children = (
+				A93B3864F0BD0345E1B533BE /* AppleSurfaceListStore.swift */,
+				82BFAF7583BBD42EB638730D /* AppleSurfaceRouteRequestStore.swift */,
+				A8870259C28215372714004C /* AppRoute.swift */,
+				E13D31FF7C17887B8627257B /* ShoppingListAppEntity.swift */,
+			);
+			path = AppleSurfaces;
 			sourceTree = "<group>";
 		};
 		484AE9A02FA71DA11792F315 /* DesignSystem */ = {
@@ -212,6 +284,17 @@
 			path = AislyTests;
 			sourceTree = "<group>";
 		};
+		9CCFA45F806882D207F0DB28 /* AislyWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				63084B5E35069DEFC86ACB67 /* ActiveListWidget.swift */,
+				2231C834D8E3CB91CB285C60 /* AislyWidgets.entitlements */,
+				729C33F973D6EFC88B6BB07E /* AislyWidgetsBundle.swift */,
+				132BCD1DEA67D19FDFB170D1 /* Info.plist */,
+			);
+			path = AislyWidgets;
+			sourceTree = "<group>";
+		};
 		9F211DB9466AB504139EE28E /* AislyUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,9 +324,19 @@
 			path = ShoppingMode;
 			sourceTree = "<group>";
 		};
+		AEBCCC73B5185A92E09DA520 /* AppleSurfaces */ = {
+			isa = PBXGroup;
+			children = (
+				00843B9F571B9099F04FCD1C /* OpenListsIntent.swift */,
+				C7E007DB9BB164A3A311FAB9 /* OpenShoppingModeIntent.swift */,
+			);
+			path = AppleSurfaces;
+			sourceTree = "<group>";
+		};
 		B192E76A3BD9AF3819DD4488 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				35C64DB7F5E436A016B75AC5 /* AppleSurfaces */,
 				8787518EAA3C4DB7B4E0561C /* Localization */,
 			);
 			path = Shared;
@@ -290,6 +383,7 @@
 				B638FF31FAD20CFE4C173445 /* Aisly.app */,
 				20D9BCD4B6D4016928D895F9 /* AislyTests.xctest */,
 				88B846B34BC8CBB88BA0AB4D /* AislyUITests.xctest */,
+				3E8525945DF128438BEF536A /* AislyWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,6 +402,7 @@
 				1718BEBCCC9F5CBE6241F2BB /* Aisly */,
 				95152DDB5335A9C2E1C3B8FC /* AislyTests */,
 				9F211DB9466AB504139EE28E /* AislyUITests */,
+				9CCFA45F806882D207F0DB28 /* AislyWidgets */,
 				B192E76A3BD9AF3819DD4488 /* Shared */,
 				DFD933725EEE58C9B8C87402 /* Products */,
 			);
@@ -368,10 +463,12 @@
 			buildPhases = (
 				287E248F3BA8743286CEE22D /* Sources */,
 				646CEF05B290C7D7C3BE365C /* Resources */,
+				9B29EC5912BC8DAB3A9C8ADE /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7235DFACCA7915B6037C2667 /* PBXTargetDependency */,
 			);
 			name = Aisly;
 			packageProductDependencies = (
@@ -379,6 +476,23 @@
 			productName = Aisly;
 			productReference = B638FF31FAD20CFE4C173445 /* Aisly.app */;
 			productType = "com.apple.product-type.application";
+		};
+		CD3432A4F512E819BDF80F9E /* AislyWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 613823DAA410EBC11CF272ED /* Build configuration list for PBXNativeTarget "AislyWidgets" */;
+			buildPhases = (
+				91C6112A115B65DF31A39447 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AislyWidgets;
+			packageProductDependencies = (
+			);
+			productName = AislyWidgets;
+			productReference = 3E8525945DF128438BEF536A /* AislyWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -393,6 +507,9 @@
 						TestTargetID = 765D1586C9E49227280ACA9F;
 					};
 					765D1586C9E49227280ACA9F = {
+						DevelopmentTeam = "";
+					};
+					CD3432A4F512E819BDF80F9E = {
 						DevelopmentTeam = "";
 					};
 				};
@@ -415,6 +532,7 @@
 				765D1586C9E49227280ACA9F /* Aisly */,
 				71BC2D9A8BF777EBDC9DC57E /* AislyTests */,
 				31562DEEB6C5CBCB89F1E15E /* AislyUITests */,
+				CD3432A4F512E819BDF80F9E /* AislyWidgets */,
 			);
 		};
 /* End PBXProject section */
@@ -469,20 +587,52 @@
 				E229F7BD03BAA1D7BA86A3EF /* AislySwitch.swift in Sources */,
 				BC5D26BE9FDDAC20D00998A0 /* AislyTypography.swift in Sources */,
 				231C9584EC9AACCAF63A4DA4 /* AppContainer.swift in Sources */,
+				E9628FA430CEC575FE12725F /* AppRoute.swift in Sources */,
 				CB4824F1CCBB59A7A5201AF5 /* AppStoragePaths.swift in Sources */,
 				995C51A1AD03E8204EDD6DF7 /* AppStrings.swift in Sources */,
 				FF3FEDC4C0D526E3F504399E /* AppTextKeys.swift in Sources */,
+				8F96FA2C5CA7D115217691F4 /* AppleSurfaceListStore.swift in Sources */,
+				0F6DC358BD6D50B48FB0DD61 /* AppleSurfaceRouteRequestStore.swift in Sources */,
 				041CA412B956B7AC52A2D8CE /* HomeView.swift in Sources */,
 				6851DDE3C7CFB9BB7E59EE0F /* HomeViewModel.swift in Sources */,
 				D29304ACD7D2F19356A6D25B /* ListDetailView.swift in Sources */,
 				3BC315A16D50B797D0DB309A /* ListDetailViewModel.swift in Sources */,
 				9C5CA57513A2C4F4EE33C8C7 /* LocalShoppingListRepository.swift in Sources */,
+				42053D4B30E4C958EFB150F8 /* OpenListsIntent.swift in Sources */,
+				20B88392981A517CC0C9B5E5 /* OpenShoppingModeIntent.swift in Sources */,
 				E14E3DE3489AEC4DE53BBF6F /* ShoppingItem.swift in Sources */,
 				44B79978CD67D675D3A2679F /* ShoppingList.swift in Sources */,
+				AEC3F124C05C30B1FAEE8A4A /* ShoppingListAppEntity.swift in Sources */,
 				C95A1FEDF7FA1D9F19FB4104 /* ShoppingListFileStore.swift in Sources */,
 				C998D23B80C45D7C71DC93FB /* ShoppingListRepository.swift in Sources */,
 				C671EF94048B6F5AF7B234C4 /* ShoppingModeView.swift in Sources */,
 				B070D56A723CB6BAEB7122B1 /* ShoppingModeViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91C6112A115B65DF31A39447 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74D9E50F1032B50CC61883C /* ActiveListWidget.swift in Sources */,
+				B4A33CAE815C305802BC9811 /* AislyColor.swift in Sources */,
+				D332557C656EA2697D8B0ABB /* AislyCornerRadius.swift in Sources */,
+				B9F92A92AC0D5C3318336F79 /* AislyMotion.swift in Sources */,
+				CF8DA08456E5E83BC7757295 /* AislySpacing.swift in Sources */,
+				6AC76DBCA87A8F29BB5F545E /* AislyTypography.swift in Sources */,
+				7C73324FD4CA1907EBC92C32 /* AislyWidgetsBundle.swift in Sources */,
+				4D13AD5A09170E27D4236BED /* AppRoute.swift in Sources */,
+				404A26738AF48B3623745A5B /* AppStoragePaths.swift in Sources */,
+				DDAC8240D2A23974072C5B69 /* AppStrings.swift in Sources */,
+				8DF5A625E0BD6E4108FFBE5C /* AppTextKeys.swift in Sources */,
+				55991E753355BC52F0507946 /* AppleSurfaceListStore.swift in Sources */,
+				21546A1FF809F13903C04820 /* AppleSurfaceRouteRequestStore.swift in Sources */,
+				74B670266C5E67383072BF40 /* LocalShoppingListRepository.swift in Sources */,
+				31B93DB4302CF045AFFBB7B8 /* ShoppingItem.swift in Sources */,
+				6C8B9D5E2EBA6698249D6B30 /* ShoppingList.swift in Sources */,
+				2081203263BE25321894EEBF /* ShoppingListAppEntity.swift in Sources */,
+				AD6CEABEB49F42CC16E91909 /* ShoppingListFileStore.swift in Sources */,
+				ED42AE0B7EB57E7205ACB28A /* ShoppingListRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +647,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7235DFACCA7915B6037C2667 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD3432A4F512E819BDF80F9E /* AislyWidgets */;
+			targetProxy = 7D829BC6DD64824E3F7AA4C0 /* PBXContainerItemProxy */;
+		};
 		B631B3265DA918B6D0E4D6E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 765D1586C9E49227280ACA9F /* Aisly */;
@@ -532,6 +687,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Aisly/Aisly.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -544,6 +700,48 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.levilunique.aisly;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5241436E747CA37D381EB577 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AislyWidgets/AislyWidgets.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AislyWidgets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levilunique.aisly.widgets;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		73B3B33D10216ED0B2B338DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AislyWidgets/AislyWidgets.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AislyWidgets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levilunique.aisly.widgets;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -710,6 +908,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Aisly/Aisly.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -753,6 +952,15 @@
 			buildConfigurations = (
 				870579F70124EEC98224F87D /* Debug */,
 				9776B46E9882B35189CEB2DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		613823DAA410EBC11CF272ED /* Build configuration list for PBXNativeTarget "AislyWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5241436E747CA37D381EB577 /* Debug */,
+				73B3B33D10216ED0B2B338DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

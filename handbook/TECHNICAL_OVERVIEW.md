@@ -52,6 +52,7 @@ The current remote `main` app base now includes:
 - reusable local templates plus recurrence metadata and template-based list generation inside the home workflow
 - optional per-item store names plus local recent-store and store-specific last-price suggestions inside the existing item editor
 - a dedicated shopping-mode flow with persistent item completion, in-trip actual-price entry, and session progress derived from the same local list model
+- an Apple-first convenience layer with an app-group-backed widget, App Intents, and deep-link routing over the same offline repository path
 - English and Brazilian Portuguese resources for the shipped root-screen copy
 
 This is intentionally narrow.
@@ -93,6 +94,7 @@ That means:
 - locale-aware formatting is mandatory for visible values
 - view models expose semantic state instead of raw UI copy
 - previews and UI tests should not depend on hardcoded translated display strings
+- App Intents metadata files may use direct localization-key literals only when Apple metadata extraction rejects the normal centralized `AppStrings` indirection
 
 ## Design System Posture
 
@@ -116,6 +118,7 @@ That means:
 - lightweight non-sensitive preferences belong in `UserDefaults` or `@AppStorage` only when a slice actually needs them
 - sensitive data belongs in Keychain only
 - persistent app-managed files belong under `Application Support`
+- app-group-backed persistent files are allowed when Apple extensions must read the same offline data
 - future structured relational persistence should prefer `SwiftData` when simple file-backed JSON stops being sufficient
 
 ## Core Technical Priorities
@@ -125,6 +128,7 @@ The architecture should make these easy to evolve:
 - totals and deltas
 - repeated-item entry from local history
 - shopping-mode interaction
+- Apple-first entry points using the same offline list data
 - recurrence and templates
 - price memory by store
 - shopping-mode execution using remembered store and price context

@@ -1,6 +1,222 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "appleSurface.intent.openLists.description": {
+      "comment": "Description for the intent that opens the home lists screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Aisly on the home lists screen."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Aisly na tela inicial de listas."
+          }
+        }
+      }
+    },
+    "appleSurface.intent.openLists.title": {
+      "comment": "Title for the intent that opens the home lists screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Lists"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Listas"
+          }
+        }
+      }
+    },
+    "appleSurface.intent.openShoppingMode.description": {
+      "comment": "Description for the intent that opens shopping mode for an active list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open shopping mode for a selected active list."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o modo de compra para uma lista ativa selecionada."
+          }
+        }
+      }
+    },
+    "appleSurface.intent.openShoppingMode.title": {
+      "comment": "Title for the intent that opens shopping mode for an active list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Shopping Mode"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Modo de Compra"
+          }
+        }
+      }
+    },
+    "appleSurface.list.parameter.title": {
+      "comment": "Parameter title for choosing a list in an Apple surface intent.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "List"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista"
+          }
+        }
+      }
+    },
+    "appleSurface.listEntity.type.title": {
+      "comment": "Entity type title for Apple surface list selection.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping List"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista de Compras"
+          }
+        }
+      }
+    },
+    "appleSurface.widget.activeList.description": {
+      "comment": "Description shown for the active list widget.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See progress and totals for one local shopping list."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veja o progresso e os totais de uma lista de compras local."
+          }
+        }
+      }
+    },
+    "appleSurface.widget.activeList.title": {
+      "comment": "Display name shown for the active list widget.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active List"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista Ativa"
+          }
+        }
+      }
+    },
+    "appleSurface.widget.configuration.description": {
+      "comment": "Description shown while configuring the active list widget.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose which local list the widget should show."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha qual lista local o widget deve mostrar."
+          }
+        }
+      }
+    },
+    "appleSurface.widget.configuration.title": {
+      "comment": "Title shown while configuring the active list widget.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active List"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista Ativa"
+          }
+        }
+      }
+    },
+    "appleSurface.widget.empty.description": {
+      "comment": "Description shown when the active list widget has no local list to display.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a local list in Aisly to use this widget."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie uma lista local no Aisly para usar este widget."
+          }
+        }
+      }
+    },
+    "appleSurface.widget.empty.title": {
+      "comment": "Title shown when the active list widget has no local list to display.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Active Lists"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma Lista Ativa"
+          }
+        }
+      }
+    },
     "common.action.cancel": {
       "comment": "Generic cancel action title.",
       "extractionState": "manual",

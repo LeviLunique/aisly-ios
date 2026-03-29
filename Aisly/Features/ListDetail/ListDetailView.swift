@@ -2,15 +2,10 @@ import SwiftUI
 
 struct ListDetailView: View {
     @StateObject private var viewModel: ListDetailViewModel
-    private let makeShoppingModeViewModel: @MainActor (UUID) -> ShoppingModeViewModel
     private let emptyStateSymbolName = ["list", "bullet", "clipboard"].joined(separator: ".")
 
-    init(
-        viewModel: ListDetailViewModel,
-        makeShoppingModeViewModel: @escaping @MainActor (UUID) -> ShoppingModeViewModel
-    ) {
+    init(viewModel: ListDetailViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.makeShoppingModeViewModel = makeShoppingModeViewModel
     }
 
     var body: some View {
@@ -102,11 +97,7 @@ struct ListDetailView: View {
         if viewModel.canCreateItem {
             if viewModel.canEnterShoppingMode {
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink {
-                        ShoppingModeView(
-                            viewModel: makeShoppingModeViewModel(viewModel.listID)
-                        )
-                    } label: {
+                    NavigationLink(value: AppRoute.shoppingMode(viewModel.listID)) {
                         Label {
                             Text(AppStrings.ListDetail.shoppingModeToolbarTitle)
                         } icon: {
@@ -589,13 +580,7 @@ struct ListDetailView: View {
                         isArchived: false
                     )
                 ])
-            ),
-            makeShoppingModeViewModel: { listID in
-                ShoppingModeViewModel(
-                    listID: listID,
-                    repository: PreviewListDetailRepository(lists: [])
-                )
-            }
+            )
         )
     }
 }
@@ -615,22 +600,7 @@ struct ListDetailView: View {
                         items: makePreviewItems(locale: Locale(identifier: "en"))
                     )
                 ])
-            ),
-            makeShoppingModeViewModel: { listID in
-                ShoppingModeViewModel(
-                    listID: listID,
-                    repository: PreviewListDetailRepository(lists: [
-                        ShoppingList(
-                            id: UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE")!,
-                            name: AppStrings.Mock.ShoppingList.weeklyGroceriesName(locale: Locale(identifier: "en")),
-                            createdAt: .now,
-                            updatedAt: .now,
-                            isArchived: false,
-                            items: makePreviewItems(locale: Locale(identifier: "en"))
-                        )
-                    ])
-                )
-            }
+            )
         )
     }
 }
