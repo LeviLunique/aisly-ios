@@ -4,9 +4,9 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-The repository scaffold, GitHub Actions workflow baseline, and offline architecture foundation are complete.
+The repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, and multiple-local-lists slice are complete.
 
-The next real product work is now the multiple-local-lists slice.
+The next real product work is now the local items and categories slice.
 
 ## What Should Be Built First
 
@@ -26,7 +26,7 @@ Completed:
 
 ### Multiple Local Lists
 
-Planned:
+Completed:
 
 - create list
 - edit list
@@ -99,3 +99,4 @@ Explicitly deferred:
 For the stage-by-stage status, see:
 
 - [HISTORY.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/HISTORY.md)
+- [local-lists.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/local-lists.md)

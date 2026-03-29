@@ -1,6 +1,24 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "common.action.cancel" : {
+      "comment" : "Generic cancel action title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
+    },
     "home.empty.description" : {
       "comment" : "Description shown when there are no local shopping lists yet.",
       "extractionState" : "manual",
@@ -8,13 +26,31 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aisly is ready to store your shopping lists locally on this device."
+            "value" : "Create your first list to keep multiple shopping runs organized on this device."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O Aisly está pronto para armazenar suas listas de compras localmente neste dispositivo."
+            "value" : "Crie sua primeira lista para organizar várias compras neste dispositivo."
+          }
+        }
+      }
+    },
+    "home.empty.createFirstList.action" : {
+      "comment" : "Primary action shown in the empty state to create the first list.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create First List"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Criar Primeira Lista"
           }
         }
       }
@@ -145,6 +181,186 @@
         }
       }
     },
+    "home.editor.create.confirm.action" : {
+      "comment" : "Confirmation button title for creating a shopping list.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Criar"
+          }
+        }
+      }
+    },
+    "home.editor.create.title" : {
+      "comment" : "Sheet title for creating a shopping list.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New List"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova Lista"
+          }
+        }
+      }
+    },
+    "home.editor.name.field.placeholder" : {
+      "comment" : "Placeholder shown in the shopping list name field.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shopping list name"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome da lista de compras"
+          }
+        }
+      }
+    },
+    "home.editor.name.field.title" : {
+      "comment" : "Title shown for the shopping list name field.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "List Name"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome da Lista"
+          }
+        }
+      }
+    },
+    "home.editor.rename.confirm.action" : {
+      "comment" : "Confirmation button title for renaming a shopping list.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar"
+          }
+        }
+      }
+    },
+    "home.editor.rename.title" : {
+      "comment" : "Sheet title for renaming a shopping list.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename List"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renomear Lista"
+          }
+        }
+      }
+    },
+    "home.list.archive.action" : {
+      "comment" : "Swipe action title for archiving a shopping list.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archive"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arquivar"
+          }
+        }
+      }
+    },
+    "home.list.rename.action" : {
+      "comment" : "Swipe action title for renaming a shopping list.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renomear"
+          }
+        }
+      }
+    },
+    "home.lists.active.section.title" : {
+      "comment" : "Section title for active shopping lists.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Lists"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listas Ativas"
+          }
+        }
+      }
+    },
+    "home.lists.archived.section.title" : {
+      "comment" : "Section title for archived shopping lists.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archived Lists"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listas Arquivadas"
+          }
+        }
+      }
+    },
     "home.screen.loading.title" : {
       "comment" : "Loading title shown while local shopping lists are being loaded.",
       "extractionState" : "manual",
@@ -177,6 +393,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suas Listas"
+          }
+        }
+      }
+    },
+    "home.toolbar.createList.action" : {
+      "comment" : "Toolbar action title for creating a shopping list.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New List"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova Lista"
           }
         }
       }
