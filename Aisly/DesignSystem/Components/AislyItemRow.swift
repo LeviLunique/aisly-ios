@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AislyItemRow<TrailingAccessory: View>: View {
     private let title: String
-    private let detail: Text
+    private let detail: Text?
     private let note: Text?
     private let isChecked: Bool
     private let isFavorite: Bool
@@ -13,7 +13,7 @@ struct AislyItemRow<TrailingAccessory: View>: View {
 
     init(
         title: String,
-        detail: Text,
+        detail: Text? = nil,
         note: Text? = nil,
         isChecked: Bool = false,
         isFavorite: Bool = false,
@@ -43,16 +43,18 @@ struct AislyItemRow<TrailingAccessory: View>: View {
                             .foregroundStyle(isChecked ? AislyColor.textSecondary : AislyColor.textPrimary)
                             .strikethrough(isChecked)
 
-                        if isFavorite {
-                            Image(systemName: "star.fill")
-                                .font(.system(size: 11))
-                                .foregroundStyle(AislyColor.secondary)
-                        }
+                    if isFavorite {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 11))
+                            .foregroundStyle(AislyColor.secondary)
+                    }
                     }
 
-                    detail
-                        .font(AislyTypography.caption)
-                        .foregroundStyle(AislyColor.textSecondary)
+                    if let detail {
+                        detail
+                            .font(AislyTypography.caption)
+                            .foregroundStyle(AislyColor.textSecondary)
+                    }
 
                     if let note {
                         note
@@ -95,7 +97,7 @@ struct AislyItemRow<TrailingAccessory: View>: View {
 extension AislyItemRow where TrailingAccessory == EmptyView {
     init(
         title: String,
-        detail: Text,
+        detail: Text? = nil,
         note: Text? = nil,
         isChecked: Bool = false,
         isFavorite: Bool = false,

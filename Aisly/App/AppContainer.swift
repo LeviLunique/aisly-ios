@@ -11,6 +11,14 @@ struct AppContainer {
 
     @MainActor
     func makeHomeView() -> some View {
-        HomeView(viewModel: HomeViewModel(repository: shoppingListRepository))
+        HomeView(
+            viewModel: HomeViewModel(repository: shoppingListRepository),
+            makeListDetailViewModel: { listID in
+                ListDetailViewModel(
+                    listID: listID,
+                    repository: shoppingListRepository
+                )
+            }
+        )
     }
 }
