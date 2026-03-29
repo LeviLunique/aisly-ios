@@ -3,6 +3,16 @@ import Foundation
 
 @MainActor
 final class ListDetailViewModel: ObservableObject {
+    struct QuickEntrySuggestion: Identifiable, Equatable {
+        let id: String
+        let name: String
+        let quantity: Int
+        let category: ShoppingItem.Category
+        let plannedPrice: Decimal?
+        let usageCount: Int
+        let lastUsedAt: Date
+    }
+
     struct ItemRow: Identifiable, Equatable {
         let id: UUID
         let name: String
@@ -57,6 +67,7 @@ final class ListDetailViewModel: ObservableObject {
     private let now: @Sendable () -> Date
     private let makeUUID: @Sendable () -> UUID
     private let locale: Locale
+    private var allLists: [ShoppingList] = []
     private var currentList: ShoppingList?
 
     init(
@@ -91,6 +102,7 @@ final class ListDetailViewModel: ObservableObject {
                 return
             }
 
+            allLists = lists
             currentList = list
             state = .loaded(makeSnapshot(from: list))
         } catch {
@@ -274,6 +286,58 @@ final class ListDetailViewModel: ObservableObject {
         }
     }
 
+    var quickEntrySuggestions: [QuickEntrySuggestion] {
+        guard case .create = editorMode else {
+            return []
+        }
+
+        let query = normalizedHistoryKey(from: draftName)
+        let baseSuggestions = historySuggestions
+
+        let filteredSuggestions: [QuickEntrySuggestion]
+        if query.isEmpty {
+            filteredSuggestions = baseSuggestions
+        } else {
+            filteredSuggestions = baseSuggestions.filter {
+                normalizedHistoryKey(from: $0.name).contains(query)
+            }
+        }
+
+        return filteredSuggestions
+            .sorted { lhs, rhs in
+                let lhsPrefixMatch = normalizedHistoryKey(from: lhs.name).hasPrefix(query)
+                let rhsPrefixMatch = normalizedHistoryKey(from: rhs.name).hasPrefix(query)
+
+                if lhsPrefixMatch != rhsPrefixMatch {
+                    return lhsPrefixMatch
+                }
+
+                if lhs.usageCount != rhs.usageCount {
+                    return lhs.usageCount > rhs.usageCount
+                }
+
+                if lhs.lastUsedAt != rhs.lastUsedAt {
+                    return lhs.lastUsedAt > rhs.lastUsedAt
+                }
+
+                return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedAscending
+            }
+            .prefix(5)
+            .map { $0 }
+    }
+
+    func applyQuickEntrySuggestion(id: QuickEntrySuggestion.ID) {
+        guard let suggestion = quickEntrySuggestions.first(where: { $0.id == id }) else {
+            return
+        }
+
+        draftName = suggestion.name
+        draftQuantity = suggestion.quantity
+        draftCategory = suggestion.category
+        draftPlannedPrice = draftString(for: suggestion.plannedPrice)
+        draftActualPrice = ""
+    }
+
     private var normalizedDraftName: String? {
         let trimmedName = draftName.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmedName.isEmpty ? nil : trimmedName
@@ -289,6 +353,28 @@ final class ListDetailViewModel: ObservableObject {
 
     private var areDraftPricesValid: Bool {
         isValidPriceDraft(draftPlannedPrice) && isValidPriceDraft(draftActualPrice)
+    }
+
+    private var historySuggestions: [QuickEntrySuggestion] {
+        Dictionary(grouping: allLists.flatMap(\.items), by: { normalizedHistoryKey(from: $0.name) })
+            .compactMap { normalizedName, items in
+                guard
+                    normalizedName.isEmpty == false,
+                    let mostRecentItem = items.max(by: { $0.updatedAt < $1.updatedAt })
+                else {
+                    return nil
+                }
+
+                return QuickEntrySuggestion(
+                    id: normalizedName,
+                    name: mostRecentItem.name,
+                    quantity: mostRecentItem.quantity,
+                    category: mostRecentItem.category,
+                    plannedPrice: mostRecentItem.plannedPrice,
+                    usageCount: items.count,
+                    lastUsedAt: mostRecentItem.updatedAt
+                )
+            }
     }
 
     private var itemSortComparator: (ShoppingItem, ShoppingItem) -> Bool {
@@ -366,10 +452,15 @@ final class ListDetailViewModel: ObservableObject {
         return nil
     }
 
+    private func normalizedHistoryKey(from name: String) -> String {
+        name.trimmingCharacters(in: .whitespacesAndNewlines).folding(options: [.diacriticInsensitive, .caseInsensitive], locale: locale)
+    }
+
     private func persist(_ updatedList: ShoppingList) async throws {
         let allLists = try await repository.fetchLists()
         let updatedLists = try replace(listID: updatedList.id, in: allLists, with: updatedList)
         try await repository.saveLists(updatedLists)
+        self.allLists = updatedLists
         currentList = updatedList
         state = .loaded(makeSnapshot(from: updatedList))
     }

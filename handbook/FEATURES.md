@@ -4,11 +4,11 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, and the local budget-core slice.
+The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, budget-core, and quick-entry-history.
 
 The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared Aisly-native SwiftUI visual layer with broader tokens, controls, summary surfaces, and logo assets for future UI slices.
 
-The next real product work is now quick entry and history.
+The next real product work is now templates and recurrence.
 
 ## What Should Be Built First
 
@@ -65,11 +65,19 @@ Completed locally:
 - actual total
 - delta visibility
 
+### Quick Entry and History
+
+Completed locally:
+
+- item-history aggregation across local lists
+- quick-entry suggestions inside the existing add-item flow
+- ranking by frequency and recency
+- one-tap draft prefilling for repeated items
+
 ### Recurring Shopping Convenience
 
 Planned:
 
-- quick entry from history
 - templates
 - recurring list regeneration
 
@@ -116,3 +124,4 @@ For the stage-by-stage status, see:
 - [HISTORY.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/HISTORY.md)
 - [local-lists.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/local-lists.md)
 - [budget-core.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/budget-core.md)
+- [quick-entry-history.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/quick-entry-history.md)

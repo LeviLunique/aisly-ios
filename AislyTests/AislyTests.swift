@@ -776,7 +776,157 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(viewModel.draftCategory, .produce)
         XCTAssertEqual(viewModel.draftPlannedPrice, "")
         XCTAssertEqual(viewModel.draftActualPrice, "")
+        XCTAssertEqual(viewModel.quickEntrySuggestions, [])
         XCTAssertTrue(viewModel.isDraftSubmissionDisabled)
+    }
+
+    @MainActor
+    func testListDetailViewModelPresentCreateItemExposesQuickEntrySuggestionsFromHistory() async {
+        let listID = UUID()
+        let olderMilkDate = Date(timeIntervalSince1970: 1_500)
+        let newerMilkDate = Date(timeIntervalSince1970: 1_900)
+        let applesDate = Date(timeIntervalSince1970: 1_800)
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(id: listID, name: "Weekly Groceries"),
+                makeShoppingList(
+                    name: "Party Supplies",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            plannedPrice: 4.75,
+                            sortOrder: 0,
+                            updatedAt: newerMilkDate
+                        ),
+                        makeShoppingItem(
+                            name: "Apples",
+                            quantity: 6,
+                            category: .produce,
+                            plannedPrice: 0.8,
+                            sortOrder: 1,
+                            updatedAt: applesDate
+                        )
+                    ]
+                ),
+                makeShoppingList(
+                    name: "Bakery",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            plannedPrice: 4.5,
+                            sortOrder: 0,
+                            updatedAt: olderMilkDate
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+
+        XCTAssertEqual(
+            viewModel.quickEntrySuggestions,
+            [
+                .init(
+                    id: "milk",
+                    name: "Milk",
+                    quantity: 1,
+                    category: .dairy,
+                    plannedPrice: 4.75,
+                    usageCount: 2,
+                    lastUsedAt: newerMilkDate
+                ),
+                .init(
+                    id: "apples",
+                    name: "Apples",
+                    quantity: 6,
+                    category: .produce,
+                    plannedPrice: 0.8,
+                    usageCount: 1,
+                    lastUsedAt: applesDate
+                )
+            ]
+        )
+    }
+
+    @MainActor
+    func testListDetailViewModelQuickEntrySuggestionsFilterByDraftName() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(id: listID, name: "Weekly Groceries"),
+                makeShoppingList(
+                    name: "Party Supplies",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            plannedPrice: 4.75,
+                            sortOrder: 0
+                        ),
+                        makeShoppingItem(
+                            name: "Apples",
+                            quantity: 6,
+                            category: .produce,
+                            plannedPrice: 0.8,
+                            sortOrder: 1
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+        viewModel.updateDraftName("app")
+
+        XCTAssertEqual(viewModel.quickEntrySuggestions.map(\.name), ["Apples"])
+    }
+
+    @MainActor
+    func testListDetailViewModelApplyQuickEntrySuggestionPrefillsDraftAndClearsActualPrice() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(id: listID, name: "Weekly Groceries"),
+                makeShoppingList(
+                    name: "Party Supplies",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            plannedPrice: 4.5,
+                            actualPrice: 4.75,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            locale: Locale(identifier: "en_US_POSIX")
+        )
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+        viewModel.applyQuickEntrySuggestion(id: "milk")
+
+        XCTAssertEqual(viewModel.draftName, "Milk")
+        XCTAssertEqual(viewModel.draftQuantity, 2)
+        XCTAssertEqual(viewModel.draftCategory, .dairy)
+        XCTAssertEqual(viewModel.draftPlannedPrice, "4.5")
+        XCTAssertEqual(viewModel.draftActualPrice, "")
     }
 
     @MainActor
@@ -817,6 +967,7 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(viewModel.draftCategory, .dairy)
         XCTAssertEqual(viewModel.draftPlannedPrice, "4.5")
         XCTAssertEqual(viewModel.draftActualPrice, "4.75")
+        XCTAssertEqual(viewModel.quickEntrySuggestions, [])
     }
 
     @MainActor

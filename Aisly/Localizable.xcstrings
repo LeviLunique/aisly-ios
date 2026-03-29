@@ -703,6 +703,24 @@
         }
       }
     },
+    "listDetail.editor.quickEntry.section.title" : {
+      "comment" : "Section title for quick-entry suggestions based on local item history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Entry"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrada Rápida"
+          }
+        }
+      }
+    },
     "listDetail.editor.quantity.field.title" : {
       "comment" : "Field title for the item quantity control.",
       "extractionState" : "manual",

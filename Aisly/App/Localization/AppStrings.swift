@@ -59,6 +59,7 @@ enum AppStrings {
         static let itemsSectionTitle = AppTextKeys.ListDetail.itemsSectionTitle.localizedResource
         static let itemNameFieldTitle = AppTextKeys.ListDetail.itemNameFieldTitle.localizedResource
         static let itemNamePlaceholder = AppTextKeys.ListDetail.itemNamePlaceholder.localizedResource
+        static let quickEntrySectionTitle = AppTextKeys.ListDetail.quickEntrySectionTitle.localizedResource
         static let quantityFieldTitle = AppTextKeys.ListDetail.quantityFieldTitle.localizedResource
         static let categoryFieldTitle = AppTextKeys.ListDetail.categoryFieldTitle.localizedResource
         static let plannedPriceFieldTitle = AppTextKeys.ListDetail.plannedPriceFieldTitle.localizedResource

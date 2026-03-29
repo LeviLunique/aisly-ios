@@ -10,7 +10,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 - Stage 2: completed
 - Stage 3: completed locally
 - Stage 4: completed locally
-- Stage 5: pending
+- Stage 5: completed locally
 - Stage 6: pending
 - Stage 7: pending
 - Stage 8: pending
@@ -84,6 +84,17 @@ Delivered locally:
 - the file-backed persistence layer stays backward-compatible with Stage 3 item payloads that do not yet contain budget fields
 - regression coverage now includes Stage 3 persistence compatibility plus budget totals and price-draft validation
 
+### Stage 5
+
+Delivered locally:
+
+- add-item flow now derives quick-entry suggestions from local item history across lists
+- repeated items are grouped by normalized name and ranked by draft match, usage frequency, and recency
+- tapping a suggestion pre-fills the create-item draft with name, quantity, category, and planned price
+- the quick-entry UI stays inside the existing list-detail editor instead of introducing a new screen or persistence layer
+- the new section title stays localized through the shared String Catalog and semantic text boundary
+- regression coverage now includes history aggregation, live filtering, prefilling behavior, and detail-screen source-audit compliance
+
 ### Supporting Remote Branch Work
 
 The remote repository also contains additional implemented work that is not yet part of the numbered product-stage history on `main`.
@@ -101,7 +112,7 @@ Delivered on remote branch `feat/swiftui-design-system`:
 
 The next correct work is:
 
-- quick entry and history
+- templates and recurrence
 
 Not:
 

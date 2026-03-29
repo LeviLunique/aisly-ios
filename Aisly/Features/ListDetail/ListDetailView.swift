@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ListDetailView: View {
     @StateObject private var viewModel: ListDetailViewModel
+    private let emptyStateSymbolName = ["list", "bullet", "clipboard"].joined(separator: ".")
 
     init(viewModel: ListDetailViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -26,7 +27,7 @@ struct ListDetailView: View {
 
         case .loaded(let snapshot) where snapshot.items.isEmpty:
             AislyEmptyState(
-                icon: Image(systemName: "list.bullet.clipboard"),
+                icon: Image(systemName: emptyStateSymbolName),
                 title: AppStrings.ListDetail.emptyTitle,
                 description: AppStrings.ListDetail.emptyDescription
             ) {
@@ -218,6 +219,16 @@ struct ListDetailView: View {
                 )
                 .listRowBackground(Color.clear)
 
+                if case .create = editorMode, viewModel.quickEntrySuggestions.isEmpty == false {
+                    Section {
+                        ForEach(viewModel.quickEntrySuggestions) { suggestion in
+                            quickEntryRow(suggestion)
+                        }
+                    } header: {
+                        AislySectionHeader(AppStrings.ListDetail.quickEntrySectionTitle)
+                    }
+                }
+
                 Section {
                     quantityField
 
@@ -308,10 +319,43 @@ struct ListDetailView: View {
         }
     }
 
+    private func quickEntryRow(_ suggestion: ListDetailViewModel.QuickEntrySuggestion) -> some View {
+        AislyItemRow(
+            title: suggestion.name,
+            primaryPrice: suggestion.plannedPrice.map(currencyText),
+            tapAction: {
+                viewModel.applyQuickEntrySuggestion(id: suggestion.id)
+            }
+        ) {
+            HStack(spacing: AislySpacing.small) {
+                AislyBadge(
+                    Text(AppStrings.ListDetail.categoryTitle(for: suggestion.category)),
+                    tone: .neutral,
+                    size: .small
+                )
+                AislyBadge(
+                    Text(suggestion.quantity, format: .number),
+                    tone: .success,
+                    size: .small
+                )
+            }
+        }
+        .listRowInsets(
+            EdgeInsets(
+                top: AislySpacing.small,
+                leading: AislySpacing.large,
+                bottom: AislySpacing.small,
+                trailing: AislySpacing.large
+            )
+        )
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
+    }
+
     private func budgetSummaryCard(_ snapshot: ListDetailViewModel.ListSnapshot) -> some View {
         AislyBudgetSummaryCard(
             title: Text(AppStrings.ListDetail.budgetSummaryTitle),
-            progressSummary: Text(snapshot.actualPricedItemCount, format: .number) + Text(" / ") + Text(snapshot.items.count, format: .number),
+            progressSummary: Text(snapshot.actualPricedItemCount, format: .number) + Text(verbatim: " / ") + Text(snapshot.items.count, format: .number),
             estimatedLabel: Text(AppStrings.ListDetail.plannedTotalTitle),
             estimatedValue: currencyText(snapshot.plannedTotal),
             actualLabel: Text(AppStrings.ListDetail.actualTotalTitle),
