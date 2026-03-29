@@ -41,6 +41,7 @@ final class ListDetailViewModel: ObservableObject {
         let storeName: String?
         let plannedTotal: Decimal?
         let actualTotal: Decimal?
+        let isCompleted: Bool
         let updatedAt: Date
     }
 
@@ -84,7 +85,7 @@ final class ListDetailViewModel: ObservableObject {
     @Published private(set) var draftPlannedPrice = ""
     @Published private(set) var draftActualPrice = ""
 
-    private let listID: UUID
+    let listID: UUID
     private let repository: any ShoppingListRepository
     private let now: @Sendable () -> Date
     private let makeUUID: @Sendable () -> UUID
@@ -290,6 +291,14 @@ final class ListDetailViewModel: ObservableObject {
         return snapshot.items.count > 1
     }
 
+    var canEnterShoppingMode: Bool {
+        guard case .loaded(let snapshot) = state else {
+            return false
+        }
+
+        return currentList?.isTemplate == false && snapshot.items.isEmpty == false
+    }
+
     var isDraftSubmissionDisabled: Bool {
         guard
             let normalizedDraftName,
@@ -427,14 +436,14 @@ final class ListDetailViewModel: ObservableObject {
     var priceMemorySuggestion: PriceMemorySuggestion? {
         guard
             let normalizedDraftHistoryKey,
-            let normalizedDraftStoreName
+            let normalizedDraftStoreLookupKey
         else {
             return nil
         }
 
         let matchingItems = historyItems.filter { item in
             normalizedHistoryKey(from: item.name) == normalizedDraftHistoryKey &&
-                normalizedStoreKey(from: item.storeName) == normalizedDraftStoreName &&
+                normalizedStoreKey(from: item.storeName) == normalizedDraftStoreLookupKey &&
                 item.id != currentEditingItemID
         }
 
@@ -508,6 +517,14 @@ final class ListDetailViewModel: ObservableObject {
     private var normalizedDraftStoreName: String? {
         let trimmedStoreName = draftStoreName.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmedStoreName.isEmpty ? nil : trimmedStoreName
+    }
+
+    private var normalizedDraftStoreLookupKey: String? {
+        guard let normalizedDraftStoreName else {
+            return nil
+        }
+
+        return normalizedStoreKey(from: normalizedDraftStoreName)
     }
 
     private var normalizedDraftPlannedPrice: Decimal? {
@@ -681,6 +698,7 @@ private extension ListDetailViewModel.ItemRow {
         storeName = item.storeName
         plannedTotal = item.plannedTotal
         actualTotal = item.actualTotal
+        isCompleted = item.isCompleted
         updatedAt = item.updatedAt
     }
 }

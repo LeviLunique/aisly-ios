@@ -1,1554 +1,1824 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "common.action.cancel" : {
-      "comment" : "Generic cancel action title.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancel"
+  "sourceLanguage": "en",
+  "strings": {
+    "common.action.cancel": {
+      "comment": "Generic cancel action title.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancelar"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
           }
         }
       }
     },
-    "common.action.delete" : {
-      "comment" : "Generic delete action title.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete"
+    "common.action.delete": {
+      "comment": "Generic delete action title.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Excluir"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
           }
         }
       }
     },
-    "common.value.optional" : {
-      "comment" : "Placeholder value used for optional text-entry fields.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optional"
+    "common.value.optional": {
+      "comment": "Placeholder value used for optional text-entry fields.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opcional"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opcional"
           }
         }
       }
     },
-    "home.empty.description" : {
-      "comment" : "Description shown when there are no local shopping lists yet.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Create your first list to keep multiple shopping runs organized on this device."
+    "home.editor.create.confirm.action": {
+      "comment": "Confirmation button title for creating a shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crie sua primeira lista para organizar várias compras neste dispositivo."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar"
           }
         }
       }
     },
-    "home.empty.createFirstList.action" : {
-      "comment" : "Primary action shown in the empty state to create the first list.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Create First List"
+    "home.editor.create.title": {
+      "comment": "Sheet title for creating a shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New List"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Criar Primeira Lista"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova Lista"
           }
         }
       }
     },
-    "home.empty.title" : {
-      "comment" : "Title shown when there are no local shopping lists yet.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No Lists Yet"
+    "home.editor.name.field.placeholder": {
+      "comment": "Placeholder shown in the shopping list name field.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping list name"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nenhuma Lista Ainda"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da lista de compras"
           }
         }
       }
     },
-    "home.error.description" : {
-      "comment" : "Description shown when local shopping data cannot be loaded.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aisly couldn't load the local shopping data on this device."
+    "home.editor.name.field.title": {
+      "comment": "Title shown for the shopping list name field.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "List Name"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Aisly não conseguiu carregar os dados locais de compras neste dispositivo."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da Lista"
           }
         }
       }
     },
-    "home.error.retry.action" : {
-      "comment" : "Button title used to retry loading local shopping data.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Try Again"
+    "home.editor.rename.confirm.action": {
+      "comment": "Confirmation button title for renaming a shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tentar Novamente"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar"
           }
         }
       }
     },
-    "home.error.title" : {
-      "comment" : "Title shown when local shopping data cannot be loaded.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Local Data Unavailable"
+    "home.editor.rename.title": {
+      "comment": "Sheet title for renaming a shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename List"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dados Locais Indisponíveis"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renomear Lista"
           }
         }
       }
     },
-    "home.foundationStatus.localPersistence.message" : {
-      "comment" : "Status line describing local-first persistence.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Persistence is local-first and file-backed."
+    "home.empty.createFirstList.action": {
+      "comment": "Primary action shown in the empty state to create the first list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create First List"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A persistência é local-first e baseada em arquivo."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar Primeira Lista"
           }
         }
       }
     },
-    "home.foundationStatus.repositoryBoundary.message" : {
-      "comment" : "Status line describing repository-based data loading.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Data is loaded through a repository boundary."
+    "home.empty.description": {
+      "comment": "Description shown when there are no local shopping lists yet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your first list to keep multiple shopping runs organized on this device."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Os dados são carregados por meio de uma fronteira de repositório."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie sua primeira lista para organizar várias compras neste dispositivo."
           }
         }
       }
     },
-    "home.foundationStatus.section.title" : {
-      "comment" : "Section title for foundation status details on the home screen.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Foundation Status"
+    "home.empty.title": {
+      "comment": "Title shown when there are no local shopping lists yet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Lists Yet"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Status da Fundação"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma Lista Ainda"
           }
         }
       }
     },
-    "home.editor.create.confirm.action" : {
-      "comment" : "Confirmation button title for creating a shopping list.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Create"
+    "home.error.description": {
+      "comment": "Description shown when local shopping data cannot be loaded.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aisly couldn't load the local shopping data on this device."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Criar"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Aisly não conseguiu carregar os dados locais de compras neste dispositivo."
           }
         }
       }
     },
-    "home.editor.create.title" : {
-      "comment" : "Sheet title for creating a shopping list.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New List"
+    "home.error.retry.action": {
+      "comment": "Button title used to retry loading local shopping data.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try Again"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nova Lista"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tentar Novamente"
           }
         }
       }
     },
-    "home.editor.name.field.placeholder" : {
-      "comment" : "Placeholder shown in the shopping list name field.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shopping list name"
+    "home.error.title": {
+      "comment": "Title shown when local shopping data cannot be loaded.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local Data Unavailable"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome da lista de compras"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dados Locais Indisponíveis"
           }
         }
       }
     },
-    "home.editor.name.field.title" : {
-      "comment" : "Title shown for the shopping list name field.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "List Name"
+    "home.foundationStatus.localPersistence.message": {
+      "comment": "Status line describing local-first persistence.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Persistence is local-first and file-backed."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome da Lista"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A persistência é local-first e baseada em arquivo."
           }
         }
       }
     },
-    "home.editor.rename.confirm.action" : {
-      "comment" : "Confirmation button title for renaming a shopping list.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
+    "home.foundationStatus.repositoryBoundary.message": {
+      "comment": "Status line describing repository-based data loading.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data is loaded through a repository boundary."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salvar"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Os dados são carregados por meio de uma fronteira de repositório."
           }
         }
       }
     },
-    "home.editor.rename.title" : {
-      "comment" : "Sheet title for renaming a shopping list.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rename List"
+    "home.foundationStatus.section.title": {
+      "comment": "Section title for foundation status details on the home screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foundation Status"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renomear Lista"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status da Fundação"
           }
         }
       }
     },
-    "home.list.archive.action" : {
-      "comment" : "Swipe action title for archiving a shopping list.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Archive"
+    "home.list.archive.action": {
+      "comment": "Swipe action title for archiving a shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archive"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arquivar"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arquivar"
           }
         }
       }
     },
-    "home.list.rename.action" : {
-      "comment" : "Swipe action title for renaming a shopping list.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rename"
+    "home.list.rename.action": {
+      "comment": "Swipe action title for renaming a shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renomear"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renomear"
           }
         }
       }
     },
-    "home.list.saveTemplate.action" : {
-      "comment" : "Swipe action title for saving an active list as a template.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save Template"
+    "home.list.saveTemplate.action": {
+      "comment": "Swipe action title for saving an active list as a template.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save Template"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salvar Modelo"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar Modelo"
           }
         }
       }
     },
-    "home.lists.active.section.title" : {
-      "comment" : "Section title for active shopping lists.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Active Lists"
+    "home.lists.active.section.title": {
+      "comment": "Section title for active shopping lists.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Lists"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listas Ativas"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas Ativas"
           }
         }
       }
     },
-    "home.lists.archived.section.title" : {
-      "comment" : "Section title for archived shopping lists.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Archived Lists"
+    "home.lists.archived.section.title": {
+      "comment": "Section title for archived shopping lists.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archived Lists"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listas Arquivadas"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas Arquivadas"
           }
         }
       }
     },
-    "home.template.editor.confirm.action" : {
-      "comment" : "Confirmation button title for saving a template.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
+    "home.screen.loading.title": {
+      "comment": "Loading title shown while local shopping lists are being loaded.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading local lists..."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salvar"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregando listas locais..."
           }
         }
       }
     },
-    "home.template.editor.name.field.placeholder" : {
-      "comment" : "Placeholder shown in the template name field.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reusable list name"
+    "home.screen.navigation.title": {
+      "comment": "Navigation title for the home screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your Lists"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome da lista reutilizável"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suas Listas"
           }
         }
       }
     },
-    "home.template.editor.name.field.title" : {
-      "comment" : "Field title for the template name input.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Template Name"
+    "home.summary.activeLists.label": {
+      "comment": "Label for the active shopping list count on the home screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Lists"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome do Modelo"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas Ativas"
           }
         }
       }
     },
-    "home.template.editor.recurrence.field.title" : {
-      "comment" : "Field title for template recurrence selection.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recurrence"
+    "home.summary.archivedLists.label": {
+      "comment": "Label for the archived shopping list count on the home screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archived Lists"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recorrência"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas Arquivadas"
           }
         }
       }
     },
-    "home.template.editor.title" : {
-      "comment" : "Sheet title for saving a reusable template.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save Template"
+    "home.summary.section.title": {
+      "comment": "Section title for the local shopping list summary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local Summary"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salvar Modelo"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resumo Local"
           }
         }
       }
     },
-    "home.template.generate.action" : {
-      "comment" : "Action title for generating a fresh list from a template.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Generate List"
+    "home.template.editor.confirm.action": {
+      "comment": "Confirmation button title for saving a template.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gerar Lista"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar"
           }
         }
       }
     },
-    "home.template.recurrence.biweekly.title" : {
-      "comment" : "Label for biweekly template recurrence.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Every 2 Weeks"
+    "home.template.editor.name.field.placeholder": {
+      "comment": "Placeholder shown in the template name field.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reusable list name"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Cada 2 Semanas"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da lista reutilizável"
           }
         }
       }
     },
-    "home.template.recurrence.monthly.title" : {
-      "comment" : "Label for monthly template recurrence.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monthly"
+    "home.template.editor.name.field.title": {
+      "comment": "Field title for the template name input.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Template Name"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mensal"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome do Modelo"
           }
         }
       }
     },
-    "home.template.recurrence.weekly.title" : {
-      "comment" : "Label for weekly template recurrence.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weekly"
+    "home.template.editor.recurrence.field.title": {
+      "comment": "Field title for template recurrence selection.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recurrence"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Semanal"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorrência"
           }
         }
       }
     },
-    "home.templates.section.title" : {
-      "comment" : "Section title for reusable shopping templates.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Templates"
+    "home.template.editor.title": {
+      "comment": "Sheet title for saving a reusable template.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save Template"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modelos"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar Modelo"
           }
         }
       }
     },
-    "home.screen.loading.title" : {
-      "comment" : "Loading title shown while local shopping lists are being loaded.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Loading local lists..."
+    "home.template.generate.action": {
+      "comment": "Action title for generating a fresh list from a template.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generate List"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Carregando listas locais..."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerar Lista"
           }
         }
       }
     },
-    "home.screen.navigation.title" : {
-      "comment" : "Navigation title for the home screen.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your Lists"
+    "home.template.recurrence.biweekly.title": {
+      "comment": "Label for biweekly template recurrence.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every 2 Weeks"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suas Listas"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Cada 2 Semanas"
           }
         }
       }
     },
-    "home.toolbar.createList.action" : {
-      "comment" : "Toolbar action title for creating a shopping list.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New List"
+    "home.template.recurrence.monthly.title": {
+      "comment": "Label for monthly template recurrence.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nova Lista"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mensal"
           }
         }
       }
     },
-    "listDetail.category.dairy.label" : {
-      "comment" : "Category label for dairy items.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dairy"
+    "home.template.recurrence.weekly.title": {
+      "comment": "Label for weekly template recurrence.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Laticínios"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semanal"
           }
         }
       }
     },
-    "listDetail.category.frozen.label" : {
-      "comment" : "Category label for frozen items.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Frozen"
+    "home.templates.section.title": {
+      "comment": "Section title for reusable shopping templates.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Templates"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Congelados"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos"
           }
         }
       }
     },
-    "listDetail.category.household.label" : {
-      "comment" : "Category label for household items.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Household"
+    "home.toolbar.createList.action": {
+      "comment": "Toolbar action title for creating a shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New List"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Casa"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova Lista"
           }
         }
       }
     },
-    "listDetail.category.other.label" : {
-      "comment" : "Category label for uncategorized or other items.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Other"
+    "listDetail.budget.actualTotal.title": {
+      "comment": "Label for the actual total value in the list-detail budget summary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Outros"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Real"
           }
         }
       }
     },
-    "listDetail.category.pantry.label" : {
-      "comment" : "Category label for pantry items.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pantry"
+    "listDetail.budget.awaitingActualPrices.description": {
+      "comment": "Supporting text shown when a list does not have actual prices yet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add actual prices during shopping to compare the real spend."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Despensa"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicione preços reais durante a compra para comparar o gasto final."
           }
         }
       }
     },
-    "listDetail.category.produce.label" : {
-      "comment" : "Category label for produce items.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Produce"
+    "listDetail.budget.awaitingActualPrices.title": {
+      "comment": "Status title shown when a list does not have actual prices yet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Actual Prices Yet"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hortifruti"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda Sem Preços Reais"
           }
         }
       }
     },
-    "listDetail.category.protein.label" : {
-      "comment" : "Category label for meat and protein items.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Protein"
+    "listDetail.budget.onBudget.title": {
+      "comment": "Status title shown when the actual total matches the planned total.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On Budget"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Proteínas"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dentro do Orçamento"
           }
         }
       }
     },
-    "listDetail.editor.category.field.title" : {
-      "comment" : "Field title for the item category picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Category"
+    "listDetail.budget.overBudget.title": {
+      "comment": "Status title shown when the actual total is over the planned total.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over Budget"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Categoria"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acima do Orçamento"
           }
         }
       }
     },
-    "listDetail.editor.create.confirm.action" : {
-      "comment" : "Confirmation button title for creating a shopping item.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add"
+    "listDetail.budget.plannedTotal.title": {
+      "comment": "Label for the planned total value in the list-detail budget summary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adicionar"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planejado"
           }
         }
       }
     },
-    "listDetail.editor.create.title" : {
-      "comment" : "Sheet title for creating a shopping item.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New Item"
+    "listDetail.budget.summary.title": {
+      "comment": "Title for the list-detail budget summary card.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budget"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Novo Item"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orçamento"
           }
         }
       }
     },
-    "listDetail.editor.edit.confirm.action" : {
-      "comment" : "Confirmation button title for editing a shopping item.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
+    "listDetail.budget.underBudget.title": {
+      "comment": "Status title shown when the actual total is under the planned total.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under Budget"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salvar"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abaixo do Orçamento"
           }
         }
       }
     },
-    "listDetail.editor.edit.title" : {
-      "comment" : "Sheet title for editing a shopping item.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edit Item"
+    "listDetail.category.dairy.label": {
+      "comment": "Category label for dairy items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dairy"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Editar Item"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laticínios"
           }
         }
       }
     },
-    "listDetail.editor.name.field.placeholder" : {
-      "comment" : "Placeholder shown in the shopping item name field.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Item name"
+    "listDetail.category.frozen.label": {
+      "comment": "Category label for frozen items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frozen"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome do item"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Congelados"
           }
         }
       }
     },
-    "listDetail.editor.name.field.title" : {
-      "comment" : "Title shown for the shopping item name field.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Item Name"
+    "listDetail.category.household.label": {
+      "comment": "Category label for household items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Household"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome do Item"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Casa"
           }
         }
       }
     },
-    "listDetail.editor.priceMemory.section.title" : {
-      "comment" : "Section title for local price-memory suggestions in the item editor.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Price Memory"
+    "listDetail.category.other.label": {
+      "comment": "Category label for uncategorized or other items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Memória de Preço"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outros"
           }
         }
       }
     },
-    "listDetail.editor.quickEntry.section.title" : {
-      "comment" : "Section title for quick-entry suggestions based on local item history.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quick Entry"
+    "listDetail.category.pantry.label": {
+      "comment": "Category label for pantry items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantry"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entrada Rápida"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despensa"
           }
         }
       }
     },
-    "listDetail.editor.store.field.placeholder" : {
-      "comment" : "Placeholder shown in the item store field.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Store name"
+    "listDetail.category.produce.label": {
+      "comment": "Category label for produce items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produce"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome da loja"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hortifruti"
           }
         }
       }
     },
-    "listDetail.editor.store.field.title" : {
-      "comment" : "Title shown for the item store field.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Store"
+    "listDetail.category.protein.label": {
+      "comment": "Category label for meat and protein items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Loja"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteínas"
           }
         }
       }
     },
-    "listDetail.editor.storeSuggestions.section.title" : {
-      "comment" : "Section title for local store suggestions in the item editor.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recent Stores"
+    "listDetail.editor.actualPrice.field.title": {
+      "comment": "Title shown for the actual price field in the item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual Price"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lojas Recentes"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preço Real"
           }
         }
       }
     },
-    "listDetail.editor.quantity.field.title" : {
-      "comment" : "Field title for the item quantity control.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quantity"
+    "listDetail.editor.category.field.title": {
+      "comment": "Field title for the item category picker.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Category"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quantidade"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categoria"
           }
         }
       }
     },
-    "listDetail.empty.createFirstItem.action" : {
-      "comment" : "Primary action shown in the empty state to create the first item in a list.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add First Item"
+    "listDetail.editor.create.confirm.action": {
+      "comment": "Confirmation button title for creating a shopping item.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adicionar Primeiro Item"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar"
           }
         }
       }
     },
-    "listDetail.empty.description" : {
-      "comment" : "Description shown when a list does not have any items yet.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add local items, choose a category, and keep the next shopping run organized."
+    "listDetail.editor.create.title": {
+      "comment": "Sheet title for creating a shopping item.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Item"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adicione itens locais, escolha uma categoria e mantenha a próxima compra organizada."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novo Item"
           }
         }
       }
     },
-    "listDetail.empty.title" : {
-      "comment" : "Title shown when a list does not have any items yet.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No Items Yet"
+    "listDetail.editor.edit.confirm.action": {
+      "comment": "Confirmation button title for editing a shopping item.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nenhum Item Ainda"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar"
           }
         }
       }
     },
-    "listDetail.budget.actualTotal.title" : {
-      "comment" : "Label for the actual total value in the list-detail budget summary.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Actual"
+    "listDetail.editor.edit.title": {
+      "comment": "Sheet title for editing a shopping item.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit Item"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Real"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar Item"
           }
         }
       }
     },
-    "listDetail.budget.awaitingActualPrices.description" : {
-      "comment" : "Supporting text shown when a list does not have actual prices yet.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add actual prices during shopping to compare the real spend."
+    "listDetail.editor.name.field.placeholder": {
+      "comment": "Placeholder shown in the shopping item name field.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Item name"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adicione preços reais durante a compra para comparar o gasto final."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome do item"
           }
         }
       }
     },
-    "listDetail.budget.awaitingActualPrices.title" : {
-      "comment" : "Status title shown when a list does not have actual prices yet.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No Actual Prices Yet"
+    "listDetail.editor.name.field.title": {
+      "comment": "Title shown for the shopping item name field.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Item Name"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ainda Sem Preços Reais"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome do Item"
           }
         }
       }
     },
-    "listDetail.budget.onBudget.title" : {
-      "comment" : "Status title shown when the actual total matches the planned total.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "On Budget"
+    "listDetail.editor.plannedPrice.field.title": {
+      "comment": "Title shown for the planned price field in the item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned Price"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dentro do Orçamento"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preço Planejado"
           }
         }
       }
     },
-    "listDetail.budget.overBudget.title" : {
-      "comment" : "Status title shown when the actual total is over the planned total.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Over Budget"
+    "listDetail.editor.priceMemory.section.title": {
+      "comment": "Section title for local price-memory suggestions in the item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Price Memory"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Acima do Orçamento"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memória de Preço"
           }
         }
       }
     },
-    "listDetail.budget.plannedTotal.title" : {
-      "comment" : "Label for the planned total value in the list-detail budget summary.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Planned"
+    "listDetail.editor.quantity.field.title": {
+      "comment": "Field title for the item quantity control.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quantity"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Planejado"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quantidade"
           }
         }
       }
     },
-    "listDetail.budget.summary.title" : {
-      "comment" : "Title for the list-detail budget summary card.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Budget"
+    "listDetail.editor.quickEntry.section.title": {
+      "comment": "Section title for quick-entry suggestions based on local item history.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick Entry"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Orçamento"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrada Rápida"
           }
         }
       }
     },
-    "listDetail.budget.underBudget.title" : {
-      "comment" : "Status title shown when the actual total is under the planned total.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Under Budget"
+    "listDetail.editor.store.field.placeholder": {
+      "comment": "Placeholder shown in the item store field.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Store name"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abaixo do Orçamento"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da loja"
           }
         }
       }
     },
-    "listDetail.error.description" : {
-      "comment" : "Description shown when a shopping list detail cannot be loaded.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aisly couldn't load this local shopping list."
+    "listDetail.editor.store.field.title": {
+      "comment": "Title shown for the item store field.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Store"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Aisly não conseguiu carregar esta lista de compras local."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loja"
           }
         }
       }
     },
-    "listDetail.error.retry.action" : {
-      "comment" : "Button title used to retry loading the local shopping list detail.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Try Again"
+    "listDetail.editor.storeSuggestions.section.title": {
+      "comment": "Section title for local store suggestions in the item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent Stores"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tentar Novamente"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lojas Recentes"
           }
         }
       }
     },
-    "listDetail.error.title" : {
-      "comment" : "Title shown when a shopping list detail cannot be loaded.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "List Unavailable"
+    "listDetail.empty.createFirstItem.action": {
+      "comment": "Primary action shown in the empty state to create the first item in a list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add First Item"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lista Indisponível"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar Primeiro Item"
           }
         }
       }
     },
-    "listDetail.editor.actualPrice.field.title" : {
-      "comment" : "Title shown for the actual price field in the item editor.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Actual Price"
+    "listDetail.empty.description": {
+      "comment": "Description shown when a list does not have any items yet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add local items, choose a category, and keep the next shopping run organized."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Preço Real"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicione itens locais, escolha uma categoria e mantenha a próxima compra organizada."
           }
         }
       }
     },
-    "listDetail.editor.plannedPrice.field.title" : {
-      "comment" : "Title shown for the planned price field in the item editor.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Planned Price"
+    "listDetail.empty.title": {
+      "comment": "Title shown when a list does not have any items yet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Items Yet"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Preço Planejado"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum Item Ainda"
           }
         }
       }
     },
-    "listDetail.items.section.title" : {
-      "comment" : "Section title for shopping items in the list detail screen.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Items"
+    "listDetail.error.description": {
+      "comment": "Description shown when a shopping list detail cannot be loaded.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aisly couldn't load this local shopping list."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Itens"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Aisly não conseguiu carregar esta lista de compras local."
           }
         }
       }
     },
-    "listDetail.priceMemory.lastActual.title" : {
-      "comment" : "Title shown when a local price-memory suggestion comes from the last actual price.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Last Paid Price"
+    "listDetail.error.retry.action": {
+      "comment": "Button title used to retry loading the local shopping list detail.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try Again"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Último Preço Pago"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tentar Novamente"
           }
         }
       }
     },
-    "listDetail.priceMemory.lastPlanned.title" : {
-      "comment" : "Title shown when a local price-memory suggestion comes from the last planned price.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Last Planned Price"
+    "listDetail.error.title": {
+      "comment": "Title shown when a shopping list detail cannot be loaded.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "List Unavailable"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Último Preço Planejado"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista Indisponível"
           }
         }
       }
     },
-    "listDetail.screen.loading.title" : {
-      "comment" : "Loading message shown while a shopping list detail loads.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Loading items..."
+    "listDetail.items.section.title": {
+      "comment": "Section title for shopping items in the list detail screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Items"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Carregando itens..."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itens"
           }
         }
       }
     },
-    "listDetail.toolbar.addItem.action" : {
-      "comment" : "Toolbar action title for creating a shopping item.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add Item"
+    "listDetail.priceMemory.lastActual.title": {
+      "comment": "Title shown when a local price-memory suggestion comes from the last actual price.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last Paid Price"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adicionar Item"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último Preço Pago"
           }
         }
       }
     },
-    "home.summary.activeLists.label" : {
-      "comment" : "Label for the active shopping list count on the home screen.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Active Lists"
+    "listDetail.priceMemory.lastPlanned.title": {
+      "comment": "Title shown when a local price-memory suggestion comes from the last planned price.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last Planned Price"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listas Ativas"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último Preço Planejado"
           }
         }
       }
     },
-    "home.summary.archivedLists.label" : {
-      "comment" : "Label for the archived shopping list count on the home screen.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Archived Lists"
+    "listDetail.screen.loading.title": {
+      "comment": "Loading message shown while a shopping list detail loads.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading items..."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listas Arquivadas"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregando itens..."
           }
         }
       }
     },
-    "home.summary.section.title" : {
-      "comment" : "Section title for the local shopping list summary.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Local Summary"
+    "listDetail.toolbar.addItem.action": {
+      "comment": "Toolbar action title for creating a shopping item.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Item"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Resumo Local"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar Item"
           }
         }
       }
     },
-    "mock.store.cityMarket.name" : {
-      "comment" : "Preview and mock store name for a city market.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "City Market"
+    "listDetail.toolbar.shoppingMode.action": {
+      "comment": "Toolbar action title that opens shopping mode from list detail.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping Mode"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mercado da Cidade"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de Compra"
           }
         }
       }
     },
-    "mock.store.freshMart.name" : {
-      "comment" : "Preview and mock store name for a fresh market.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fresh Mart"
+    "mock.shoppingItem.apples.name": {
+      "comment": "Preview and mock shopping item name for apples.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apples"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mercado Fresco"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maçãs"
           }
         }
       }
     },
-    "mock.shoppingItem.apples.name" : {
-      "comment" : "Preview and mock shopping item name for apples.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apples"
+    "mock.shoppingItem.milk.name": {
+      "comment": "Preview and mock shopping item name for milk.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milk"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maçãs"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leite"
           }
         }
       }
     },
-    "mock.shoppingItem.milk.name" : {
-      "comment" : "Preview and mock shopping item name for milk.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Milk"
+    "mock.shoppingList.partySupplies.name": {
+      "comment": "Preview and mock shopping list name for party supplies.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Party Supplies"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leite"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itens para Festa"
           }
         }
       }
     },
-    "mock.shoppingList.partySupplies.name" : {
-      "comment" : "Preview and mock shopping list name for party supplies.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Party Supplies"
+    "mock.shoppingList.weeklyGroceries.name": {
+      "comment": "Preview and mock shopping list name for weekly groceries.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly Groceries"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Itens para Festa"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compras da Semana"
           }
         }
       }
     },
-    "mock.shoppingList.weeklyGroceries.name" : {
-      "comment" : "Preview and mock shopping list name for weekly groceries.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weekly Groceries"
+    "mock.store.cityMarket.name": {
+      "comment": "Preview and mock store name for a city market.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "City Market"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compras da Semana"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mercado da Cidade"
+          }
+        }
+      }
+    },
+    "mock.store.freshMart.name": {
+      "comment": "Preview and mock store name for a fresh market.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fresh Mart"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mercado Fresco"
+          }
+        }
+      }
+    },
+    "shoppingMode.empty.description": {
+      "comment": "Description shown when shopping mode has no items to display.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add items to this list before starting shopping mode."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicione itens a esta lista antes de iniciar o modo de compra."
+          }
+        }
+      }
+    },
+    "shoppingMode.empty.title": {
+      "comment": "Title shown when shopping mode opens with no items in the list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Items Ready"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum Item Pronto"
+          }
+        }
+      }
+    },
+    "shoppingMode.error.description": {
+      "comment": "Description shown when the local shopping session cannot be loaded.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aisly couldn't load this local shopping session."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Aisly não conseguiu carregar esta sessão de compra local."
+          }
+        }
+      }
+    },
+    "shoppingMode.error.retry.action": {
+      "comment": "Button title used to retry loading the local shopping session.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try Again"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tentar Novamente"
+          }
+        }
+      }
+    },
+    "shoppingMode.error.title": {
+      "comment": "Title shown when the local shopping session cannot be loaded.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping Session Unavailable"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessão de Compra Indisponível"
+          }
+        }
+      }
+    },
+    "shoppingMode.items.completed.section.title": {
+      "comment": "Section title for items already checked off in shopping mode.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checked Off"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcados"
+          }
+        }
+      }
+    },
+    "shoppingMode.items.remaining.section.title": {
+      "comment": "Section title for items that are still pending in shopping mode.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remaining Items"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itens Pendentes"
+          }
+        }
+      }
+    },
+    "shoppingMode.priceEditor.actualPrice.field.title": {
+      "comment": "Field title for the actual price editor in shopping mode.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual Price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preço Real"
+          }
+        }
+      }
+    },
+    "shoppingMode.priceEditor.save.action": {
+      "comment": "Confirmation button title for saving an actual item price in shopping mode.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save Price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar Preço"
+          }
+        }
+      }
+    },
+    "shoppingMode.priceEditor.title": {
+      "comment": "Sheet title for editing an item actual price during shopping mode.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual Price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preço Real"
+          }
+        }
+      }
+    },
+    "shoppingMode.priceEditor.usePlannedPrice.action": {
+      "comment": "Action that copies the planned price into the actual price draft.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Planned Price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar Preço Planejado"
+          }
+        }
+      }
+    },
+    "shoppingMode.progress.title": {
+      "comment": "Label shown above shopping progress in shopping mode.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping Progress"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progresso da Compra"
+          }
+        }
+      }
+    },
+    "shoppingMode.screen.loading.title": {
+      "comment": "Title shown while the shopping session is loading.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading shopping session..."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregando sessão de compra..."
+          }
+        }
+      }
+    },
+    "shoppingMode.screen.navigation.title": {
+      "comment": "Navigation title shown for shopping mode.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shopping Mode"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de Compra"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

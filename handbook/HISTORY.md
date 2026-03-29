@@ -13,7 +13,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 - Stage 5: completed locally
 - Stage 6: completed locally
 - Stage 7: completed locally
-- Stage 8: pending
+- Stage 8: completed locally
 - Stage 9: pending
 - Stage 10: pending
 - Stage 11: pending
@@ -118,6 +118,18 @@ Delivered locally:
 - the file-backed persistence layer stays backward-compatible with older JSON that does not yet contain store names
 - regression coverage now includes store suggestion ranking, store-specific price memory, editor prefills, and persistence compatibility
 
+### Stage 8
+
+Delivered locally:
+
+- added a dedicated shopping-mode screen reachable from list detail
+- added persistent local completion state for shopping items
+- added fast check-off interactions during the shopping session
+- added actual-price editing inside the shopping flow
+- surfaced shopping-session progress and running totals with the shared design-system layer
+- kept the file-backed persistence layer backward-compatible with older JSON that does not yet contain completion state
+- regression coverage now includes session loading, completion persistence, actual-price editing, and backward-compatible item decoding
+
 ### Supporting Remote Branch Work
 
 The remote repository also contains additional implemented work that is not yet part of the numbered product-stage history on `main`.
@@ -135,7 +147,7 @@ Delivered on remote branch `feat/swiftui-design-system`:
 
 The next correct work is:
 
-- shopping mode
+- Apple-first convenience
 
 Not:
 

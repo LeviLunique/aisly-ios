@@ -51,6 +51,7 @@ The current remote `main` app base now includes:
 - quick-entry suggestion derivation from local item history inside the existing add-item flow
 - reusable local templates plus recurrence metadata and template-based list generation inside the home workflow
 - optional per-item store names plus local recent-store and store-specific last-price suggestions inside the existing item editor
+- a dedicated shopping-mode flow with persistent item completion, in-trip actual-price entry, and session progress derived from the same local list model
 - English and Brazilian Portuguese resources for the shipped root-screen copy
 
 This is intentionally narrow.
@@ -127,6 +128,7 @@ The architecture should make these easy to evolve:
 - recurrence and templates
 - price memory by store
 - shopping-mode execution using remembered store and price context
+- shopping-session progress using locally persisted checked-item state
 
 ## What the Architecture Should Avoid
 
