@@ -8,8 +8,28 @@ final class ListDetailViewModel: ObservableObject {
         let name: String
         let quantity: Int
         let category: ShoppingItem.Category
+        let storeName: String?
         let plannedPrice: Decimal?
         let usageCount: Int
+        let lastUsedAt: Date
+    }
+
+    struct StoreSuggestion: Identifiable, Equatable {
+        let id: String
+        let name: String
+        let usageCount: Int
+        let lastUsedAt: Date
+    }
+
+    struct PriceMemorySuggestion: Equatable {
+        enum Kind: Equatable {
+            case actual
+            case planned
+        }
+
+        let storeName: String
+        let price: Decimal
+        let kind: Kind
         let lastUsedAt: Date
     }
 
@@ -18,6 +38,7 @@ final class ListDetailViewModel: ObservableObject {
         let name: String
         let quantity: Int
         let category: ShoppingItem.Category
+        let storeName: String?
         let plannedTotal: Decimal?
         let actualTotal: Decimal?
         let updatedAt: Date
@@ -59,6 +80,7 @@ final class ListDetailViewModel: ObservableObject {
     @Published private(set) var draftName = ""
     @Published private(set) var draftQuantity = 1
     @Published private(set) var draftCategory: ShoppingItem.Category = .produce
+    @Published private(set) var draftStoreName = ""
     @Published private(set) var draftPlannedPrice = ""
     @Published private(set) var draftActualPrice = ""
 
@@ -114,6 +136,7 @@ final class ListDetailViewModel: ObservableObject {
         draftName = ""
         draftQuantity = 1
         draftCategory = .produce
+        draftStoreName = ""
         draftPlannedPrice = ""
         draftActualPrice = ""
         editorMode = .create
@@ -127,6 +150,7 @@ final class ListDetailViewModel: ObservableObject {
         draftName = item.name
         draftQuantity = item.quantity
         draftCategory = item.category
+        draftStoreName = item.storeName ?? ""
         draftPlannedPrice = draftString(for: item.plannedPrice)
         draftActualPrice = draftString(for: item.actualPrice)
         editorMode = .edit(id)
@@ -137,6 +161,7 @@ final class ListDetailViewModel: ObservableObject {
         draftName = ""
         draftQuantity = 1
         draftCategory = .produce
+        draftStoreName = ""
         draftPlannedPrice = ""
         draftActualPrice = ""
     }
@@ -151,6 +176,10 @@ final class ListDetailViewModel: ObservableObject {
 
     func updateDraftCategory(_ category: ShoppingItem.Category) {
         draftCategory = category
+    }
+
+    func updateDraftStoreName(_ storeName: String) {
+        draftStoreName = storeName
     }
 
     func updateDraftPlannedPrice(_ plannedPrice: String) {
@@ -184,6 +213,7 @@ final class ListDetailViewModel: ObservableObject {
                     name: normalizedDraftName,
                     quantity: draftQuantity,
                     category: draftCategory,
+                    storeName: normalizedDraftStoreName,
                     plannedPrice: plannedPrice,
                     actualPrice: actualPrice,
                     updatedAt: now()
@@ -194,6 +224,7 @@ final class ListDetailViewModel: ObservableObject {
                     name: normalizedDraftName,
                     quantity: draftQuantity,
                     category: draftCategory,
+                    storeName: normalizedDraftStoreName,
                     plannedPrice: plannedPrice,
                     actualPrice: actualPrice,
                     updatedAt: now()
@@ -279,6 +310,7 @@ final class ListDetailViewModel: ObservableObject {
             return item.name == normalizedDraftName &&
                 item.quantity == draftQuantity &&
                 item.category == draftCategory &&
+                item.storeName == normalizedDraftStoreName &&
                 item.plannedPrice == normalizedDraftPlannedPrice &&
                 item.actualPrice == normalizedDraftActualPrice
         case .none:
@@ -326,6 +358,111 @@ final class ListDetailViewModel: ObservableObject {
             .map { $0 }
     }
 
+    var storeSuggestions: [StoreSuggestion] {
+        guard editorMode != nil else {
+            return []
+        }
+
+        let query = normalizedStoreKey(from: draftStoreName)
+        let groupedStoreEntries = Dictionary(
+            grouping: historyItems.compactMap { item -> (String, String, Date)? in
+                guard let storeName = item.storeName else {
+                    return nil
+                }
+
+                let normalizedStoreName = normalizedStoreKey(from: storeName)
+                guard normalizedStoreName.isEmpty == false else {
+                    return nil
+                }
+
+                return (normalizedStoreName, storeName, item.updatedAt)
+            },
+            by: \.0
+        )
+        let baseSuggestions: [StoreSuggestion] = groupedStoreEntries.map { element in
+            let normalizedStoreName = element.key
+            let entries = element.value
+            let mostRecentEntry = entries.max(by: { $0.2 < $1.2 }) ?? entries[0]
+
+            return StoreSuggestion(
+                id: normalizedStoreName,
+                name: mostRecentEntry.1,
+                usageCount: entries.count,
+                lastUsedAt: mostRecentEntry.2
+            )
+        }
+
+        let filteredSuggestions: [StoreSuggestion]
+        if query.isEmpty {
+            filteredSuggestions = baseSuggestions
+        } else {
+            filteredSuggestions = baseSuggestions.filter {
+                normalizedStoreKey(from: $0.name).contains(query)
+            }
+        }
+
+        return filteredSuggestions
+            .sorted { lhs, rhs in
+                let lhsPrefixMatch = normalizedStoreKey(from: lhs.name).hasPrefix(query)
+                let rhsPrefixMatch = normalizedStoreKey(from: rhs.name).hasPrefix(query)
+
+                if lhsPrefixMatch != rhsPrefixMatch {
+                    return lhsPrefixMatch
+                }
+
+                if lhs.usageCount != rhs.usageCount {
+                    return lhs.usageCount > rhs.usageCount
+                }
+
+                if lhs.lastUsedAt != rhs.lastUsedAt {
+                    return lhs.lastUsedAt > rhs.lastUsedAt
+                }
+
+                return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedAscending
+            }
+            .prefix(5)
+            .map { $0 }
+    }
+
+    var priceMemorySuggestion: PriceMemorySuggestion? {
+        guard
+            let normalizedDraftHistoryKey,
+            let normalizedDraftStoreName
+        else {
+            return nil
+        }
+
+        let matchingItems = historyItems.filter { item in
+            normalizedHistoryKey(from: item.name) == normalizedDraftHistoryKey &&
+                normalizedStoreKey(from: item.storeName) == normalizedDraftStoreName &&
+                item.id != currentEditingItemID
+        }
+
+        if let actualPriceItem = matchingItems
+            .filter({ $0.actualPrice != nil })
+            .max(by: { $0.updatedAt < $1.updatedAt }) {
+            return PriceMemorySuggestion(
+                storeName: actualPriceItem.storeName ?? "",
+                price: actualPriceItem.actualPrice ?? .zero,
+                kind: .actual,
+                lastUsedAt: actualPriceItem.updatedAt
+            )
+        }
+
+        if let plannedPriceItem = matchingItems
+            .filter({ $0.plannedPrice != nil })
+            .max(by: { $0.updatedAt < $1.updatedAt }) {
+            return PriceMemorySuggestion(
+                storeName: plannedPriceItem.storeName ?? "",
+                price: plannedPriceItem.plannedPrice ?? .zero,
+                kind: .planned,
+                lastUsedAt: plannedPriceItem.updatedAt
+            )
+        }
+
+        return nil
+    }
+
     func applyQuickEntrySuggestion(id: QuickEntrySuggestion.ID) {
         guard let suggestion = quickEntrySuggestions.first(where: { $0.id == id }) else {
             return
@@ -334,13 +471,43 @@ final class ListDetailViewModel: ObservableObject {
         draftName = suggestion.name
         draftQuantity = suggestion.quantity
         draftCategory = suggestion.category
+        draftStoreName = suggestion.storeName ?? ""
         draftPlannedPrice = draftString(for: suggestion.plannedPrice)
         draftActualPrice = ""
+    }
+
+    func applyStoreSuggestion(id: StoreSuggestion.ID) {
+        guard let suggestion = storeSuggestions.first(where: { $0.id == id }) else {
+            return
+        }
+
+        draftStoreName = suggestion.name
+    }
+
+    func applyPriceMemorySuggestion() {
+        guard let suggestion = priceMemorySuggestion else {
+            return
+        }
+
+        draftPlannedPrice = draftString(for: suggestion.price)
     }
 
     private var normalizedDraftName: String? {
         let trimmedName = draftName.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmedName.isEmpty ? nil : trimmedName
+    }
+
+    private var normalizedDraftHistoryKey: String? {
+        guard let normalizedDraftName else {
+            return nil
+        }
+
+        return normalizedHistoryKey(from: normalizedDraftName)
+    }
+
+    private var normalizedDraftStoreName: String? {
+        let trimmedStoreName = draftStoreName.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmedStoreName.isEmpty ? nil : trimmedStoreName
     }
 
     private var normalizedDraftPlannedPrice: Decimal? {
@@ -355,8 +522,22 @@ final class ListDetailViewModel: ObservableObject {
         isValidPriceDraft(draftPlannedPrice) && isValidPriceDraft(draftActualPrice)
     }
 
+    private var currentEditingItemID: UUID? {
+        guard case .edit(let itemID) = editorMode else {
+            return nil
+        }
+
+        return itemID
+    }
+
+    private var historyItems: [ShoppingItem] {
+        allLists
+            .filter { $0.isTemplate == false }
+            .flatMap(\.items)
+    }
+
     private var historySuggestions: [QuickEntrySuggestion] {
-        Dictionary(grouping: allLists.flatMap(\.items), by: { normalizedHistoryKey(from: $0.name) })
+        Dictionary(grouping: historyItems, by: { normalizedHistoryKey(from: $0.name) })
             .compactMap { normalizedName, items in
                 guard
                     normalizedName.isEmpty == false,
@@ -370,6 +551,7 @@ final class ListDetailViewModel: ObservableObject {
                     name: mostRecentItem.name,
                     quantity: mostRecentItem.quantity,
                     category: mostRecentItem.category,
+                    storeName: mostRecentItem.storeName,
                     plannedPrice: mostRecentItem.plannedPrice,
                     usageCount: items.count,
                     lastUsedAt: mostRecentItem.updatedAt
@@ -456,6 +638,16 @@ final class ListDetailViewModel: ObservableObject {
         name.trimmingCharacters(in: .whitespacesAndNewlines).folding(options: [.diacriticInsensitive, .caseInsensitive], locale: locale)
     }
 
+    private func normalizedStoreKey(from storeName: String?) -> String {
+        guard let storeName else {
+            return ""
+        }
+
+        return storeName
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .folding(options: [.diacriticInsensitive, .caseInsensitive], locale: locale)
+    }
+
     private func persist(_ updatedList: ShoppingList) async throws {
         let allLists = try await repository.fetchLists()
         let updatedLists = try replace(listID: updatedList.id, in: allLists, with: updatedList)
@@ -486,6 +678,7 @@ private extension ListDetailViewModel.ItemRow {
         name = item.name
         quantity = item.quantity
         category = item.category
+        storeName = item.storeName
         plannedTotal = item.plannedTotal
         actualTotal = item.actualTotal
         updatedAt = item.updatedAt

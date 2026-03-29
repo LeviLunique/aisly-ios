@@ -160,6 +160,7 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
         name: String,
         quantity: Int,
         category: ShoppingItem.Category,
+        storeName: String?,
         plannedPrice: Decimal?,
         actualPrice: Decimal?,
         updatedAt: Date
@@ -172,6 +173,7 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
                 name: name,
                 quantity: quantity,
                 category: category,
+                storeName: storeName,
                 plannedPrice: plannedPrice,
                 actualPrice: actualPrice,
                 sortOrder: nextSortOrder,
@@ -187,6 +189,7 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
         name: String,
         quantity: Int,
         category: ShoppingItem.Category,
+        storeName: String?,
         plannedPrice: Decimal?,
         actualPrice: Decimal?,
         updatedAt: Date
@@ -200,6 +203,7 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
             name: name,
             quantity: quantity,
             category: category,
+            storeName: storeName,
             plannedPrice: plannedPrice,
             actualPrice: actualPrice,
             updatedAt: updatedAt
