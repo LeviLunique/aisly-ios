@@ -67,7 +67,11 @@ enum AppTextKeys {
         static let itemsSectionTitle = AppTextKey(value: "listDetail.items.section.title")
         static let itemNameFieldTitle = AppTextKey(value: "listDetail.editor.name.field.title")
         static let itemNamePlaceholder = AppTextKey(value: "listDetail.editor.name.field.placeholder")
+        static let storeFieldTitle = AppTextKey(value: "listDetail.editor.store.field.title")
+        static let storeFieldPlaceholder = AppTextKey(value: "listDetail.editor.store.field.placeholder")
         static let quickEntrySectionTitle = AppTextKey(value: "listDetail.editor.quickEntry.section.title")
+        static let storeSuggestionsSectionTitle = AppTextKey(value: "listDetail.editor.storeSuggestions.section.title")
+        static let priceMemorySectionTitle = AppTextKey(value: "listDetail.editor.priceMemory.section.title")
         static let quantityFieldTitle = AppTextKey(value: "listDetail.editor.quantity.field.title")
         static let categoryFieldTitle = AppTextKey(value: "listDetail.editor.category.field.title")
         static let plannedPriceFieldTitle = AppTextKey(value: "listDetail.editor.plannedPrice.field.title")
@@ -89,6 +93,11 @@ enum AppTextKeys {
             static let frozen = AppTextKey(value: "listDetail.category.frozen.label")
             static let other = AppTextKey(value: "listDetail.category.other.label")
         }
+
+        enum PriceMemory {
+            static let lastActualPriceTitle = AppTextKey(value: "listDetail.priceMemory.lastActual.title")
+            static let lastPlannedPriceTitle = AppTextKey(value: "listDetail.priceMemory.lastPlanned.title")
+        }
     }
 
     enum Mock {
@@ -100,6 +109,11 @@ enum AppTextKeys {
         enum ShoppingItem {
             static let milkName = AppTextKey(value: "mock.shoppingItem.milk.name")
             static let applesName = AppTextKey(value: "mock.shoppingItem.apples.name")
+        }
+
+        enum Store {
+            static let freshMartName = AppTextKey(value: "mock.store.freshMart.name")
+            static let cityMarketName = AppTextKey(value: "mock.store.cityMarket.name")
         }
     }
 }
