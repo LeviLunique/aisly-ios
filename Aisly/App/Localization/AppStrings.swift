@@ -33,6 +33,7 @@ enum AppStrings {
         static let createFirstListButtonTitle = AppTextKeys.Home.createFirstListButtonTitle.localizedResource
         static let createListToolbarTitle = AppTextKeys.Home.createListToolbarTitle.localizedResource
         static let activeListsSectionTitle = AppTextKeys.Home.activeListsSectionTitle.localizedResource
+        static let templatesSectionTitle = AppTextKeys.Home.templatesSectionTitle.localizedResource
         static let archivedListsSectionTitle = AppTextKeys.Home.archivedListsSectionTitle.localizedResource
         static let listNameFieldTitle = AppTextKeys.Home.listNameFieldTitle.localizedResource
         static let listNamePlaceholder = AppTextKeys.Home.listNamePlaceholder.localizedResource
@@ -42,9 +43,27 @@ enum AppStrings {
         static let renameListConfirmButtonTitle = AppTextKeys.Home.renameListConfirmButtonTitle.localizedResource
         static let renameListActionTitle = AppTextKeys.Home.renameListActionTitle.localizedResource
         static let archiveListActionTitle = AppTextKeys.Home.archiveListActionTitle.localizedResource
+        static let saveTemplateActionTitle = AppTextKeys.Home.saveTemplateActionTitle.localizedResource
+        static let generateTemplateActionTitle = AppTextKeys.Home.generateTemplateActionTitle.localizedResource
+        static let templateNameFieldTitle = AppTextKeys.Home.templateNameFieldTitle.localizedResource
+        static let templateNamePlaceholder = AppTextKeys.Home.templateNamePlaceholder.localizedResource
+        static let templateRecurrenceFieldTitle = AppTextKeys.Home.templateRecurrenceFieldTitle.localizedResource
+        static let saveTemplateSheetTitle = AppTextKeys.Home.saveTemplateSheetTitle.localizedResource
+        static let saveTemplateConfirmButtonTitle = AppTextKeys.Home.saveTemplateConfirmButtonTitle.localizedResource
         static let failureTitle = AppTextKeys.Home.failureTitle.localizedResource
         static let failureDescription = AppTextKeys.Home.failureDescription.localizedResource
         static let retryButtonTitle = AppTextKeys.Home.retryButtonTitle.localizedResource
+
+        static func templateRecurrenceTitle(for recurrence: ShoppingList.TemplateRecurrence) -> LocalizedStringResource {
+            switch recurrence {
+            case .weekly:
+                return AppTextKeys.Home.TemplateRecurrence.weekly.localizedResource
+            case .biweekly:
+                return AppTextKeys.Home.TemplateRecurrence.biweekly.localizedResource
+            case .monthly:
+                return AppTextKeys.Home.TemplateRecurrence.monthly.localizedResource
+            }
+        }
     }
 
     enum ListDetail {

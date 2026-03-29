@@ -50,6 +50,7 @@ struct StoredShoppingList: Codable, Equatable {
     let updatedAt: Date
     let isArchived: Bool
     let items: [StoredShoppingItem]
+    let templateConfiguration: ShoppingList.TemplateConfiguration?
 
     init(
         id: UUID,
@@ -57,7 +58,8 @@ struct StoredShoppingList: Codable, Equatable {
         createdAt: Date,
         updatedAt: Date,
         isArchived: Bool,
-        items: [StoredShoppingItem]
+        items: [StoredShoppingItem],
+        templateConfiguration: ShoppingList.TemplateConfiguration?
     ) {
         self.id = id
         self.name = name
@@ -65,6 +67,7 @@ struct StoredShoppingList: Codable, Equatable {
         self.updatedAt = updatedAt
         self.isArchived = isArchived
         self.items = items
+        self.templateConfiguration = templateConfiguration
     }
 
     init(list: ShoppingList) {
@@ -74,6 +77,7 @@ struct StoredShoppingList: Codable, Equatable {
         updatedAt = list.updatedAt
         isArchived = list.isArchived
         items = list.items.map(StoredShoppingItem.init(item:))
+        templateConfiguration = list.templateConfiguration
     }
 
     init(from decoder: Decoder) throws {
@@ -84,6 +88,7 @@ struct StoredShoppingList: Codable, Equatable {
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         isArchived = try container.decode(Bool.self, forKey: .isArchived)
         items = try container.decodeIfPresent([StoredShoppingItem].self, forKey: .items) ?? []
+        templateConfiguration = try container.decodeIfPresent(ShoppingList.TemplateConfiguration.self, forKey: .templateConfiguration)
     }
 
     var model: ShoppingList {
@@ -93,7 +98,8 @@ struct StoredShoppingList: Codable, Equatable {
             createdAt: createdAt,
             updatedAt: updatedAt,
             isArchived: isArchived,
-            items: items.map(\.model)
+            items: items.map(\.model),
+            templateConfiguration: templateConfiguration
         )
     }
 }

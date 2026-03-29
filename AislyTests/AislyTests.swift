@@ -438,6 +438,43 @@ final class AislyTests: XCTestCase {
         XCTAssertNil(lists.first?.items.first?.actualPrice)
     }
 
+    func testLocalRepositoryLoadsStageFivePersistenceWithoutTemplateFields() async throws {
+        let fileURL = try makeTemporaryFileURL(testName: #function)
+        let repository = LocalShoppingListRepository(store: ShoppingListFileStore(fileURL: fileURL))
+        let legacyPayload = """
+        [
+          {
+            "createdAt" : "1970-01-01T00:16:40Z",
+            "id" : "11111111-2222-3333-4444-555555555555",
+            "isArchived" : false,
+            "items" : [
+              {
+                "actualPrice" : 4.75,
+                "category" : "dairy",
+                "createdAt" : "1970-01-01T00:16:40Z",
+                "id" : "99999999-8888-7777-6666-555555555555",
+                "name" : "Milk",
+                "plannedPrice" : 4.50,
+                "quantity" : 2,
+                "sortOrder" : 0,
+                "updatedAt" : "1970-01-01T00:33:20Z"
+              }
+            ],
+            "name" : "Weekly Groceries",
+            "updatedAt" : "1970-01-01T00:33:20Z"
+          }
+        ]
+        """
+
+        try Data(legacyPayload.utf8).write(to: fileURL, options: .atomic)
+
+        let lists = try await repository.fetchLists()
+
+        XCTAssertEqual(lists.count, 1)
+        XCTAssertNil(lists.first?.templateConfiguration)
+        XCTAssertEqual(lists.first?.items.first?.actualPrice, 4.75)
+    }
+
     @MainActor
     func testHomeViewModelStartsIdle() {
         let viewModel = HomeViewModel(repository: StubShoppingListRepository(result: .success([])))
@@ -670,6 +707,159 @@ final class AislyTests: XCTestCase {
                 )
             )
         )
+    }
+
+    @MainActor
+    func testHomeViewModelLoadSeparatesTemplatesFromActiveAndArchivedLists() async {
+        let activeID = UUID()
+        let templateID = UUID()
+        let archivedID = UUID()
+        let viewModel = HomeViewModel(
+            repository: StubShoppingListRepository(
+                result: .success(
+                    [
+                        makeShoppingList(id: activeID, name: "Weekly Groceries"),
+                        makeShoppingList(
+                            id: templateID,
+                            name: "Weekly Template",
+                            templateConfiguration: .init(recurrence: .weekly)
+                        ),
+                        makeShoppingList(id: archivedID, name: "Archived List", isArchived: true)
+                    ]
+                )
+            )
+        )
+
+        await viewModel.load()
+
+        XCTAssertEqual(
+            viewModel.state,
+            .loaded(
+                .init(
+                    activeLists: [
+                        .init(id: activeID, name: "Weekly Groceries", updatedAt: Date(timeIntervalSince1970: 2_000))
+                    ],
+                    templateLists: [
+                        .init(
+                            id: templateID,
+                            name: "Weekly Template",
+                            updatedAt: Date(timeIntervalSince1970: 2_000),
+                            templateRecurrence: .weekly
+                        )
+                    ],
+                    archivedLists: [
+                        .init(id: archivedID, name: "Archived List", updatedAt: Date(timeIntervalSince1970: 2_000))
+                    ]
+                )
+            )
+        )
+    }
+
+    @MainActor
+    func testHomeViewModelPresentCreateTemplatePrefillsDraftFromSourceList() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [makeShoppingList(id: listID, name: "Weekly Groceries")]
+        )
+        let viewModel = HomeViewModel(repository: repository)
+
+        await viewModel.load()
+        viewModel.presentCreateTemplate(fromListID: listID)
+
+        XCTAssertEqual(viewModel.templateEditorState, .init(sourceListID: listID))
+        XCTAssertEqual(viewModel.templateDraftName, "Weekly Groceries")
+        XCTAssertEqual(viewModel.templateDraftRecurrence, .weekly)
+        XCTAssertFalse(viewModel.isTemplateDraftSubmissionDisabled)
+    }
+
+    @MainActor
+    func testHomeViewModelSaveTemplateDraftCreatesTemplateCopyWithResetActualPrices() async throws {
+        let sourceListID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: sourceListID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            plannedPrice: 4.5,
+                            actualPrice: 4.75,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let savedAt = Date(timeIntervalSince1970: 3_000)
+        let viewModel = HomeViewModel(
+            repository: repository,
+            now: { savedAt }
+        )
+
+        await viewModel.load()
+        viewModel.presentCreateTemplate(fromListID: sourceListID)
+        viewModel.updateTemplateDraftName("Weekly Reset")
+        viewModel.updateTemplateDraftRecurrence(.biweekly)
+        await viewModel.saveTemplateDraft()
+
+        let persistedLists = await repository.persistedLists()
+        let templateList = try XCTUnwrap(persistedLists.first(where: \.isTemplate))
+
+        XCTAssertEqual(templateList.name, "Weekly Reset")
+        XCTAssertEqual(templateList.templateRecurrence, .biweekly)
+        XCTAssertFalse(templateList.isArchived)
+        XCTAssertEqual(templateList.updatedAt, savedAt)
+        XCTAssertEqual(templateList.items.count, 1)
+        XCTAssertEqual(templateList.items.first?.plannedPrice, 4.5)
+        XCTAssertNil(templateList.items.first?.actualPrice)
+    }
+
+    @MainActor
+    func testHomeViewModelGenerateListFromTemplateCreatesActiveResetCopy() async throws {
+        let templateID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: templateID,
+                    name: "Weekly Template",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            plannedPrice: 4.5,
+                            actualPrice: nil,
+                            sortOrder: 0
+                        )
+                    ],
+                    templateConfiguration: .init(recurrence: .weekly)
+                )
+            ]
+        )
+        let generatedAt = Date(timeIntervalSince1970: 4_000)
+        let viewModel = HomeViewModel(
+            repository: repository,
+            now: { generatedAt }
+        )
+
+        await viewModel.load()
+        await viewModel.generateList(fromTemplateID: templateID)
+
+        let persistedLists = await repository.persistedLists()
+        let generatedList = try XCTUnwrap(
+            persistedLists.first(where: { $0.id != templateID && $0.isTemplate == false })
+        )
+
+        XCTAssertEqual(generatedList.name, "Weekly Template")
+        XCTAssertNil(generatedList.templateConfiguration)
+        XCTAssertFalse(generatedList.isArchived)
+        XCTAssertEqual(generatedList.updatedAt, generatedAt)
+        XCTAssertEqual(generatedList.items.count, 1)
+        XCTAssertEqual(generatedList.items.first?.plannedPrice, 4.5)
+        XCTAssertNil(generatedList.items.first?.actualPrice)
     }
 
     @MainActor
@@ -1261,7 +1451,8 @@ final class AislyTests: XCTestCase {
         createdAt: Date = Date(timeIntervalSince1970: 1_000),
         updatedAt: Date = Date(timeIntervalSince1970: 2_000),
         isArchived: Bool = false,
-        items: [ShoppingItem] = []
+        items: [ShoppingItem] = [],
+        templateConfiguration: ShoppingList.TemplateConfiguration? = nil
     ) -> ShoppingList {
         ShoppingList(
             id: id,
@@ -1269,7 +1460,8 @@ final class AislyTests: XCTestCase {
             createdAt: createdAt,
             updatedAt: updatedAt,
             isArchived: isArchived,
-            items: items
+            items: items,
+            templateConfiguration: templateConfiguration
         )
     }
 

@@ -361,6 +361,24 @@
         }
       }
     },
+    "home.list.saveTemplate.action" : {
+      "comment" : "Swipe action title for saving an active list as a template.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Template"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar Modelo"
+          }
+        }
+      }
+    },
     "home.lists.active.section.title" : {
       "comment" : "Section title for active shopping lists.",
       "extractionState" : "manual",
@@ -393,6 +411,186 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Listas Arquivadas"
+          }
+        }
+      }
+    },
+    "home.template.editor.confirm.action" : {
+      "comment" : "Confirmation button title for saving a template.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar"
+          }
+        }
+      }
+    },
+    "home.template.editor.name.field.placeholder" : {
+      "comment" : "Placeholder shown in the template name field.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reusable list name"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome da lista reutilizável"
+          }
+        }
+      }
+    },
+    "home.template.editor.name.field.title" : {
+      "comment" : "Field title for the template name input.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Template Name"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome do Modelo"
+          }
+        }
+      }
+    },
+    "home.template.editor.recurrence.field.title" : {
+      "comment" : "Field title for template recurrence selection.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recurrence"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recorrência"
+          }
+        }
+      }
+    },
+    "home.template.editor.title" : {
+      "comment" : "Sheet title for saving a reusable template.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Template"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar Modelo"
+          }
+        }
+      }
+    },
+    "home.template.generate.action" : {
+      "comment" : "Action title for generating a fresh list from a template.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generate List"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerar Lista"
+          }
+        }
+      }
+    },
+    "home.template.recurrence.biweekly.title" : {
+      "comment" : "Label for biweekly template recurrence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every 2 Weeks"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Cada 2 Semanas"
+          }
+        }
+      }
+    },
+    "home.template.recurrence.monthly.title" : {
+      "comment" : "Label for monthly template recurrence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monthly"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mensal"
+          }
+        }
+      }
+    },
+    "home.template.recurrence.weekly.title" : {
+      "comment" : "Label for weekly template recurrence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weekly"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semanal"
+          }
+        }
+      }
+    },
+    "home.templates.section.title" : {
+      "comment" : "Section title for reusable shopping templates.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Templates"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modelos"
           }
         }
       }

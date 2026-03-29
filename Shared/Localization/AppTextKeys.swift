@@ -20,6 +20,7 @@ enum AppTextKeys {
         static let createListToolbarTitle = AppTextKey(value: "home.toolbar.createList.action")
         static let localSummarySectionTitle = AppTextKey(value: "home.summary.section.title")
         static let activeListsSectionTitle = AppTextKey(value: "home.lists.active.section.title")
+        static let templatesSectionTitle = AppTextKey(value: "home.templates.section.title")
         static let archivedListsSectionTitle = AppTextKey(value: "home.lists.archived.section.title")
         static let listNameFieldTitle = AppTextKey(value: "home.editor.name.field.title")
         static let listNamePlaceholder = AppTextKey(value: "home.editor.name.field.placeholder")
@@ -29,11 +30,24 @@ enum AppTextKeys {
         static let renameListConfirmButtonTitle = AppTextKey(value: "home.editor.rename.confirm.action")
         static let renameListActionTitle = AppTextKey(value: "home.list.rename.action")
         static let archiveListActionTitle = AppTextKey(value: "home.list.archive.action")
+        static let saveTemplateActionTitle = AppTextKey(value: "home.list.saveTemplate.action")
+        static let generateTemplateActionTitle = AppTextKey(value: "home.template.generate.action")
+        static let templateNameFieldTitle = AppTextKey(value: "home.template.editor.name.field.title")
+        static let templateNamePlaceholder = AppTextKey(value: "home.template.editor.name.field.placeholder")
+        static let templateRecurrenceFieldTitle = AppTextKey(value: "home.template.editor.recurrence.field.title")
+        static let saveTemplateSheetTitle = AppTextKey(value: "home.template.editor.title")
+        static let saveTemplateConfirmButtonTitle = AppTextKey(value: "home.template.editor.confirm.action")
         static let repositoryBoundaryStatus = AppTextKey(value: "home.foundationStatus.repositoryBoundary.message")
         static let localPersistenceStatus = AppTextKey(value: "home.foundationStatus.localPersistence.message")
         static let failureTitle = AppTextKey(value: "home.error.title")
         static let failureDescription = AppTextKey(value: "home.error.description")
         static let retryButtonTitle = AppTextKey(value: "home.error.retry.action")
+
+        enum TemplateRecurrence {
+            static let weekly = AppTextKey(value: "home.template.recurrence.weekly.title")
+            static let biweekly = AppTextKey(value: "home.template.recurrence.biweekly.title")
+            static let monthly = AppTextKey(value: "home.template.recurrence.monthly.title")
+        }
     }
 
     enum ListDetail {

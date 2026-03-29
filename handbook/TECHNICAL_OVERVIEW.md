@@ -49,6 +49,7 @@ The current remote `main` app base now includes:
 - local shopping items with quantity, category, explicit local order, and optional planned and actual prices stored inside the file-backed list model
 - derived list planned total, actual total, actual-price coverage, and budget delta inside the local shopping-list model
 - quick-entry suggestion derivation from local item history inside the existing add-item flow
+- reusable local templates plus recurrence metadata and template-based list generation inside the home workflow
 - English and Brazilian Portuguese resources for the shipped root-screen copy
 
 This is intentionally narrow.
