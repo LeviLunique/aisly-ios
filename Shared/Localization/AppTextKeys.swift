@@ -8,6 +8,7 @@ enum AppTextKeys {
     enum Common {
         static let cancelButtonTitle = AppTextKey(value: "common.action.cancel")
         static let deleteButtonTitle = AppTextKey(value: "common.action.delete")
+        static let optionalFieldValue = AppTextKey(value: "common.value.optional")
     }
 
     enum Home {
@@ -41,11 +42,21 @@ enum AppTextKeys {
         static let emptyDescription = AppTextKey(value: "listDetail.empty.description")
         static let createFirstItemButtonTitle = AppTextKey(value: "listDetail.empty.createFirstItem.action")
         static let addItemToolbarTitle = AppTextKey(value: "listDetail.toolbar.addItem.action")
+        static let budgetSummaryTitle = AppTextKey(value: "listDetail.budget.summary.title")
+        static let plannedTotalTitle = AppTextKey(value: "listDetail.budget.plannedTotal.title")
+        static let actualTotalTitle = AppTextKey(value: "listDetail.budget.actualTotal.title")
+        static let awaitingActualPricesTitle = AppTextKey(value: "listDetail.budget.awaitingActualPrices.title")
+        static let awaitingActualPricesDescription = AppTextKey(value: "listDetail.budget.awaitingActualPrices.description")
+        static let underBudgetTitle = AppTextKey(value: "listDetail.budget.underBudget.title")
+        static let overBudgetTitle = AppTextKey(value: "listDetail.budget.overBudget.title")
+        static let onBudgetTitle = AppTextKey(value: "listDetail.budget.onBudget.title")
         static let itemsSectionTitle = AppTextKey(value: "listDetail.items.section.title")
         static let itemNameFieldTitle = AppTextKey(value: "listDetail.editor.name.field.title")
         static let itemNamePlaceholder = AppTextKey(value: "listDetail.editor.name.field.placeholder")
         static let quantityFieldTitle = AppTextKey(value: "listDetail.editor.quantity.field.title")
         static let categoryFieldTitle = AppTextKey(value: "listDetail.editor.category.field.title")
+        static let plannedPriceFieldTitle = AppTextKey(value: "listDetail.editor.plannedPrice.field.title")
+        static let actualPriceFieldTitle = AppTextKey(value: "listDetail.editor.actualPrice.field.title")
         static let addItemSheetTitle = AppTextKey(value: "listDetail.editor.create.title")
         static let editItemSheetTitle = AppTextKey(value: "listDetail.editor.edit.title")
         static let addItemConfirmButtonTitle = AppTextKey(value: "listDetail.editor.create.confirm.action")

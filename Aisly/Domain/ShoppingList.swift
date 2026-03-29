@@ -8,6 +8,34 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
     var isArchived: Bool
     var items: [ShoppingItem] = []
 
+    var plannedTotal: Decimal {
+        items.reduce(into: Decimal.zero) { total, item in
+            total += item.plannedTotal ?? .zero
+        }
+    }
+
+    var actualTotal: Decimal {
+        items.reduce(into: Decimal.zero) { total, item in
+            total += item.actualTotal ?? .zero
+        }
+    }
+
+    var actualPricedItemCount: Int {
+        items.reduce(into: 0) { count, item in
+            if item.actualPrice != nil {
+                count += 1
+            }
+        }
+    }
+
+    var budgetDelta: Decimal? {
+        guard actualPricedItemCount > 0 else {
+            return nil
+        }
+
+        return actualTotal - plannedTotal
+    }
+
     static func make(
         id: UUID,
         name: String,
@@ -50,6 +78,8 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
         name: String,
         quantity: Int,
         category: ShoppingItem.Category,
+        plannedPrice: Decimal?,
+        actualPrice: Decimal?,
         updatedAt: Date
     ) -> ShoppingList {
         let nextSortOrder = (items.map(\.sortOrder).max() ?? -1) + 1
@@ -60,6 +90,8 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
                 name: name,
                 quantity: quantity,
                 category: category,
+                plannedPrice: plannedPrice,
+                actualPrice: actualPrice,
                 sortOrder: nextSortOrder,
                 now: updatedAt
             )
@@ -73,6 +105,8 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
         name: String,
         quantity: Int,
         category: ShoppingItem.Category,
+        plannedPrice: Decimal?,
+        actualPrice: Decimal?,
         updatedAt: Date
     ) throws -> ShoppingList {
         guard let index = items.firstIndex(where: { $0.id == id }) else {
@@ -84,6 +118,8 @@ struct ShoppingList: Identifiable, Equatable, Sendable {
             name: name,
             quantity: quantity,
             category: category,
+            plannedPrice: plannedPrice,
+            actualPrice: actualPrice,
             updatedAt: updatedAt
         )
 

@@ -45,6 +45,10 @@ struct ListDetailView: View {
         case .loaded(let snapshot):
             List {
                 Section {
+                    budgetSummaryCard(snapshot)
+                }
+
+                Section {
                     ForEach(snapshot.items) { item in
                         itemRow(item)
                     }
@@ -109,6 +113,8 @@ struct ListDetailView: View {
         AislyItemRow(
             title: item.name,
             detail: Text(item.updatedAt, format: .dateTime.month(.abbreviated).day().hour().minute()),
+            primaryPrice: rowPrimaryPrice(for: item),
+            secondaryPrice: rowSecondaryPrice(for: item),
             tapAction: {
                 viewModel.presentEditItem(id: item.id)
             }
@@ -172,6 +178,20 @@ struct ListDetailView: View {
         )
     }
 
+    private var draftPlannedPriceBinding: Binding<String> {
+        Binding(
+            get: { viewModel.draftPlannedPrice },
+            set: { viewModel.updateDraftPlannedPrice($0) }
+        )
+    }
+
+    private var draftActualPriceBinding: Binding<String> {
+        Binding(
+            get: { viewModel.draftActualPrice },
+            set: { viewModel.updateDraftActualPrice($0) }
+        )
+    }
+
     private var draftQuantityBinding: Binding<Int> {
         Binding(
             get: { viewModel.draftQuantity },
@@ -208,6 +228,42 @@ struct ListDetailView: View {
                     } label: {
                         Text(AppStrings.ListDetail.categoryFieldTitle)
                     }
+                }
+
+                Section {
+                    AislyInputField(
+                        text: draftPlannedPriceBinding,
+                        title: Text(AppStrings.ListDetail.plannedPriceFieldTitle),
+                        prompt: Text(AppStrings.Common.optionalFieldValue),
+                        keyboardType: .decimalPad,
+                        textInputAutocapitalization: .never
+                    )
+                    .listRowInsets(
+                        EdgeInsets(
+                            top: AislySpacing.small,
+                            leading: AislySpacing.large,
+                            bottom: AislySpacing.small,
+                            trailing: AislySpacing.large
+                        )
+                    )
+                    .listRowBackground(Color.clear)
+
+                    AislyInputField(
+                        text: draftActualPriceBinding,
+                        title: Text(AppStrings.ListDetail.actualPriceFieldTitle),
+                        prompt: Text(AppStrings.Common.optionalFieldValue),
+                        keyboardType: .decimalPad,
+                        textInputAutocapitalization: .never
+                    )
+                    .listRowInsets(
+                        EdgeInsets(
+                            top: AislySpacing.small,
+                            leading: AislySpacing.large,
+                            bottom: AislySpacing.small,
+                            trailing: AislySpacing.large
+                        )
+                    )
+                    .listRowBackground(Color.clear)
                 }
             }
             .scrollContentBackground(.hidden)
@@ -252,6 +308,30 @@ struct ListDetailView: View {
         }
     }
 
+    private func budgetSummaryCard(_ snapshot: ListDetailViewModel.ListSnapshot) -> some View {
+        AislyBudgetSummaryCard(
+            title: Text(AppStrings.ListDetail.budgetSummaryTitle),
+            progressSummary: Text(snapshot.actualPricedItemCount, format: .number) + Text(" / ") + Text(snapshot.items.count, format: .number),
+            estimatedLabel: Text(AppStrings.ListDetail.plannedTotalTitle),
+            estimatedValue: currencyText(snapshot.plannedTotal),
+            actualLabel: Text(AppStrings.ListDetail.actualTotalTitle),
+            actualValue: currencyText(snapshot.actualTotal),
+            deltaTone: budgetDeltaTone(for: snapshot.budgetDelta),
+            deltaTitle: Text(AppStrings.ListDetail.budgetDeltaTitle(for: snapshot.budgetDelta)),
+            deltaSubtitle: budgetDeltaSubtitle(for: snapshot.budgetDelta)
+        )
+        .listRowInsets(
+            EdgeInsets(
+                top: AislySpacing.small,
+                leading: AislySpacing.large,
+                bottom: AislySpacing.small,
+                trailing: AislySpacing.large
+            )
+        )
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
+    }
+
     private func handleMove(fromOffsets: IndexSet, toOffset: Int) {
         Task {
             await viewModel.moveItems(fromOffsets: fromOffsets, toOffset: toOffset)
@@ -274,6 +354,57 @@ struct ListDetailView: View {
         case .edit:
             return AppStrings.ListDetail.editItemConfirmButtonTitle
         }
+    }
+
+    private func rowPrimaryPrice(for item: ListDetailViewModel.ItemRow) -> Text? {
+        if let actualTotal = item.actualTotal {
+            return currencyText(actualTotal)
+        }
+
+        if let plannedTotal = item.plannedTotal {
+            return currencyText(plannedTotal)
+        }
+
+        return nil
+    }
+
+    private func rowSecondaryPrice(for item: ListDetailViewModel.ItemRow) -> Text? {
+        guard
+            item.actualTotal != nil,
+            let plannedTotal = item.plannedTotal
+        else {
+            return nil
+        }
+
+        return currencyText(plannedTotal)
+    }
+
+    private func budgetDeltaTone(for delta: Decimal?) -> AislyBudgetSummaryCard.DeltaTone {
+        guard let delta else {
+            return .neutral
+        }
+
+        if delta == .zero {
+            return .neutral
+        }
+
+        return delta < .zero ? .underBudget : .overBudget
+    }
+
+    private func budgetDeltaSubtitle(for delta: Decimal?) -> Text {
+        guard let delta else {
+            return Text(AppStrings.ListDetail.awaitingActualPricesDescription)
+        }
+
+        return currencyText(abs(delta))
+    }
+
+    private func currencyText(_ value: Decimal) -> Text {
+        Text(value, format: .currency(code: currencyCode))
+    }
+
+    private var currencyCode: String {
+        Locale.autoupdatingCurrent.currency?.identifier ?? "USD"
     }
 }
 
@@ -323,6 +454,8 @@ private func makePreviewItems(locale: Locale) -> [ShoppingItem] {
             name: AppStrings.Mock.ShoppingItem.milkName(locale: locale),
             quantity: 2,
             category: .dairy,
+            plannedPrice: 4.50,
+            actualPrice: 4.75,
             createdAt: .now,
             updatedAt: .now,
             sortOrder: 0
@@ -332,6 +465,8 @@ private func makePreviewItems(locale: Locale) -> [ShoppingItem] {
             name: AppStrings.Mock.ShoppingItem.applesName(locale: locale),
             quantity: 6,
             category: .produce,
+            plannedPrice: 0.80,
+            actualPrice: nil,
             createdAt: .now,
             updatedAt: .now,
             sortOrder: 1

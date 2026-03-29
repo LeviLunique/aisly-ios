@@ -4,11 +4,11 @@ This document summarizes the current direction of Aisly.
 
 ## Current Status
 
-The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, and the local items-and-categories slice.
+The local workspace now includes the repository scaffold, GitHub Actions workflow baseline, offline architecture foundation, multiple-local-lists, local items-and-categories, and the local budget-core slice.
 
 The remote repository also contains a dedicated `feat/swiftui-design-system` branch that expands the shared Aisly-native SwiftUI visual layer with broader tokens, controls, summary surfaces, and logo assets for future UI slices.
 
-The next real product work is now the budget core slice.
+The next real product work is now quick entry and history.
 
 ## What Should Be Built First
 
@@ -57,8 +57,10 @@ Completed locally:
 
 ### Budget Core
 
-Planned:
+Completed locally:
 
+- planned price per item
+- actual price per item
 - planned total
 - actual total
 - delta visibility
@@ -113,3 +115,4 @@ For the stage-by-stage status, see:
 
 - [HISTORY.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/HISTORY.md)
 - [local-lists.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/local-lists.md)
+- [budget-core.md](/Users/levilunique/Workspace/Swift/Aisly/handbook/features/budget-core.md)

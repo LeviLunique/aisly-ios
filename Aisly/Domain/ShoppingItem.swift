@@ -17,15 +17,27 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
     var name: String
     var quantity: Int
     var category: Category
+    var plannedPrice: Decimal?
+    var actualPrice: Decimal?
     let createdAt: Date
     var updatedAt: Date
     var sortOrder: Int
+
+    var plannedTotal: Decimal? {
+        plannedPrice.map { $0 * Decimal(quantity) }
+    }
+
+    var actualTotal: Decimal? {
+        actualPrice.map { $0 * Decimal(quantity) }
+    }
 
     static func make(
         id: UUID,
         name: String,
         quantity: Int,
         category: Category,
+        plannedPrice: Decimal?,
+        actualPrice: Decimal?,
         sortOrder: Int,
         now: Date
     ) -> ShoppingItem {
@@ -34,6 +46,8 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             name: name,
             quantity: quantity,
             category: category,
+            plannedPrice: plannedPrice,
+            actualPrice: actualPrice,
             createdAt: now,
             updatedAt: now,
             sortOrder: sortOrder
@@ -44,6 +58,8 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
         name: String,
         quantity: Int,
         category: Category,
+        plannedPrice: Decimal?,
+        actualPrice: Decimal?,
         updatedAt: Date
     ) -> ShoppingItem {
         ShoppingItem(
@@ -51,6 +67,8 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             name: name,
             quantity: quantity,
             category: category,
+            plannedPrice: plannedPrice,
+            actualPrice: actualPrice,
             createdAt: createdAt,
             updatedAt: updatedAt,
             sortOrder: sortOrder
@@ -63,6 +81,8 @@ struct ShoppingItem: Identifiable, Equatable, Sendable {
             name: name,
             quantity: quantity,
             category: category,
+            plannedPrice: plannedPrice,
+            actualPrice: actualPrice,
             createdAt: createdAt,
             updatedAt: updatedAt,
             sortOrder: sortOrder

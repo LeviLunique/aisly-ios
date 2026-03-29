@@ -46,7 +46,8 @@ The current remote `main` app base now includes:
 - a root `HomeViewModel` that now loads and mutates multiple local lists
 - localized create, rename, and archive flows for the root local-list screen
 - a `ListDetailViewModel` that now loads and mutates local items inside a selected list
-- local shopping items with quantity, category, and explicit local order stored inside the file-backed list model
+- local shopping items with quantity, category, explicit local order, and optional planned and actual prices stored inside the file-backed list model
+- derived list planned total, actual total, actual-price coverage, and budget delta inside the local shopping-list model
 - English and Brazilian Portuguese resources for the shipped root-screen copy
 
 This is intentionally narrow.

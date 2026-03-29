@@ -8,12 +8,18 @@ final class ListDetailViewModel: ObservableObject {
         let name: String
         let quantity: Int
         let category: ShoppingItem.Category
+        let plannedTotal: Decimal?
+        let actualTotal: Decimal?
         let updatedAt: Date
     }
 
     struct ListSnapshot: Equatable {
         let listID: UUID
         let listName: String
+        let plannedTotal: Decimal
+        let actualTotal: Decimal
+        let budgetDelta: Decimal?
+        let actualPricedItemCount: Int
         let items: [ItemRow]
     }
 
@@ -43,23 +49,28 @@ final class ListDetailViewModel: ObservableObject {
     @Published private(set) var draftName = ""
     @Published private(set) var draftQuantity = 1
     @Published private(set) var draftCategory: ShoppingItem.Category = .produce
+    @Published private(set) var draftPlannedPrice = ""
+    @Published private(set) var draftActualPrice = ""
 
     private let listID: UUID
     private let repository: any ShoppingListRepository
     private let now: @Sendable () -> Date
     private let makeUUID: @Sendable () -> UUID
+    private let locale: Locale
     private var currentList: ShoppingList?
 
     init(
         listID: UUID,
         repository: any ShoppingListRepository,
         now: @escaping @Sendable () -> Date = { Date() },
-        makeUUID: @escaping @Sendable () -> UUID = { UUID() }
+        makeUUID: @escaping @Sendable () -> UUID = { UUID() },
+        locale: Locale = .autoupdatingCurrent
     ) {
         self.listID = listID
         self.repository = repository
         self.now = now
         self.makeUUID = makeUUID
+        self.locale = locale
     }
 
     func loadIfNeeded() async {
@@ -91,6 +102,8 @@ final class ListDetailViewModel: ObservableObject {
         draftName = ""
         draftQuantity = 1
         draftCategory = .produce
+        draftPlannedPrice = ""
+        draftActualPrice = ""
         editorMode = .create
     }
 
@@ -102,6 +115,8 @@ final class ListDetailViewModel: ObservableObject {
         draftName = item.name
         draftQuantity = item.quantity
         draftCategory = item.category
+        draftPlannedPrice = draftString(for: item.plannedPrice)
+        draftActualPrice = draftString(for: item.actualPrice)
         editorMode = .edit(id)
     }
 
@@ -110,6 +125,8 @@ final class ListDetailViewModel: ObservableObject {
         draftName = ""
         draftQuantity = 1
         draftCategory = .produce
+        draftPlannedPrice = ""
+        draftActualPrice = ""
     }
 
     func updateDraftName(_ draftName: String) {
@@ -124,14 +141,26 @@ final class ListDetailViewModel: ObservableObject {
         draftCategory = category
     }
 
+    func updateDraftPlannedPrice(_ plannedPrice: String) {
+        draftPlannedPrice = plannedPrice
+    }
+
+    func updateDraftActualPrice(_ actualPrice: String) {
+        draftActualPrice = actualPrice
+    }
+
     func saveDraft() async {
         guard
             let editorMode,
             let normalizedDraftName,
-            let currentList
+            let currentList,
+            areDraftPricesValid
         else {
             return
         }
+
+        let plannedPrice = normalizedDraftPlannedPrice
+        let actualPrice = normalizedDraftActualPrice
 
         do {
             let updatedList: ShoppingList
@@ -143,6 +172,8 @@ final class ListDetailViewModel: ObservableObject {
                     name: normalizedDraftName,
                     quantity: draftQuantity,
                     category: draftCategory,
+                    plannedPrice: plannedPrice,
+                    actualPrice: actualPrice,
                     updatedAt: now()
                 )
             case .edit(let itemID):
@@ -151,6 +182,8 @@ final class ListDetailViewModel: ObservableObject {
                     name: normalizedDraftName,
                     quantity: draftQuantity,
                     category: draftCategory,
+                    plannedPrice: plannedPrice,
+                    actualPrice: actualPrice,
                     updatedAt: now()
                 )
             }
@@ -217,7 +250,8 @@ final class ListDetailViewModel: ObservableObject {
     var isDraftSubmissionDisabled: Bool {
         guard
             let normalizedDraftName,
-            normalizedDraftName.isEmpty == false
+            normalizedDraftName.isEmpty == false,
+            areDraftPricesValid
         else {
             return true
         }
@@ -232,7 +266,9 @@ final class ListDetailViewModel: ObservableObject {
 
             return item.name == normalizedDraftName &&
                 item.quantity == draftQuantity &&
-                item.category == draftCategory
+                item.category == draftCategory &&
+                item.plannedPrice == normalizedDraftPlannedPrice &&
+                item.actualPrice == normalizedDraftActualPrice
         case .none:
             return true
         }
@@ -241,6 +277,18 @@ final class ListDetailViewModel: ObservableObject {
     private var normalizedDraftName: String? {
         let trimmedName = draftName.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmedName.isEmpty ? nil : trimmedName
+    }
+
+    private var normalizedDraftPlannedPrice: Decimal? {
+        normalizedPrice(from: draftPlannedPrice)
+    }
+
+    private var normalizedDraftActualPrice: Decimal? {
+        normalizedPrice(from: draftActualPrice)
+    }
+
+    private var areDraftPricesValid: Bool {
+        isValidPriceDraft(draftPlannedPrice) && isValidPriceDraft(draftActualPrice)
     }
 
     private var itemSortComparator: (ShoppingItem, ShoppingItem) -> Bool {
@@ -257,10 +305,65 @@ final class ListDetailViewModel: ObservableObject {
         ListSnapshot(
             listID: list.id,
             listName: list.name,
+            plannedTotal: list.plannedTotal,
+            actualTotal: list.actualTotal,
+            budgetDelta: list.budgetDelta,
+            actualPricedItemCount: list.actualPricedItemCount,
             items: list.items
                 .sorted(by: itemSortComparator)
                 .map(ItemRow.init)
         )
+    }
+
+    private func draftString(for price: Decimal?) -> String {
+        guard let price else {
+            return ""
+        }
+
+        let formatter = NumberFormatter()
+        formatter.locale = locale
+        formatter.numberStyle = .decimal
+        formatter.usesGroupingSeparator = false
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+
+        return formatter.string(from: price as NSDecimalNumber) ?? ""
+    }
+
+    private func isValidPriceDraft(_ priceDraft: String) -> Bool {
+        let trimmedDraft = priceDraft.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmedDraft.isEmpty || normalizedPrice(from: trimmedDraft) != nil
+    }
+
+    private func normalizedPrice(from priceDraft: String) -> Decimal? {
+        let trimmedDraft = priceDraft.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmedDraft.isEmpty == false else {
+            return nil
+        }
+
+        let formatter = NumberFormatter()
+        formatter.locale = locale
+        formatter.numberStyle = .decimal
+        formatter.generatesDecimalNumbers = true
+
+        let fallbackInputs = [trimmedDraft]
+            + [trimmedDraft.replacingOccurrences(of: ",", with: ".")]
+            + [trimmedDraft.replacingOccurrences(of: ".", with: locale.decimalSeparator ?? ".")]
+
+        for input in fallbackInputs {
+            guard let number = formatter.number(from: input) else {
+                continue
+            }
+
+            let decimal = number.decimalValue
+            guard decimal >= .zero else {
+                return nil
+            }
+
+            return decimal
+        }
+
+        return nil
     }
 
     private func persist(_ updatedList: ShoppingList) async throws {
@@ -292,6 +395,8 @@ private extension ListDetailViewModel.ItemRow {
         name = item.name
         quantity = item.quantity
         category = item.category
+        plannedTotal = item.plannedTotal
+        actualTotal = item.actualTotal
         updatedAt = item.updatedAt
     }
 }

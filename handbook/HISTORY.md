@@ -9,7 +9,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 - Stage 1: completed
 - Stage 2: completed
 - Stage 3: completed locally
-- Stage 4: pending
+- Stage 4: completed locally
 - Stage 5: pending
 - Stage 6: pending
 - Stage 7: pending
@@ -73,6 +73,17 @@ Delivered locally:
 - the detail workflow reuses the shared design-system layer for state views, inputs, item rows, badges, and actions
 - regression coverage now includes Stage 2 persistence compatibility plus list-detail item behavior
 
+### Stage 4
+
+Delivered locally:
+
+- shopping items now persist optional planned and actual prices
+- the list-detail feature now derives planned total, actual total, actual-price coverage, and budget delta locally
+- the detail screen now shows a shared budget summary card above the item list
+- the item editor now supports optional planned and actual price entry
+- the file-backed persistence layer stays backward-compatible with Stage 3 item payloads that do not yet contain budget fields
+- regression coverage now includes Stage 3 persistence compatibility plus budget totals and price-draft validation
+
 ### Supporting Remote Branch Work
 
 The remote repository also contains additional implemented work that is not yet part of the numbered product-stage history on `main`.
@@ -90,7 +101,7 @@ Delivered on remote branch `feat/swiftui-design-system`:
 
 The next correct work is:
 
-- budget core
+- quick entry and history
 
 Not:
 

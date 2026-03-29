@@ -22,6 +22,7 @@ enum AppStrings {
     enum Common {
         static let cancelButtonTitle = AppTextKeys.Common.cancelButtonTitle.localizedResource
         static let deleteButtonTitle = AppTextKeys.Common.deleteButtonTitle.localizedResource
+        static let optionalFieldValue = AppTextKeys.Common.optionalFieldValue.localizedResource
     }
 
     enum Home {
@@ -52,11 +53,16 @@ enum AppStrings {
         static let emptyDescription = AppTextKeys.ListDetail.emptyDescription.localizedResource
         static let createFirstItemButtonTitle = AppTextKeys.ListDetail.createFirstItemButtonTitle.localizedResource
         static let addItemToolbarTitle = AppTextKeys.ListDetail.addItemToolbarTitle.localizedResource
+        static let budgetSummaryTitle = AppTextKeys.ListDetail.budgetSummaryTitle.localizedResource
+        static let plannedTotalTitle = AppTextKeys.ListDetail.plannedTotalTitle.localizedResource
+        static let actualTotalTitle = AppTextKeys.ListDetail.actualTotalTitle.localizedResource
         static let itemsSectionTitle = AppTextKeys.ListDetail.itemsSectionTitle.localizedResource
         static let itemNameFieldTitle = AppTextKeys.ListDetail.itemNameFieldTitle.localizedResource
         static let itemNamePlaceholder = AppTextKeys.ListDetail.itemNamePlaceholder.localizedResource
         static let quantityFieldTitle = AppTextKeys.ListDetail.quantityFieldTitle.localizedResource
         static let categoryFieldTitle = AppTextKeys.ListDetail.categoryFieldTitle.localizedResource
+        static let plannedPriceFieldTitle = AppTextKeys.ListDetail.plannedPriceFieldTitle.localizedResource
+        static let actualPriceFieldTitle = AppTextKeys.ListDetail.actualPriceFieldTitle.localizedResource
         static let addItemSheetTitle = AppTextKeys.ListDetail.addItemSheetTitle.localizedResource
         static let editItemSheetTitle = AppTextKeys.ListDetail.editItemSheetTitle.localizedResource
         static let addItemConfirmButtonTitle = AppTextKeys.ListDetail.addItemConfirmButtonTitle.localizedResource
@@ -64,6 +70,23 @@ enum AppStrings {
         static let failureTitle = AppTextKeys.ListDetail.failureTitle.localizedResource
         static let failureDescription = AppTextKeys.ListDetail.failureDescription.localizedResource
         static let retryButtonTitle = AppTextKeys.ListDetail.retryButtonTitle.localizedResource
+
+        static let awaitingActualPricesTitle = AppTextKeys.ListDetail.awaitingActualPricesTitle.localizedResource
+        static let awaitingActualPricesDescription = AppTextKeys.ListDetail.awaitingActualPricesDescription.localizedResource
+
+        static func budgetDeltaTitle(for delta: Decimal?) -> LocalizedStringResource {
+            guard let delta else {
+                return awaitingActualPricesTitle
+            }
+
+            if delta == .zero {
+                return AppTextKeys.ListDetail.onBudgetTitle.localizedResource
+            }
+
+            return delta < .zero
+                ? AppTextKeys.ListDetail.underBudgetTitle.localizedResource
+                : AppTextKeys.ListDetail.overBudgetTitle.localizedResource
+        }
 
         static func categoryTitle(for category: ShoppingItem.Category) -> LocalizedStringResource {
             categoryKey(for: category).localizedResource
