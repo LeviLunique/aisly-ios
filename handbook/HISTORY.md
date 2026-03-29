@@ -14,7 +14,7 @@ This document summarizes the roadmap progress already completed for Aisly.
 - Stage 6: completed locally
 - Stage 7: completed locally
 - Stage 8: completed locally
-- Stage 9: pending
+- Stage 9: completed locally
 - Stage 10: pending
 - Stage 11: pending
 
@@ -130,6 +130,18 @@ Delivered locally:
 - kept the file-backed persistence layer backward-compatible with older JSON that does not yet contain completion state
 - regression coverage now includes session loading, completion persistence, actual-price editing, and backward-compatible item decoding
 
+### Stage 9
+
+Delivered locally:
+
+- added one active-list widget backed by the same offline local data as the app
+- added App Intents to open the home lists screen or jump directly into shopping mode
+- added custom `aisly://` deep-link routing for Apple-native entry points
+- added an app-group-backed storage path so the app and widget share the same local JSON data safely
+- kept Apple-surface integration inside the existing repository and MVVM boundaries
+- documented the one App Intents metadata exception where metadata declarations require direct localization-key literals
+- regression coverage now includes shared storage-path selection, deep-link parsing, route handoff, URL-scheme declaration, and Apple-surface source-audit rules
+
 ### Supporting Remote Branch Work
 
 The remote repository also contains additional implemented work that is not yet part of the numbered product-stage history on `main`.
@@ -147,7 +159,7 @@ Delivered on remote branch `feat/swiftui-design-system`:
 
 The next correct work is:
 
-- Apple-first convenience
+- online readiness
 
 Not:
 
