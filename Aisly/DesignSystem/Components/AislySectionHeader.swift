@@ -1,14 +1,18 @@
 import SwiftUI
 
 struct AislySectionHeader: View {
-    private let title: LocalizedStringResource
+    private let title: Text
 
     init(_ title: LocalizedStringResource) {
+        self.title = Text(title)
+    }
+
+    init(_ title: Text) {
         self.title = title
     }
 
     var body: some View {
-        Text(title)
+        title
             .font(AislyTypography.sectionHeader)
             .textCase(.uppercase)
             .tracking(0.8)

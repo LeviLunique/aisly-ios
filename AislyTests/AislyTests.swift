@@ -1015,7 +1015,11 @@ final class AislyTests: XCTestCase {
                 )
             ]
         )
-        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            locale: Locale(identifier: "en_US_POSIX")
+        )
 
         await viewModel.load()
 
@@ -1052,6 +1056,40 @@ final class AislyTests: XCTestCase {
                             isCompleted: false,
                             updatedAt: Date(timeIntervalSince1970: 2_000)
                         )
+                    ],
+                    itemSections: [
+                        .init(
+                            category: .produce,
+                            items: [
+                                .init(
+                                    id: itemOneID,
+                                    name: "Apples",
+                                    quantity: 6,
+                                    category: .produce,
+                                    storeName: nil,
+                                    plannedTotal: nil,
+                                    actualTotal: nil,
+                                    isCompleted: false,
+                                    updatedAt: Date(timeIntervalSince1970: 2_000)
+                                )
+                            ]
+                        ),
+                        .init(
+                            category: .dairy,
+                            items: [
+                                .init(
+                                    id: itemTwoID,
+                                    name: "Milk",
+                                    quantity: 2,
+                                    category: .dairy,
+                                    storeName: nil,
+                                    plannedTotal: nil,
+                                    actualTotal: nil,
+                                    isCompleted: false,
+                                    updatedAt: Date(timeIntervalSince1970: 2_000)
+                                )
+                            ]
+                        )
                     ]
                 )
             )
@@ -1080,6 +1118,167 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(viewModel.storeSuggestions, [])
         XCTAssertNil(viewModel.priceMemorySuggestion)
         XCTAssertTrue(viewModel.isDraftSubmissionDisabled)
+    }
+
+    @MainActor
+    func testListDetailViewModelPresentCreateItemSuggestsLastUsedCategory() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            name: "Apples",
+                            quantity: 6,
+                            category: .produce,
+                            sortOrder: 0,
+                            createdAt: Date(timeIntervalSince1970: 1_500)
+                        ),
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            sortOrder: 1,
+                            createdAt: Date(timeIntervalSince1970: 1_800)
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(listID: listID, repository: repository)
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+
+        XCTAssertEqual(viewModel.draftCategory, .dairy)
+    }
+
+    @MainActor
+    func testListDetailViewModelFiltersAndSortsItemsInsideCategorySections() async {
+        let listID = UUID()
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            name: "Yogurt",
+                            quantity: 1,
+                            category: .dairy,
+                            plannedPrice: 3.5,
+                            sortOrder: 0
+                        ),
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 1,
+                            category: .dairy,
+                            plannedPrice: 4.5,
+                            sortOrder: 1
+                        ),
+                        makeShoppingItem(
+                            name: "Apples",
+                            quantity: 6,
+                            category: .produce,
+                            plannedPrice: 0.8,
+                            sortOrder: 2
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            locale: Locale(identifier: "en_US_POSIX")
+        )
+
+        await viewModel.load()
+        viewModel.updateSortOption(.name)
+
+        guard case .loaded(let sortedSnapshot) = viewModel.state else {
+            return XCTFail("Expected loaded state")
+        }
+
+        XCTAssertEqual(sortedSnapshot.itemSections.first(where: { $0.category == .dairy })?.items.map(\.name), ["Milk", "Yogurt"])
+
+        viewModel.updateSelectedCategoryFilter(.produce)
+
+        guard case .loaded(let filteredSnapshot) = viewModel.state else {
+            return XCTFail("Expected loaded state")
+        }
+
+        XCTAssertEqual(filteredSnapshot.items.map(\.name), ["Apples"])
+        XCTAssertEqual(filteredSnapshot.itemSections.map(\.category), [.produce])
+    }
+
+    @MainActor
+    func testListDetailViewModelCreatesNewCategoryFromItemDraft() async throws {
+        let listID = UUID()
+        let itemID = UUID()
+        let timestamp = Date(timeIntervalSince1970: 3_100)
+        let repository = InMemoryShoppingListRepository(
+            lists: [makeShoppingList(id: listID, name: "Weekly Groceries")]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            now: { timestamp },
+            makeUUID: { itemID }
+        )
+
+        await viewModel.load()
+        viewModel.presentCreateItem()
+        viewModel.updateDraftName("Bread")
+        viewModel.updateDraftNewCategoryName("Bakery")
+        await viewModel.saveDraft()
+
+        let persistedLists = await repository.persistedLists()
+        let persistedList = try XCTUnwrap(persistedLists.first)
+        XCTAssertEqual(persistedList.items.first?.category, ShoppingItem.Category("Bakery"))
+        XCTAssertTrue(persistedList.categories.contains { $0.matches(ShoppingItem.Category("Bakery")) })
+    }
+
+    @MainActor
+    func testListDetailViewModelRenamesCategoryAcrossListItems() async throws {
+        let listID = UUID()
+        let timestamp = Date(timeIntervalSince1970: 3_200)
+        let repository = InMemoryShoppingListRepository(
+            lists: [
+                makeShoppingList(
+                    id: listID,
+                    name: "Weekly Groceries",
+                    items: [
+                        makeShoppingItem(
+                            name: "Milk",
+                            quantity: 2,
+                            category: .dairy,
+                            sortOrder: 0
+                        )
+                    ]
+                )
+            ]
+        )
+        let viewModel = ListDetailViewModel(
+            listID: listID,
+            repository: repository,
+            now: { timestamp }
+        )
+
+        await viewModel.load()
+        viewModel.presentCategoryManager()
+        viewModel.selectCategoryForRename(.dairy)
+        viewModel.updateDraftRenamedCategoryName("Cold Case")
+        await viewModel.renameSelectedCategory()
+
+        let persistedLists = await repository.persistedLists()
+        let persistedList = try XCTUnwrap(persistedLists.first)
+        XCTAssertEqual(persistedList.items.first?.category, ShoppingItem.Category("Cold Case"))
+        XCTAssertEqual(persistedList.items.first?.updatedAt, timestamp)
+        XCTAssertTrue(persistedList.categories.contains { $0.matches(ShoppingItem.Category("Cold Case")) })
+        XCTAssertFalse(persistedList.categories.contains { $0.matches(.dairy) })
     }
 
     @MainActor
@@ -1714,6 +1913,8 @@ final class AislyTests: XCTestCase {
         XCTAssertEqual(snapshot.completedItemCount, 1)
         XCTAssertEqual(snapshot.remainingItems.map(\.name), ["Apples"])
         XCTAssertEqual(snapshot.completedItems.map(\.name), ["Milk"])
+        XCTAssertEqual(snapshot.remainingSections.map(\.category), [.produce])
+        XCTAssertEqual(snapshot.completedSections.map(\.category), [.dairy])
         XCTAssertEqual(snapshot.actualPricedItemCount, 1)
     }
 

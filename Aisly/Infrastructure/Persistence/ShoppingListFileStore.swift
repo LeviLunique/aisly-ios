@@ -49,6 +49,7 @@ struct StoredShoppingList: Codable, Equatable {
     let createdAt: Date
     let updatedAt: Date
     let isArchived: Bool
+    let categories: [ShoppingItem.Category]
     let items: [StoredShoppingItem]
     let templateConfiguration: ShoppingList.TemplateConfiguration?
 
@@ -58,6 +59,7 @@ struct StoredShoppingList: Codable, Equatable {
         createdAt: Date,
         updatedAt: Date,
         isArchived: Bool,
+        categories: [ShoppingItem.Category],
         items: [StoredShoppingItem],
         templateConfiguration: ShoppingList.TemplateConfiguration?
     ) {
@@ -66,6 +68,7 @@ struct StoredShoppingList: Codable, Equatable {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.isArchived = isArchived
+        self.categories = categories
         self.items = items
         self.templateConfiguration = templateConfiguration
     }
@@ -76,6 +79,7 @@ struct StoredShoppingList: Codable, Equatable {
         createdAt = list.createdAt
         updatedAt = list.updatedAt
         isArchived = list.isArchived
+        categories = list.categories
         items = list.items.map(StoredShoppingItem.init(item:))
         templateConfiguration = list.templateConfiguration
     }
@@ -87,6 +91,8 @@ struct StoredShoppingList: Codable, Equatable {
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         isArchived = try container.decode(Bool.self, forKey: .isArchived)
+        categories = try container.decodeIfPresent([ShoppingItem.Category].self, forKey: .categories)
+            ?? ShoppingItem.Category.defaultCategories
         items = try container.decodeIfPresent([StoredShoppingItem].self, forKey: .items) ?? []
         templateConfiguration = try container.decodeIfPresent(ShoppingList.TemplateConfiguration.self, forKey: .templateConfiguration)
     }
@@ -98,6 +104,7 @@ struct StoredShoppingList: Codable, Equatable {
             createdAt: createdAt,
             updatedAt: updatedAt,
             isArchived: isArchived,
+            categories: ShoppingList.normalizedCategories(categories + items.map(\.category)),
             items: items.map(\.model),
             templateConfiguration: templateConfiguration
         )

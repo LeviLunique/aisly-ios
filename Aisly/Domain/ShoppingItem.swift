@@ -1,14 +1,83 @@
 import Foundation
 
 struct ShoppingItem: Identifiable, Equatable, Sendable {
-    enum Category: String, CaseIterable, Codable, Identifiable, Sendable {
-        case produce
-        case dairy
-        case protein
-        case pantry
-        case household
-        case frozen
-        case other
+    struct Category: CaseIterable, Codable, Hashable, Identifiable, Sendable {
+        static let produce = Category("produce")
+        static let dairy = Category("dairy")
+        static let protein = Category("protein")
+        static let pantry = Category("pantry")
+        static let household = Category("household")
+        static let frozen = Category("frozen")
+        static let other = Category("other")
+
+        static let defaultCategories: [Category] = [
+            .produce,
+            .dairy,
+            .protein,
+            .pantry,
+            .household,
+            .frozen,
+            .other
+        ]
+
+        static var allCases: [Category] {
+            defaultCategories
+        }
+
+        let rawValue: String
+
+        var id: String {
+            normalizedIdentifier
+        }
+
+        var normalizedIdentifier: String {
+            Self.normalizedIdentifier(for: rawValue)
+        }
+
+        var isDefault: Bool {
+            Self.defaultCategories.contains { $0.matches(self) }
+        }
+
+        init(_ rawValue: String) {
+            let trimmedValue = rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
+            self.rawValue = trimmedValue.isEmpty ? Self.other.rawValue : trimmedValue
+        }
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            self.init(try container.decode(String.self))
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            try container.encode(rawValue)
+        }
+
+        func matches(_ category: Category) -> Bool {
+            normalizedIdentifier == category.normalizedIdentifier
+        }
+
+        static func == (lhs: Category, rhs: Category) -> Bool {
+            lhs.matches(rhs)
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(normalizedIdentifier)
+        }
+
+        static func normalizedIdentifier(for value: String) -> String {
+            value
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+                .folding(options: [.diacriticInsensitive, .caseInsensitive], locale: nil)
+                .lowercased()
+        }
+    }
+
+    enum SortOption: String, CaseIterable, Identifiable, Sendable {
+        case category
+        case name
+        case plannedPrice
+        case actualPrice
 
         var id: String { rawValue }
     }

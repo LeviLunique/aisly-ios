@@ -8,6 +8,7 @@ enum AppTextKeys {
     enum Common {
         static let cancelButtonTitle = AppTextKey(value: "common.action.cancel")
         static let deleteButtonTitle = AppTextKey(value: "common.action.delete")
+        static let doneButtonTitle = AppTextKey(value: "common.action.done")
         static let optionalFieldValue = AppTextKey(value: "common.value.optional")
     }
 
@@ -57,6 +58,9 @@ enum AppTextKeys {
         static let createFirstItemButtonTitle = AppTextKey(value: "listDetail.empty.createFirstItem.action")
         static let addItemToolbarTitle = AppTextKey(value: "listDetail.toolbar.addItem.action")
         static let shoppingModeToolbarTitle = AppTextKey(value: "listDetail.toolbar.shoppingMode.action")
+        static let filterToolbarTitle = AppTextKey(value: "listDetail.toolbar.filter.action")
+        static let sortToolbarTitle = AppTextKey(value: "listDetail.toolbar.sort.action")
+        static let manageCategoriesToolbarTitle = AppTextKey(value: "listDetail.toolbar.manageCategories.action")
         static let budgetSummaryTitle = AppTextKey(value: "listDetail.budget.summary.title")
         static let plannedTotalTitle = AppTextKey(value: "listDetail.budget.plannedTotal.title")
         static let actualTotalTitle = AppTextKey(value: "listDetail.budget.actualTotal.title")
@@ -75,15 +79,33 @@ enum AppTextKeys {
         static let priceMemorySectionTitle = AppTextKey(value: "listDetail.editor.priceMemory.section.title")
         static let quantityFieldTitle = AppTextKey(value: "listDetail.editor.quantity.field.title")
         static let categoryFieldTitle = AppTextKey(value: "listDetail.editor.category.field.title")
+        static let newCategoryFieldTitle = AppTextKey(value: "listDetail.editor.newCategory.field.title")
+        static let newCategoryFieldPlaceholder = AppTextKey(value: "listDetail.editor.newCategory.field.placeholder")
         static let plannedPriceFieldTitle = AppTextKey(value: "listDetail.editor.plannedPrice.field.title")
         static let actualPriceFieldTitle = AppTextKey(value: "listDetail.editor.actualPrice.field.title")
         static let addItemSheetTitle = AppTextKey(value: "listDetail.editor.create.title")
         static let editItemSheetTitle = AppTextKey(value: "listDetail.editor.edit.title")
         static let addItemConfirmButtonTitle = AppTextKey(value: "listDetail.editor.create.confirm.action")
         static let editItemConfirmButtonTitle = AppTextKey(value: "listDetail.editor.edit.confirm.action")
+        static let allCategoriesFilterTitle = AppTextKey(value: "listDetail.filter.allCategories.title")
+        static let categoryManagerSheetTitle = AppTextKey(value: "listDetail.categoryManager.title")
+        static let addCategorySectionTitle = AppTextKey(value: "listDetail.categoryManager.add.section.title")
+        static let existingCategoriesSectionTitle = AppTextKey(value: "listDetail.categoryManager.existing.section.title")
+        static let renameCategorySectionTitle = AppTextKey(value: "listDetail.categoryManager.rename.section.title")
+        static let categoryNameFieldTitle = AppTextKey(value: "listDetail.categoryManager.name.field.title")
+        static let categoryNameFieldPlaceholder = AppTextKey(value: "listDetail.categoryManager.name.field.placeholder")
+        static let addCategoryButtonTitle = AppTextKey(value: "listDetail.categoryManager.add.action")
+        static let renameCategoryButtonTitle = AppTextKey(value: "listDetail.categoryManager.rename.action")
         static let failureTitle = AppTextKey(value: "listDetail.error.title")
         static let failureDescription = AppTextKey(value: "listDetail.error.description")
         static let retryButtonTitle = AppTextKey(value: "listDetail.error.retry.action")
+
+        enum Sort {
+            static let category = AppTextKey(value: "listDetail.sort.category.title")
+            static let name = AppTextKey(value: "listDetail.sort.name.title")
+            static let plannedPrice = AppTextKey(value: "listDetail.sort.plannedPrice.title")
+            static let actualPrice = AppTextKey(value: "listDetail.sort.actualPrice.title")
+        }
 
         enum Category {
             static let produce = AppTextKey(value: "listDetail.category.produce.label")

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ShoppingModeView: View {
     @StateObject private var viewModel: ShoppingModeViewModel
+    private let filterSymbolName = ["line", "3", "horizontal", "decrease", "circle"].joined(separator: ".")
 
     init(viewModel: ShoppingModeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -17,6 +18,9 @@ struct ShoppingModeView: View {
             }
             .sheet(item: priceEditorStateBinding) { editorState in
                 priceEditorSheet(editorState)
+            }
+            .toolbar {
+                shoppingToolbar
             }
     }
 
@@ -39,23 +43,37 @@ struct ShoppingModeView: View {
                     sessionSummary(snapshot)
                 }
 
-                if snapshot.remainingItems.isEmpty == false {
-                    Section {
-                        ForEach(snapshot.remainingItems) { item in
-                            itemRow(item)
+                if snapshot.remainingSections.isEmpty == false {
+                    ForEach(snapshot.remainingSections) { itemSection in
+                        Section {
+                            ForEach(itemSection.items) { item in
+                                itemRow(item)
+                            }
+                        } header: {
+                            AislySectionHeader(
+                                itemSectionHeader(
+                                    AppStrings.ShoppingMode.remainingItemsSectionTitle,
+                                    category: itemSection.category
+                                )
+                            )
                         }
-                    } header: {
-                        AislySectionHeader(AppStrings.ShoppingMode.remainingItemsSectionTitle)
                     }
                 }
 
-                if snapshot.completedItems.isEmpty == false {
-                    Section {
-                        ForEach(snapshot.completedItems) { item in
-                            itemRow(item)
+                if snapshot.completedSections.isEmpty == false {
+                    ForEach(snapshot.completedSections) { itemSection in
+                        Section {
+                            ForEach(itemSection.items) { item in
+                                itemRow(item)
+                            }
+                        } header: {
+                            AislySectionHeader(
+                                itemSectionHeader(
+                                    AppStrings.ShoppingMode.completedItemsSectionTitle,
+                                    category: itemSection.category
+                                )
+                            )
                         }
-                    } header: {
-                        AislySectionHeader(AppStrings.ShoppingMode.completedItemsSectionTitle)
                     }
                 }
             }
@@ -81,6 +99,47 @@ struct ShoppingModeView: View {
                 .buttonStyle(AislyPrimaryButtonStyle())
             }
         }
+    }
+
+    @ToolbarContentBuilder
+    private var shoppingToolbar: some ToolbarContent {
+        if case .loaded(let snapshot) = viewModel.state, snapshot.itemCount > 0 {
+            ToolbarItem(placement: .topBarTrailing) {
+                shoppingControlsMenu
+            }
+        }
+    }
+
+    private var shoppingControlsMenu: some View {
+        Menu {
+            Picker(selection: selectedCategoryFilterBinding) {
+                Text(AppStrings.ListDetail.allCategoriesFilterTitle)
+                    .tag(ShoppingItem.Category?.none)
+
+                ForEach(viewModel.availableCategories) { category in
+                    Text(AppStrings.ListDetail.categoryTitle(for: category))
+                        .tag(Optional(category))
+                }
+            } label: {
+                Text(AppStrings.ListDetail.filterToolbarTitle)
+            }
+
+            Picker(selection: sortOptionBinding) {
+                ForEach(ShoppingItem.SortOption.allCases) { sortOption in
+                    Text(AppStrings.ListDetail.sortTitle(for: sortOption))
+                        .tag(sortOption)
+                }
+            } label: {
+                Text(AppStrings.ListDetail.sortToolbarTitle)
+            }
+        } label: {
+            Label {
+                Text(AppStrings.ListDetail.filterToolbarTitle)
+            } icon: {
+                Image(systemName: filterSymbolName)
+            }
+        }
+        .tint(AislyColor.primary)
     }
 
     private func sessionSummary(_ snapshot: ShoppingModeViewModel.SessionSnapshot) -> some View {
@@ -210,6 +269,20 @@ struct ShoppingModeView: View {
         )
     }
 
+    private var selectedCategoryFilterBinding: Binding<ShoppingItem.Category?> {
+        Binding(
+            get: { viewModel.selectedCategoryFilter },
+            set: { viewModel.updateSelectedCategoryFilter($0) }
+        )
+    }
+
+    private var sortOptionBinding: Binding<ShoppingItem.SortOption> {
+        Binding(
+            get: { viewModel.sortOption },
+            set: { viewModel.updateSortOption($0) }
+        )
+    }
+
     @ViewBuilder
     private func priceEditorSheet(_ editorState: ShoppingModeViewModel.PriceEditorState) -> some View {
         NavigationStack {
@@ -306,6 +379,13 @@ struct ShoppingModeView: View {
                 }
             }
         )
+    }
+
+    private func itemSectionHeader(
+        _ title: LocalizedStringResource,
+        category: ShoppingItem.Category
+    ) -> Text {
+        Text(title) + Text(verbatim: " / ") + Text(AppStrings.ListDetail.categoryTitle(for: category))
     }
 
     private func rowPrimaryPrice(for item: ShoppingModeViewModel.ItemRow) -> Text? {

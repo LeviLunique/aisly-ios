@@ -3,6 +3,7 @@ import SwiftUI
 struct ListDetailView: View {
     @StateObject private var viewModel: ListDetailViewModel
     private let emptyStateSymbolName = ["list", "bullet", "clipboard"].joined(separator: ".")
+    private let filterSymbolName = ["line", "3", "horizontal", "decrease", "circle"].joined(separator: ".")
 
     init(viewModel: ListDetailViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -16,6 +17,9 @@ struct ListDetailView: View {
             }
             .sheet(item: editorModeBinding) { editorMode in
                 editorSheet(editorMode)
+            }
+            .sheet(isPresented: categoryManagerPresentedBinding) {
+                categoryManagerSheet
             }
     }
 
@@ -49,13 +53,14 @@ struct ListDetailView: View {
                     budgetSummaryCard(snapshot)
                 }
 
-                Section {
-                    ForEach(snapshot.items) { item in
-                        itemRow(item)
+                ForEach(snapshot.itemSections) { itemSection in
+                    Section {
+                        ForEach(itemSection.items) { item in
+                            itemRow(item)
+                        }
+                    } header: {
+                        AislySectionHeader(Text(AppStrings.ListDetail.categoryTitle(for: itemSection.category)))
                     }
-                    .onMove(perform: handleMove)
-                } header: {
-                    AislySectionHeader(AppStrings.ListDetail.itemsSectionTitle)
                 }
             }
             .listStyle(.insetGrouped)
@@ -88,9 +93,9 @@ struct ListDetailView: View {
 
     @ToolbarContentBuilder
     private var itemToolbar: some ToolbarContent {
-        if viewModel.canReorderItems {
+        if viewModel.canCreateItem {
             ToolbarItem(placement: .topBarLeading) {
-                EditButton()
+                listControlsMenu
             }
         }
 
@@ -121,6 +126,48 @@ struct ListDetailView: View {
                 .tint(AislyColor.primary)
             }
         }
+    }
+
+    private var listControlsMenu: some View {
+        Menu {
+            Picker(selection: selectedCategoryFilterBinding) {
+                Text(AppStrings.ListDetail.allCategoriesFilterTitle)
+                    .tag(ShoppingItem.Category?.none)
+
+                ForEach(viewModel.availableCategories) { category in
+                    Text(AppStrings.ListDetail.categoryTitle(for: category))
+                        .tag(Optional(category))
+                }
+            } label: {
+                Text(AppStrings.ListDetail.filterToolbarTitle)
+            }
+
+            Picker(selection: sortOptionBinding) {
+                ForEach(ShoppingItem.SortOption.allCases) { sortOption in
+                    Text(AppStrings.ListDetail.sortTitle(for: sortOption))
+                        .tag(sortOption)
+                }
+            } label: {
+                Text(AppStrings.ListDetail.sortToolbarTitle)
+            }
+
+            Button {
+                viewModel.presentCategoryManager()
+            } label: {
+                Label {
+                    Text(AppStrings.ListDetail.manageCategoriesToolbarTitle)
+                } icon: {
+                    Image(systemName: "tag")
+                }
+            }
+        } label: {
+            Label {
+                Text(AppStrings.ListDetail.filterToolbarTitle)
+            } icon: {
+                Image(systemName: filterSymbolName)
+            }
+        }
+        .tint(AislyColor.primary)
     }
 
     private func itemRow(_ item: ListDetailViewModel.ItemRow) -> some View {
@@ -180,6 +227,17 @@ struct ListDetailView: View {
         )
     }
 
+    private var categoryManagerPresentedBinding: Binding<Bool> {
+        Binding(
+            get: { viewModel.isCategoryManagerPresented },
+            set: { updatedValue in
+                if updatedValue == false {
+                    viewModel.dismissCategoryManager()
+                }
+            }
+        )
+    }
+
     private var draftNameBinding: Binding<String> {
         Binding(
             get: { viewModel.draftName },
@@ -212,6 +270,34 @@ struct ListDetailView: View {
         Binding(
             get: { viewModel.draftActualPrice },
             set: { viewModel.updateDraftActualPrice($0) }
+        )
+    }
+
+    private var draftNewCategoryNameBinding: Binding<String> {
+        Binding(
+            get: { viewModel.draftNewCategoryName },
+            set: { viewModel.updateDraftNewCategoryName($0) }
+        )
+    }
+
+    private var draftRenamedCategoryNameBinding: Binding<String> {
+        Binding(
+            get: { viewModel.draftRenamedCategoryName },
+            set: { viewModel.updateDraftRenamedCategoryName($0) }
+        )
+    }
+
+    private var selectedCategoryFilterBinding: Binding<ShoppingItem.Category?> {
+        Binding(
+            get: { viewModel.selectedCategoryFilter },
+            set: { viewModel.updateSelectedCategoryFilter($0) }
+        )
+    }
+
+    private var sortOptionBinding: Binding<ShoppingItem.SortOption> {
+        Binding(
+            get: { viewModel.sortOption },
+            set: { viewModel.updateSortOption($0) }
         )
     }
 
@@ -289,12 +375,28 @@ struct ListDetailView: View {
                     quantityField
 
                     Picker(selection: draftCategoryBinding) {
-                        ForEach(ShoppingItem.Category.allCases) { category in
+                        ForEach(viewModel.availableCategories) { category in
                             Text(AppStrings.ListDetail.categoryTitle(for: category)).tag(category)
                         }
                     } label: {
                         Text(AppStrings.ListDetail.categoryFieldTitle)
                     }
+
+                    AislyInputField(
+                        text: draftNewCategoryNameBinding,
+                        title: Text(AppStrings.ListDetail.newCategoryFieldTitle),
+                        prompt: Text(AppStrings.ListDetail.newCategoryFieldPlaceholder),
+                        textInputAutocapitalization: .words
+                    )
+                    .listRowInsets(
+                        EdgeInsets(
+                            top: AislySpacing.small,
+                            leading: AislySpacing.large,
+                            bottom: AislySpacing.small,
+                            trailing: AislySpacing.large
+                        )
+                    )
+                    .listRowBackground(Color.clear)
                 }
 
                 Section {
@@ -355,6 +457,110 @@ struct ListDetailView: View {
                         Text(editorActionTitle(for: editorMode))
                     }
                     .disabled(viewModel.isDraftSubmissionDisabled)
+                    .tint(AislyColor.primary)
+                }
+            }
+        }
+        .presentationDetents([.medium, .large])
+        .presentationDragIndicator(.visible)
+    }
+
+    private var categoryManagerSheet: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    AislyInputField(
+                        text: draftNewCategoryNameBinding,
+                        title: Text(AppStrings.ListDetail.categoryNameFieldTitle),
+                        prompt: Text(AppStrings.ListDetail.categoryNameFieldPlaceholder),
+                        textInputAutocapitalization: .words
+                    )
+                    .listRowInsets(
+                        EdgeInsets(
+                            top: AislySpacing.small,
+                            leading: AislySpacing.large,
+                            bottom: AislySpacing.small,
+                            trailing: AislySpacing.large
+                        )
+                    )
+                    .listRowBackground(Color.clear)
+
+                    Button {
+                        Task {
+                            await viewModel.createCategoryFromDraft()
+                        }
+                    } label: {
+                        Text(AppStrings.ListDetail.addCategoryButtonTitle)
+                    }
+                    .disabled(viewModel.isCreateCategoryDisabled)
+                    .tint(AislyColor.primary)
+                } header: {
+                    AislySectionHeader(AppStrings.ListDetail.addCategorySectionTitle)
+                }
+
+                Section {
+                    ForEach(viewModel.availableCategories) { category in
+                        Button {
+                            viewModel.selectCategoryForRename(category)
+                        } label: {
+                            HStack {
+                                Text(AppStrings.ListDetail.categoryTitle(for: category))
+                                Spacer()
+                                if viewModel.selectedCategoryForRename?.matches(category) == true {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(AislyColor.primary)
+                                }
+                            }
+                        }
+                        .foregroundStyle(AislyColor.textPrimary)
+                    }
+                } header: {
+                    AislySectionHeader(AppStrings.ListDetail.existingCategoriesSectionTitle)
+                }
+
+                if viewModel.selectedCategoryForRename != nil {
+                    Section {
+                        AislyInputField(
+                            text: draftRenamedCategoryNameBinding,
+                            title: Text(AppStrings.ListDetail.categoryNameFieldTitle),
+                            prompt: Text(AppStrings.ListDetail.categoryNameFieldPlaceholder),
+                            textInputAutocapitalization: .words
+                        )
+                        .listRowInsets(
+                            EdgeInsets(
+                                top: AislySpacing.small,
+                                leading: AislySpacing.large,
+                                bottom: AislySpacing.small,
+                                trailing: AislySpacing.large
+                            )
+                        )
+                        .listRowBackground(Color.clear)
+
+                        Button {
+                            Task {
+                                await viewModel.renameSelectedCategory()
+                            }
+                        } label: {
+                            Text(AppStrings.ListDetail.renameCategoryButtonTitle)
+                        }
+                        .disabled(viewModel.isRenameCategoryDisabled)
+                        .tint(AislyColor.primary)
+                    } header: {
+                        AislySectionHeader(AppStrings.ListDetail.renameCategorySectionTitle)
+                    }
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .background(AislyColor.backgroundSecondary)
+            .navigationTitle(Text(AppStrings.ListDetail.categoryManagerSheetTitle))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button {
+                        viewModel.dismissCategoryManager()
+                    } label: {
+                        Text(AppStrings.Common.doneButtonTitle)
+                    }
                     .tint(AislyColor.primary)
                 }
             }

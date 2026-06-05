@@ -45,6 +45,15 @@ final class ListDetailViewModel: ObservableObject {
         let updatedAt: Date
     }
 
+    struct ItemSection: Identifiable, Equatable {
+        let category: ShoppingItem.Category
+        let items: [ItemRow]
+
+        var id: ShoppingItem.Category.ID {
+            category.id
+        }
+    }
+
     struct ListSnapshot: Equatable {
         let listID: UUID
         let listName: String
@@ -53,6 +62,7 @@ final class ListDetailViewModel: ObservableObject {
         let budgetDelta: Decimal?
         let actualPricedItemCount: Int
         let items: [ItemRow]
+        let itemSections: [ItemSection]
     }
 
     enum EditorMode: Equatable, Identifiable {
@@ -84,6 +94,12 @@ final class ListDetailViewModel: ObservableObject {
     @Published private(set) var draftStoreName = ""
     @Published private(set) var draftPlannedPrice = ""
     @Published private(set) var draftActualPrice = ""
+    @Published private(set) var draftNewCategoryName = ""
+    @Published private(set) var isCategoryManagerPresented = false
+    @Published private(set) var selectedCategoryForRename: ShoppingItem.Category?
+    @Published private(set) var draftRenamedCategoryName = ""
+    @Published private(set) var selectedCategoryFilter: ShoppingItem.Category?
+    @Published private(set) var sortOption: ShoppingItem.SortOption = .category
 
     let listID: UUID
     private let repository: any ShoppingListRepository
@@ -136,10 +152,11 @@ final class ListDetailViewModel: ObservableObject {
     func presentCreateItem() {
         draftName = ""
         draftQuantity = 1
-        draftCategory = .produce
+        draftCategory = suggestedCategoryForNewItem
         draftStoreName = ""
         draftPlannedPrice = ""
         draftActualPrice = ""
+        draftNewCategoryName = ""
         editorMode = .create
     }
 
@@ -154,6 +171,7 @@ final class ListDetailViewModel: ObservableObject {
         draftStoreName = item.storeName ?? ""
         draftPlannedPrice = draftString(for: item.plannedPrice)
         draftActualPrice = draftString(for: item.actualPrice)
+        draftNewCategoryName = ""
         editorMode = .edit(id)
     }
 
@@ -165,6 +183,7 @@ final class ListDetailViewModel: ObservableObject {
         draftStoreName = ""
         draftPlannedPrice = ""
         draftActualPrice = ""
+        draftNewCategoryName = ""
     }
 
     func updateDraftName(_ draftName: String) {
@@ -177,6 +196,7 @@ final class ListDetailViewModel: ObservableObject {
 
     func updateDraftCategory(_ category: ShoppingItem.Category) {
         draftCategory = category
+        draftNewCategoryName = ""
     }
 
     func updateDraftStoreName(_ storeName: String) {
@@ -191,6 +211,94 @@ final class ListDetailViewModel: ObservableObject {
         draftActualPrice = actualPrice
     }
 
+    func updateDraftNewCategoryName(_ categoryName: String) {
+        draftNewCategoryName = categoryName
+    }
+
+    func updateSelectedCategoryFilter(_ category: ShoppingItem.Category?) {
+        selectedCategoryFilter = category
+        refreshSnapshot()
+    }
+
+    func updateSortOption(_ sortOption: ShoppingItem.SortOption) {
+        self.sortOption = sortOption
+        refreshSnapshot()
+    }
+
+    func presentCategoryManager() {
+        draftNewCategoryName = ""
+        selectedCategoryForRename = availableCategories.first
+        draftRenamedCategoryName = selectedCategoryForRename?.rawValue ?? ""
+        isCategoryManagerPresented = true
+    }
+
+    func dismissCategoryManager() {
+        isCategoryManagerPresented = false
+        selectedCategoryForRename = nil
+        draftRenamedCategoryName = ""
+        draftNewCategoryName = ""
+    }
+
+    func selectCategoryForRename(_ category: ShoppingItem.Category) {
+        selectedCategoryForRename = category
+        draftRenamedCategoryName = category.rawValue
+    }
+
+    func updateDraftRenamedCategoryName(_ categoryName: String) {
+        draftRenamedCategoryName = categoryName
+    }
+
+    func createCategoryFromDraft() async {
+        guard
+            let category = normalizedNewCategory,
+            let currentList
+        else {
+            return
+        }
+
+        do {
+            let updatedList = currentList.addingCategory(category, updatedAt: now())
+            try await persist(updatedList)
+            draftCategory = category
+            selectedCategoryForRename = category
+            draftRenamedCategoryName = category.rawValue
+            draftNewCategoryName = ""
+        } catch {
+            dismissEditor()
+            state = .failed
+        }
+    }
+
+    func renameSelectedCategory() async {
+        guard
+            let selectedCategoryForRename,
+            let renamedCategory = normalizedRenamedCategory,
+            let currentList
+        else {
+            return
+        }
+
+        do {
+            let updatedList = currentList.renamingCategory(
+                selectedCategoryForRename,
+                to: renamedCategory,
+                updatedAt: now()
+            )
+            try await persist(updatedList)
+            if draftCategory.matches(selectedCategoryForRename) {
+                draftCategory = renamedCategory
+            }
+            if self.selectedCategoryFilter?.matches(selectedCategoryForRename) == true {
+                self.selectedCategoryFilter = renamedCategory
+            }
+            self.selectedCategoryForRename = renamedCategory
+            draftRenamedCategoryName = renamedCategory.rawValue
+        } catch {
+            dismissEditor()
+            state = .failed
+        }
+    }
+
     func saveDraft() async {
         guard
             let editorMode,
@@ -203,6 +311,7 @@ final class ListDetailViewModel: ObservableObject {
 
         let plannedPrice = normalizedDraftPlannedPrice
         let actualPrice = normalizedDraftActualPrice
+        let category = normalizedDraftCategory
 
         do {
             let updatedList: ShoppingList
@@ -213,7 +322,7 @@ final class ListDetailViewModel: ObservableObject {
                     id: makeUUID(),
                     name: normalizedDraftName,
                     quantity: draftQuantity,
-                    category: draftCategory,
+                    category: category,
                     storeName: normalizedDraftStoreName,
                     plannedPrice: plannedPrice,
                     actualPrice: actualPrice,
@@ -224,7 +333,7 @@ final class ListDetailViewModel: ObservableObject {
                     id: itemID,
                     name: normalizedDraftName,
                     quantity: draftQuantity,
-                    category: draftCategory,
+                    category: category,
                     storeName: normalizedDraftStoreName,
                     plannedPrice: plannedPrice,
                     actualPrice: actualPrice,
@@ -284,11 +393,7 @@ final class ListDetailViewModel: ObservableObject {
     }
 
     var canReorderItems: Bool {
-        guard case .loaded(let snapshot) = state else {
-            return false
-        }
-
-        return snapshot.items.count > 1
+        false
     }
 
     var canEnterShoppingMode: Bool {
@@ -318,13 +423,40 @@ final class ListDetailViewModel: ObservableObject {
 
             return item.name == normalizedDraftName &&
                 item.quantity == draftQuantity &&
-                item.category == draftCategory &&
+                item.category == normalizedDraftCategory &&
                 item.storeName == normalizedDraftStoreName &&
                 item.plannedPrice == normalizedDraftPlannedPrice &&
                 item.actualPrice == normalizedDraftActualPrice
         case .none:
             return true
         }
+    }
+
+    var availableCategories: [ShoppingItem.Category] {
+        guard let currentList else {
+            return ShoppingItem.Category.defaultCategories
+        }
+
+        return availableCategories(from: currentList)
+    }
+
+    var isCreateCategoryDisabled: Bool {
+        guard let normalizedNewCategory else {
+            return true
+        }
+
+        return availableCategories.contains { $0.matches(normalizedNewCategory) }
+    }
+
+    var isRenameCategoryDisabled: Bool {
+        guard
+            let selectedCategoryForRename,
+            let normalizedRenamedCategory
+        else {
+            return true
+        }
+
+        return selectedCategoryForRename.matches(normalizedRenamedCategory)
     }
 
     var quickEntrySuggestions: [QuickEntrySuggestion] {
@@ -483,6 +615,7 @@ final class ListDetailViewModel: ObservableObject {
         draftStoreName = suggestion.storeName ?? ""
         draftPlannedPrice = draftString(for: suggestion.plannedPrice)
         draftActualPrice = ""
+        draftNewCategoryName = ""
     }
 
     func applyStoreSuggestion(id: StoreSuggestion.ID) {
@@ -535,6 +668,18 @@ final class ListDetailViewModel: ObservableObject {
         normalizedPrice(from: draftActualPrice)
     }
 
+    private var normalizedDraftCategory: ShoppingItem.Category {
+        normalizedNewCategory ?? draftCategory
+    }
+
+    private var normalizedNewCategory: ShoppingItem.Category? {
+        normalizedCategory(from: draftNewCategoryName)
+    }
+
+    private var normalizedRenamedCategory: ShoppingItem.Category? {
+        normalizedCategory(from: draftRenamedCategoryName)
+    }
+
     private var areDraftPricesValid: Bool {
         isValidPriceDraft(draftPlannedPrice) && isValidPriceDraft(draftActualPrice)
     }
@@ -545,6 +690,23 @@ final class ListDetailViewModel: ObservableObject {
         }
 
         return itemID
+    }
+
+    private var suggestedCategoryForNewItem: ShoppingItem.Category {
+        guard let currentList else {
+            return .produce
+        }
+
+        return currentList.items
+            .max { lhs, rhs in
+                if lhs.createdAt == rhs.createdAt {
+                    return lhs.sortOrder < rhs.sortOrder
+                }
+
+                return lhs.createdAt < rhs.createdAt
+            }
+            .map(\.category)
+            ?? .produce
     }
 
     private var historyItems: [ShoppingItem] {
@@ -587,17 +749,133 @@ final class ListDetailViewModel: ObservableObject {
     }
 
     private func makeSnapshot(from list: ShoppingList) -> ListSnapshot {
-        ListSnapshot(
+        let visibleItems = filteredItems(from: list)
+        let itemRows = sortedItems(visibleItems).map(ItemRow.init)
+
+        return ListSnapshot(
             listID: list.id,
             listName: list.name,
             plannedTotal: list.plannedTotal,
             actualTotal: list.actualTotal,
             budgetDelta: list.budgetDelta,
             actualPricedItemCount: list.actualPricedItemCount,
-            items: list.items
-                .sorted(by: itemSortComparator)
-                .map(ItemRow.init)
+            items: itemRows,
+            itemSections: makeItemSections(from: visibleItems)
         )
+    }
+
+    private func makeItemSections(from items: [ShoppingItem]) -> [ItemSection] {
+        let groupedItems = Dictionary(grouping: items, by: \.category)
+        return orderedCategories(for: Array(groupedItems.keys)).compactMap { category in
+            guard let categoryItems = groupedItems[category] else {
+                return nil
+            }
+
+            return ItemSection(
+                category: category,
+                items: sortedItems(categoryItems).map(ItemRow.init)
+            )
+        }
+    }
+
+    private func filteredItems(from list: ShoppingList) -> [ShoppingItem] {
+        guard let selectedCategoryFilter else {
+            return list.items
+        }
+
+        return list.items.filter { $0.category.matches(selectedCategoryFilter) }
+    }
+
+    private func sortedItems(_ items: [ShoppingItem]) -> [ShoppingItem] {
+        items.sorted(by: itemComparator)
+    }
+
+    private var itemComparator: (ShoppingItem, ShoppingItem) -> Bool {
+        { lhs, rhs in
+            switch self.sortOption {
+            case .category:
+                return self.categorySortedComparator(lhs, rhs)
+            case .name:
+                return self.localizedCompare(lhs.name, rhs.name) ?? self.itemSortComparator(lhs, rhs)
+            case .plannedPrice:
+                return self.priceSortedComparator(lhs, rhs, price: \.plannedTotal)
+            case .actualPrice:
+                return self.priceSortedComparator(lhs, rhs, price: \.actualTotal)
+            }
+        }
+    }
+
+    private func categorySortedComparator(_ lhs: ShoppingItem, _ rhs: ShoppingItem) -> Bool {
+        if lhs.category.matches(rhs.category) == false {
+            return categoryComparator(lhs.category, rhs.category)
+        }
+
+        return itemSortComparator(lhs, rhs)
+    }
+
+    private func priceSortedComparator(
+        _ lhs: ShoppingItem,
+        _ rhs: ShoppingItem,
+        price: KeyPath<ShoppingItem, Decimal?>
+    ) -> Bool {
+        let lhsPrice = lhs[keyPath: price]
+        let rhsPrice = rhs[keyPath: price]
+
+        switch (lhsPrice, rhsPrice) {
+        case let (.some(lhsPrice), .some(rhsPrice)) where lhsPrice != rhsPrice:
+            return lhsPrice < rhsPrice
+        case (.some, .none):
+            return true
+        case (.none, .some):
+            return false
+        default:
+            return localizedCompare(lhs.name, rhs.name) ?? itemSortComparator(lhs, rhs)
+        }
+    }
+
+    private func categoryComparator(
+        _ lhs: ShoppingItem.Category,
+        _ rhs: ShoppingItem.Category
+    ) -> Bool {
+        let lhsRank = categoryRank(for: lhs)
+        let rhsRank = categoryRank(for: rhs)
+
+        if lhsRank != rhsRank {
+            return lhsRank < rhsRank
+        }
+
+        return localizedCompare(lhs.rawValue, rhs.rawValue) ?? (lhs.rawValue < rhs.rawValue)
+    }
+
+    private func categoryRank(for category: ShoppingItem.Category) -> Int {
+        availableCategories.firstIndex { $0.matches(category) } ?? Int.max
+    }
+
+    private func orderedCategories(
+        for categories: [ShoppingItem.Category]
+    ) -> [ShoppingItem.Category] {
+        let normalizedCategories = ShoppingList.normalizedCategories(categories)
+        let orderedExistingCategories = availableCategories.filter { availableCategory in
+            normalizedCategories.contains { $0.matches(availableCategory) }
+        }
+        let remainingCategories = normalizedCategories.filter { category in
+            orderedExistingCategories.contains { $0.matches(category) } == false
+        }
+
+        return orderedExistingCategories + remainingCategories.sorted(by: categoryComparator)
+    }
+
+    private func availableCategories(from list: ShoppingList) -> [ShoppingItem.Category] {
+        ShoppingList.normalizedCategories(list.categories + list.items.map(\.category))
+    }
+
+    private func localizedCompare(_ lhs: String, _ rhs: String) -> Bool? {
+        let comparison = lhs.localizedCaseInsensitiveCompare(rhs)
+        guard comparison != .orderedSame else {
+            return nil
+        }
+
+        return comparison == .orderedAscending
     }
 
     private func draftString(for price: Decimal?) -> String {
@@ -651,6 +929,15 @@ final class ListDetailViewModel: ObservableObject {
         return nil
     }
 
+    private func normalizedCategory(from categoryName: String) -> ShoppingItem.Category? {
+        let trimmedCategoryName = categoryName.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmedCategoryName.isEmpty == false else {
+            return nil
+        }
+
+        return ShoppingItem.Category(trimmedCategoryName)
+    }
+
     private func normalizedHistoryKey(from name: String) -> String {
         name.trimmingCharacters(in: .whitespacesAndNewlines).folding(options: [.diacriticInsensitive, .caseInsensitive], locale: locale)
     }
@@ -663,6 +950,21 @@ final class ListDetailViewModel: ObservableObject {
         return storeName
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .folding(options: [.diacriticInsensitive, .caseInsensitive], locale: locale)
+    }
+
+    private func refreshSnapshot() {
+        guard let currentList else {
+            return
+        }
+
+        if
+            let selectedCategoryFilter,
+            availableCategories.contains(where: { $0.matches(selectedCategoryFilter) }) == false
+        {
+            self.selectedCategoryFilter = nil
+        }
+
+        state = .loaded(makeSnapshot(from: currentList))
     }
 
     private func persist(_ updatedList: ShoppingList) async throws {

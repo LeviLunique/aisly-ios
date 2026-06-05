@@ -138,7 +138,7 @@
 		32B25B17E40AB62B86F6B1D4 /* ShoppingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListRepository.swift; sourceTree = "<group>"; };
 		34C778A4B272951F346E2476 /* AislyTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyTypography.swift; sourceTree = "<group>"; };
 		3696ACD0FA17A65964311AD1 /* AislyLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyLogo.swift; sourceTree = "<group>"; };
-		3E8525945DF128438BEF536A /* AislyWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AislyWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E8525945DF128438BEF536A /* AislyWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AislyWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EAD2BAE96ED9AF84C06D49A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		402ABCFA550DE0A5B6B0D4A8 /* AislyProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyProgressBar.swift; sourceTree = "<group>"; };
 		499DA4579BA91E6D88771CB6 /* AislyMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyMotion.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		A93B3864F0BD0345E1B533BE /* AppleSurfaceListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSurfaceListStore.swift; sourceTree = "<group>"; };
 		AB2C6CC9DF01FE2299A68CFB /* AislySectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySectionHeader.swift; sourceTree = "<group>"; };
 		B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyUITests.swift; sourceTree = "<group>"; };
-		B638FF31FAD20CFE4C173445 /* Aisly.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Aisly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B638FF31FAD20CFE4C173445 /* Aisly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aisly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBCF6DFB3F7D44DC0729E2D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BFD7E2392FE4E80E4F91C793 /* AislySurfaceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySurfaceCard.swift; sourceTree = "<group>"; };
 		C1BAD73E8B2320D4D0BA1EDD /* AislySwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislySwitch.swift; sourceTree = "<group>"; };
@@ -506,12 +506,6 @@
 					31562DEEB6C5CBCB89F1E15E = {
 						TestTargetID = 765D1586C9E49227280ACA9F;
 					};
-					765D1586C9E49227280ACA9F = {
-						DevelopmentTeam = "";
-					};
-					CD3432A4F512E819BDF80F9E = {
-						DevelopmentTeam = "";
-					};
 				};
 			};
 			buildConfigurationList = 35D01B0BF48B879BD4D6F592 /* Build configuration list for PBXProject "Aisly" */;
@@ -690,7 +684,7 @@
 				CODE_SIGN_ENTITLEMENTS = Aisly/Aisly.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 96FA2H45TA;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Aisly/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -710,7 +704,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AislyWidgets/AislyWidgets.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 96FA2H45TA;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = AislyWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -731,7 +725,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AislyWidgets/AislyWidgets.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 96FA2H45TA;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = AislyWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -911,7 +905,7 @@
 				CODE_SIGN_ENTITLEMENTS = Aisly/Aisly.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 96FA2H45TA;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Aisly/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;

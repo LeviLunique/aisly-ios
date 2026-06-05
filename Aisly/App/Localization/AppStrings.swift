@@ -22,6 +22,7 @@ enum AppStrings {
     enum Common {
         static let cancelButtonTitle = AppTextKeys.Common.cancelButtonTitle.localizedResource
         static let deleteButtonTitle = AppTextKeys.Common.deleteButtonTitle.localizedResource
+        static let doneButtonTitle = AppTextKeys.Common.doneButtonTitle.localizedResource
         static let optionalFieldValue = AppTextKeys.Common.optionalFieldValue.localizedResource
     }
 
@@ -73,6 +74,9 @@ enum AppStrings {
         static let createFirstItemButtonTitle = AppTextKeys.ListDetail.createFirstItemButtonTitle.localizedResource
         static let addItemToolbarTitle = AppTextKeys.ListDetail.addItemToolbarTitle.localizedResource
         static let shoppingModeToolbarTitle = AppTextKeys.ListDetail.shoppingModeToolbarTitle.localizedResource
+        static let filterToolbarTitle = AppTextKeys.ListDetail.filterToolbarTitle.localizedResource
+        static let sortToolbarTitle = AppTextKeys.ListDetail.sortToolbarTitle.localizedResource
+        static let manageCategoriesToolbarTitle = AppTextKeys.ListDetail.manageCategoriesToolbarTitle.localizedResource
         static let budgetSummaryTitle = AppTextKeys.ListDetail.budgetSummaryTitle.localizedResource
         static let plannedTotalTitle = AppTextKeys.ListDetail.plannedTotalTitle.localizedResource
         static let actualTotalTitle = AppTextKeys.ListDetail.actualTotalTitle.localizedResource
@@ -88,12 +92,23 @@ enum AppStrings {
         static let lastPlannedPriceMemoryTitle = AppTextKeys.ListDetail.PriceMemory.lastPlannedPriceTitle.localizedResource
         static let quantityFieldTitle = AppTextKeys.ListDetail.quantityFieldTitle.localizedResource
         static let categoryFieldTitle = AppTextKeys.ListDetail.categoryFieldTitle.localizedResource
+        static let newCategoryFieldTitle = AppTextKeys.ListDetail.newCategoryFieldTitle.localizedResource
+        static let newCategoryFieldPlaceholder = AppTextKeys.ListDetail.newCategoryFieldPlaceholder.localizedResource
         static let plannedPriceFieldTitle = AppTextKeys.ListDetail.plannedPriceFieldTitle.localizedResource
         static let actualPriceFieldTitle = AppTextKeys.ListDetail.actualPriceFieldTitle.localizedResource
         static let addItemSheetTitle = AppTextKeys.ListDetail.addItemSheetTitle.localizedResource
         static let editItemSheetTitle = AppTextKeys.ListDetail.editItemSheetTitle.localizedResource
         static let addItemConfirmButtonTitle = AppTextKeys.ListDetail.addItemConfirmButtonTitle.localizedResource
         static let editItemConfirmButtonTitle = AppTextKeys.ListDetail.editItemConfirmButtonTitle.localizedResource
+        static let allCategoriesFilterTitle = AppTextKeys.ListDetail.allCategoriesFilterTitle.localizedResource
+        static let categoryManagerSheetTitle = AppTextKeys.ListDetail.categoryManagerSheetTitle.localizedResource
+        static let addCategorySectionTitle = AppTextKeys.ListDetail.addCategorySectionTitle.localizedResource
+        static let existingCategoriesSectionTitle = AppTextKeys.ListDetail.existingCategoriesSectionTitle.localizedResource
+        static let renameCategorySectionTitle = AppTextKeys.ListDetail.renameCategorySectionTitle.localizedResource
+        static let categoryNameFieldTitle = AppTextKeys.ListDetail.categoryNameFieldTitle.localizedResource
+        static let categoryNameFieldPlaceholder = AppTextKeys.ListDetail.categoryNameFieldPlaceholder.localizedResource
+        static let addCategoryButtonTitle = AppTextKeys.ListDetail.addCategoryButtonTitle.localizedResource
+        static let renameCategoryButtonTitle = AppTextKeys.ListDetail.renameCategoryButtonTitle.localizedResource
         static let failureTitle = AppTextKeys.ListDetail.failureTitle.localizedResource
         static let failureDescription = AppTextKeys.ListDetail.failureDescription.localizedResource
         static let retryButtonTitle = AppTextKeys.ListDetail.retryButtonTitle.localizedResource
@@ -116,26 +131,67 @@ enum AppStrings {
         }
 
         static func categoryTitle(for category: ShoppingItem.Category) -> LocalizedStringResource {
-            categoryKey(for: category).localizedResource
+            if let categoryKey = categoryKey(for: category) {
+                return categoryKey.localizedResource
+            }
+
+            return LocalizedStringResource(stringLiteral: category.rawValue)
         }
 
-        private static func categoryKey(for category: ShoppingItem.Category) -> AppTextKey {
-            switch category {
-            case .produce:
+        static func categoryName(
+            for category: ShoppingItem.Category,
+            locale: Locale = .autoupdatingCurrent
+        ) -> String {
+            if let categoryKey = categoryKey(for: category) {
+                return categoryKey.localizedString(locale: locale)
+            }
+
+            return category.rawValue
+        }
+
+        static func sortTitle(for sortOption: ShoppingItem.SortOption) -> LocalizedStringResource {
+            switch sortOption {
+            case .category:
+                return AppTextKeys.ListDetail.Sort.category.localizedResource
+            case .name:
+                return AppTextKeys.ListDetail.Sort.name.localizedResource
+            case .plannedPrice:
+                return AppTextKeys.ListDetail.Sort.plannedPrice.localizedResource
+            case .actualPrice:
+                return AppTextKeys.ListDetail.Sort.actualPrice.localizedResource
+            }
+        }
+
+        private static func categoryKey(for category: ShoppingItem.Category) -> AppTextKey? {
+            if category.matches(.produce) {
                 return AppTextKeys.ListDetail.Category.produce
-            case .dairy:
+            }
+
+            if category.matches(.dairy) {
                 return AppTextKeys.ListDetail.Category.dairy
-            case .protein:
+            }
+
+            if category.matches(.protein) {
                 return AppTextKeys.ListDetail.Category.protein
-            case .pantry:
+            }
+
+            if category.matches(.pantry) {
                 return AppTextKeys.ListDetail.Category.pantry
-            case .household:
+            }
+
+            if category.matches(.household) {
                 return AppTextKeys.ListDetail.Category.household
-            case .frozen:
+            }
+
+            if category.matches(.frozen) {
                 return AppTextKeys.ListDetail.Category.frozen
-            case .other:
+            }
+
+            if category.matches(.other) {
                 return AppTextKeys.ListDetail.Category.other
             }
+
+            return nil
         }
     }
 

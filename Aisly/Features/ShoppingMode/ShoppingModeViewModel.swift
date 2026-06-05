@@ -17,6 +17,15 @@ final class ShoppingModeViewModel: ObservableObject {
         let updatedAt: Date
     }
 
+    struct ItemSection: Identifiable, Equatable {
+        let category: ShoppingItem.Category
+        let items: [ItemRow]
+
+        var id: ShoppingItem.Category.ID {
+            category.id
+        }
+    }
+
     struct SessionSnapshot: Equatable {
         let listID: UUID
         let listName: String
@@ -28,6 +37,8 @@ final class ShoppingModeViewModel: ObservableObject {
         let completedItemCount: Int
         let remainingItems: [ItemRow]
         let completedItems: [ItemRow]
+        let remainingSections: [ItemSection]
+        let completedSections: [ItemSection]
     }
 
     enum PriceEditorState: Equatable, Identifiable {
@@ -51,6 +62,8 @@ final class ShoppingModeViewModel: ObservableObject {
     @Published private(set) var state: ViewState = .idle
     @Published private(set) var priceEditorState: PriceEditorState?
     @Published private(set) var draftActualPrice = ""
+    @Published private(set) var selectedCategoryFilter: ShoppingItem.Category?
+    @Published private(set) var sortOption: ShoppingItem.SortOption = .category
 
     private let listID: UUID
     private let repository: any ShoppingListRepository
@@ -134,6 +147,16 @@ final class ShoppingModeViewModel: ObservableObject {
         self.draftActualPrice = draftActualPrice
     }
 
+    func updateSelectedCategoryFilter(_ category: ShoppingItem.Category?) {
+        selectedCategoryFilter = category
+        refreshSnapshot()
+    }
+
+    func updateSortOption(_ sortOption: ShoppingItem.SortOption) {
+        self.sortOption = sortOption
+        refreshSnapshot()
+    }
+
     func applyPlannedPriceSuggestion() {
         guard let plannedPrice = currentEditingItem?.plannedPrice else {
             return
@@ -169,6 +192,14 @@ final class ShoppingModeViewModel: ObservableObject {
         currentEditingItem?.plannedPrice
     }
 
+    var availableCategories: [ShoppingItem.Category] {
+        guard let currentList else {
+            return ShoppingItem.Category.defaultCategories
+        }
+
+        return availableCategories(from: currentList)
+    }
+
     var currentEditingItemName: String? {
         currentEditingItem?.name
     }
@@ -195,9 +226,9 @@ final class ShoppingModeViewModel: ObservableObject {
     }
 
     private func makeSnapshot(from list: ShoppingList) -> SessionSnapshot {
-        let sortedItems = list.items.sorted(by: itemSortComparator)
-        let remainingItems = sortedItems.filter { $0.isCompleted == false }.map(ItemRow.init)
-        let completedItems = sortedItems.filter(\.isCompleted).map(ItemRow.init)
+        let visibleItems = sortedItems(filteredItems(from: list))
+        let remainingItems = visibleItems.filter { $0.isCompleted == false }.map(ItemRow.init)
+        let completedItems = visibleItems.filter(\.isCompleted).map(ItemRow.init)
 
         return SessionSnapshot(
             listID: list.id,
@@ -209,8 +240,124 @@ final class ShoppingModeViewModel: ObservableObject {
             itemCount: list.items.count,
             completedItemCount: list.completedItemCount,
             remainingItems: remainingItems,
-            completedItems: completedItems
+            completedItems: completedItems,
+            remainingSections: makeItemSections(from: visibleItems.filter { $0.isCompleted == false }),
+            completedSections: makeItemSections(from: visibleItems.filter(\.isCompleted))
         )
+    }
+
+    private func makeItemSections(from items: [ShoppingItem]) -> [ItemSection] {
+        let groupedItems = Dictionary(grouping: items, by: \.category)
+        return orderedCategories(for: Array(groupedItems.keys)).compactMap { category in
+            guard let categoryItems = groupedItems[category] else {
+                return nil
+            }
+
+            return ItemSection(
+                category: category,
+                items: sortedItems(categoryItems).map(ItemRow.init)
+            )
+        }
+    }
+
+    private func filteredItems(from list: ShoppingList) -> [ShoppingItem] {
+        guard let selectedCategoryFilter else {
+            return list.items
+        }
+
+        return list.items.filter { $0.category.matches(selectedCategoryFilter) }
+    }
+
+    private func sortedItems(_ items: [ShoppingItem]) -> [ShoppingItem] {
+        items.sorted(by: itemComparator)
+    }
+
+    private var itemComparator: (ShoppingItem, ShoppingItem) -> Bool {
+        { lhs, rhs in
+            switch self.sortOption {
+            case .category:
+                return self.categorySortedComparator(lhs, rhs)
+            case .name:
+                return self.localizedCompare(lhs.name, rhs.name) ?? self.itemSortComparator(lhs, rhs)
+            case .plannedPrice:
+                return self.priceSortedComparator(lhs, rhs, price: \.plannedTotal)
+            case .actualPrice:
+                return self.priceSortedComparator(lhs, rhs, price: \.actualTotal)
+            }
+        }
+    }
+
+    private func categorySortedComparator(_ lhs: ShoppingItem, _ rhs: ShoppingItem) -> Bool {
+        if lhs.category.matches(rhs.category) == false {
+            return categoryComparator(lhs.category, rhs.category)
+        }
+
+        return itemSortComparator(lhs, rhs)
+    }
+
+    private func priceSortedComparator(
+        _ lhs: ShoppingItem,
+        _ rhs: ShoppingItem,
+        price: KeyPath<ShoppingItem, Decimal?>
+    ) -> Bool {
+        let lhsPrice = lhs[keyPath: price]
+        let rhsPrice = rhs[keyPath: price]
+
+        switch (lhsPrice, rhsPrice) {
+        case let (.some(lhsPrice), .some(rhsPrice)) where lhsPrice != rhsPrice:
+            return lhsPrice < rhsPrice
+        case (.some, .none):
+            return true
+        case (.none, .some):
+            return false
+        default:
+            return localizedCompare(lhs.name, rhs.name) ?? itemSortComparator(lhs, rhs)
+        }
+    }
+
+    private func categoryComparator(
+        _ lhs: ShoppingItem.Category,
+        _ rhs: ShoppingItem.Category
+    ) -> Bool {
+        let lhsRank = categoryRank(for: lhs)
+        let rhsRank = categoryRank(for: rhs)
+
+        if lhsRank != rhsRank {
+            return lhsRank < rhsRank
+        }
+
+        return localizedCompare(lhs.rawValue, rhs.rawValue) ?? (lhs.rawValue < rhs.rawValue)
+    }
+
+    private func categoryRank(for category: ShoppingItem.Category) -> Int {
+        availableCategories.firstIndex { $0.matches(category) } ?? Int.max
+    }
+
+    private func orderedCategories(
+        for categories: [ShoppingItem.Category]
+    ) -> [ShoppingItem.Category] {
+        let normalizedCategories = ShoppingList.normalizedCategories(categories)
+        let orderedExistingCategories = availableCategories.filter { availableCategory in
+            normalizedCategories.contains { $0.matches(availableCategory) }
+        }
+        let remainingCategories = normalizedCategories.filter { category in
+            orderedExistingCategories.contains { $0.matches(category) } == false
+        }
+
+        return orderedExistingCategories + remainingCategories.sorted(by: categoryComparator)
+    }
+
+    private func availableCategories(from list: ShoppingList) -> [ShoppingItem.Category] {
+        ShoppingList.normalizedCategories(list.categories + list.items.map(\.category))
+    }
+
+    private func localizedCompare(_ lhs: String, _ rhs: String) -> Bool? {
+        let comparison = lhs.localizedCaseInsensitiveCompare(rhs)
+        guard comparison != .orderedSame else {
+            return nil
+        }
+
+        return comparison == .orderedAscending
     }
 
     private var itemSortComparator: (ShoppingItem, ShoppingItem) -> Bool {
@@ -272,6 +419,21 @@ final class ShoppingModeViewModel: ObservableObject {
         }
 
         return nil
+    }
+
+    private func refreshSnapshot() {
+        guard let currentList else {
+            return
+        }
+
+        if
+            let selectedCategoryFilter,
+            availableCategories.contains(where: { $0.matches(selectedCategoryFilter) }) == false
+        {
+            self.selectedCategoryFilter = nil
+        }
+
+        state = .loaded(makeSnapshot(from: currentList))
     }
 
     private func persist(_ updatedList: ShoppingList) async throws {

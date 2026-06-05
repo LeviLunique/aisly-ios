@@ -253,6 +253,24 @@
         }
       }
     },
+    "common.action.done": {
+      "comment": "Generic done action title.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Concluir"
+          }
+        }
+      }
+    },
     "common.value.optional": {
       "comment": "Placeholder value used for optional text-entry fields.",
       "extractionState": "manual",
@@ -1189,6 +1207,150 @@
         }
       }
     },
+    "listDetail.categoryManager.add.action": {
+      "comment": "Button title used to add a shopping item category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar Categoria"
+          }
+        }
+      }
+    },
+    "listDetail.categoryManager.add.section.title": {
+      "comment": "Section title for adding a shopping item category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar Categoria"
+          }
+        }
+      }
+    },
+    "listDetail.categoryManager.existing.section.title": {
+      "comment": "Section title for existing shopping item categories.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categories"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categorias"
+          }
+        }
+      }
+    },
+    "listDetail.categoryManager.name.field.placeholder": {
+      "comment": "Placeholder shown in shopping item category name fields.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Category name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da categoria"
+          }
+        }
+      }
+    },
+    "listDetail.categoryManager.name.field.title": {
+      "comment": "Field title for shopping item category names.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Category Name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da Categoria"
+          }
+        }
+      }
+    },
+    "listDetail.categoryManager.rename.action": {
+      "comment": "Button title used to rename a shopping item category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename Category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renomear Categoria"
+          }
+        }
+      }
+    },
+    "listDetail.categoryManager.rename.section.title": {
+      "comment": "Section title for renaming a shopping item category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renomear"
+          }
+        }
+      }
+    },
+    "listDetail.categoryManager.title": {
+      "comment": "Sheet title for managing shopping item categories.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categories"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categorias"
+          }
+        }
+      }
+    },
     "listDetail.editor.actualPrice.field.title": {
       "comment": "Title shown for the actual price field in the item editor.",
       "extractionState": "manual",
@@ -1221,6 +1383,42 @@
           "stringUnit": {
             "state": "translated",
             "value": "Categoria"
+          }
+        }
+      }
+    },
+    "listDetail.editor.newCategory.field.placeholder": {
+      "comment": "Placeholder shown when creating an item with a new category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New category name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da nova categoria"
+          }
+        }
+      }
+    },
+    "listDetail.editor.newCategory.field.title": {
+      "comment": "Field title shown when creating an item with a new category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova Categoria"
           }
         }
       }
@@ -1567,6 +1765,24 @@
         }
       }
     },
+    "listDetail.filter.allCategories.title": {
+      "comment": "Filter menu option that shows items from every category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All Categories"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas as Categorias"
+          }
+        }
+      }
+    },
     "listDetail.items.section.title": {
       "comment": "Section title for shopping items in the list detail screen.",
       "extractionState": "manual",
@@ -1639,6 +1855,78 @@
         }
       }
     },
+    "listDetail.sort.actualPrice.title": {
+      "comment": "Sort option title for actual item price.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual Price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preço Real"
+          }
+        }
+      }
+    },
+    "listDetail.sort.category.title": {
+      "comment": "Sort option title for item category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categoria"
+          }
+        }
+      }
+    },
+    "listDetail.sort.name.title": {
+      "comment": "Sort option title for item name.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome"
+          }
+        }
+      }
+    },
+    "listDetail.sort.plannedPrice.title": {
+      "comment": "Sort option title for planned item price.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned Price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preço Planejado"
+          }
+        }
+      }
+    },
     "listDetail.toolbar.addItem.action": {
       "comment": "Toolbar action title for creating a shopping item.",
       "extractionState": "manual",
@@ -1657,6 +1945,42 @@
         }
       }
     },
+    "listDetail.toolbar.filter.action": {
+      "comment": "Toolbar action title for filtering shopping items by category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtrar"
+          }
+        }
+      }
+    },
+    "listDetail.toolbar.manageCategories.action": {
+      "comment": "Toolbar action title for managing shopping item categories.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categories"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categorias"
+          }
+        }
+      }
+    },
     "listDetail.toolbar.shoppingMode.action": {
       "comment": "Toolbar action title that opens shopping mode from list detail.",
       "extractionState": "manual",
@@ -1671,6 +1995,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Modo de Compra"
+          }
+        }
+      }
+    },
+    "listDetail.toolbar.sort.action": {
+      "comment": "Toolbar action title for sorting shopping items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sort"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordenar"
           }
         }
       }
