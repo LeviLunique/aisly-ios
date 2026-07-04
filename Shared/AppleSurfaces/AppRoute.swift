@@ -3,7 +3,13 @@ import Foundation
 enum AppRoute: Hashable {
     case home
     case listDetail(UUID)
-    case shoppingMode(UUID)
+    case templateDetail(UUID)
+    case categories
+    case templates
+    case itemDatabase
+    case history
+    case historyDetail(UUID)
+    case archivedLists
 
     init?(url: URL) {
         guard url.scheme == "aisly" else {
@@ -17,6 +23,11 @@ enum AppRoute: Hashable {
             .first(where: { $0.name == "listID" })?
             .value
             .flatMap(UUID.init(uuidString:))
+        let entryID = components?
+            .queryItems?
+            .first(where: { $0.name == "entryID" })?
+            .value
+            .flatMap(UUID.init(uuidString:))
 
         switch routeName {
         case nil, "", "home":
@@ -26,11 +37,26 @@ enum AppRoute: Hashable {
                 return nil
             }
             self = .listDetail(listID)
-        case "shopping-mode":
+        case "template":
             guard let listID else {
                 return nil
             }
-            self = .shoppingMode(listID)
+            self = .templateDetail(listID)
+        case "categories":
+            self = .categories
+        case "templates":
+            self = .templates
+        case "items":
+            self = .itemDatabase
+        case "history":
+            self = .history
+        case "history-entry":
+            guard let entryID else {
+                return nil
+            }
+            self = .historyDetail(entryID)
+        case "archived":
+            self = .archivedLists
         default:
             return nil
         }
@@ -46,9 +72,22 @@ enum AppRoute: Hashable {
         case .listDetail(let listID):
             components.host = "list"
             components.queryItems = [URLQueryItem(name: "listID", value: listID.uuidString)]
-        case .shoppingMode(let listID):
-            components.host = "shopping-mode"
+        case .templateDetail(let listID):
+            components.host = "template"
             components.queryItems = [URLQueryItem(name: "listID", value: listID.uuidString)]
+        case .categories:
+            components.host = "categories"
+        case .templates:
+            components.host = "templates"
+        case .itemDatabase:
+            components.host = "items"
+        case .history:
+            components.host = "history"
+        case .historyDetail(let entryID):
+            components.host = "history-entry"
+            components.queryItems = [URLQueryItem(name: "entryID", value: entryID.uuidString)]
+        case .archivedLists:
+            components.host = "archived"
         }
 
         return components.url ?? URL(string: "aisly://home")!

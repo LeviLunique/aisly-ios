@@ -26,6 +26,87 @@ enum AppStrings {
         static let optionalFieldValue = AppTextKeys.Common.optionalFieldValue.localizedResource
     }
 
+    enum Navigation {
+        static let homeTabAccessibilityLabel = AppTextKeys.Navigation.homeTabAccessibilityLabel.localizedResource
+        static let categoriesTabAccessibilityLabel = AppTextKeys.Navigation.categoriesTabAccessibilityLabel.localizedResource
+        static let listTabAccessibilityLabel = AppTextKeys.Navigation.listTabAccessibilityLabel.localizedResource
+        static let cartTabAccessibilityLabel = AppTextKeys.Navigation.cartTabAccessibilityLabel.localizedResource
+        static let listTabEmptyTitle = AppTextKeys.Navigation.listTabEmptyTitle.localizedResource
+        static let listTabEmptyDescription = AppTextKeys.Navigation.listTabEmptyDescription.localizedResource
+        static let cartTabEmptyTitle = AppTextKeys.Navigation.cartTabEmptyTitle.localizedResource
+        static let cartTabEmptyDescription = AppTextKeys.Navigation.cartTabEmptyDescription.localizedResource
+    }
+
+    enum Categories {
+        static let navigationTitle = AppTextKeys.Categories.navigationTitle.localizedResource
+        static let loadingTitle = AppTextKeys.Categories.loadingTitle.localizedResource
+        static let emptyTitle = AppTextKeys.Categories.emptyTitle.localizedResource
+        static let emptyDescription = AppTextKeys.Categories.emptyDescription.localizedResource
+        static let availableSectionTitle = AppTextKeys.Categories.availableSectionTitle.localizedResource
+        static let addCategoryToolbarTitle = AppTextKeys.Categories.addCategoryToolbarTitle.localizedResource
+        static let createCategorySheetTitle = AppTextKeys.Categories.createCategorySheetTitle.localizedResource
+        static let editCategorySheetTitle = AppTextKeys.Categories.editCategorySheetTitle.localizedResource
+        static let categoryNameFieldTitle = AppTextKeys.Categories.categoryNameFieldTitle.localizedResource
+        static let categoryNameFieldPlaceholder = AppTextKeys.Categories.categoryNameFieldPlaceholder.localizedResource
+        static let colorSectionTitle = AppTextKeys.Categories.colorSectionTitle.localizedResource
+        static let iconSectionTitle = AppTextKeys.Categories.iconSectionTitle.localizedResource
+        static let createCategoryConfirmButtonTitle = AppTextKeys.Categories.createCategoryConfirmButtonTitle.localizedResource
+        static let editCategoryConfirmButtonTitle = AppTextKeys.Categories.editCategoryConfirmButtonTitle.localizedResource
+        static let failureTitle = AppTextKeys.Categories.failureTitle.localizedResource
+        static let failureDescription = AppTextKeys.Categories.failureDescription.localizedResource
+        static let retryButtonTitle = AppTextKeys.Categories.retryButtonTitle.localizedResource
+        static let screenLoadingTitle = AppTextKeys.Categories.screenLoadingTitle.localizedResource
+        static let screenFailureTitle = AppTextKeys.Categories.screenFailureTitle.localizedResource
+        static let screenFailureDescription = AppTextKeys.Categories.screenFailureDescription.localizedResource
+        static let deleteCategoryActionTitle = AppTextKeys.Categories.deleteCategoryActionTitle.localizedResource
+        static let deleteCategoryConfirmationTitle = AppTextKeys.Categories.deleteCategoryConfirmationTitle.localizedResource
+        static let deleteCategoryConfirmationMessage = AppTextKeys.Categories.deleteCategoryConfirmationMessage.localizedResource
+    }
+
+    enum ListsHub {
+        static let navigationTitle = AppTextKeys.ListsHub.navigationTitle.localizedResource
+        static let listsTabTitle = AppTextKeys.ListsHub.listsTabTitle.localizedResource
+        static let templatesTabTitle = AppTextKeys.ListsHub.templatesTabTitle.localizedResource
+        static let itemsTabTitle = AppTextKeys.ListsHub.itemsTabTitle.localizedResource
+        static let historyTabTitle = AppTextKeys.ListsHub.historyTabTitle.localizedResource
+        static let templatesPlaceholderTitle = AppTextKeys.ListsHub.templatesPlaceholderTitle.localizedResource
+        static let templatesPlaceholderDescription = AppTextKeys.ListsHub.templatesPlaceholderDescription.localizedResource
+        static let itemsPlaceholderTitle = AppTextKeys.ListsHub.itemsPlaceholderTitle.localizedResource
+        static let itemsPlaceholderDescription = AppTextKeys.ListsHub.itemsPlaceholderDescription.localizedResource
+        static let historyPlaceholderTitle = AppTextKeys.ListsHub.historyPlaceholderTitle.localizedResource
+        static let historyPlaceholderDescription = AppTextKeys.ListsHub.historyPlaceholderDescription.localizedResource
+    }
+
+    enum Lists {
+        static let activeSectionTitle = AppTextKeys.Lists.activeSectionTitle.localizedResource
+        static let archivedSectionTitle = AppTextKeys.Lists.archivedSectionTitle.localizedResource
+        static let emptyTitle = AppTextKeys.Lists.emptyTitle.localizedResource
+        static let emptyDescription = AppTextKeys.Lists.emptyDescription.localizedResource
+        static let createListToolbarTitle = AppTextKeys.Lists.createListToolbarTitle.localizedResource
+        static let createListSheetTitle = AppTextKeys.Lists.createListSheetTitle.localizedResource
+        static let createListConfirmButtonTitle = AppTextKeys.Lists.createListConfirmButtonTitle.localizedResource
+        static let listNameFieldTitle = AppTextKeys.Lists.listNameFieldTitle.localizedResource
+        static let listNameFieldPlaceholder = AppTextKeys.Lists.listNameFieldPlaceholder.localizedResource
+        static let appearanceSectionTitle = AppTextKeys.Lists.appearanceSectionTitle.localizedResource
+        static let iconSectionTitle = AppTextKeys.Lists.iconSectionTitle.localizedResource
+        static let colorSectionTitle = AppTextKeys.Lists.colorSectionTitle.localizedResource
+        static let templateSectionTitle = AppTextKeys.Lists.templateSectionTitle.localizedResource
+        static let templateNoneOptionTitle = AppTextKeys.Lists.templateNoneOptionTitle.localizedResource
+        static let templateSelectionHint = AppTextKeys.Lists.templateSelectionHint.localizedResource
+        static let archiveActionTitle = AppTextKeys.Lists.archiveActionTitle.localizedResource
+        static let unarchiveActionTitle = AppTextKeys.Lists.unarchiveActionTitle.localizedResource
+        static let deleteActionTitle = AppTextKeys.Lists.deleteActionTitle.localizedResource
+        static let deleteConfirmationTitle = AppTextKeys.Lists.deleteConfirmationTitle.localizedResource
+        static let deleteConfirmationMessage = AppTextKeys.Lists.deleteConfirmationMessage.localizedResource
+        static let deleteConfirmationFieldTitle = AppTextKeys.Lists.deleteConfirmationFieldTitle.localizedResource
+        static let deleteConfirmationFieldPlaceholder = AppTextKeys.Lists.deleteConfirmationFieldPlaceholder.localizedResource
+        static let archivedDetailNavigationTitle = AppTextKeys.Lists.archivedDetailNavigationTitle.localizedResource
+        static let archivedDetailEmptyTitle = AppTextKeys.Lists.archivedDetailEmptyTitle.localizedResource
+        static let archivedDetailEmptyDescription = AppTextKeys.Lists.archivedDetailEmptyDescription.localizedResource
+        static let archivedDetailItemsSectionTitle = AppTextKeys.Lists.archivedDetailItemsSectionTitle.localizedResource
+        static let archivedDetailUnarchiveButtonTitle = AppTextKeys.Lists.archivedDetailUnarchiveButtonTitle.localizedResource
+    }
+
     enum Home {
         static let navigationTitle = AppTextKeys.Home.navigationTitle.localizedResource
         static let loadingTitle = AppTextKeys.Home.loadingTitle.localizedResource
@@ -65,6 +146,101 @@ enum AppStrings {
                 return AppTextKeys.Home.TemplateRecurrence.monthly.localizedResource
             }
         }
+    }
+
+    enum Items {
+        static let emptyTitle = AppTextKeys.Items.emptyTitle.localizedResource
+        static let emptyDescription = AppTextKeys.Items.emptyDescription.localizedResource
+        static let createItemToolbarTitle = AppTextKeys.Items.createItemToolbarTitle.localizedResource
+        static let createItemSheetTitle = AppTextKeys.Items.createItemSheetTitle.localizedResource
+        static let editItemSheetTitle = AppTextKeys.Items.editItemSheetTitle.localizedResource
+        static let createItemConfirmButtonTitle = AppTextKeys.Items.createItemConfirmButtonTitle.localizedResource
+        static let editItemConfirmButtonTitle = AppTextKeys.Items.editItemConfirmButtonTitle.localizedResource
+        static let itemNameFieldTitle = AppTextKeys.Items.itemNameFieldTitle.localizedResource
+        static let itemNameFieldPlaceholder = AppTextKeys.Items.itemNameFieldPlaceholder.localizedResource
+        static let storeFieldTitle = AppTextKeys.Items.storeFieldTitle.localizedResource
+        static let storeFieldPlaceholder = AppTextKeys.Items.storeFieldPlaceholder.localizedResource
+        static let categoryFieldTitle = AppTextKeys.Items.categoryFieldTitle.localizedResource
+        static let plannedPriceFieldTitle = AppTextKeys.Items.plannedPriceFieldTitle.localizedResource
+        static let actualPriceFieldTitle = AppTextKeys.Items.actualPriceFieldTitle.localizedResource
+        static let searchPrompt = AppTextKeys.Items.searchPrompt.localizedResource
+        static let filterToolbarTitle = AppTextKeys.Items.filterToolbarTitle.localizedResource
+        static let sortToolbarTitle = AppTextKeys.Items.sortToolbarTitle.localizedResource
+        static let categoryFilterSheetTitle = AppTextKeys.Items.categoryFilterSheetTitle.localizedResource
+        static let categoryFilterAllAction = AppTextKeys.Items.categoryFilterAllAction.localizedResource
+        static let categoryFilterNoneAction = AppTextKeys.Items.categoryFilterNoneAction.localizedResource
+        static let categoryFilterAppliedSummary = AppTextKeys.Items.categoryFilterAppliedSummary.localizedResource
+        static let categoryFilterAllSummary = AppTextKeys.Items.categoryFilterAllSummary.localizedResource
+        static let deleteActionTitle = AppTextKeys.Items.deleteActionTitle.localizedResource
+        static let deleteConfirmationTitle = AppTextKeys.Items.deleteConfirmationTitle.localizedResource
+        static let deleteConfirmationMessage = AppTextKeys.Items.deleteConfirmationMessage.localizedResource
+        static let noResultsTitle = AppTextKeys.Items.noResultsTitle.localizedResource
+        static let noResultsDescription = AppTextKeys.Items.noResultsDescription.localizedResource
+
+        static func sortTitle(for option: ItemsSortOption) -> LocalizedStringResource {
+            switch option {
+            case .nameAscending:
+                return AppTextKeys.Items.Sort.nameAscending.localizedResource
+            case .nameDescending:
+                return AppTextKeys.Items.Sort.nameDescending.localizedResource
+            case .createdAtAscending:
+                return AppTextKeys.Items.Sort.createdAtAscending.localizedResource
+            case .createdAtDescending:
+                return AppTextKeys.Items.Sort.createdAtDescending.localizedResource
+            case .plannedPriceHighest:
+                return AppTextKeys.Items.Sort.plannedPriceHighest.localizedResource
+            case .plannedPriceLowest:
+                return AppTextKeys.Items.Sort.plannedPriceLowest.localizedResource
+            case .actualPriceHighest:
+                return AppTextKeys.Items.Sort.actualPriceHighest.localizedResource
+            case .actualPriceLowest:
+                return AppTextKeys.Items.Sort.actualPriceLowest.localizedResource
+            }
+        }
+    }
+
+    enum Templates {
+        static let emptyTitle = AppTextKeys.Templates.emptyTitle.localizedResource
+        static let emptyDescription = AppTextKeys.Templates.emptyDescription.localizedResource
+        static let availableSectionTitle = AppTextKeys.Templates.availableSectionTitle.localizedResource
+        static let createTemplateToolbarTitle = AppTextKeys.Templates.createTemplateToolbarTitle.localizedResource
+        static let createTemplateSheetTitle = AppTextKeys.Templates.createTemplateSheetTitle.localizedResource
+        static let createTemplateConfirmButtonTitle = AppTextKeys.Templates.createTemplateConfirmButtonTitle.localizedResource
+        static let templateNameFieldTitle = AppTextKeys.Templates.templateNameFieldTitle.localizedResource
+        static let templateNameFieldPlaceholder = AppTextKeys.Templates.templateNameFieldPlaceholder.localizedResource
+        static let iconSectionTitle = AppTextKeys.Templates.iconSectionTitle.localizedResource
+        static let colorSectionTitle = AppTextKeys.Templates.colorSectionTitle.localizedResource
+        static let recurrenceSectionTitle = AppTextKeys.Templates.recurrenceSectionTitle.localizedResource
+        static let deleteActionTitle = AppTextKeys.Templates.deleteActionTitle.localizedResource
+        static let deleteConfirmationTitle = AppTextKeys.Templates.deleteConfirmationTitle.localizedResource
+        static let deleteConfirmationMessage = AppTextKeys.Templates.deleteConfirmationMessage.localizedResource
+        static let deleteConfirmationFieldTitle = AppTextKeys.Templates.deleteConfirmationFieldTitle.localizedResource
+        static let deleteConfirmationFieldPlaceholder = AppTextKeys.Templates.deleteConfirmationFieldPlaceholder.localizedResource
+        static let screenLoadingTitle = AppTextKeys.Templates.screenLoadingTitle.localizedResource
+        static let screenFailureTitle = AppTextKeys.Templates.screenFailureTitle.localizedResource
+        static let screenFailureDescription = AppTextKeys.Templates.screenFailureDescription.localizedResource
+        static let activeEmptyTitle = AppTextKeys.Templates.activeEmptyTitle.localizedResource
+        static let activeEmptyDescription = AppTextKeys.Templates.activeEmptyDescription.localizedResource
+        static let archivedEmptyTitle = AppTextKeys.Templates.archivedEmptyTitle.localizedResource
+        static let archivedEmptyDescription = AppTextKeys.Templates.archivedEmptyDescription.localizedResource
+    }
+
+    enum ItemDatabase {
+        static let screenLoadingTitle = AppTextKeys.ItemDatabase.screenLoadingTitle.localizedResource
+        static let emptyTitle = AppTextKeys.ItemDatabase.emptyTitle.localizedResource
+        static let emptyDescription = AppTextKeys.ItemDatabase.emptyDescription.localizedResource
+        static let noResultsTitle = AppTextKeys.ItemDatabase.noResultsTitle.localizedResource
+        static let noResultsDescription = AppTextKeys.ItemDatabase.noResultsDescription.localizedResource
+        static let screenFailureTitle = AppTextKeys.ItemDatabase.screenFailureTitle.localizedResource
+        static let screenFailureDescription = AppTextKeys.ItemDatabase.screenFailureDescription.localizedResource
+    }
+
+    enum ArchivedLists {
+        static let screenLoadingTitle = AppTextKeys.ArchivedLists.screenLoadingTitle.localizedResource
+        static let emptyTitle = AppTextKeys.ArchivedLists.emptyTitle.localizedResource
+        static let emptyDescription = AppTextKeys.ArchivedLists.emptyDescription.localizedResource
+        static let screenFailureTitle = AppTextKeys.ArchivedLists.screenFailureTitle.localizedResource
+        static let screenFailureDescription = AppTextKeys.ArchivedLists.screenFailureDescription.localizedResource
     }
 
     enum ListDetail {
@@ -112,6 +288,7 @@ enum AppStrings {
         static let failureTitle = AppTextKeys.ListDetail.failureTitle.localizedResource
         static let failureDescription = AppTextKeys.ListDetail.failureDescription.localizedResource
         static let retryButtonTitle = AppTextKeys.ListDetail.retryButtonTitle.localizedResource
+        static let sendToTemplateActionTitle = AppTextKeys.ListDetail.sendToTemplateActionTitle.localizedResource
 
         static let awaitingActualPricesTitle = AppTextKeys.ListDetail.awaitingActualPricesTitle.localizedResource
         static let awaitingActualPricesDescription = AppTextKeys.ListDetail.awaitingActualPricesDescription.localizedResource
@@ -125,7 +302,7 @@ enum AppStrings {
                 return AppTextKeys.ListDetail.onBudgetTitle.localizedResource
             }
 
-            return delta < .zero
+            return delta > .zero
                 ? AppTextKeys.ListDetail.underBudgetTitle.localizedResource
                 : AppTextKeys.ListDetail.overBudgetTitle.localizedResource
         }

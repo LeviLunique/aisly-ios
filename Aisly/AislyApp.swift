@@ -6,7 +6,7 @@ struct AislyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            container.makeHomeView()
+            container.makeRootView()
         }
     }
 }

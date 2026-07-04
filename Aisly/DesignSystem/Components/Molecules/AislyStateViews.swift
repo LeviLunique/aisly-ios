@@ -181,3 +181,66 @@ struct AislyToast: View {
         .shadow(color: Color.black.opacity(0.12), radius: 10, y: 4)
     }
 }
+
+// MARK: - Toast presentation
+
+/// App-wide presenter for transient success/info feedback. Host it once at the
+/// navigation root with `.aislyToastHost(_:)` so toasts outlive screen pops and
+/// sheet dismissals, and inject it via `.environmentObject` for screens to call.
+@MainActor
+final class AislyToastCenter: ObservableObject {
+    struct Entry: Equatable {
+        let message: String
+        let tone: AislyToast.Tone
+    }
+
+    @Published private(set) var entry: Entry?
+
+    private var dismissTask: Task<Void, Never>?
+
+    func show(_ message: String, tone: AislyToast.Tone = .success) {
+        dismissTask?.cancel()
+        entry = Entry(message: message, tone: tone)
+        // Transient UI never reaches VoiceOver unless announced explicitly.
+        AccessibilityNotification.Announcement(message).post()
+        dismissTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(2.6))
+            guard Task.isCancelled == false else { return }
+            self?.hide()
+        }
+    }
+
+    func hide() {
+        dismissTask?.cancel()
+        dismissTask = nil
+        entry = nil
+    }
+}
+
+extension View {
+    /// Hosts the shared toast overlay above all content. Apply once, at the root.
+    func aislyToastHost(_ center: AislyToastCenter) -> some View {
+        modifier(AislyToastHostModifier(center: center))
+    }
+}
+
+private struct AislyToastHostModifier: ViewModifier {
+    @ObservedObject var center: AislyToastCenter
+
+    func body(content: Content) -> some View {
+        content
+            .overlay(alignment: .bottom) {
+                if let entry = center.entry {
+                    AislyToast(
+                        message: Text(verbatim: entry.message),
+                        tone: entry.tone,
+                        dismissAction: { center.hide() }
+                    )
+                    .padding(.horizontal, AislySpacing.xLarge)
+                    .padding(.bottom, AislySpacing.xLarge)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                }
+            }
+            .animation(AislyMotion.emphasis, value: center.entry)
+    }
+}

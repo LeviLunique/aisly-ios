@@ -61,6 +61,19 @@ enum AislyColor {
     )
 }
 
+extension Color {
+    /// Builds a solid SwiftUI `Color` from a `0xRRGGBB` hex value. Used for
+    /// user-chosen list and category colors, which the domain stores as `UInt32`.
+    /// This is the single canonical hex→Color helper for the whole app.
+    init(aislyHex hex: UInt32) {
+        self.init(
+            red: Double((hex >> 16) & 0xFF) / 255,
+            green: Double((hex >> 8) & 0xFF) / 255,
+            blue: Double(hex & 0xFF) / 255
+        )
+    }
+}
+
 private extension Color {
     static func dynamic(light: UInt32, dark: UInt32) -> Color {
         dynamic(

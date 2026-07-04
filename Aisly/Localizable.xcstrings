@@ -1,6 +1,402 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "archivedLists.screen.empty.description": {
+      "comment": "Empty-state description for the archived lists screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archived lists keep items, values and state. Unarchive anytime."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas arquivadas mantêm itens, valores e estado. Desarquive quando quiser."
+          }
+        }
+      }
+    },
+    "archivedLists.screen.empty.title": {
+      "comment": "Empty-state title for the archived lists screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing archived"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada arquivado"
+          }
+        }
+      }
+    },
+    "archivedLists.screen.error.state.description": {
+      "comment": "Error-state description for the archived lists screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Something went wrong. Please try again."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algo deu errado. Tente novamente."
+          }
+        }
+      }
+    },
+    "archivedLists.screen.error.state.title": {
+      "comment": "Error-state title for the archived lists screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t load archived lists"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível carregar as listas arquivadas"
+          }
+        }
+      }
+    },
+    "archivedLists.screen.loading.state.title": {
+      "comment": "Loading message for the archived lists screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading archived lists…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregando listas arquivadas…"
+          }
+        }
+      }
+    },
+    "categories.screen.error.state.description": {
+      "comment": "Error-state description for the categories screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We couldn't load your categories."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível carregar suas categorias."
+          }
+        }
+      }
+    },
+    "categories.screen.error.state.title": {
+      "comment": "Error-state title for the categories screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Something went wrong"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algo deu errado"
+          }
+        }
+      }
+    },
+    "categories.screen.loading.state.title": {
+      "comment": "Loading message shown while the categories screen loads.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading categories…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregando categorias…"
+          }
+        }
+      }
+    },
+    "itemDatabase.screen.empty.description": {
+      "comment": "Empty-state description for the item database screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every item added to any list is stored here for reuse."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo item adicionado a qualquer lista fica guardado aqui para reutilização."
+          }
+        }
+      }
+    },
+    "itemDatabase.screen.empty.title": {
+      "comment": "Empty-state title for the item database screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No items yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum item ainda"
+          }
+        }
+      }
+    },
+    "itemDatabase.screen.error.state.description": {
+      "comment": "Error-state description for the item database screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We couldn't load your items. Please try again."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível carregar seus itens. Tente novamente."
+          }
+        }
+      }
+    },
+    "itemDatabase.screen.error.state.title": {
+      "comment": "Error-state title for the item database screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Something went wrong"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algo deu errado"
+          }
+        }
+      }
+    },
+    "itemDatabase.screen.loading.state.title": {
+      "comment": "Loading message for the item database screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading items…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregando itens…"
+          }
+        }
+      }
+    },
+    "itemDatabase.screen.noResults.description": {
+      "comment": "No-results description for the item database search.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try a different search or filter."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tente outra busca ou filtro."
+          }
+        }
+      }
+    },
+    "itemDatabase.screen.noResults.title": {
+      "comment": "No-results title for the item database search.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No matching items"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum item corresponde"
+          }
+        }
+      }
+    },
+    "templates.screen.empty.active.description": {
+      "comment": "Empty-state description for active templates.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a template to reuse your lists."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie um modelo para reutilizar suas listas."
+          }
+        }
+      }
+    },
+    "templates.screen.empty.active.title": {
+      "comment": "Empty-state title for active templates.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No templates yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum modelo ainda"
+          }
+        }
+      }
+    },
+    "templates.screen.empty.archived.description": {
+      "comment": "Empty-state description for archived templates.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archived templates will appear here."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos arquivados aparecerão aqui."
+          }
+        }
+      }
+    },
+    "templates.screen.empty.archived.title": {
+      "comment": "Empty-state title for archived templates.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No archived templates"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum modelo arquivado"
+          }
+        }
+      }
+    },
+    "templates.screen.error.state.description": {
+      "comment": "Error-state description for the templates screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Something went wrong. Please try again."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algo deu errado. Tente novamente."
+          }
+        }
+      }
+    },
+    "templates.screen.error.state.title": {
+      "comment": "Error-state title for the templates screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t load templates"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível carregar os modelos"
+          }
+        }
+      }
+    },
+    "templates.screen.loading.state.title": {
+      "comment": "Loading message for the templates screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading templates…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregando modelos…"
+          }
+        }
+      }
+    },
     "appleSurface.intent.openLists.description": {
       "comment": "Description for the intent that opens the home lists screen.",
       "extractionState": "manual",
@@ -213,6 +609,366 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nenhuma Lista Ativa"
+          }
+        }
+      }
+    },
+    "categories.available.section.title": {
+      "comment": "Section title for the list of available categories.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available categories"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categorias disponíveis"
+          }
+        }
+      }
+    },
+    "categories.delete.action": {
+      "comment": "Swipe action title to delete a category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
+          }
+        }
+      }
+    },
+    "categories.delete.confirmation.message": {
+      "comment": "Confirmation message shown before deleting a category. Items in the deleted category are reassigned to Other.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Items in this category will be moved to Other."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itens nesta categoria serão movidos para Outros."
+          }
+        }
+      }
+    },
+    "categories.delete.confirmation.title": {
+      "comment": "Confirmation title shown before deleting a category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete category?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir categoria?"
+          }
+        }
+      }
+    },
+    "categories.editor.color.section.title": {
+      "comment": "Section title for category color choices.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cor"
+          }
+        }
+      }
+    },
+    "categories.editor.create.confirm.action": {
+      "comment": "Confirmation action to create a category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar"
+          }
+        }
+      }
+    },
+    "categories.editor.create.title": {
+      "comment": "Sheet title for creating a category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova categoria"
+          }
+        }
+      }
+    },
+    "categories.editor.edit.confirm.action": {
+      "comment": "Confirmation action to save category edits.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar"
+          }
+        }
+      }
+    },
+    "categories.editor.edit.title": {
+      "comment": "Sheet title for editing a category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit Category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar categoria"
+          }
+        }
+      }
+    },
+    "categories.editor.icon.section.title": {
+      "comment": "Section title for category icon choices.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ícone"
+          }
+        }
+      }
+    },
+    "categories.editor.name.field.placeholder": {
+      "comment": "Placeholder for the category name field.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Category name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da categoria"
+          }
+        }
+      }
+    },
+    "categories.editor.name.field.title": {
+      "comment": "Field title for the category name.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome"
+          }
+        }
+      }
+    },
+    "categories.empty.description": {
+      "comment": "Empty state description for the categories management screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create categories to organize shopping items."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie categorias para organizar os itens de compra."
+          }
+        }
+      }
+    },
+    "categories.empty.title": {
+      "comment": "Empty state title for the categories management screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No categories yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma categoria ainda"
+          }
+        }
+      }
+    },
+    "categories.error.description": {
+      "comment": "Error description for the categories management screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try again to reload the category catalog."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tente novamente para recarregar o catálogo de categorias."
+          }
+        }
+      }
+    },
+    "categories.error.retry.action": {
+      "comment": "Retry action title for categories loading failures.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try Again"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tentar novamente"
+          }
+        }
+      }
+    },
+    "categories.error.title": {
+      "comment": "Error title for the categories management screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not load categories"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível carregar as categorias"
+          }
+        }
+      }
+    },
+    "categories.screen.loading.title": {
+      "comment": "Loading message for the categories management screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading categories..."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregando categorias..."
+          }
+        }
+      }
+    },
+    "categories.screen.navigation.title": {
+      "comment": "Navigation title for the categories management screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categories"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categorias"
+          }
+        }
+      }
+    },
+    "categories.toolbar.add.action": {
+      "comment": "Toolbar action to add a new category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar categoria"
           }
         }
       }
@@ -937,6 +1693,636 @@
         }
       }
     },
+    "items.delete.confirmation.message": {
+      "comment": "Body message of the delete item confirmation alert.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This will permanently delete the item and cannot be undone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta ação remove o item permanentemente e não pode ser desfeita."
+          }
+        }
+      }
+    },
+    "items.delete.confirmation.title": {
+      "comment": "Title of the delete item confirmation alert.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete item?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir item?"
+          }
+        }
+      }
+    },
+    "items.editor.actualPrice.field.title": {
+      "comment": "Title for the actual price field in the catalog item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preço real"
+          }
+        }
+      }
+    },
+    "items.editor.category.field.title": {
+      "comment": "Title for the category picker in the catalog item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categoria"
+          }
+        }
+      }
+    },
+    "items.editor.create.confirm.action": {
+      "comment": "Confirmation action title for creating a catalog item.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar"
+          }
+        }
+      }
+    },
+    "items.editor.create.title": {
+      "comment": "Title of the create catalog item sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New item"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novo item"
+          }
+        }
+      }
+    },
+    "items.editor.edit.confirm.action": {
+      "comment": "Confirmation action title for editing a catalog item.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar"
+          }
+        }
+      }
+    },
+    "items.editor.edit.title": {
+      "comment": "Title of the edit catalog item sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit item"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar item"
+          }
+        }
+      }
+    },
+    "items.editor.name.field.placeholder": {
+      "comment": "Placeholder for the name field in the catalog item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Item name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome do item"
+          }
+        }
+      }
+    },
+    "items.editor.name.field.title": {
+      "comment": "Title for the name field in the catalog item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome"
+          }
+        }
+      }
+    },
+    "items.editor.plannedPrice.field.title": {
+      "comment": "Title for the planned price field in the catalog item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preço planejado"
+          }
+        }
+      }
+    },
+    "items.editor.store.field.placeholder": {
+      "comment": "Placeholder for the store field in the catalog item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Store"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loja"
+          }
+        }
+      }
+    },
+    "items.editor.store.field.title": {
+      "comment": "Title for the store field in the catalog item editor.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Store"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loja"
+          }
+        }
+      }
+    },
+    "items.empty.description": {
+      "comment": "Description shown when there are no catalog items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your first item to start building the catalog."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie seu primeiro item para começar a montar o catálogo."
+          }
+        }
+      }
+    },
+    "items.empty.title": {
+      "comment": "Title shown when there are no catalog items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No items yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum item ainda"
+          }
+        }
+      }
+    },
+    "items.filter.all.summary": {
+      "comment": "Toolbar summary showing that all categories are included.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All categories"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas as categorias"
+          }
+        }
+      }
+    },
+    "items.filter.applied.summary": {
+      "comment": "Toolbar summary showing that a subset of categories is selected.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtered"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtrado"
+          }
+        }
+      }
+    },
+    "items.filter.clear.action": {
+      "comment": "Action title to clear all category selections in the filter sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpar"
+          }
+        }
+      }
+    },
+    "items.filter.selectAll.action": {
+      "comment": "Action title to select every category in the filter sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select all"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecionar todas"
+          }
+        }
+      }
+    },
+    "items.filter.sheet.title": {
+      "comment": "Title of the category filter sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter by category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtrar por categoria"
+          }
+        }
+      }
+    },
+    "items.item.delete.action": {
+      "comment": "Swipe action title to delete a catalog item.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
+          }
+        }
+      }
+    },
+    "items.noResults.description": {
+      "comment": "Description shown when no item matches the active filters and search.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try changing the search or removing filters."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tente alterar a busca ou remover filtros."
+          }
+        }
+      }
+    },
+    "items.noResults.title": {
+      "comment": "Title shown when no item matches the active filters and search.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No matches"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum resultado"
+          }
+        }
+      }
+    },
+    "items.search.prompt": {
+      "comment": "Placeholder for the search bar in the items tab.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search items"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar itens"
+          }
+        }
+      }
+    },
+    "items.sort.actualPrice.asc.title": {
+      "comment": "Sort option label: actual price ascending (lowest first).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lowest actual price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menor preço real"
+          }
+        }
+      }
+    },
+    "items.sort.actualPrice.desc.title": {
+      "comment": "Sort option label: actual price descending (highest first).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Highest actual price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maior preço real"
+          }
+        }
+      }
+    },
+    "items.sort.createdAt.asc.title": {
+      "comment": "Sort option label: created date ascending (oldest first).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oldest first"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais antigos primeiro"
+          }
+        }
+      }
+    },
+    "items.sort.createdAt.desc.title": {
+      "comment": "Sort option label: created date descending (newest first).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Newest first"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais recentes primeiro"
+          }
+        }
+      }
+    },
+    "items.sort.name.asc.title": {
+      "comment": "Sort option label: name ascending (A to Z).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name (A–Z)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome (A–Z)"
+          }
+        }
+      }
+    },
+    "items.sort.name.desc.title": {
+      "comment": "Sort option label: name descending (Z to A).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name (Z–A)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome (Z–A)"
+          }
+        }
+      }
+    },
+    "items.sort.plannedPrice.asc.title": {
+      "comment": "Sort option label: planned price ascending (lowest first).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lowest planned price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menor preço planejado"
+          }
+        }
+      }
+    },
+    "items.sort.plannedPrice.desc.title": {
+      "comment": "Sort option label: planned price descending (highest first).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Highest planned price"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maior preço planejado"
+          }
+        }
+      }
+    },
+    "items.toolbar.createItem.action": {
+      "comment": "Toolbar action to create a catalog item.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New item"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novo item"
+          }
+        }
+      }
+    },
+    "items.toolbar.filter.action": {
+      "comment": "Toolbar action title to open the items filter sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtrar"
+          }
+        }
+      }
+    },
+    "items.toolbar.sort.action": {
+      "comment": "Toolbar action title to choose the items sort order.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sort"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordenar"
+          }
+        }
+      }
+    },
     "listDetail.budget.actualTotal.title": {
       "comment": "Label for the actual total value in the list-detail budget summary.",
       "extractionState": "manual",
@@ -1387,42 +2773,6 @@
         }
       }
     },
-    "listDetail.editor.newCategory.field.placeholder": {
-      "comment": "Placeholder shown when creating an item with a new category.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "New category name"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nome da nova categoria"
-          }
-        }
-      }
-    },
-    "listDetail.editor.newCategory.field.title": {
-      "comment": "Field title shown when creating an item with a new category.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "New Category"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nova Categoria"
-          }
-        }
-      }
-    },
     "listDetail.editor.create.confirm.action": {
       "comment": "Confirmation button title for creating a shopping item.",
       "extractionState": "manual",
@@ -1527,6 +2877,42 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nome do Item"
+          }
+        }
+      }
+    },
+    "listDetail.editor.newCategory.field.placeholder": {
+      "comment": "Placeholder shown when creating an item with a new category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New category name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da nova categoria"
+          }
+        }
+      }
+    },
+    "listDetail.editor.newCategory.field.title": {
+      "comment": "Field title shown when creating an item with a new category.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Category"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova Categoria"
           }
         }
       }
@@ -1783,6 +3169,24 @@
         }
       }
     },
+    "listDetail.item.sendToTemplate.action": {
+      "comment": "Swipe action shown on a list item to copy it into the list's source template.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send to template"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar ao modelo"
+          }
+        }
+      }
+    },
     "listDetail.items.section.title": {
       "comment": "Section title for shopping items in the list detail screen.",
       "extractionState": "manual",
@@ -2017,6 +3421,690 @@
         }
       }
     },
+    "lists.archivedDetail.empty.description": {
+      "comment": "Description shown on the archived list detail screen when no items exist.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This list was archived before any items were added."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta lista foi arquivada antes de receber itens."
+          }
+        }
+      }
+    },
+    "lists.archivedDetail.empty.title": {
+      "comment": "Title shown on the archived list detail screen when no items exist.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No items"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum item"
+          }
+        }
+      }
+    },
+    "lists.archivedDetail.items.section.title": {
+      "comment": "Section title in the archived list detail screen listing items.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Items"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itens"
+          }
+        }
+      }
+    },
+    "lists.archivedDetail.navigation.title": {
+      "comment": "Navigation title for the archived list detail (read-only) screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archived list"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista arquivada"
+          }
+        }
+      }
+    },
+    "lists.archivedDetail.unarchive.action": {
+      "comment": "Button title to unarchive a list from the archived detail screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unarchive list"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desarquivar lista"
+          }
+        }
+      }
+    },
+    "lists.delete.confirmation.field.placeholder": {
+      "comment": "Placeholder for the type-to-confirm field on the delete list confirmation sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type the list name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digite o nome da lista"
+          }
+        }
+      }
+    },
+    "lists.delete.confirmation.field.title": {
+      "comment": "Title for the type-to-confirm field on the delete list confirmation sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm the list name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirme o nome da lista"
+          }
+        }
+      }
+    },
+    "lists.delete.confirmation.message": {
+      "comment": "Body message of the delete list confirmation sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This will permanently delete the list and cannot be undone. Type the list name below to confirm."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta ação remove a lista permanentemente e não pode ser desfeita. Digite o nome da lista abaixo para confirmar."
+          }
+        }
+      }
+    },
+    "lists.delete.confirmation.title": {
+      "comment": "Title of the delete list confirmation sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete list"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir lista"
+          }
+        }
+      }
+    },
+    "lists.editor.appearance.section.title": {
+      "comment": "Section title in the create list sheet that groups icon + color.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appearance"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aparência"
+          }
+        }
+      }
+    },
+    "lists.editor.color.section.title": {
+      "comment": "Section title for the color picker in the create list sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cor"
+          }
+        }
+      }
+    },
+    "lists.editor.create.confirm.action": {
+      "comment": "Confirmation action title for creating a list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar"
+          }
+        }
+      }
+    },
+    "lists.editor.create.title": {
+      "comment": "Title of the create list sheet on the Lists hub.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New list"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova lista"
+          }
+        }
+      }
+    },
+    "lists.editor.icon.section.title": {
+      "comment": "Section title for the icon picker in the create list sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ícone"
+          }
+        }
+      }
+    },
+    "lists.editor.name.field.placeholder": {
+      "comment": "Placeholder for the list name field in the create list sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly groceries"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compras da semana"
+          }
+        }
+      }
+    },
+    "lists.editor.name.field.title": {
+      "comment": "Title for the list name field in the create list sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "List name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da lista"
+          }
+        }
+      }
+    },
+    "lists.editor.template.hint": {
+      "comment": "Helper text explaining the optional template picker in the create list sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a template to prefill the list."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha um modelo para preencher a lista."
+          }
+        }
+      }
+    },
+    "lists.editor.template.none.title": {
+      "comment": "Label for the option that creates a list without copying from a template.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start from scratch"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começar do zero"
+          }
+        }
+      }
+    },
+    "lists.editor.template.section.title": {
+      "comment": "Section title for the template picker in the create list sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Template"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelo"
+          }
+        }
+      }
+    },
+    "lists.empty.description": {
+      "comment": "Description shown on the Lists hub when no lists exist.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a list to start planning your purchases."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie uma lista para começar a planejar suas compras."
+          }
+        }
+      }
+    },
+    "lists.empty.title": {
+      "comment": "Title shown on the Lists hub when no lists exist.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No lists yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma lista ainda"
+          }
+        }
+      }
+    },
+    "lists.list.archive.action": {
+      "comment": "Swipe action title to archive an active list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archive"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arquivar"
+          }
+        }
+      }
+    },
+    "lists.list.delete.action": {
+      "comment": "Swipe action title to delete a list (active or archived).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
+          }
+        }
+      }
+    },
+    "lists.list.unarchive.action": {
+      "comment": "Swipe action title to unarchive a list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unarchive"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desarquivar"
+          }
+        }
+      }
+    },
+    "lists.section.active.title": {
+      "comment": "Section title for active lists on the Lists hub.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active lists"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas ativas"
+          }
+        }
+      }
+    },
+    "lists.section.archived.title": {
+      "comment": "Section title for archived lists on the Lists hub.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archived lists"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas arquivadas"
+          }
+        }
+      }
+    },
+    "lists.toolbar.createList.action": {
+      "comment": "Toolbar action to create a list from the Lists hub.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New list"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova lista"
+          }
+        }
+      }
+    },
+    "listsHub.history.placeholder.description": {
+      "comment": "Description for the History tab placeholder until the feature ships.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finished purchases will appear here."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As compras finalizadas serão exibidas aqui."
+          }
+        }
+      }
+    },
+    "listsHub.history.placeholder.title": {
+      "comment": "Title for the History tab placeholder until the feature ships.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History coming soon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Histórico em breve"
+          }
+        }
+      }
+    },
+    "listsHub.items.placeholder.description": {
+      "comment": "Description for the Items tab placeholder until the feature ships.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All items you create will live here."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os itens que você criar ficarão aqui."
+          }
+        }
+      }
+    },
+    "listsHub.items.placeholder.title": {
+      "comment": "Title for the Items tab placeholder until the feature ships.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Items coming soon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itens em breve"
+          }
+        }
+      }
+    },
+    "listsHub.screen.navigation.title": {
+      "comment": "Navigation title for the Lists hub screen.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lists"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas"
+          }
+        }
+      }
+    },
+    "listsHub.tab.history.title": {
+      "comment": "Segmented control title for the History sub-tab.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Histórico"
+          }
+        }
+      }
+    },
+    "listsHub.tab.items.title": {
+      "comment": "Segmented control title for the Items sub-tab.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Items"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itens"
+          }
+        }
+      }
+    },
+    "listsHub.tab.lists.title": {
+      "comment": "Segmented control title for the Lists sub-tab.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lists"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas"
+          }
+        }
+      }
+    },
+    "listsHub.tab.templates.title": {
+      "comment": "Segmented control title for the Templates sub-tab.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Templates"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos"
+          }
+        }
+      }
+    },
+    "listsHub.templates.placeholder.description": {
+      "comment": "Description for the Templates tab placeholder until the feature ships.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reusable templates will appear here."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos reutilizáveis aparecerão aqui."
+          }
+        }
+      }
+    },
+    "listsHub.templates.placeholder.title": {
+      "comment": "Title for the Templates tab placeholder until the feature ships.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Templates coming soon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos em breve"
+          }
+        }
+      }
+    },
     "mock.shoppingItem.apples.name": {
       "comment": "Preview and mock shopping item name for apples.",
       "extractionState": "manual",
@@ -2121,6 +4209,150 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mercado Fresco"
+          }
+        }
+      }
+    },
+    "navigation.cart.empty.description": {
+      "comment": "Description shown when the cart tab has no active shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a list with items from Home before starting shopping mode."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie uma lista com itens no Início antes de iniciar o modo de compra."
+          }
+        }
+      }
+    },
+    "navigation.cart.empty.title": {
+      "comment": "Title shown when the cart tab has no active shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No cart available"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum carrinho disponível"
+          }
+        }
+      }
+    },
+    "navigation.list.empty.description": {
+      "comment": "Description shown when the list tab has no active shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create or select an active list from Home to edit its items."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie ou selecione uma lista ativa no Início para editar os itens."
+          }
+        }
+      }
+    },
+    "navigation.list.empty.title": {
+      "comment": "Title shown when the list tab has no active shopping list.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No active list"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma lista ativa"
+          }
+        }
+      }
+    },
+    "navigation.tab.cart.accessibility.label": {
+      "comment": "Accessibility label for the Cart tab bar icon.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cart"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carrinho"
+          }
+        }
+      }
+    },
+    "navigation.tab.categories.accessibility.label": {
+      "comment": "Accessibility label for the Categories tab bar icon.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categories"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categorias"
+          }
+        }
+      }
+    },
+    "navigation.tab.home.accessibility.label": {
+      "comment": "Accessibility label for the Home tab bar icon.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Home"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Início"
+          }
+        }
+      }
+    },
+    "navigation.tab.list.accessibility.label": {
+      "comment": "Accessibility label for the List tab bar icon.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "List"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista"
           }
         }
       }
@@ -2373,6 +4605,294 @@
           "stringUnit": {
             "state": "translated",
             "value": "Modo de Compra"
+          }
+        }
+      }
+    },
+    "templates.delete.confirmation.field.placeholder": {
+      "comment": "Placeholder for the type-to-confirm field on the delete template confirmation sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type the template name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digite o nome do modelo"
+          }
+        }
+      }
+    },
+    "templates.delete.confirmation.field.title": {
+      "comment": "Title for the type-to-confirm field on the delete template confirmation sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm the template name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirme o nome do modelo"
+          }
+        }
+      }
+    },
+    "templates.delete.confirmation.message": {
+      "comment": "Body message of the delete template confirmation sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This will permanently delete the template and cannot be undone. Type the template name below to confirm."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta ação remove o modelo permanentemente e não pode ser desfeita. Digite o nome do modelo abaixo para confirmar."
+          }
+        }
+      }
+    },
+    "templates.delete.confirmation.title": {
+      "comment": "Title of the delete template confirmation sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete template"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir modelo"
+          }
+        }
+      }
+    },
+    "templates.editor.color.section.title": {
+      "comment": "Section title for the color picker in the create template sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cor"
+          }
+        }
+      }
+    },
+    "templates.editor.create.confirm.action": {
+      "comment": "Confirmation action title for creating a template.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar"
+          }
+        }
+      }
+    },
+    "templates.editor.create.title": {
+      "comment": "Title of the create template sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New template"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novo modelo"
+          }
+        }
+      }
+    },
+    "templates.editor.icon.section.title": {
+      "comment": "Section title for the icon picker in the create template sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ícone"
+          }
+        }
+      }
+    },
+    "templates.editor.name.field.placeholder": {
+      "comment": "Placeholder for the template name field in the create template sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly groceries"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compras da semana"
+          }
+        }
+      }
+    },
+    "templates.editor.name.field.title": {
+      "comment": "Title for the template name field in the create template sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Template name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome do modelo"
+          }
+        }
+      }
+    },
+    "templates.editor.recurrence.section.title": {
+      "comment": "Section title for the recurrence picker in the create template sheet.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recurrence"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorrência"
+          }
+        }
+      }
+    },
+    "templates.empty.description": {
+      "comment": "Description shown on the Templates tab when no templates exist.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a template to reuse the same items each week."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie um modelo para reutilizar os mesmos itens toda semana."
+          }
+        }
+      }
+    },
+    "templates.empty.title": {
+      "comment": "Title shown on the Templates tab when no templates exist.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No templates yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum modelo ainda"
+          }
+        }
+      }
+    },
+    "templates.section.available.title": {
+      "comment": "Section title listing existing templates.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available templates"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos disponíveis"
+          }
+        }
+      }
+    },
+    "templates.template.delete.action": {
+      "comment": "Swipe action title to delete a template.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
+          }
+        }
+      }
+    },
+    "templates.toolbar.createTemplate.action": {
+      "comment": "Toolbar action title to create a new template.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New template"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novo modelo"
           }
         }
       }
