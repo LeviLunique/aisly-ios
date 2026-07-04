@@ -170,7 +170,7 @@ private struct ActiveListWidgetView: View {
     }
 
     private func widgetURL(for list: ShoppingList) -> URL {
-        list.items.isEmpty ? AppRoute.listDetail(list.id).url : AppRoute.shoppingMode(list.id).url
+        AppRoute.listDetail(list.id).url
     }
 
     private func currencyText(_ value: Decimal) -> Text {

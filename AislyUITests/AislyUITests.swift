@@ -7,35 +7,31 @@ final class AislyUITests: XCTestCase {
 
     func testHomeScreenUsesEnglishWhenAppLanguageIsEnglish() throws {
         let app = makeApp(language: "en", locale: "en_US")
-        let expectedTitle = try localizedString(
-            forKey: AppTextKeys.Home.navigationTitle,
-            locale: "en"
-        )
+        // The redesigned Home has no on-screen title (a floating search/menu pill
+        // replaces it, per the design kit). Localization is verified through the
+        // create-list button's localized accessibility label instead.
         let expectedCreateButton = try localizedString(
-            forKey: AppTextKeys.Home.createFirstListButtonTitle,
+            forKey: AppTextKeys.Home.createListToolbarTitle,
             locale: "en"
         )
 
         app.launch()
 
-        XCTAssertTrue(app.staticTexts[expectedTitle].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons[expectedCreateButton].waitForExistence(timeout: 5))
     }
 
     func testHomeScreenUsesBrazilianPortugueseWhenAppLanguageIsBrazilianPortuguese() throws {
         let app = makeApp(language: "pt-BR", locale: "pt_BR")
-        let expectedTitle = try localizedString(
-            forKey: AppTextKeys.Home.navigationTitle,
-            locale: "pt-BR"
-        )
+        // The redesigned Home has no on-screen title (a floating search/menu pill
+        // replaces it, per the design kit). Localization is verified through the
+        // create-list button's localized accessibility label instead.
         let expectedCreateButton = try localizedString(
-            forKey: AppTextKeys.Home.createFirstListButtonTitle,
+            forKey: AppTextKeys.Home.createListToolbarTitle,
             locale: "pt-BR"
         )
 
         app.launch()
 
-        XCTAssertTrue(app.staticTexts[expectedTitle].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons[expectedCreateButton].waitForExistence(timeout: 5))
     }
 
