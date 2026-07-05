@@ -8,6 +8,7 @@ O projeto é desenvolvido com:
 - MVVM
 - injeção de dependência
 - persistência local
+- integração remota opcional com o ambiente de desenvolvimento AWS
 - foco em uma experiência simples e útil no dia a dia
 
 ## Apresentação
@@ -40,4 +41,5 @@ O Aisly está sendo construído em torno de:
 - orçamento planejado e real
 - reutilização de listas recorrentes
 - apoio durante a compra
+- modo remoto em builds Debug apontando para os servidores de desenvolvimento
 - integrações nativas do ecossistema Apple

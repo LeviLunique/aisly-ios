@@ -4,3 +4,28 @@ DerivedData/
 build/
 xcuserdata/
 *.xcuserstate
+
+# Local environment / credentials
+.env
+.env.*
+!.env.example
+*.xcconfig
+*.local.xcconfig
+.aws/
+
+# Apple signing material
+*.mobileprovision
+*.provisionprofile
+*.p12
+*.cer
+*.key
+*.pem
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+fastlane/.env*
+
+# Third-party service configs should be reviewed before being made public.
+GoogleService-Info.plist
+firebase_app_id_file.json

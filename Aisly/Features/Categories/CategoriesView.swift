@@ -286,13 +286,21 @@ struct CategoriesView: View {
                 Button {
                     viewModel.presentEditCategory(id: category.id)
                 } label: {
-                    Label("Edit Category", systemImage: "info.circle")
+                    Label {
+                        Text(verbatim: "Edit Category")
+                    } icon: {
+                        Image(systemName: "info.circle")
+                    }
                 }
 
                 Button(role: .destructive) {
                     viewModel.presentDeleteConfirmation(id: category.id)
                 } label: {
-                    Label("Delete Category", systemImage: "trash")
+                    Label {
+                        Text(verbatim: "Delete Category")
+                    } icon: {
+                        Image(systemName: "trash")
+                    }
                 }
             }
         }
@@ -376,10 +384,16 @@ struct CategoriesView: View {
     }
 
     private func selectionCircle(isSelected: Bool) -> some View {
-        Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-            .font(.system(size: 24, weight: .semibold))
-            .foregroundStyle(isSelected ? AislyColor.primary : AislyColor.borderHeavy)
-            .frame(width: 30, height: 60)
+        Group {
+            if isSelected {
+                Image(systemName: "checkmark.circle.fill")
+            } else {
+                Image(systemName: "circle")
+            }
+        }
+        .font(.system(size: 24, weight: .semibold))
+        .foregroundStyle(isSelected ? AislyColor.primary : AislyColor.borderHeavy)
+        .frame(width: 30, height: 60)
     }
 
     private var floatingAddButton: some View {

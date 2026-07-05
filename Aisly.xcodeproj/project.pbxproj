@@ -14,6 +14,7 @@
 		0EA6BF635E9BEE5B5A976BCB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BBCF6DFB3F7D44DC0729E2D1 /* Localizable.xcstrings */; };
 		0F060AA085F74F65E6D35C30 /* AislyGroupedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8F607EFEA85E661A94FC /* AislyGroupedRow.swift */; };
 		0F6DC358BD6D50B48FB0DD61 /* AppleSurfaceRouteRequestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BFAF7583BBD42EB638730D /* AppleSurfaceRouteRequestStore.swift */; };
+		16E9164F32F1E18F627CD848 /* RemoteShoppingItemCatalogRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA428140CC40CD8CB0D5389 /* RemoteShoppingItemCatalogRepository.swift */; };
 		182900F2FFE49CDF099D2ECD /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8FB57FE3D10A3FCA7DF02D /* CategoriesViewModel.swift */; };
 		1AA9966CDE6C1F63C1DDF156 /* AislyPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919951A28159971B3E80FD67 /* AislyPageHeader.swift */; };
 		1EDD4FA134431ADA296755A9 /* AislyGroupedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8F607EFEA85E661A94FC /* AislyGroupedRow.swift */; };
@@ -21,6 +22,8 @@
 		2103C67C216D85955E8FF6B3 /* AislyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0C3565F0205D0EA3CAA9B1 /* AislyButtonStyle.swift */; };
 		21546A1FF809F13903C04820 /* AppleSurfaceRouteRequestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BFAF7583BBD42EB638730D /* AppleSurfaceRouteRequestStore.swift */; };
 		231C9584EC9AACCAF63A4DA4 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1DF7D650CEAC783B075FD /* AppContainer.swift */; };
+		2AB2B7F061BBA99A62EAB198 /* RemoteWireModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF46021FF23BBE6740EBBDD /* RemoteWireModels.swift */; };
+		2F85E47182AD91DCE11D9902 /* AislyRemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994B8299556EE275FEA22BE8 /* AislyRemoteConfig.swift */; };
 		3009F0D92AE1B75F325992C4 /* AislySheetContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC7FC2B47E72A26C1468494 /* AislySheetContainer.swift */; };
 		31600EB15ECE1D21E8B4EE69 /* AislyStateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131CCE852D505D23594E3882 /* AislyStateViews.swift */; };
 		31B93DB4302CF045AFFBB7B8 /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD66FA6D037B283B84405BE /* ShoppingItem.swift */; };
@@ -39,14 +42,19 @@
 		4D13AD5A09170E27D4236BED /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8870259C28215372714004C /* AppRoute.swift */; };
 		4D2C5B4138D69259F0005023 /* AislySurfaceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A90EACC7DEE9DC2B9417D1 /* AislySurfaceCard.swift */; };
 		4F3B5D20D5484365F9900C0E /* AislyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDDF7DD89C1545A18FB2B1 /* AislyUITests.swift */; };
+		4FB8CBD4F7AF5A3485F9C215 /* AislyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E605701EB26A017DC5AADE4E /* AislyAPIClient.swift */; };
 		55991E753355BC52F0507946 /* AppleSurfaceListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3864F0BD0345E1B533BE /* AppleSurfaceListStore.swift */; };
+		5DCBB11FB75AE675CA6F8433 /* AuthGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493F52BC8424AB931D09823 /* AuthGateView.swift */; };
 		643DC89151B955777302A971 /* AislySheetContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC7FC2B47E72A26C1468494 /* AislySheetContainer.swift */; };
+		65F30D359D1AD62750E8A43C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CA98CE2AE7146E508CDC2 /* LoginView.swift */; };
 		6851DDE3C7CFB9BB7E59EE0F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F719DE59A982D57F9C9A6 /* HomeViewModel.swift */; };
 		6AC76DBCA87A8F29BB5F545E /* AislyTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C778A4B272951F346E2476 /* AislyTypography.swift */; };
 		6C8B9D5E2EBA6698249D6B30 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544053116C22920E91741B85 /* ShoppingList.swift */; };
+		6FD741116AF8BD156B830E90 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80818CF834A295A99C4DD3E /* RegisterView.swift */; };
 		74B670266C5E67383072BF40 /* LocalShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BAE913B5891B9E7DB3995D /* LocalShoppingListRepository.swift */; };
 		787BBD652B6CAA876766B2E4 /* HistoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DFA1940504215363903087 /* HistoryDetailViewModel.swift */; };
 		7C73324FD4CA1907EBC92C32 /* AislyWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729C33F973D6EFC88B6BB07E /* AislyWidgetsBundle.swift */; };
+		7DB9399A1239213ABD7E3A15 /* AuthAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604D0803B0FD19D0DB72E0DB /* AuthAPIClient.swift */; };
 		7E11433F64B5BF90B5CDF931 /* AislySwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FF8B00135471F0206750B2 /* AislySwitch.swift */; };
 		806E3A5ADEB861DF595C4940 /* AislyPrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A4550BA233FD34989655F6 /* AislyPrimaryButtonStyle.swift */; };
 		80FEA031D7F1DCDC0BB80ECB /* AislyListSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FE086186F0C7F6EDE94C8 /* AislyListSummaryCard.swift */; };
@@ -64,6 +72,7 @@
 		9769A725417F55496A090126 /* AislyLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40C80750CA5DD9A9A6BD65A /* AislyLogo.swift */; };
 		97FFD99B6C7EE8D1346E148D /* AislySectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16064CAE3BC831D3515075BD /* AislySectionHeader.swift */; };
 		995C51A1AD03E8204EDD6DF7 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20367EB7EEC5DF3A232346E /* AppStrings.swift */; };
+		9AE359A47E460BD58F525C94 /* RemoteShoppingCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8B1E97BD7F9D78934A575E /* RemoteShoppingCategoryRepository.swift */; };
 		9C5CA57513A2C4F4EE33C8C7 /* LocalShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BAE913B5891B9E7DB3995D /* LocalShoppingListRepository.swift */; };
 		9D01207232A92C0B4C76E3B6 /* TemplatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5EB2E4D2B8A59A471AB93 /* TemplatesViewModel.swift */; };
 		A15F5EBD8A089CC208E4A7C0 /* ItemDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7E7258BDE933F9BBC23EFA /* ItemDatabaseView.swift */; };
@@ -87,11 +96,13 @@
 		C95A1FEDF7FA1D9F19FB4104 /* ShoppingListFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ADF5ABF4F1AB04EB46CC7 /* ShoppingListFileStore.swift */; };
 		C998D23B80C45D7C71DC93FB /* ShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B25B17E40AB62B86F6B1D4 /* ShoppingListRepository.swift */; };
 		CB4824F1CCBB59A7A5201AF5 /* AppStoragePaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD622C9DA62C2FA97A32FD8 /* AppStoragePaths.swift */; };
+		CC60083D74226B4BE269EBFF /* RemoteShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D32B7552E29550D25E37CA5 /* RemoteShoppingListRepository.swift */; };
 		CF8DA08456E5E83BC7757295 /* AislySpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79873ED6041DE2B851DC3A5 /* AislySpacing.swift */; };
 		D1BBAFAC0ECDA909C2BB9A92 /* AislyBudgetSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA69D32AD2F4E8788A9A04 /* AislyBudgetSummaryCard.swift */; };
 		D29304ACD7D2F19356A6D25B /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099FE71040CC9E1175ADFB66 /* ListDetailView.swift */; };
 		D332557C656EA2697D8B0ABB /* AislyCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC4F01225B79E33F2C36F2 /* AislyCornerRadius.swift */; };
 		D374120CB35F5173826C92C8 /* AislyCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC4F01225B79E33F2C36F2 /* AislyCornerRadius.swift */; };
+		D5A909EC1F87D55ECDBF967E /* AuthSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1694EAF28CD8AAE9456BE6 /* AuthSessionStore.swift */; };
 		D9081A23DF2983B8C4EA19F7 /* AislyCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8DA8D62B74F2E1A1A78CB /* AislyCheckbox.swift */; };
 		D928AC4CAC58025ED4C2CFC9 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BFA9C764E54D23BF6885B /* Contents.json */; };
 		DA435F1743E38CE5123DF27F /* TemplatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3CFA4354023B449A48564 /* TemplatesView.swift */; };
@@ -101,6 +112,7 @@
 		E14E3DE3489AEC4DE53BBF6F /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD66FA6D037B283B84405BE /* ShoppingItem.swift */; };
 		E74D9E50F1032B50CC61883C /* ActiveListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63084B5E35069DEFC86ACB67 /* ActiveListWidget.swift */; };
 		E8657E7EE63C8FCA9E15B628 /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D2B985C4428754DA3AC9EF /* HistoryDetailView.swift */; };
+		E8EE5F5AB740EDB8573C7EB9 /* RemotePurchaseHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44E15DAC2949E0744E1754 /* RemotePurchaseHistoryRepository.swift */; };
 		E919D1D241AA2CBBAAC16075 /* NewListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC289AB64F5B9450E46565BF /* NewListSheet.swift */; };
 		E9628FA430CEC575FE12725F /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8870259C28215372714004C /* AppRoute.swift */; };
 		ED42AE0B7EB57E7205ACB28A /* ShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B25B17E40AB62B86F6B1D4 /* ShoppingListRepository.swift */; };
@@ -160,6 +172,7 @@
 		099FE71040CC9E1175ADFB66 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
 		0A7E2C385A4C2FD2B40248BB /* AislyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyApp.swift; sourceTree = "<group>"; };
 		0D8FB57FE3D10A3FCA7DF02D /* CategoriesViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		0F1694EAF28CD8AAE9456BE6 /* AuthSessionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSessionStore.swift; sourceTree = "<group>"; };
 		116E4AF681997596BCDE5F03 /* AislyCategoryIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyCategoryIcon.swift; sourceTree = "<group>"; };
 		131CCE852D505D23594E3882 /* AislyStateViews.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyStateViews.swift; sourceTree = "<group>"; };
 		132ADF5ABF4F1AB04EB46CC7 /* ShoppingListFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListFileStore.swift; sourceTree = "<group>"; };
@@ -186,24 +199,31 @@
 		530A914699D8656D78EC91E1 /* AislyInputField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyInputField.swift; sourceTree = "<group>"; };
 		544053116C22920E91741B85 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		5BD2B21D9BD524AFF326EEED /* CategoryEditSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoryEditSheet.swift; sourceTree = "<group>"; };
+		5D32B7552E29550D25E37CA5 /* RemoteShoppingListRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteShoppingListRepository.swift; sourceTree = "<group>"; };
 		5E7D4E30B6FE0ED504D727EE /* AislyItemRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyItemRow.swift; sourceTree = "<group>"; };
+		604D0803B0FD19D0DB72E0DB /* AuthAPIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthAPIClient.swift; sourceTree = "<group>"; };
 		63084B5E35069DEFC86ACB67 /* ActiveListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveListWidget.swift; sourceTree = "<group>"; };
 		63F01E246A1DEB0F458EE434 /* ListInfoSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ListInfoSheet.swift; sourceTree = "<group>"; };
 		69BAE913B5891B9E7DB3995D /* LocalShoppingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalShoppingListRepository.swift; sourceTree = "<group>"; };
+		6CA428140CC40CD8CB0D5389 /* RemoteShoppingItemCatalogRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteShoppingItemCatalogRepository.swift; sourceTree = "<group>"; };
 		6FD66FA6D037B283B84405BE /* ShoppingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
 		729C33F973D6EFC88B6BB07E /* AislyWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyWidgetsBundle.swift; sourceTree = "<group>"; };
 		82BFAF7583BBD42EB638730D /* AppleSurfaceRouteRequestStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSurfaceRouteRequestStore.swift; sourceTree = "<group>"; };
+		8493F52BC8424AB931D09823 /* AuthGateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthGateView.swift; sourceTree = "<group>"; };
 		88B846B34BC8CBB88BA0AB4D /* AislyUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AislyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C44E15DAC2949E0744E1754 /* RemotePurchaseHistoryRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemotePurchaseHistoryRepository.swift; sourceTree = "<group>"; };
 		8C5CFD0372BD7ACAA2EC2D17 /* Aisly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aisly.entitlements; sourceTree = "<group>"; };
 		8CD1DF7D650CEAC783B075FD /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		919951A28159971B3E80FD67 /* AislyPageHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyPageHeader.swift; sourceTree = "<group>"; };
 		950BFA9C764E54D23BF6885B /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		994B8299556EE275FEA22BE8 /* AislyRemoteConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyRemoteConfig.swift; sourceTree = "<group>"; };
 		997D3376FAD1AD5968068D63 /* FinishPurchaseSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FinishPurchaseSheet.swift; sourceTree = "<group>"; };
 		9FD622C9DA62C2FA97A32FD8 /* AppStoragePaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoragePaths.swift; sourceTree = "<group>"; };
 		A124829872B377F872F2F95D /* ArchivedView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArchivedView.swift; sourceTree = "<group>"; };
 		A18F719DE59A982D57F9C9A6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		A20367EB7EEC5DF3A232346E /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		A2EA69D32AD2F4E8788A9A04 /* AislyBudgetSummaryCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyBudgetSummaryCard.swift; sourceTree = "<group>"; };
+		A80818CF834A295A99C4DD3E /* RegisterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		A8870259C28215372714004C /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		A93B3864F0BD0345E1B533BE /* AppleSurfaceListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSurfaceListStore.swift; sourceTree = "<group>"; };
 		ABEB03071E3B5901228F27AC /* HistoryViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
@@ -215,11 +235,15 @@
 		B638FF31FAD20CFE4C173445 /* Aisly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aisly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBCF6DFB3F7D44DC0729E2D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BD7E7258BDE933F9BBC23EFA /* ItemDatabaseView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ItemDatabaseView.swift; sourceTree = "<group>"; };
+		BE8B1E97BD7F9D78934A575E /* RemoteShoppingCategoryRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteShoppingCategoryRepository.swift; sourceTree = "<group>"; };
+		BFF46021FF23BBE6740EBBDD /* RemoteWireModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteWireModels.swift; sourceTree = "<group>"; };
 		CFAEB77BE14B954A053F0FF2 /* ItemDatabaseViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ItemDatabaseViewModel.swift; sourceTree = "<group>"; };
 		D1032444F86B468E55BF92F9 /* AislyProgressBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyProgressBar.swift; sourceTree = "<group>"; };
+		D48CA98CE2AE7146E508CDC2 /* LoginView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D591574284FE43FF0D60F95F /* AislyListRowCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyListRowCard.swift; sourceTree = "<group>"; };
 		E13D31FF7C17887B8627257B /* ShoppingListAppEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListAppEntity.swift; sourceTree = "<group>"; };
 		E4DFA1940504215363903087 /* HistoryDetailViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewModel.swift; sourceTree = "<group>"; };
+		E605701EB26A017DC5AADE4E /* AislyAPIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislyAPIClient.swift; sourceTree = "<group>"; };
 		E9EC4F01225B79E33F2C36F2 /* AislyCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyCornerRadius.swift; sourceTree = "<group>"; };
 		F1BE87A200692D40E76714F6 /* AislyColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AislyColor.swift; sourceTree = "<group>"; };
 		F5A90EACC7DEE9DC2B9417D1 /* AislySurfaceCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AislySurfaceCard.swift; sourceTree = "<group>"; };
@@ -375,6 +399,23 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		87A2DE555C49BFDDD6C8295E /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				994B8299556EE275FEA22BE8 /* AislyRemoteConfig.swift */,
+				E605701EB26A017DC5AADE4E /* AislyAPIClient.swift */,
+				604D0803B0FD19D0DB72E0DB /* AuthAPIClient.swift */,
+				0F1694EAF28CD8AAE9456BE6 /* AuthSessionStore.swift */,
+				BFF46021FF23BBE6740EBBDD /* RemoteWireModels.swift */,
+				5D32B7552E29550D25E37CA5 /* RemoteShoppingListRepository.swift */,
+				BE8B1E97BD7F9D78934A575E /* RemoteShoppingCategoryRepository.swift */,
+				6CA428140CC40CD8CB0D5389 /* RemoteShoppingItemCatalogRepository.swift */,
+				8C44E15DAC2949E0744E1754 /* RemotePurchaseHistoryRepository.swift */,
+			);
+			name = Remote;
+			path = Remote;
+			sourceTree = "<group>";
+		};
 		8CCF0C5A52C41659731C6CF0 /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				1128F4F05EA0F5108FC65230 /* Persistence */,
+				87A2DE555C49BFDDD6C8295E /* Remote */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -524,6 +566,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		E6BA1E6D394BB7A80F6638CF /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				8493F52BC8424AB931D09823 /* AuthGateView.swift */,
+				D48CA98CE2AE7146E508CDC2 /* LoginView.swift */,
+				A80818CF834A295A99C4DD3E /* RegisterView.swift */,
+			);
+			name = Auth;
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		E91A67B1AEC7333C07527EB9 = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +599,7 @@
 				0E1284B6FC8A74BA97B6C65E /* ItemDatabase */,
 				43DD72CEE1EE4F77C18B634E /* Templates */,
 				477B105809D84DE502217ED0 /* ArchivedLists */,
+				E6BA1E6D394BB7A80F6638CF /* Auth */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -741,6 +795,18 @@
 				E919D1D241AA2CBBAAC16075 /* NewListSheet.swift in Sources */,
 				BC4CF2043BB57CDADF676C7A /* FinishPurchaseSheet.swift in Sources */,
 				46401D57CE84EE8AC2C99D86 /* ListInfoSheet.swift in Sources */,
+				2F85E47182AD91DCE11D9902 /* AislyRemoteConfig.swift in Sources */,
+				4FB8CBD4F7AF5A3485F9C215 /* AislyAPIClient.swift in Sources */,
+				7DB9399A1239213ABD7E3A15 /* AuthAPIClient.swift in Sources */,
+				D5A909EC1F87D55ECDBF967E /* AuthSessionStore.swift in Sources */,
+				2AB2B7F061BBA99A62EAB198 /* RemoteWireModels.swift in Sources */,
+				CC60083D74226B4BE269EBFF /* RemoteShoppingListRepository.swift in Sources */,
+				9AE359A47E460BD58F525C94 /* RemoteShoppingCategoryRepository.swift in Sources */,
+				16E9164F32F1E18F627CD848 /* RemoteShoppingItemCatalogRepository.swift in Sources */,
+				E8EE5F5AB740EDB8573C7EB9 /* RemotePurchaseHistoryRepository.swift in Sources */,
+				5DCBB11FB75AE675CA6F8433 /* AuthGateView.swift in Sources */,
+				65F30D359D1AD62750E8A43C /* LoginView.swift in Sources */,
+				6FD741116AF8BD156B830E90 /* RegisterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

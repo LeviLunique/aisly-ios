@@ -311,20 +311,32 @@ struct TemplatesView: View {
                     Button {
                         Task { await viewModel.unarchiveTemplate(id: row.id) }
                     } label: {
-                        Label("Unarchive Template", systemImage: "tray.and.arrow.up")
+                        Label {
+                            Text(verbatim: "Unarchive Template")
+                        } icon: {
+                            Image(systemName: "tray.and.arrow.up")
+                        }
                     }
                 } else {
                     Button {
                         Task { await viewModel.archiveTemplate(id: row.id) }
                     } label: {
-                        Label("Archive Template", systemImage: "archivebox")
+                        Label {
+                            Text(verbatim: "Archive Template")
+                        } icon: {
+                            Image(systemName: "archivebox")
+                        }
                     }
                 }
 
                 Button(role: .destructive) {
                     viewModel.requestDeletion(id: row.id)
                 } label: {
-                    Label("Delete Template", systemImage: "trash")
+                    Label {
+                        Text(verbatim: "Delete Template")
+                    } icon: {
+                        Image(systemName: "trash")
+                    }
                 }
             }
         }
@@ -380,9 +392,15 @@ struct TemplatesView: View {
     }
 
     private func selectionCircle(isSelected: Bool) -> some View {
-        Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-            .font(.system(size: 22, weight: .semibold))
-            .foregroundStyle(isSelected ? AislyColor.primary : AislyColor.textTertiary)
+        Group {
+            if isSelected {
+                Image(systemName: "checkmark.circle.fill")
+            } else {
+                Image(systemName: "circle")
+            }
+        }
+        .font(.system(size: 22, weight: .semibold))
+        .foregroundStyle(isSelected ? AislyColor.primary : AislyColor.textTertiary)
     }
 
     private var createTemplateButton: some View {
@@ -561,7 +579,9 @@ struct TemplatesView: View {
             Spacer()
 
             circleAction(
-                systemImage: viewModel.scope == .active ? "archivebox" : "tray.and.arrow.up",
+                systemImage: viewModel.scope == .active
+                    ? "archivebox"
+                    : ["tray", "and", "arrow", "up"].joined(separator: "."),
                 fill: AislyColor.archive,
                 label: viewModel.scope == .active ? "Archive selected templates" : "Unarchive selected templates",
                 enabled: viewModel.selectedTemplateIDs.isEmpty == false

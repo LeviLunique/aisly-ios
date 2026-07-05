@@ -53,13 +53,14 @@ xcodebuild -scheme Aisly -project Aisly.xcodeproj -configuration Release -destin
 ## Workflows públicos
 
 - [CI iOS](../.github/workflows/ios-ci.yml)
-- [CD iOS](../.github/workflows/ios-cd.yml)
+- [Archive iOS manual](../.github/workflows/ios-cd.yml)
 
 ## Foco atual do desenvolvimento
 
 Hoje o projeto prioriza:
 
 - persistência local
+- integração remota em builds Debug apontando para o ambiente de desenvolvimento no AWS
 - listas e itens
 - orçamento
 - compras recorrentes
@@ -67,7 +68,5 @@ Hoje o projeto prioriza:
 
 Evite antecipar:
 
-- backend
-- nuvem
 - monetização
 - suporte avançado

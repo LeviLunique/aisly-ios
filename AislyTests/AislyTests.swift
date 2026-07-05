@@ -334,6 +334,13 @@ final class AislyTests: XCTestCase {
             #"NSPersistentContainer"#,
             #"Realm"#
         ]
+        // Sanctioned exceptions: the remote feature flag lives in
+        // UserDefaults and the auth session is persisted in the Keychain.
+        let allowedViolations = Set([
+            "AislyRemoteConfig.swift: UserDefaults",
+            "AuthSessionStore.swift: SecItem",
+            "AuthSessionStore.swift: Keychain"
+        ])
 
         let violations = try swiftFileURLs.flatMap { fileURL -> [String] in
             let contents = try String(contentsOf: fileURL, encoding: .utf8)
@@ -343,7 +350,7 @@ final class AislyTests: XCTestCase {
                     "\(fileURL.lastPathComponent): \(pattern)"
                 }
             }
-        }
+        }.filter { allowedViolations.contains($0) == false }
 
         XCTAssertEqual(violations, [])
     }
